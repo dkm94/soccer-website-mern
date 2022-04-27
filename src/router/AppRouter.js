@@ -12,13 +12,17 @@ import Match from '../pages/Match/Match';
 import MyFavorites from '../pages/MyFavorites/MyFavorites';
 import Auth from '../pages/Auth/Auth';
 
+// import CommentsContextProvider from '../Context/Context'
+
+
 const AppRouter = () => {
+  
   return (
-    <Router>
+      <Router>
       <Navbar />
       <Header />
       <Routes>
-        <Route path="/"  element={<Home/>} />
+        <Route path="/"  element={<Home /> } />
         <Route path="/players"  element={<Players/>} />
         <Route path="/area"  element={<Area/>} />
         <Route path="/competition"  element={<Competition/>} />
@@ -28,7 +32,7 @@ const AppRouter = () => {
         <Route path="/auth"  element={<Auth/>} />
       </Routes>
       <Footer />
-    </Router>
+      </Router>
   )
 }
 
