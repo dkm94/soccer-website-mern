@@ -16,7 +16,7 @@ const Navigation = () => {
         <Nav.Link href="/teams">Teams</Nav.Link>
         <Nav.Link href="/games">Games</Nav.Link>
         <Nav.Link href="/myfavorites">My Favorites</Nav.Link>
-        <Nav.Link href="/login" id='login-button' >Log in/Register</Nav.Link>
+        <Nav.Link href="/auth" id='login-button' >Log in/Register</Nav.Link>
       </Nav>
       </Container>
     </Navbar>

@@ -10,6 +10,7 @@ import Competition from '../pages/Competition/Competition';
 import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
 import MyFavorites from '../pages/MyFavorites/MyFavorites';
+import Auth from '../pages/Auth/Auth';
 
 const AppRouter = () => {
   return (
@@ -24,6 +25,7 @@ const AppRouter = () => {
         <Route path="/teams"  element={<Teams/>} />
         <Route path="/games"  element={<Match/>} />
         <Route path="/myfavorites"  element={<MyFavorites/>} />
+        <Route path="/auth"  element={<Auth/>} />
       </Routes>
       <Footer />
     </Router>

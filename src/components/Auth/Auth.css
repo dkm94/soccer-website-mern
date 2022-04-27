@@ -1,0 +1,11 @@
+.auth-form-switch {
+    margin: 20px 0;
+    text-align: end;
+}
+
+.auth-form-switch-btn {
+    color: none !important;
+    background-color: none;
+    border-color: none;
+    border: none;
+}
