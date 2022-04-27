@@ -10,9 +10,12 @@ const CommentsCol = () => {
   const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        getRessources("comment").then(res => setComments(res.data));
+        async function getData(){
+          await getRessources("comment").then(res => setComments(res.data));
+        }
+        getData();
         // console.log(comments);
-    }, [comments]);
+    }, []);
 
   return (
     <Col lg={4} >
