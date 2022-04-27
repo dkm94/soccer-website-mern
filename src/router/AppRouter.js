@@ -9,6 +9,7 @@ import Area from '../pages/Area/Area';
 import Competition from '../pages/Competition/Competition';
 import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
+import MyFavorites from '../pages/MyFavorites/MyFavorites';
 
 const AppRouter = () => {
   return (
@@ -21,7 +22,8 @@ const AppRouter = () => {
         <Route path="/area"  element={<Area/>} />
         <Route path="/competition"  element={<Competition/>} />
         <Route path="/teams"  element={<Teams/>} />
-        <Route path="/match"  element={<Match/>} />
+        <Route path="/games"  element={<Match/>} />
+        <Route path="/myfavorites"  element={<MyFavorites/>} />
       </Routes>
       <Footer />
     </Router>

@@ -1,0 +1,16 @@
+.layout {
+    /* margin-top: 4rem; */
+}
+
+.layout-cols {
+    background-color: whitesmoke;
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.layout-cols > h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}

@@ -6,6 +6,7 @@ import areaImg from '../../images/Amazing top 10 football match wiener players h
 import competitionImg from '../../images/soccer wallpapers soccer wallpapers soccer wallpapers soccer.jpeg';
 import teamsImg from '../../images/Showing Gallery For Soccer Players Messi Wallpaper.jpeg';
 import matchImg from '../../images/Description Soccer Player Wallpaper is a hi res Wallpaper for pc.jpeg';
+import myvaforitesImg from '../../images/301 Moved Permanently.jpeg';
 
 const Header = () => {
 
@@ -13,7 +14,7 @@ const path = window.location.pathname;
 
   const displayImg = (path) => {
     switch (path) {
-      case "/match":
+      case "/games":
         return matchImg;
       case "/players":
         return playersImg;
@@ -23,6 +24,8 @@ const path = window.location.pathname;
         return competitionImg;
       case "/teams":
         return teamsImg;
+      case "/myfavorites":
+      return myvaforitesImg;
       default:
         return homeImg;
     }

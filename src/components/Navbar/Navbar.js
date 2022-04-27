@@ -14,7 +14,8 @@ const Navigation = () => {
         <Nav.Link href="/area">Area</Nav.Link>
         <Nav.Link href="/competition">Competition</Nav.Link>
         <Nav.Link href="/teams">Teams</Nav.Link>
-        <Nav.Link href="/match">Match</Nav.Link>
+        <Nav.Link href="/games">Games</Nav.Link>
+        <Nav.Link href="/myfavorites">My Favorites</Nav.Link>
         <Nav.Link href="/login" id='login-button' >Log in/Register</Nav.Link>
       </Nav>
       </Container>

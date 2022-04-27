@@ -1,8 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { Container, Row } from 'react-bootstrap';
+import CommentsCol from '../../components/Layout/CommentsCol/CommentsCol';
+import MainCol from '../../components/Layout/MainCol/MainCol';
+import './Area.css';
 
 const Area = () => {
   return (
-    <div>Area</div>
+    <Container className='layout' >
+      <Row>
+        <CommentsCol />
+        <MainCol/>
+      </Row>
+    </Container>
   )
 }
 

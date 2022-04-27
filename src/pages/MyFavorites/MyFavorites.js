@@ -2,9 +2,9 @@ import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import CommentsCol from '../../components/Layout/CommentsCol/CommentsCol';
 import MainCol from '../../components/Layout/MainCol/MainCol';
-import './Competition.css';
+import './MyFavorites.css';
 
-const Competition = () => {
+const MyFavorites = () => {
   return (
     <Container className='layout' >
       <Row>
@@ -15,4 +15,4 @@ const Competition = () => {
   )
 }
 
-export default Competition
+export default MyFavorites
