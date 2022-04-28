@@ -23,7 +23,7 @@ const AppRouter = () => {
   
   return (
       <Router>
-      <Navbar />
+      <Navbar token={token} />
       <Header />
       <Routes>
         <Route path="/"  element={<Home /> } />
@@ -32,7 +32,7 @@ const AppRouter = () => {
         <Route path="/competition"  element={<Competition/>} />
         <Route path="/teams"  element={<Teams/>} />
         <Route path="/games"  element={<Match/>} />
-        <Route element={<ProtectedRoutes />} >
+        <Route element={<ProtectedRoutes token={token} />} >
           <Route path="/myfavorites"  element={<MyFavorites/>}/>
         </Route>
         <Route path="/auth"  element={<Auth/>} />
