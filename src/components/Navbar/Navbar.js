@@ -11,10 +11,10 @@ const Navigation = () => {
       <Nav className="me-auto">
         <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link href="/players">Players</Nav.Link>
-        <Nav.Link href="/area">Area</Nav.Link>
-        <Nav.Link href="/competition">Competition</Nav.Link>
+        <Nav.Link href="/area">Areas</Nav.Link>
+        <Nav.Link href="/competition">Competitions</Nav.Link>
         <Nav.Link href="/teams">Teams</Nav.Link>
-        <Nav.Link href="/games">Games</Nav.Link>
+        <Nav.Link href="/games">Matches</Nav.Link>
         <Nav.Link href="/myfavorites">My Favorites</Nav.Link>
         <Nav.Link href="/auth" id='login-button' >Log in/Register</Nav.Link>
       </Nav>

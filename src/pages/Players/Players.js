@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import CommentsCol from '../../components/Layout/CommentsCol/CommentsCol';
-import MainCol from '../../components/Layout/MainCol/MainCol';
 import './Players.css';
 
 const Players = () => {
@@ -9,7 +8,6 @@ const Players = () => {
     <Container className='layout' >
       <Row>
         <CommentsCol />
-        <MainCol/>
       </Row>
     </Container>
   )

@@ -22,8 +22,9 @@ const CommentsCol = () => {
       <div className='layout-cols'>
         <h1>Last comments</h1>
         {
-          comments.map(comment => (
+          comments.map((comment, index) => (
             <CommentCard 
+            key={index}
               message={comment.message}
               owner={comment.owner.firstName}
             />
