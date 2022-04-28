@@ -10,7 +10,7 @@ const Auth = () => {
 
   return (
     <Container className='layout'>
-        <Row className="justify-content-md-center">
+        <Row >
             <Col xs={12} md={6} >
               {form ? <Login form={form} setForm={setForm} /> : <Register form={form} setForm={setForm} />}
             </Col>

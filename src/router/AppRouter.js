@@ -12,9 +12,13 @@ import Match from '../pages/Match/Match';
 import MyFavorites from '../pages/MyFavorites/MyFavorites';
 import Auth from '../pages/Auth/Auth';
 
+import axios from 'axios';
+import ProtectedRoutes from '../components/ProtectedRoutes';
+
 // import CommentsContextProvider from '../Context/Context'
 
-
+axios.defaults.baseURL = 'http://localhost:3001';
+const token = localStorage.getItem("token");
 const AppRouter = () => {
   
   return (
@@ -28,7 +32,9 @@ const AppRouter = () => {
         <Route path="/competition"  element={<Competition/>} />
         <Route path="/teams"  element={<Teams/>} />
         <Route path="/games"  element={<Match/>} />
-        <Route path="/myfavorites"  element={<MyFavorites/>} />
+        <Route element={<ProtectedRoutes />} >
+          <Route path="/myfavorites"  element={<MyFavorites/>}/>
+        </Route>
         <Route path="/auth"  element={<Auth/>} />
       </Routes>
       <Footer />

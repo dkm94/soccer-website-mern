@@ -4,7 +4,10 @@
 
 .layout-cols {
     background-color: whitesmoke;
-    margin: 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 10rem;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
