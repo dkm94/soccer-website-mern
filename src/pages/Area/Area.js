@@ -29,7 +29,7 @@ const Area = () => {
           <div className='layout-cols'>
             <h1>Countries and areas</h1>
             <Container>
-              <Row>
+              <Row className="justify-content-md-center">
                 <Col xs={6}>
                   <SearchBar
                   className="search__input"
