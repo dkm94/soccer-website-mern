@@ -1,12 +1,12 @@
 import React from 'react';
 import './Header.css';
-import homeImg from '../../images/Capture d’écran 2022-04-27 à 11.11.03.png';
-import playersImg from '../../images/Ronaldo Football Player Images Prime Wallpapers.jpeg';
-import areaImg from '../../images/Amazing top 10 football match wiener players hd wallpapers.jpeg';
-import competitionImg from '../../images/soccer wallpapers soccer wallpapers soccer wallpapers soccer.jpeg';
-import teamsImg from '../../images/Showing Gallery For Soccer Players Messi Wallpaper.jpeg';
-import matchImg from '../../images/Description Soccer Player Wallpaper is a hi res Wallpaper for pc.jpeg';
-import myvaforitesImg from '../../images/301 Moved Permanently.jpeg';
+import homeImg from '../../images/home.png';
+import playersImg from '../../images/players.jpeg';
+import areaImg from '../../images/areas.jpeg';
+import competitionImg from '../../images/competitions.jpeg';
+import teamsImg from '../../images/teams.jpeg';
+import matchImg from '../../images/matches.jpeg';
+import myvaforitesImg from '../../images/favorites.jpeg';
 
 const Header = () => {
 
