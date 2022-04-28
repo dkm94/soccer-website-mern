@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col } from 'react-bootstrap';
 import { getRessources } from '../../../services/soccerapi_services';
-import MainContent from './Content/Content';
 import './MainCol.css';
 
 const MainCol = (props) => {
@@ -50,7 +49,6 @@ console.log("🚀 ~ file: MainCol.js ~ line 8 ~ MainCol ~ props", props)
     <Col lg={8} >
       <div className='layout-cols'>
         <h1>{displayMainTitle(path)}</h1>
-        <MainContent content={data} />
       </div>
     </Col>
   )

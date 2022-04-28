@@ -14,7 +14,7 @@ const CommentsCol = () => {
           await getRessources("comment").then(res => setComments(res.data));
         }
         getData();
-        // console.log(comments);
+        return () => {console.log(comments)}
     }, []);
 
   return (

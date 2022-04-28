@@ -22,7 +22,6 @@ const Home = () => {
     <Container className='layout' >
       <Row>
         <CommentsCol />
-        {/* <MainCol content={matches} /> */}
         <Col lg={8} >
           <div className='layout-cols'>
             <h1>Today's games</h1>
