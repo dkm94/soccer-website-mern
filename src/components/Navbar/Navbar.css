@@ -7,3 +7,12 @@
 .nav-style {
     width: 100%;
 }
+
+@media only screen and (max-device-width : 1024px) {
+    /* .guest__updateForm > form {
+        width: 100%;
+    }
+    .guest__updateForm > form > input {
+        width: 100%;
+    } */
+}
