@@ -14,7 +14,7 @@ const Navigation = ({ token }) => {
 
   return (
     <>
-    <Navbar bg="light" variant="light">
+    <Navbar className='nav-style' style={{ position: 'fixed', zIndex: 1000 }} bg="light" variant="light">
       <Container>
       <Navbar.Brand href="#home">2LEFOOT</Navbar.Brand>
       <Nav className="me-auto">
