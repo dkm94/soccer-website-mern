@@ -18,7 +18,7 @@ const CommentsCol = () => {
     }, []);
 
   return (
-    <Col lg={4} >
+    <Col lg={4} className="comment-layout" >
       <div className='layout-cols'>
         <h1>Last comments</h1>
         {
