@@ -16,15 +16,13 @@ const Login = ({ form, setForm }) => {
   const [showError, setShowError] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false)
   const navigate = useNavigate();
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-        .required('Veuillez compléter ce champ.'),
-    password: Yup.string()
-        .required('Veuillez compléter ce champ.')
-  })
-  // const { register, handleSubmit, control, reset, formState: { errors }, getValues } = useForm({
-  //     resolver: yupResolver(validationSchema)
-  // });
+  // const validationSchema = Yup.object().shape({
+  //   email: Yup.string()
+  //       .required('Veuillez compléter ce champ.'),
+  //   password: Yup.string()
+  //       .required('Veuillez compléter ce champ.')
+  // })
+
   const onSubmit = async ({ email, password }) => {
     console.log(email, password);
     setLoadingButton(true)
