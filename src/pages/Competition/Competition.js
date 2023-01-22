@@ -55,14 +55,14 @@ const Competition = () => {
                 <Container>
                   <Row className="justify-content-md-center">
                     <Col >
-                      <Card.Text>Current season: from {competition.currentSeason.startDate} to {competition.currentSeason.endDate}</Card.Text>
+                      <Card.Text>Current season: from {competition?.currentSeason?.startDate} to {competition?.currentSeason?.endDate}</Card.Text>
                     </Col>
                   </Row>
                 </Container>
               </Card.Body>
             </Card>)
             )}
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose}>?
               <Modal.Header closeButton>
                 <Modal.Title>{competition?.name}</Modal.Title>
               </Modal.Header>
