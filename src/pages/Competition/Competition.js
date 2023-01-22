@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Modal, Button, Image } from 'react-bootstrap';
-import CommentsCol from '../../components/Layout/CommentsCol/CommentsCol';
 import './Competition.css';
 
 import { getCount, getRessources, getRessource } from '../../services/soccerapi_services';
@@ -39,7 +38,6 @@ const Competition = () => {
   return (
     <Container className='layout' >
       <Row>
-        <CommentsCol />
         <Col lg={8} >
           <div className='layout-cols'>
             <h1>All the competitions</h1>

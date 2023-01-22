@@ -4,13 +4,13 @@ import Header from '../components/Header/Header';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import Home from '../pages/Home/Home';
-import Players from '../pages/Players/Players';
 import Area from '../pages/Area/Area';
 import Competition from '../pages/Competition/Competition';
 import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
-import MyFavorites from '../pages/MyFavorites/MyFavorites';
 import Auth from '../pages/Auth/Auth';
+import CommentsCol from '../components/Layout/CommentsCol/CommentsCol';
+import { Container, Row } from 'react-bootstrap';
 
 import axios from 'axios';
 import ProtectedRoutes from '../components/ProtectedRoutes';
@@ -19,24 +19,38 @@ import ProtectedRoutes from '../components/ProtectedRoutes';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 const token = localStorage.getItem("token");
+
+const Layout = ({children}) => {
+  return(
+    <Container className='layout'>
+      <Row>
+        <CommentsCol />
+        {children}
+      </Row>
+    </Container>
+  )
+};
+
+
 const AppRouter = () => {
   
   return (
       <Router>
       <Navbar token={token} />
       <Header />
-      <Routes>
-        <Route path="/"  element={<Home /> } />
-        <Route path="/players"  element={<Players/>} />
-        <Route path="/area"  element={<Area/>} />
-        <Route path="/competition"  element={<Competition/>} />
-        <Route path="/teams"  element={<Teams/>} />
-        <Route path="/games"  element={<Match/>} />
-        <Route element={<ProtectedRoutes token={token} />} >
-          <Route path="/myfavorites"  element={<MyFavorites/>}/>
-        </Route>
-        <Route path="/auth"  element={<Auth/>} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/"  element={<Home /> } />
+          <Route path="/teams"  element={<Teams/>} />
+          <Route path="/competitions"  element={<Competition/>} />
+          <Route path="/matchhistory"  element={<Match/>} />
+          <Route path="/news"  element={<Area/>} />
+          <Route element={<ProtectedRoutes token={token} />} >
+            {/* <Route path="/adminbackoffice"  element={<MyFavorites/>}/> */}
+          </Route>
+          <Route path="/auth"  element={<Auth/>} />
+        </Routes>
+      </Layout>
       <Footer />
       </Router>
   )
