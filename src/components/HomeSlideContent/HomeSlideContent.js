@@ -3,9 +3,9 @@ import { Button } from 'react-bootstrap'
 
 const HomeSlideContent = ({ key, style, title, content }) => {
   return (
-    <div key={key} className='slider-content-title' style={style}>
-        <h1>{title}</h1>
-        <p>{content}</p>
+    <div key={key} className='slider-content' style={style}>
+        <h1 style={{ fontSize: "3.5rem", fontWeight: "700", fontFamily: "'Adamina', serif"}} >{title}</h1>
+        <p style={{ fontSize: "1.5rem"}}>{content}</p>
         <div>
             <Button style={{ backgroundColor: "#C40808", border:"none"}} >Lire l'article</Button>
         </div>

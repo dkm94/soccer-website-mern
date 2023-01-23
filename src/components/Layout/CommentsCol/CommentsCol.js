@@ -19,12 +19,14 @@ const CommentsCol = () => {
 
   return (
     <Col lg={4} className="comment-layout" >
-      <div className='layout-cols'>
-        <h1>Last comments</h1>
+      <div className='title'>
+        <span>Last comments</span>
+      </div>
+      <div className="content">
         {
           comments.map((comment, index) => (
             <CommentCard 
-            key={index}
+              key={index}
               message={comment.message}
               owner={comment.owner.firstName}
             />

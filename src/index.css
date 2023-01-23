@@ -2,5 +2,7 @@ body {
   margin: 0;
   font-family: 'Nunito', sans-serif !important;
   font-weight: 400 !important;
-  background-color: #fbfcf9 !important;
+  /* background-color: #fbfcf9 !important; */
+  background-color: #EFF1ED !important;
+  font-size: 12px !important;
 }
