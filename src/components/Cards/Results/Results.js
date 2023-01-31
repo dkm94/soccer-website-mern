@@ -20,6 +20,23 @@ const Results = ({ match }) => {
         width: "auto"
       };
 
+    const timeStyle = {
+        fontSize: "20px",
+        fontWeight: "600"
+    }
+
+    const handleTime = (date) => {
+        let data= new Date(date)
+        let hrs = data.getHours()
+        let mins = data.getMinutes()
+        if(hrs<=9)
+            hrs = '0' + hrs
+        if(mins<10)
+            mins = '0' + mins
+        const postTime= hrs + ':' + mins
+        return postTime
+    }
+
     const getFontWeight = (score) => {
         if(score === Math.max(htScore, atScore)){
              return "700";	
@@ -61,6 +78,7 @@ const Results = ({ match }) => {
         <Card.Header id="card-header-style" >{match?.competition.name}</Card.Header>
         <Card.Body style={{ padding: "2rem 1rem" }}>
             <Container>
+                <Card.Text style={timeStyle}>{handleTime(match?.utcDate)}</Card.Text>
                 <Row className="justify-content-md-center">
                 <Col xs={4}>
                     <Card.Title style={{ fontWeight: getFontWeight(htScore) }}>{match?.score.fullTime.homeTeam}</Card.Title>
