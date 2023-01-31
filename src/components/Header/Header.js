@@ -9,7 +9,7 @@ import matchImg from '../../images/matches.jpeg';
 import myvaforitesImg from '../../images/favorites.jpeg';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Image, DotGroup } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import slideshow from "../../seeds/home";
+import slideshow from "../../seeds/home.js";
 import HomeSlideContent from "../../components/HomeSlideContent/HomeSlideContent";
 import ArrowCircleLeft from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRight from "@mui/icons-material/ArrowCircleRight";
