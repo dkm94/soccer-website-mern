@@ -1,4 +1,3 @@
-import { color } from '@mui/system';
 import React from 'react';
 import { Container, Row, Col, Card, Image } from 'react-bootstrap';
 import PauseIcon from '@mui/icons-material/Pause';
@@ -32,6 +31,8 @@ const Results = ({ match }) => {
             return "300";
          }
      }
+
+     // ajouter un usestate pour les resultats
 
      const getStatusStyle = (status) => {
         if(status === "IN_PLAY"){

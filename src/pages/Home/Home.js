@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { getRessources } from '../../services/soccerapi_services';
 import './Home.css';
 import '../../App.css';
@@ -28,7 +28,7 @@ const Home = () => {
       <div className='layout-cols'>
         <MainContent title={"Today's games"}>
           <div style={containerStyle}>
-          {matches?.map((match, i) => <Results match={match} />)}
+          {matches?.map((match, i) => <Results key={match?.id} match={match} />)}
           </div>
         </MainContent>
       </div>

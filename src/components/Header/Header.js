@@ -48,7 +48,6 @@ const Carousel = () => {
             slideshow?.map((item, i)=> <Slide key={i} index={item?.idx}>
               <BackgroundImage img={item?.img} >
                 <HomeSlideContent 
-                key={i}
                 style={childrenStyle}
                 title={item?.title}
                 content={item?.content}
