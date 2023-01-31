@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Modal, Button, Image } from 'react-bootstrap';
-import CommentsCol from '../../components/Layout/CommentsCol/CommentsCol';
 import './Competition.css';
 
 import { getCount, getRessources, getRessource } from '../../services/soccerapi_services';
@@ -10,7 +9,8 @@ const Competition = () => {
   const [count, setCount] = useState(null);
   const [competition, setCompetition] = useState({});
   const [show, setShow] = useState(false);
-  const [result, setResult] = useState([])
+  const [result, setResult] = useState([]);
+  const [test, setTest] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -31,6 +31,16 @@ const Competition = () => {
       return () => {console.log(count)}
   }, [])
 
+  useEffect(() => {
+    async function getDatas(){
+      getRessources("areas").then(res =>  setTest(res));
+  }
+    getDatas();
+      return () => {console.log(test)}
+  }, [])
+
+  console.log("test", test);
+
   const openModal = async (id) => {
     await getRessource("competitions", id).then(res =>  setCompetition(res));
     handleShow();
@@ -39,7 +49,6 @@ const Competition = () => {
   return (
     <Container className='layout' >
       <Row>
-        <CommentsCol />
         <Col lg={8} >
           <div className='layout-cols'>
             <h1>All the competitions</h1>
