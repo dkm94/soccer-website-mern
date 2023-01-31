@@ -7,7 +7,7 @@ const HomeSlideContent = ({ key, style, title, content }) => {
         <h1 style={{ fontSize: "3.5rem", fontWeight: "700", fontFamily: "'Adamina', serif"}} >{title}</h1>
         <p style={{ fontSize: "1.5rem"}}>{content}</p>
         <div>
-            <Button style={{ backgroundColor: "#C40808", border:"none"}} >Lire l'article</Button>
+            <Button style={{ backgroundColor: "#C40808", border:"none"}} >Read the article</Button>
         </div>
     </div>
   )

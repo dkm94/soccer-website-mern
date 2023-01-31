@@ -3,11 +3,17 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { getRessources } from '../../services/soccerapi_services';
 import './Home.css';
 import '../../App.css';
+import MainContent from '../../components/Wrappers/MainContent/MainContent';
+import Results from '../../components/Cards/Results/Results';
 
 
 const Home = () => {
 
   const [matches, setMatches] = useState([]);
+
+  const containerStyle = {
+    padding: "1rem 3rem"
+  }
 
   useEffect(() => {
     async function getDatas(){
@@ -20,34 +26,11 @@ const Home = () => {
   return (
     <Col lg={8} >
       <div className='layout-cols'>
-        <h1>Today's games</h1>
-        {matches.map(match => (
-          <Card className="text-center" style={{ marginTop: "1rem" }} >
-            <Card.Header>{match.competition.name}</Card.Header>
-            <Card.Body>
-              <Container>
-                <Row className="justify-content-md-center">
-                  <Col xs={4} >
-                    <Card.Title>{match.score.fullTime.homeTeam}</Card.Title>
-                    <Card.Title>{match.homeTeam.name}</Card.Title>
-                  </Col>
-                  <Col xs={2}>
-                    <Card.Title><span>-</span></Card.Title>
-                
-                  </Col>
-                  <Col xs={4}>
-                    <Card.Title>{match.score.fullTime.awayTeam}</Card.Title>
-                    <Card.Title>{match.awayTeam.name}</Card.Title>
-                  </Col>
-                </Row>
-              </Container>
-              <Card.Text>
-                {match.group}
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer className="text-muted">{match.status}</Card.Footer>
-          </Card>
-        ))}
+        <MainContent title={"Today's games"}>
+          <div style={containerStyle}>
+          {matches?.map((match, i) => <Results match={match} />)}
+          </div>
+        </MainContent>
       </div>
     </Col>
   )

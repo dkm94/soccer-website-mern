@@ -1,5 +1,4 @@
 .comment-layout {
-    background-color: #FFF !important;
     padding: 0 !important;
 }
 
@@ -12,6 +11,19 @@
 
 .comment-layout > .content {
     padding: 1.5rem;
+}
+
+.cmt-title {
+    font-size: 12px !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 !important;
+    padding: 1rem;
+    background-color: #BCC3CA;
+}
+
+.cmt-content {
+    padding: 0 2rem;
 }
 
 @media only screen and (max-device-width : 1024px) {

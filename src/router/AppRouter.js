@@ -12,12 +12,8 @@ import Auth from '../pages/Auth/Auth';
 import CommentsCol from '../components/Layout/CommentsCol/CommentsCol';
 import { Container, Row } from 'react-bootstrap';
 
-import axios from 'axios';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 
-// import CommentsContextProvider from '../Context/Context'
-
-axios.defaults.baseURL = 'http://localhost:3001';
 const token = localStorage.getItem("token");
 
 const Layout = ({children}) => {
