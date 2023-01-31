@@ -4,3 +4,23 @@
     color: #fff;
     border-radius: 0;
 }
+
+.status-finished{
+    color: #000 !important;
+    font-weight: 800;
+}
+
+.status-inplay{
+    color: #0c893c !important;
+    font-weight: 600;
+}
+
+.status-scheduled{
+    color: #000 !important;
+    font-weight: 600;
+}
+
+.status-paused{
+    color: #C40808 !important;
+    font-weight: 600;
+}
