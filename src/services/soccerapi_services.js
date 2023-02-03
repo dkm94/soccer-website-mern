@@ -1,13 +1,16 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://api.football-data.org/v2';
+const apiVersion = "v2";
+const apiLastVersion = "v4";
+
+const BASE_URL = 'http://api.football-data.org/';
 const headersId = "9a56582ee8c04485a073a7ae417482f8";
 const corsEveryhere = "https://cors-anywhere.herokuapp.com";
 
 export {BASE_URL, getRessources, getRessource, getMatches, getCount};
 
 function getRessources(name) {
-  const url = `${corsEveryhere}/${BASE_URL}/${name}`;
+  const url = `${corsEveryhere}/${BASE_URL}/${apiLastVersion}/${name}`;
   var config = {
     method: 'get',
     url,
