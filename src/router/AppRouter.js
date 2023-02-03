@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import Home from '../pages/Home/Home';
 import Area from '../pages/Area/Area';
-import Competition from '../pages/Competition/Competition';
+import Competitions from '../pages/Competitions/Competitions';
 import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
 import Auth from '../pages/Auth/Auth';
@@ -38,7 +38,7 @@ const AppRouter = () => {
         <Routes>
           <Route path="/"  element={<Home /> } />
           <Route path="/teams"  element={<Teams/>} />
-          <Route path="/competitions"  element={<Competition/>} />
+          <Route path="/competitions"  element={<Competitions/>} />
           <Route path="/matchhistory"  element={<Match/>} />
           <Route path="/news"  element={<Area/>} />
           <Route element={<ProtectedRoutes token={token} />} >
