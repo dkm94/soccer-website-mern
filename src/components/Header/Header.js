@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
 import homeImg from '../../images/home.png';
 import playersImg from '../../images/players.jpeg';
 import areaImg from '../../images/areas.jpeg';
-import competitionImg from '../../images/competitions.jpeg';
+import competitionImg from '../../images/competitions.png';
 import teamsImg from '../../images/teams.jpeg';
 import matchImg from '../../images/matches.jpeg';
 import myvaforitesImg from '../../images/favorites.jpeg';
@@ -67,6 +67,10 @@ const Carousel = () => {
 
 const path = window.location.pathname;
 
+const Banner = () => {
+
+  const [pageTitle, setPageTitle] = useState("");
+
   const displayImg = (path) => {
     switch (path) {
       case "/games":
@@ -75,7 +79,7 @@ const path = window.location.pathname;
         return playersImg;
       case "/area":
         return areaImg;
-      case "/competition":
+      case "/competitions":
         return competitionImg;
       case "/teams":
         return teamsImg;
@@ -86,8 +90,34 @@ const path = window.location.pathname;
     }
   }
 
-const Banner = () => {
-  return <div className='banner' style={{ backgroundImage: `url('${displayImg(path)}')` }} />
+  const getTitle = (path) => {
+    switch (path) {
+      case "/games":
+        return matchImg;
+      case "/players":
+        return playersImg;
+      case "/area":
+        return areaImg;
+      case "/competitions":
+        return "Competition";
+      case "/teams":
+        return teamsImg;
+      case "/myfavorites":
+      return myvaforitesImg;
+      default:
+        return homeImg;
+    }
+  }
+
+  useEffect(() => {
+    getTitle()
+  }, [])
+
+  return (
+    <div className='banner' style={{ backgroundImage: `url('${displayImg(path)}')` }}>
+      <span className="banner-title">{getTitle(path)}</span>
+    </div>
+  )
 };
 
 const Header = () => {
