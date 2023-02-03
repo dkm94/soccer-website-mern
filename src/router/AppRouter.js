@@ -8,6 +8,7 @@ import Area from '../pages/Area/Area';
 import Competitions from '../pages/Competitions/Competitions';
 import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
+import News from '../pages/News/News';
 import Auth from '../pages/Auth/Auth';
 import CommentsCol from '../components/Layout/CommentsCol/CommentsCol';
 import { Container, Row } from 'react-bootstrap';
@@ -40,7 +41,7 @@ const AppRouter = () => {
           <Route path="/teams"  element={<Teams/>} />
           <Route path="/competitions"  element={<Competitions/>} />
           <Route path="/matchhistory"  element={<Match/>} />
-          <Route path="/news"  element={<Area/>} />
+          <Route path="/news"  element={<News/>} />
           <Route element={<ProtectedRoutes token={token} />} >
             {/* <Route path="/adminbackoffice"  element={<MyFavorites/>}/> */}
           </Route>
