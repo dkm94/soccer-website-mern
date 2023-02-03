@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Modal, Button, Image } from 'react-bootstrap';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
+import CompetitionCard from "../../components/Cards/Competition/Competition"
 import './Competition.css';
 
 import { getCount, getRessources, getRessource } from '../../services/soccerapi_services';
@@ -20,7 +21,7 @@ const Competition = () => {
 
   useEffect(() => {
     async function getDatas(){
-    getRessources("competitions").then(res =>  setCompetitions(res));
+      await getRessources("competitions").then(res =>  setCompetitions(res));
   }
     getDatas();
       return () => {console.log(competitions)}
@@ -35,9 +36,9 @@ const Competition = () => {
     <Col lg={8} >
       <div className='layout-cols'>
         <MainContent title={"All competitions"}>
-          <div style={containerStyle}>
-          {/* {competitions?.map((competitions, i) => <Competition key={competitions?.id} competitions={competitions} />)} */}
-          </div>
+          <Row xs={1} md={2} lg={4} className="g-4" style={containerStyle}>
+            {competitions?.map((competition, i) => <CompetitionCard key={competitions?.id} competition={competition} />)}
+          </Row>
         </MainContent>
       </div>
     </Col>
