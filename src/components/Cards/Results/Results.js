@@ -7,8 +7,10 @@ import "./Results.css";
 
 const Results = ({ match }) => {
 
-    let htScore = match?.score.fullTime.homeTeam
-    let atScore = match?.score.fullTime.awayTeam;
+    console.log(match)
+
+    let htScore = match?.score.fullTime.home
+    let atScore = match?.score.fullTime.away;
 
     const containerStyle = {
         marginTop: "1rem",
@@ -68,38 +70,38 @@ const Results = ({ match }) => {
             return null
         } else if(status === "PAUSED"){
             return <PauseIcon />
-        } else if(status === "SCHEDULED"){
+        } else if(status === "TIMED"){
             return <ScheduleIcon />
         } else return null
      }
 
   return (
     <Card key={match?.id} className="text-center" style={containerStyle} >
-        <Card.Header id="card-header-style" >{match?.competition.name}</Card.Header>
+        <Card.Header id="card-header-style" >{match?.competition.name} - Matchday {match?.matchday}</Card.Header>
         <Card.Body style={{ padding: "2rem 1rem" }}>
             <Container>
                 <Card.Text style={timeStyle}>{handleTime(match?.utcDate)}</Card.Text>
                 <Row className="justify-content-md-center">
                 <Col xs={4}>
-                    <Card.Title style={{ fontWeight: getFontWeight(htScore) }}>{match?.score.fullTime.homeTeam}</Card.Title>
+                    <Card.Title style={{ fontWeight: getFontWeight(htScore) }}>{match?.score.fullTime.home}</Card.Title>
                     <Card.Title style={{ fontWeight: getFontWeight(htScore) }}>{match?.homeTeam.name}</Card.Title>
                 </Col>
                 <Col xs={2}>
                     <Card.Title>
                         <span>
-                            <Image src={match?.competition.area.ensignUrl} className="avatar-style" style={avatarStyle} />    
+                            <Image src={match?.area.flag} className="avatar-style" style={avatarStyle} />    
                         </span>
                     </Card.Title>
                 
                 </Col>
                 <Col xs={4}>
-                    <Card.Title style={{ fontWeight: getFontWeight(atScore) }}>{match?.score.fullTime.awayTeam}</Card.Title>
+                    <Card.Title style={{ fontWeight: getFontWeight(atScore) }}>{match?.score.fullTime.away}</Card.Title>
                     <Card.Title style={{ fontWeight: getFontWeight(atScore) }}>{match?.awayTeam.name}</Card.Title>
                 </Col>
                 </Row>
             </Container>
             <Card.Text>
-                {match?.group}
+                {!match?.group && null}
             </Card.Text>
         </Card.Body>
         <Card.Footer className={getStatusStyle(match?.status)} >{getStatusIcon(match?.status)} {match?.status}</Card.Footer>
