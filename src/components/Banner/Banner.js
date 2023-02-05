@@ -37,7 +37,7 @@ const Banner = ({ path }) => {
           case "/area":
             return areaImg;
           case "/competitions":
-            return "Competition";
+            return "Competitions";
           case "/teams":
             return teamsImg;
           case "/news":

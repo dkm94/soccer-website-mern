@@ -6,7 +6,7 @@ import Home from '../pages/Home/Home';
 import Competitions from '../pages/Competitions/Competitions';
 import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
-import News from '../pages/News/News';
+import News from "../pages/News/News";
 import Auth from '../pages/Auth/Auth';
 import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';

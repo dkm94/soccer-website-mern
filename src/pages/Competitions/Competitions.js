@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Modal, Button, Image } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
 import CompetitionCard from "../../components/Cards/Competition/Competition"
 import './Competition.css';
 
-import { getCount, getRessources, getRessource } from '../../services/soccerapi_services';
+import { getRessources } from '../../services/soccerapi_services';
 
 const Competition = () => {
   const [competitions, setCompetitions] = useState([]);
