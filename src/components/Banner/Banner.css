@@ -1,19 +1,34 @@
-.mc-title {
+.banner {
+    height: 350px;
+    margin-top: 64px;
+    background-size: cover;
+    background-position: "center";
+}
+
+.banner-title {
     position: relative;
-    background: #C40808;
+    background: #6F0000;
+    opacity: 80%;
     display: inline-block;
     color: white;
     padding: .24em .3em .25em;
-    font-size: 12px !important;
     padding: 1rem;  
     /* z-index: 1000; */
+    width: 35%;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    font-weight: 700;
 }
 
-.mc-title:after {
+.banner-title:after {
     position: absolute;
     z-index: -1;
     content: "";
-    right: -20%;
+    left: 13%;
     top: 0;
     height: 100%;
     width: 100%;
@@ -24,7 +39,7 @@
     transform: skewX(20deg);
 }
 
-#mc-title {
+#banner-title {
     font-size: 12px !important;
     font-weight: 700;
     text-transform: uppercase;
