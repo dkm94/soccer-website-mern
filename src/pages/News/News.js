@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
 import news from '../../seeds/news';
 import Article from './Article';
