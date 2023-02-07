@@ -7,8 +7,6 @@ import "./Results.css";
 
 const Results = ({ match }) => {
 
-    console.log(match)
-
     let htScore = match?.score.fullTime.home
     let atScore = match?.score.fullTime.away;
 

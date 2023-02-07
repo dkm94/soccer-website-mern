@@ -1,9 +1,23 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import MainContent from '../../components/Wrappers/MainContent/MainContent';
 import './Teams.css';
 
 const Teams = () => {
-  return "Teams"
+  const containerStyle = {
+    padding: "1rem 3rem"
+  }
+  return(
+    <Col lg={8} >
+      <div className='layout-cols'>
+        <MainContent title={"All teams"}>
+          <div style={containerStyle}>
+              
+          </div>
+        </MainContent>
+      </div>
+    </Col>
+  )
 }
 
 export default Teams

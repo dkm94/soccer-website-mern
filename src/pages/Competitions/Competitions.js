@@ -27,6 +27,8 @@ const Competition = () => {
       return () => {console.log(competitions)}
   }, [])
 
+  console.log(competitions)
+
   // const openModal = async (id) => {
   //   await getRessource("competitions", id).then(res =>  setCompetition(res));
   //   handleShow();
