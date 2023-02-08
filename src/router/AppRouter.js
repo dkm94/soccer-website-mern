@@ -11,6 +11,7 @@ import CompetitionsTeams from '../pages/Competitions/Teams/Teams';
 import Auth from '../pages/Auth/Auth';
 import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';
+import Matches from '../pages/Competitions/Matches/Matches';
 
 const token = localStorage.getItem("token");
 const path = window.location.pathname;
@@ -26,6 +27,7 @@ const AppRouter = () => {
           <Route path="/teams"  element={<Teams/>} />
           <Route path="/competitions"  element={<Competitions/>} />
           <Route path="/competitions/:id/teams"  element={<CompetitionsTeams/>} />
+          <Route path="/competitions/:code/matches"  element={<Matches/>} />
           <Route path="/matchhistory"  element={<Match/>} />
           <Route path="/news"  element={<News/>} />
           <Route element={<ProtectedRoutes token={token} />} >

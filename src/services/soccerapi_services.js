@@ -7,7 +7,7 @@ const BASE_URL = 'http://api.football-data.org/';
 const headersId = "9a56582ee8c04485a073a7ae417482f8";
 const corsEveryhere = "https://cors-anywhere.herokuapp.com";
 
-export {BASE_URL, getRessources, getRessource, getMatches, getCount, getMatchesByCompetition};
+export {BASE_URL, getRessources, getRessource, getMatches, getCount, getMatchesByCompetition, getScoreBoard};
 
 function getRessources(name) {
   const url = `${corsEveryhere}/${BASE_URL}/${apiLastVersion}/${name}`;
@@ -77,4 +77,23 @@ function getMatches(name, from, to) {
           }).then((response) => response.data[`${name}`]);
 }
 
-
+function getScoreBoard(name, code) {
+  const url = `${corsEveryhere}/${BASE_URL}/${apiLastVersion}/${name}/${code}/matches`;
+  return axios.get(url, { headers: { "X-Auth-Token": `${headersId}` }})
+              .then((response) => response.data)
+              .catch((error) => {
+                if (error.response) {
+                  console.log("ERRORRRRRRRRRRRRRR", error)
+                  // Request made and server responded
+                  console.log(error.response.data);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  console.log(error.request);
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message);
+                }
+              });
+}

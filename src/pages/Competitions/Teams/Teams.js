@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Col, Image, Row } from 'react-bootstrap';
 import MainContent from '../../../components/Wrappers/MainContent/MainContent';
 import { getMatchesByCompetition } from '../../../services/soccerapi_services';
@@ -9,6 +9,8 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import "./Teams.css";
 
 const Teams = () => {
+
+    let navigate = useNavigate();
 
     const containerStyle = {
         padding: "1rem 3rem"
@@ -49,23 +51,23 @@ const Teams = () => {
 
     return (
         <Col lg={8} >
-        <div className='layout-cols'>
-            <MainContent title={`${competition?.competition?.name} teams`}>
-            <Row xs={1} md={2} lg={4} className="g-4" style={containerStyle}>
-                <div style={{ width: "100%", textAlign: "end"}} ><Button variant="outline-secondary" size="sm"><KeyboardBackspaceIcon fontSize='small' /> Go back to competitions</Button></div>
-                <div className='cpt-card-style' style={{ width: "100%"}}>
-                    <Col lg={6} style={{ position: "relative", padding: "2rem"}} >
-                        <span style={childrenStyle}>Matches</span>
-                        <Image src={imgMatch} fluid />
-                    </Col>
-                    <Col lg={6} style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "stretch", padding: "2rem"}} >
-                        <span style={childrenStyle}>Teams</span>
-                        <Image src={imgTeams} fluid />
-                    </Col>
+            <div className='layout-cols'>
+                <MainContent title={`${competition?.competition?.name} teams`}>
+                <Row xs={1} md={2} lg={4} className="g-4" style={containerStyle}>
+                    <div style={{ width: "100%", textAlign: "end"}} ><Button variant="outline-secondary" size="sm"><KeyboardBackspaceIcon fontSize='small' /> Go back to competitions</Button></div>
+                    <div className='cpt-card-style' style={{ width: "100%"}}>
+                        <Col lg={6} style={{ position: "relative", padding: "2rem"}} onClick={() => navigate(`/competitions/${competition?.competition?.code}/matches`)} >
+                            <span style={childrenStyle}>Matches</span>
+                            <Image src={imgMatch} fluid />
+                        </Col>
+                        <Col lg={6} style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "stretch", padding: "2rem"}} >
+                            <span style={childrenStyle}>Teams</span>
+                            <Image src={imgTeams} fluid />
+                        </Col>
                     </div>
-            </Row>
-            </MainContent>
-        </div>
+                </Row>
+                </MainContent>
+            </div>
         </Col>
     )
 }
