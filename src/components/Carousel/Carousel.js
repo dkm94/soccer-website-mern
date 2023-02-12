@@ -7,7 +7,7 @@ import ArrowCircleLeft from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRight from "@mui/icons-material/ArrowCircleRight";
 import "./Carousel.css";
 
-const BackgroundImage = (props) => {
+export const BackgroundImage = (props) => {
     return (
       <>
         {props?.children}

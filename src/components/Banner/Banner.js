@@ -39,7 +39,7 @@ const Banner = ({ path }) => {
           case "/competitions":
             return "Competitions";
           case "/teams":
-            return teamsImg;
+            return "Teams";
           case "/news":
               return "News"
           default:
