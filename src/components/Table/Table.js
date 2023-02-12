@@ -3,6 +3,7 @@ import { styled } from '@mui/system';
 import TablePaginationUnstyled, {
   tablePaginationUnstyledClasses as classes,
 } from '@mui/base/TablePaginationUnstyled';
+import { Image } from 'react-bootstrap';
 
 const Root = styled('div')`
   table {
@@ -58,39 +59,55 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
   }
 `;
 
-export default function CustomTable({ matches }) {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    console.log("Table component", matches)
+export default function CustomTable({ matches, searchInput, selected }) {
 
-    function createData(date, htCrest, homeTeam, atCrest, awayTeam, score) {
-        return { date, htCrest, homeTeam, atCrest, awayTeam, score };
-    }
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const apiData = () => {
-        const data = matches?.map(({ awayTeam, homeTeam, score, status, utcDate }, i ) => createData(utcDate, homeTeam.crest, homeTeam?.name, awayTeam.crest, awayTeam?.name, score?.winner) );
-        return data
-    }
+  function createData(id, date, htCrest, homeTeam, atCrest, awayTeam, score, status) {
+      return { id, date, htCrest, homeTeam, atCrest, awayTeam, score, status };
+  }
 
-    console.log([apiData]);
+  const apiData = () => {
+      const data = matches
+      ?.map(({ 
+        id, 
+        awayTeam,
+        homeTeam, 
+        score, 
+        status, 
+        utcDate }) => createData(id, utcDate, homeTeam?.crest, homeTeam?.shortName, awayTeam?.crest, awayTeam?.shortName, score, status))
+      return data;
+  }
+
+  //@todo
+  const lowercasedFilter = searchInput?.toLowerCase();
+  const rows = apiData()
+        ?.sort((a,b) => new Date(a?.utcDate) - new Date(b?.utcDate))
+        .filter(item => Object.keys(item).some(key => item[key]?.toString()?.toLowerCase()?.includes(lowercasedFilter)))
+        .filter((match) => {
+          if(selected === "FINISHED"){
+              return match?.status === "FINISHED"
+          } else if(selected === "SCHEDULED"){
+              return match?.status === "SCHEDULED"
+          } else {
+              return match
+          }
+        })
     
-    const rows = [
-        createData('Cupcake', 305, 3.7),
-        createData('Donut', 452, 25.0),
-        createData('Eclair', 262, 16.0),
-        createData('Frozen yoghurt', 159, 6.0),
-        createData('Gingerbread', 356, 16.0),
-        createData('Honeycomb', 408, 3.2),
-        createData('Ice cream sandwich', 237, 9.0),
-        createData('Jelly Bean', 375, 0.0),
-        createData('KitKat', 518, 26.0),
-        createData('Lollipop', 392, 0.2),
-        createData('Marshmallow', 318, 0),
-        createData('Nougat', 360, 19.0),
-        createData('Oreo', 437, 18.0),
-    ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+  const rowsTitles = [
+    "Date",
+    "",
+    "Hometeam",
+    "",
+    "Away team",
+    "Score"
+  ]
 
-    console.log(rows)
+  const formatDate = (date) => {
+    let getDate = new Date(date);
+    return getDate.toLocaleDateString("en-US")
+  }
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -110,24 +127,30 @@ export default function CustomTable({ matches }) {
       <table aria-label="custom pagination table">
         <thead>
           <tr>
-            <th>Dessert</th>
-            <th>Calories</th>
-            <th>Fat</th>
+            {rowsTitles?.map((row, i) => <th>{row}</th>)}
           </tr>
         </thead>
-        <tbody>
+        <tbody style={{ textAlignLast: "center" }}>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            ? rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
-          ).map((row) => (
-            <tr key={row.name}>
-              <td>{row.name}</td>
-              <td style={{ width: 160 }} align="right">
-                {row.calories}
+          )
+          ?.map((row) => (
+            <tr key={row?.id}>
+              <td align="center">{formatDate(row?.date)}</td>
+              <td style={{ borderRight: "0" }}>
+                <Image style={{ height: "32px", width: "32px" }} src={row?.htCrest} />
               </td>
-              <td style={{ width: 160 }} align="right">
-                {row.fat}
+              <td style={{ textAlignLast: "left" }}>
+                {row?.homeTeam}
               </td>
+              <td>
+                <Image style={{ height: "32px", width: "32px" }} src={row?.atCrest} />
+              </td>
+              <td style={{ textAlignLast: "left" }}>
+                {row?.awayTeam}
+              </td>
+              {row?.score?.winner === null ? <td>Scheduled</td> : <td>{`${row?.score?.fullTime?.home} - ${row?.score?.fullTime?.away}`}</td>}
             </tr>
           ))}
 
@@ -142,7 +165,7 @@ export default function CustomTable({ matches }) {
             <CustomTablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={rows.length}
+              count={rows?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               slotProps={{

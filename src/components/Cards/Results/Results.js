@@ -82,7 +82,7 @@ const Results = ({ match }) => {
                 <Row className="justify-content-md-center">
                 <Col xs={4}>
                     <Card.Title style={{ fontWeight: getFontWeight(htScore) }}>{match?.score.fullTime.home}</Card.Title>
-                    <Card.Title style={{ fontWeight: getFontWeight(htScore) }}>{match?.homeTeam.name}</Card.Title>
+                    <Card.Title style={{ fontWeight: getFontWeight(htScore) }}>{match?.homeTeam.shortName}</Card.Title>
                 </Col>
                 <Col xs={2}>
                     <Card.Title>
@@ -94,7 +94,7 @@ const Results = ({ match }) => {
                 </Col>
                 <Col xs={4}>
                     <Card.Title style={{ fontWeight: getFontWeight(atScore) }}>{match?.score.fullTime.away}</Card.Title>
-                    <Card.Title style={{ fontWeight: getFontWeight(atScore) }}>{match?.awayTeam.name}</Card.Title>
+                    <Card.Title style={{ fontWeight: getFontWeight(atScore) }}>{match?.awayTeam.shortName}</Card.Title>
                 </Col>
                 </Row>
             </Container>
