@@ -6,10 +6,10 @@ import { Container, Row } from 'react-bootstrap';
 const Layout = ({children, path}) => {
     return(
       <>
-        <Header path={path} />
-        <Container className='layout'>
+        {path !== "/secret-login-page" && <Header path={path} />}
+        <Container className='layout' style={{ minHeight: "100vh" }} >
           <Row>
-            <CommentsCol />
+            {path !== "/secret-login-page" && <CommentsCol />}
             {children}
           </Row>
         </Container>
