@@ -4,12 +4,13 @@ import CommentsCol from "../CommentsCol/CommentsCol";
 import { Container, Row } from 'react-bootstrap';
 
 const Layout = ({children, path}) => {
+console.log(path);
     return(
       <>
-        <Header path={path} />
-        <Container className='layout'>
+        {path !== "/backoffice" ? <Header path={path} /> : null}
+        <Container className='layout' style={{ minHeight: "100vh" }} >
           <Row>
-            <CommentsCol />
+            {path !== "/backoffice" && <CommentsCol />}
             {children}
           </Row>
         </Container>
