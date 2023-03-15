@@ -1,4 +1,5 @@
 import React from 'react';
+import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
@@ -8,7 +9,7 @@ import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
 import News from "../pages/News/News";
 import CompetitionsTeams from '../pages/Competitions/Teams/Teams';
-import Auth from '../pages/Auth/Auth';
+// import Auth from '../pages/Auth/Auth';
 import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import Matches from '../pages/Competitions/Matches/Matches';
@@ -20,8 +21,10 @@ const token = localStorage.getItem("token");
 const path = window.location.pathname;
 
 const AppRouter = () => {
+  const queryClient = new QueryClient();
   
   return (
+    <QueryClientProvider client={queryClient}>
       <Router>
       <Navbar token={token} />
       <Layout path={path}>
@@ -42,6 +45,7 @@ const AppRouter = () => {
       </Layout>
       <Footer />
       </Router>
+    </QueryClientProvider>
   )
 }
 
