@@ -13,6 +13,7 @@ import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import Matches from '../pages/Competitions/Matches/Matches';
 import Login from '../pages/Login/Login';
+import Backoffice from '../pages/Backoffice/Backoffice';
 // import Login from '../components/Auth/Login/Login';
 
 const token = localStorage.getItem("token");
@@ -32,11 +33,11 @@ const AppRouter = () => {
           <Route path="/competitions/:code/matches"  element={<Matches/>} />
           <Route path="/matchhistory"  element={<Match/>} />
           <Route path="/news"  element={<News/>} />
-          <Route path="/secret-login-page"  element={<Login />} />
-          <Route element={<ProtectedRoutes token={token} />} >
-            <Route path="/backoffice"  element={()  => "Backoffice"}/>
+          <Route path="/secret-login"  element={<Login />} />
+            <Route element={<ProtectedRoutes token={token} />} >
           </Route>
-          <Route path="/auth"  element={<Auth/>} />
+          <Route path="/backoffice"  element={<Backoffice />}/>
+          {/* <Route path="/auth"  element={<Auth/>} /> */}
         </Routes>
       </Layout>
       <Footer />
