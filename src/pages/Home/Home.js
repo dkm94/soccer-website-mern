@@ -23,8 +23,6 @@ const Home = () => {
       return () => {console.log(matches)}
   }, [])
 
-  console.log(matches)
-
   return (
     <Col lg={8} >
       <div className='layout-cols'>

@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { login } from '../../services/queries/auth_queries';
 
 function Copyright(props) {
   return (
@@ -29,14 +34,34 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const {isLoading, isError, error, mutate} = useMutation(login, {retry: 3})
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+        .required('Email is required.'),
+    password: Yup.string()
+        .required('Password is required.')
+})
+
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+  getValues
+} = useForm({
+  resolver: yupResolver(validationSchema)
+});
+
+const { email, password } = getValues();
+console.log(">>>>>",email, password);
+
+const onSubmit = async (data, e) => {
+  e.preventDefault();
+  try {
+    await login(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
 
   const mainStyle = {
     "background": "#FFF",
@@ -62,8 +87,9 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
             <TextField
+              {...register('email', { required: true })}
               margin="normal"
               required
               fullWidth
@@ -74,6 +100,7 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
+              {...register('password', { required: true })}
               margin="normal"
               required
               fullWidth
@@ -83,18 +110,24 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => {
+                mutate({ email, password })
+              }}
             >
-              Sign In
+              {isLoading ? "Connecting...": "SIGN IN"}
             </Button>
+            <div>
+            {isError ? error.message : ""}
+            </div>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import { useQuery } from 'react-query';
-import { getArticles } from '../../../queries/public_queries';
+import { getArticles } from '../../../services/queries/public_queries';
 
 const Table = () => {
   const { data, error, isError, isLoading } = useQuery(['articles'], getArticles);
