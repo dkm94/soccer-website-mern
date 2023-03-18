@@ -38,9 +38,9 @@ const AppRouter = () => {
           <Route path="/matchhistory"  element={<Match/>} />
           <Route path="/news"  element={<News/>} />
           <Route path="/secret-login"  element={<Login />} />
-            <Route element={<ProtectedRoutes token={token} />} >
+          <Route element={<ProtectedRoutes token={token} />} >
+            <Route path="/backoffice"  element={<Backoffice />}/>
           </Route>
-          <Route path="/backoffice"  element={<Backoffice />}/>
           {/* <Route path="/auth"  element={<Auth/>} /> */}
         </Routes>
       </Layout>

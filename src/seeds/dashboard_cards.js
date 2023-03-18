@@ -11,28 +11,34 @@ const style = {
 }
 
 const cards = [
-    {
-        id: 1,
-        title: "Moderators",
-        size: "sm",
-        icon: <SupervisedUserCircleIcon fontSize="large" style={style} />
-    },
+    // {
+    //     id: 1,
+    //     title: "Moderators",
+    //     size: "sm",
+    //     collection: "users",
+    //     icon: <SupervisedUserCircleIcon fontSize="large" style={style} />
+    // },
     {
         id: 2,
         title: "My articles",
-        size: "sm",
+        // size: "sm",
+        wip: false,
+        collection: "articles",
         icon: <ArticleIcon fontSize="large" style={style} />
     },
     {
         id: 3,
         title: "Reported comments",
-        size: "sm",
+        // size: "sm",
+        wip: false,
+        collection: "comments",
         icon: <DisabledByDefaultIcon fontSize="large" style={style} />
     },
     {
         id: 4,
         title: "Chat",
-        size: "lg",
+        // size: "lg",
+        wip: true,
         icon: <MarkChatUnreadIcon fontSize="large" style={style} />
     }
 ];
