@@ -9,6 +9,9 @@ import { Checkbox, Table, TableBody, TableCell, TableContainer, TablePagination,
 import Tablehead from '../../../components/Dashboard/Table/Components/TableHead/TableHead';
 import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
 import headCells from '../../../components/Dashboard/Table/data/headcells';
+import "./Main.css";
+import ToggleComponent from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
+import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 
 function createData(name, email, isMod, isActivated, nbOfArticles) {
   return {
@@ -72,10 +75,7 @@ const Main = ({ cards, drawerWidth }) => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const { data: rows, error, isError, isLoading } = useQuery(['users'], getUsers);
 
-  // console.log(createData(rows.name, rows.email, rows.isMod, rows.isActivated, rows.nbOfArticles));
-  console.log(rows1);
-  console.log(rows);
-
+  // const [isActive, setIsActive] = useState(null);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -167,7 +167,7 @@ const Main = ({ cards, drawerWidth }) => {
                             role="checkbox"
                             aria-checked={isItemSelected}
                             tabIndex={-1}
-                            key={row?.name}
+                            key={row?._id}
                             selected={isItemSelected}
                           >
                             <TableCell padding="checkbox">
@@ -195,7 +195,22 @@ const Main = ({ cards, drawerWidth }) => {
 
                             >{row?.id_profile?.name}</TableCell>
                             <TableCell>{row?.email}</TableCell>
-                            <TableCell>{row?.isMod}</TableCell>
+                            <TableCell>
+                              {/* <div className="toggle-button-cover">
+                                <div className="button-cover">
+                                  <div className="button r" id="button-1">
+                                    <input type="checkbox" className="checkbox" />
+                                    <div className="knobs"></div>
+                                    <div className="layer"></div>
+                                  </div>
+                                </div>
+                              </div> */}
+                              <ToggleButton
+                                // isActive={isActive}
+                                // setIsActive={setIsActive}
+                                isMod={row?.isMod}
+                              />
+                            </TableCell>
                             <TableCell>{row?.isActivated}</TableCell>
                             <TableCell>{row?.number_of_articles}</TableCell>
                           </TableRow>
