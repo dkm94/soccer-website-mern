@@ -1,43 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row } from 'react-bootstrap';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Box';
 import Card from '../../../components/Dashboard/TopCard/Card';
 import { getUsers } from '../../../services/queries/admin_queries';
+import { getArticles } from '../../../services/queries/public_queries';
 import { useQuery } from 'react-query';
-import { Checkbox, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
-import Tablehead from '../../../components/Dashboard/Table/Components/TableHead/TableHead';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TablePagination,
+  Checkbox,
+  IconButton,
+  Button,
+  Paper,
+  FormControlLabel,
+  Switch,
+  ToggleButtonGroup
+} from "@material-ui/core";
+import { Delete as DeleteIcon } from "@material-ui/icons";
 import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
 import headCells from '../../../components/Dashboard/Table/data/headcells';
-import "./Main.css";
-import ToggleComponent from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
-
-function createData(name, email, isMod, isActivated, nbOfArticles) {
-  return {
-    name,
-    email,
-    isMod,
-    isActivated,
-    nbOfArticles,
-  };
-}
-
-const rows1 = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
-];
+import "./Main.css";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -73,42 +61,15 @@ const Main = ({ cards, drawerWidth }) => {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const profileId = localStorage.getItem("profileId")
   const { data: rows, error, isError, isLoading } = useQuery(['users'], getUsers);
-
-  // const [isActive, setIsActive] = useState(null);
+  console.log("🚀 ~ file: Main.jsx:52 ~ Main ~ rows:", rows)
+  const { data: articles, error_articles, isError_articles, isLoading_articles } = useQuery(['articles'], getArticles);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
-
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
-      setSelected(newSelected);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (event, name) => {
-    const selectedIndex = selected?.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected?.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected?.concat(selected?.slice(1));
-    } else if (selectedIndex === selected?.length - 1) {
-      newSelected = newSelected?.concat(selected?.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected?.concat(
-        selected?.slice(0, selectedIndex),
-        selected?.slice(selectedIndex + 1),
-      );
-    }
-    setSelected(newSelected);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -120,9 +81,78 @@ const Main = ({ cards, drawerWidth }) => {
     setPage(0);
   };
 
-  const isSelected = (name) => selected?.indexOf(name) !== -1;
-
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+  ////
+  const [selectedIds, setSelectedIds] = useState([]);
+
+
+  const handleDeleteSelected = () => {
+    const newRows = rows?.filter((row) => !selectedIds?.includes(row._id));
+    setSelectedIds([]);
+    // TODO: Handle deletion of selected rows
+
+  };
+
+
+    ////
+
+  const [selectedRows, setSelectedRows] = React.useState([]);
+
+  // const handleRowSelect = (event, row) => {
+  //   console.log("🚀 ~ file: Main.jsx:167 ~ handleRowSelect ~ row:", row)
+    
+  //   if (event.target.checked) {
+  //     setSelectedRows(prevSelected => [...prevSelected, row._id]);
+  //   } else {
+  //     setSelectedRows(prevSelected => prevSelected.filter(id => id !== row._id));
+  //   }
+  // };
+
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      const newSelectedIds = rows.map((row) => row._id);
+      setSelectedIds(newSelectedIds);
+    } else {
+      setSelectedIds([]);
+    }
+  };
+
+  const handleSelectOne = (event, id) => {
+    const selectedIndex = selectedIds.indexOf(id);
+    let newSelectedIds = [];
+
+    if (selectedIndex === -1) {
+      newSelectedIds = newSelectedIds.concat(selectedIds, id);
+    } else if (selectedIndex === 0) {
+      newSelectedIds = newSelectedIds.concat(selectedIds.slice(1));
+    } else if (selectedIndex === selectedIds.length - 1) {
+      newSelectedIds = newSelectedIds.concat(selectedIds.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelectedIds = newSelectedIds.concat(
+        selectedIds.slice(0, selectedIndex),
+        selectedIds.slice(selectedIndex + 1),
+      );
+    }
+
+    setSelectedIds(newSelectedIds);
+  };
+
+  const isSelected = (id) => selectedIds.indexOf(id) !== -1;
+
+  const handleDeleteClick = () => {
+    console.log("Deleting rows with ids:", selectedRows);
+  };
+
+  const filteredRows = rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
+  const [switchValue, setSwitchValue] = React.useState(null);
+
+  function handleSwitchChange (e, obj) {
+    e.preventDefault();
+    console.log(obj);
+    // Add actions here for when the switch is triggered
+  };
   
   return (
     <Box
@@ -138,7 +168,8 @@ const Main = ({ cards, drawerWidth }) => {
           <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2, backgroundColor: "#FFF" }}>
               <EnhancedToolBar numSelected={selected.length} />
-              <TableContainer>
+              {/* <MyTable rows={users} /> */}
+              {/* <TableContainer>
                 <Table
                   sx={{ minWidth: 750 }}
                   aria-labelledby="tableTitle"
@@ -156,14 +187,13 @@ const Main = ({ cards, drawerWidth }) => {
                     {stableSort(rows, getComparator(order, orderBy))
                       ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       ?.map((row, index) => {
-                        console.log(">>>", row);
-                        const isItemSelected = isSelected(row?.name);
+                        const isItemSelected = isSelected(row?._id);
+                        console.log("🚀 ~ file: Main.jsx:134 ~ ?.map ~ row:", row)
                         const labelId = `enhanced-table-checkbox-${index}`;
-
                         return (
                           <TableRow
                             hover
-                            onClick={(event) => handleClick(event, row?.name)}
+                            onClick={(event) => handleClick(event, row?._id)}
                             role="checkbox"
                             aria-checked={isItemSelected}
                             tabIndex={-1}
@@ -179,14 +209,6 @@ const Main = ({ cards, drawerWidth }) => {
                                 }}
                               />
                             </TableCell>
-                            {/* <TableCell
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              padding="none"
-                            >
-                              {row?.name}
-                            </TableCell> */}
                             <TableCell 
                               component="th"
                               id={labelId}
@@ -196,23 +218,20 @@ const Main = ({ cards, drawerWidth }) => {
                             >{row?.id_profile?.name}</TableCell>
                             <TableCell>{row?.email}</TableCell>
                             <TableCell>
-                              {/* <div className="toggle-button-cover">
-                                <div className="button-cover">
-                                  <div className="button r" id="button-1">
-                                    <input type="checkbox" className="checkbox" />
-                                    <div className="knobs"></div>
-                                    <div className="layer"></div>
-                                  </div>
-                                </div>
-                              </div> */}
                               <ToggleButton
                                 // isActive={isActive}
                                 // setIsActive={setIsActive}
                                 isMod={row?.isMod}
                               />
                             </TableCell>
-                            <TableCell>{row?.isActivated}</TableCell>
-                            <TableCell>{row?.number_of_articles}</TableCell>
+                            <TableCell>{row?.accountValidated ? "Enabled" : "Not enabled"}</TableCell>
+                            <TableCell>
+                            {articles?.map(article => {
+                              console.log(rows?.find(({ id_profile }) => id_profile._id === article._id));
+                              return rows?.find(({ id_profile }) => id_profile._id === article._id)
+                            }
+                            )}
+                            </TableCell>
                           </TableRow>
                         );
                       })}
@@ -223,7 +242,93 @@ const Main = ({ cards, drawerWidth }) => {
                     )}
                   </TableBody>
                 </Table>
+              </TableContainer> */}
+              {rows && <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          indeterminate={selectedIds.length > 0 && selectedIds.length < rows.length}
+                          checked={selectedIds.length === rows.length}
+                          onChange={handleSelectAll}
+                        />
+                      </TableCell>
+                      {/* {Object?.keys(rows[0])
+                        ?.filter((key) => key !== "_id" && key !== "id_profile")
+                        ?.map((key) => (
+                          <TableCell key={key}>{key}</TableCell>
+                        ))} */}
+                      <TableCell>Name</TableCell>
+                      <TableCell>Email</TableCell>
+                      <TableCell>Handle</TableCell>
+                      <TableCell>Is moderator</TableCell>
+                      <TableCell>Validated account</TableCell>
+                      <TableCell padding="checkbox">
+                        <IconButton onClick={handleDeleteSelected}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  {/* <TableBody>
+                    {rows?.map((row) => (
+                      <TableRow key={row._id}>
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            checked={selectedIds?.indexOf(row._id) !== -1}
+                            onChange={(event) => handleSelectOne(event, row._id)}
+                          />
+                        </TableCell>
+                        {Object?.entries(row)
+                          ?.filter(([key]) => key !== "_id" && key !== "id_profile")
+                          ?.map(([key, value]) => (
+                            <TableCell key={key}>{value}</TableCell>
+                          ))}
+                        <TableCell padding="checkbox">
+                          <Button variant="outlined">Edit</Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody> */}
+                  <TableBody>
+                    {filteredRows.map((row, i) => {
+                    const isItemSelected = isSelected(row._id);
+                    return (
+                      <TableRow key={row._id} hover onClick={(event) => handleSelectOne(event, row._id)} selected={isItemSelected}>
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            indeterminate={selectedIds.length > 0 && selectedIds.length < rows.length}
+                            checked={selectedIds.length === rows.length}
+                            onChange={handleSelectAll}
+                          />
+                        </TableCell>
+                        <TableCell>{row.id_profile?.name}</TableCell>
+                        <TableCell>{row.email}</TableCell>
+                        <TableCell>{row.id_profile?.handle}</TableCell>
+                        <TableCell>
+                            {/* <ToggleButton key={i} defaultValue={row.isMod}>Yes</ToggleButton> */}
+                            <FormControlLabel
+                              control={
+                                <Switch
+                                  checked={row.isMod}
+                                  name={`isMod-${row._id}`}
+                                  color="primary"
+                                  onClick={(e) => handleSwitchChange(e, row)}
+                                />
+                              }
+                              label=""
+                            />
+                        </TableCell>
+                        <TableCell>
+                          {row.accountValidated ? "Yes" : "No"}
+                        </TableCell>
+                      </TableRow>
+                    )})}
+                  </TableBody>
+                </Table>
               </TableContainer>
+}
               <TablePagination 
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
@@ -235,12 +340,6 @@ const Main = ({ cards, drawerWidth }) => {
               />
             </Paper>
           </Box>
-          {/* <Table 
-            users={users} 
-            error={error} 
-            isError={isError} 
-            isLoading={isLoading} 
-          /> */}
         </Row>
       </Box>
   )

@@ -13,14 +13,6 @@
     --size-circle: calc(var(--wrapper-height) / 1.4);
   }
   
-  main {
-    min-height: 100vh;
-    min-width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
   .btn-toggle__wrapper {
     width: var(--wrapper-width);
     /* height: var(--wrapper-height); */

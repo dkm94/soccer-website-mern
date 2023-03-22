@@ -19,8 +19,9 @@ const getArticles = async () => {
   return data;
 }
 
-const getArticlesByAuthor = async (id) => {
-  const { data } = await axios.get(`${BASE_URL}/${prefix}/author/${id}`);
+const getArticlesByAuthor = async (params) => {
+  const profileId = params?.queryKey[1];
+  const { data } = await axios.get(`${BASE_URL}/${prefix}/author/${profileId}`);
   return data;
 }
 

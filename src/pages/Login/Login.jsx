@@ -52,7 +52,6 @@ const {
 });
 
 const { email, password } = getValues();
-console.log(">>>>>",email, password);
 
 const onSubmit = async (data, e) => {
   e.preventDefault();

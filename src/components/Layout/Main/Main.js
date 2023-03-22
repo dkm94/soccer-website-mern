@@ -4,7 +4,6 @@ import CommentsCol from "../CommentsCol/CommentsCol";
 import { Container, Row } from 'react-bootstrap';
 
 const Layout = ({children, path}) => {
-console.log(path);
     return(
       <>
         {path !== "/backoffice" ? <Header path={path} /> : null}

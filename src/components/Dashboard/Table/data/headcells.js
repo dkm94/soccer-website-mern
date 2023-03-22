@@ -18,10 +18,10 @@ const headCells = [
       label: 'Moderator',
     },
     {
-      id: 'isActivated',
+      id: 'accountValidated',
       numeric: false,
       disablePadding: false,
-      label: 'Profile activated',
+      label: 'Profile',
     },
     {
       id: 'number_of_articles',

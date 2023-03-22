@@ -20,7 +20,7 @@ const cards = [
     // },
     {
         id: 2,
-        title: "My articles",
+        title: "All articles",
         // size: "sm",
         wip: false,
         collection: "articles",
