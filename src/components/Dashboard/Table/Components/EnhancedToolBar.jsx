@@ -6,6 +6,7 @@ import { alpha } from '@mui/material/styles';
 
 const EnhancedToolBar = (props) => {
     const { numSelected } = props;
+    console.log("🚀 ~ file: EnhancedToolBar.jsx:9 ~ EnhancedToolBar ~ numSelected:", numSelected)
 
     return (
       <Toolbar

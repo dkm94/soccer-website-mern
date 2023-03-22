@@ -2,7 +2,6 @@ import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import List from './List/List';
-import { Divider } from '@mui/material';
 
 const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth}) => {
   return (

@@ -64,7 +64,6 @@ const Main = ({ cards, drawerWidth }) => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const profileId = localStorage.getItem("profileId")
   const { data: rows, error, isError, isLoading } = useQuery(['users'], getUsers);
-  console.log("🚀 ~ file: Main.jsx:52 ~ Main ~ rows:", rows)
   const { data: articles, error_articles, isError_articles, isLoading_articles } = useQuery(['articles'], getArticles);
 
   const handleRequestSort = (event, property) => {
@@ -87,7 +86,6 @@ const Main = ({ cards, drawerWidth }) => {
   ////
   const [selectedIds, setSelectedIds] = useState([]);
 
-
   const handleDeleteSelected = () => {
     const newRows = rows?.filter((row) => !selectedIds?.includes(row._id));
     setSelectedIds([]);
@@ -99,16 +97,6 @@ const Main = ({ cards, drawerWidth }) => {
     ////
 
   const [selectedRows, setSelectedRows] = React.useState([]);
-
-  // const handleRowSelect = (event, row) => {
-  //   console.log("🚀 ~ file: Main.jsx:167 ~ handleRowSelect ~ row:", row)
-    
-  //   if (event.target.checked) {
-  //     setSelectedRows(prevSelected => [...prevSelected, row._id]);
-  //   } else {
-  //     setSelectedRows(prevSelected => prevSelected.filter(id => id !== row._id));
-  //   }
-  // };
 
   const handleSelectAll = (event) => {
     if (event.target.checked) {
@@ -122,7 +110,7 @@ const Main = ({ cards, drawerWidth }) => {
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedIds.indexOf(id);
     let newSelectedIds = [];
-
+  
     if (selectedIndex === -1) {
       newSelectedIds = newSelectedIds.concat(selectedIds, id);
     } else if (selectedIndex === 0) {
@@ -135,9 +123,9 @@ const Main = ({ cards, drawerWidth }) => {
         selectedIds.slice(selectedIndex + 1),
       );
     }
-
+  
     setSelectedIds(newSelectedIds);
-  };
+  };  
 
   const isSelected = (id) => selectedIds.indexOf(id) !== -1;
 
@@ -169,82 +157,7 @@ const Main = ({ cards, drawerWidth }) => {
           <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2, backgroundColor: "#FFF", opacity: "95%", 
           ".MuiPaper-root": { boxShadow: "none"} }}>
-              <EnhancedToolBar numSelected={selected.length} />
-              {/* <MyTable rows={users} /> */}
-              {/* <TableContainer>
-                <Table
-                  sx={{ minWidth: 750 }}
-                  aria-labelledby="tableTitle"
-                >
-                  <Tablehead
-                    numSelected={selected?.length}
-                    order={order}
-                    orderBy={orderBy}
-                    onSelectAllClick={handleSelectAllClick}
-                    onRequestSort={handleRequestSort}
-                    rowCount={rows?.length}
-                    headCells={headCells}
-                  />
-                  <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
-                      ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                      ?.map((row, index) => {
-                        const isItemSelected = isSelected(row?._id);
-                        console.log("🚀 ~ file: Main.jsx:134 ~ ?.map ~ row:", row)
-                        const labelId = `enhanced-table-checkbox-${index}`;
-                        return (
-                          <TableRow
-                            hover
-                            onClick={(event) => handleClick(event, row?._id)}
-                            role="checkbox"
-                            aria-checked={isItemSelected}
-                            tabIndex={-1}
-                            key={row?._id}
-                            selected={isItemSelected}
-                          >
-                            <TableCell padding="checkbox">
-                              <Checkbox
-                                color="primary"
-                                checked={isItemSelected}
-                                inputProps={{
-                                  'aria-labelledby': labelId,
-                                }}
-                              />
-                            </TableCell>
-                            <TableCell 
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              // padding="none"
-
-                            >{row?.id_profile?.name}</TableCell>
-                            <TableCell>{row?.email}</TableCell>
-                            <TableCell>
-                              <ToggleButton
-                                // isActive={isActive}
-                                // setIsActive={setIsActive}
-                                isMod={row?.isMod}
-                              />
-                            </TableCell>
-                            <TableCell>{row?.accountValidated ? "Enabled" : "Not enabled"}</TableCell>
-                            <TableCell>
-                            {articles?.map(article => {
-                              console.log(rows?.find(({ id_profile }) => id_profile._id === article._id));
-                              return rows?.find(({ id_profile }) => id_profile._id === article._id)
-                            }
-                            )}
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    {emptyRows > 0 && (
-                      <TableRow>
-                        <TableCell colSpan={6} />
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer> */}
+              <EnhancedToolBar numSelected={selectedIds.length} />
               {rows && <TableContainer component={Paper}>
                 <Table>
                   <TableHead>
@@ -254,13 +167,9 @@ const Main = ({ cards, drawerWidth }) => {
                           indeterminate={selectedIds.length > 0 && selectedIds.length < rows.length}
                           checked={selectedIds.length === rows.length}
                           onChange={handleSelectAll}
+                          inputProps={{ 'aria-label': 'select all desserts' }}
                         />
                       </TableCell>
-                      {/* {Object?.keys(rows[0])
-                        ?.filter((key) => key !== "_id" && key !== "id_profile")
-                        ?.map((key) => (
-                          <TableCell key={key}>{key}</TableCell>
-                        ))} */}
                       <TableCell>
                         <Typography variant='h6'>Name</Typography>
                       </TableCell>
@@ -283,36 +192,19 @@ const Main = ({ cards, drawerWidth }) => {
                       </TableCell>
                     </TableRow>
                   </TableHead>
-                  {/* <TableBody>
-                    {rows?.map((row) => (
-                      <TableRow key={row._id}>
-                        <TableCell padding="checkbox">
-                          <Checkbox
-                            checked={selectedIds?.indexOf(row._id) !== -1}
-                            onChange={(event) => handleSelectOne(event, row._id)}
-                          />
-                        </TableCell>
-                        {Object?.entries(row)
-                          ?.filter(([key]) => key !== "_id" && key !== "id_profile")
-                          ?.map(([key, value]) => (
-                            <TableCell key={key}>{value}</TableCell>
-                          ))}
-                        <TableCell padding="checkbox">
-                          <Button variant="outlined">Edit</Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody> */}
                   <TableBody>
                     {filteredRows.map((row, i) => {
                     const isItemSelected = isSelected(row._id);
                     return (
-                      <TableRow key={row._id} hover onClick={(event) => handleSelectOne(event, row._id)} selected={isItemSelected}>
+                      <TableRow 
+                      tabIndex={-1}
+                      key={row._id}
+                      >
                         <TableCell padding="checkbox">
                           <Checkbox
-                            indeterminate={selectedIds.length > 0 && selectedIds.length < rows.length}
-                            checked={selectedIds.length === rows.length}
-                            onChange={handleSelectAll}
+                            checked={selectedIds.indexOf(row._id) !== -1}
+                            onChange={(event) => handleSelectOne(event, row._id)}
+                            selected={isItemSelected}
                           />
                         </TableCell>
                         <TableCell>
@@ -325,8 +217,14 @@ const Main = ({ cards, drawerWidth }) => {
                           <Typography variant='body1'>{row.id_profile?.handle}</Typography>
                         </TableCell>
                         <TableCell>
-                            {/* <ToggleButton key={i} defaultValue={row.isMod}>Yes</ToggleButton> */}
-                            <FormControlLabel
+                            <ToggleButton 
+                              key={row._id} 
+                              value={row.isMod}
+                              selected={row.isMod}
+                              onChange={() => {
+                                setSelected(!selected);
+                              }} />
+                            {/* <FormControlLabel
                               control={
                                 <Switch
                                   checked={row.isMod}
@@ -336,7 +234,7 @@ const Main = ({ cards, drawerWidth }) => {
                                 />
                               }
                               label=""
-                            />
+                            /> */}
                         </TableCell>
                         <TableCell>
                           <Typography variant='body1'>{row.accountValidated ? "Yes" : "No"}</Typography>
