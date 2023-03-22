@@ -7,7 +7,7 @@ const style = {
     position: "absolute",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    top: "50%"
+    top: "50%",
 }
 
 const cards = [
@@ -20,11 +20,11 @@ const cards = [
     // },
     {
         id: 2,
-        title: "All articles",
+        title: "Total articles",
         // size: "sm",
         wip: false,
         collection: "articles",
-        icon: <ArticleIcon fontSize="large" style={style} />
+        icon: <ArticleIcon fontSize="large" style={{...style, color: "#ffe100"}} />
     },
     {
         id: 3,
@@ -32,14 +32,14 @@ const cards = [
         // size: "sm",
         wip: false,
         collection: "comments",
-        icon: <DisabledByDefaultIcon fontSize="large" style={style} />
+        icon: <DisabledByDefaultIcon fontSize="large" style={{...style, color: "#ea5b5b"}} />
     },
     {
         id: 4,
         title: "Chat",
         // size: "lg",
         wip: true,
-        icon: <MarkChatUnreadIcon fontSize="large" style={style} />
+        icon: <MarkChatUnreadIcon fontSize="large" style={{...style, color: "#88dbef"}} />
     }
 ];
 

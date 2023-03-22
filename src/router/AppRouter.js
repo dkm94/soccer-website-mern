@@ -16,36 +16,61 @@ import ProtectedRoutes from '../components/ProtectedRoutes';
 import Matches from '../pages/Competitions/Matches/Matches';
 import Login from '../pages/Login/Login';
 import Backoffice from '../pages/Backoffice/Backoffice';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 // import Login from '../components/Auth/Login/Login';
 
 const token = localStorage.getItem("token");
 const path = window.location.pathname;
+
+const THEME = createMuiTheme({
+  components: {
+   MuiContainer: {
+    styleOverrides: {
+      root: {
+        "fontFamily": `'Nunito', sans-serif`,
+        "fontSize": 14,
+        // "fontWeightLight": 300,
+        // "fontWeightRegular": 400,
+        // "fontWeightMedium": 500
+      }
+    }
+   }
+  },
+  typography: {
+    "fontFamily": `'Nunito', sans-serif`,
+    h6: {
+      fontWeight: 600
+    }
+  }
+});
 
 const AppRouter = () => {
   const queryClient = new QueryClient();
   
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-      <Navbar token={token} />
-      <Layout path={path}>
-        <Routes>
-          <Route path="/"  element={<Home /> } />
-          <Route path="/teams"  element={<Teams/>} />
-          <Route path="/competitions"  element={<Competitions/>} />
-          <Route path="/competitions/:id/teams"  element={<CompetitionsTeams/>} />
-          <Route path="/competitions/:code/matches"  element={<Matches/>} />
-          <Route path="/matchhistory"  element={<Match/>} />
-          <Route path="/news"  element={<News/>} />
-          <Route path="/secret-login"  element={<Login />} />
-          <Route element={<ProtectedRoutes token={token} />} >
-            <Route path="/backoffice"  element={<Backoffice />}/>
-          </Route>
-          {/* <Route path="/auth"  element={<Auth/>} /> */}
-        </Routes>
-      </Layout>
-      <Footer />
-      </Router>
+      <MuiThemeProvider theme={THEME}>
+        <Router>
+          <Navbar token={token} />
+          <Layout path={path}>
+            <Routes>
+              <Route path="/"  element={<Home /> } />
+              <Route path="/teams"  element={<Teams/>} />
+              <Route path="/competitions"  element={<Competitions/>} />
+              <Route path="/competitions/:id/teams"  element={<CompetitionsTeams/>} />
+              <Route path="/competitions/:code/matches"  element={<Matches/>} />
+              <Route path="/matchhistory"  element={<Match/>} />
+              <Route path="/news"  element={<News/>} />
+              <Route path="/secret-login"  element={<Login />} />
+              <Route element={<ProtectedRoutes token={token} />} >
+                <Route path="/backoffice"  element={<Backoffice />}/>
+              </Route>
+              {/* <Route path="/auth"  element={<Auth/>} /> */}
+            </Routes>
+          </Layout>
+          <Footer />
+        </Router>
+      </MuiThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )

@@ -42,7 +42,7 @@ const SideBarList = () => {
   return (
     <div>
       <Toolbar />
-      
+      <Divider />
       <List>
         {listData.map(({name, icon}, i) => {
             return name === "Articles" ? (
@@ -57,10 +57,10 @@ const SideBarList = () => {
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 8 }}>
+                  <ListItemButton sx={{ pl: 10 }}>
                     <ListItemText primary="My articles" />
                   </ListItemButton>
-                  <ListItemButton sx={{ pl: 8 }}>
+                  <ListItemButton sx={{ pl: 10 }}>
                     <ListItemText primary="All articles" />
                   </ListItemButton>
                 </List>

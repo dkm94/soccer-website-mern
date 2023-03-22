@@ -2,6 +2,7 @@ import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import List from './List/List';
+import { Divider } from '@mui/material';
 
 const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth}) => {
   return (
@@ -23,13 +24,11 @@ const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth}) => {
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
-          style={{ background: "green"}}
         >
           <List />
         </Drawer>
         <Drawer
           variant="permanent"
-          style={{ background: "blue"}}
           sx={{
             display: { xs: 'none', sm: 'block' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, top: "unset" },

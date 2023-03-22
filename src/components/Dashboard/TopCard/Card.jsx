@@ -45,7 +45,7 @@ const Card = ({ title, icon, collection, wip }) => {
     }
 
   return (
-    <Col>
+    <Col style={{ opacity: "95%" }}>
         <Item className={!collection && `unavailable`}>
             <Typography style={{ textAlign:"end"}}>{title}</Typography>
             <Typography style={{ textAlign:"center", fontSize: "2rem"}}>{isLoading && collection ? "..." : total(collection)}</Typography>

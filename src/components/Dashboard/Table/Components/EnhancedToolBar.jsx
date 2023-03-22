@@ -10,8 +10,7 @@ const EnhancedToolBar = (props) => {
     return (
       <Toolbar
         sx={{
-          pl: { sm: 2 },
-          pr: { xs: 1, sm: 1 },
+          padding: "1rem 2rem",
           ...(numSelected > 0 && {
             bgcolor: (theme) =>
               alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
@@ -30,7 +29,7 @@ const EnhancedToolBar = (props) => {
         ) : (
           <Typography
             sx={{ flex: '1 1 100%' }}
-            variant="h6"
+            variant="h4"
             id="tableTitle"
             component="div"
           >

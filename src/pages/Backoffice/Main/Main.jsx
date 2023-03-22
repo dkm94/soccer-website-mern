@@ -26,6 +26,7 @@ import EnhancedToolBar from '../../../components/Dashboard/Table/Components/Enha
 import headCells from '../../../components/Dashboard/Table/data/headcells';
 import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import "./Main.css";
+import { Typography } from '@mui/material';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -166,7 +167,8 @@ const Main = ({ cards, drawerWidth }) => {
         </Row>
         <Row>
           <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2, backgroundColor: "#FFF" }}>
+            <Paper sx={{ width: '100%', mb: 2, backgroundColor: "#FFF", opacity: "95%", 
+          ".MuiPaper-root": { boxShadow: "none"} }}>
               <EnhancedToolBar numSelected={selected.length} />
               {/* <MyTable rows={users} /> */}
               {/* <TableContainer>
@@ -259,11 +261,21 @@ const Main = ({ cards, drawerWidth }) => {
                         ?.map((key) => (
                           <TableCell key={key}>{key}</TableCell>
                         ))} */}
-                      <TableCell>Name</TableCell>
-                      <TableCell>Email</TableCell>
-                      <TableCell>Handle</TableCell>
-                      <TableCell>Is moderator</TableCell>
-                      <TableCell>Validated account</TableCell>
+                      <TableCell>
+                        <Typography variant='h6'>Name</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant='h6'>Email</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant='h6'>Handle</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant='h6'>Is moderator</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant='h6'>Validated account</Typography>
+                      </TableCell>
                       <TableCell padding="checkbox">
                         <IconButton onClick={handleDeleteSelected}>
                           <DeleteIcon />
@@ -303,9 +315,15 @@ const Main = ({ cards, drawerWidth }) => {
                             onChange={handleSelectAll}
                           />
                         </TableCell>
-                        <TableCell>{row.id_profile?.name}</TableCell>
-                        <TableCell>{row.email}</TableCell>
-                        <TableCell>{row.id_profile?.handle}</TableCell>
+                        <TableCell>
+                          <Typography variant='body1'>{row.id_profile?.name}</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography variant='body1'>{row.email}</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography variant='body1'>{row.id_profile?.handle}</Typography>
+                        </TableCell>
                         <TableCell>
                             {/* <ToggleButton key={i} defaultValue={row.isMod}>Yes</ToggleButton> */}
                             <FormControlLabel
@@ -321,7 +339,7 @@ const Main = ({ cards, drawerWidth }) => {
                             />
                         </TableCell>
                         <TableCell>
-                          {row.accountValidated ? "Yes" : "No"}
+                          <Typography variant='body1'>{row.accountValidated ? "Yes" : "No"}</Typography>
                         </TableCell>
                       </TableRow>
                     )})}
