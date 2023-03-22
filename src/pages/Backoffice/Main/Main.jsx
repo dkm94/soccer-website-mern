@@ -60,11 +60,19 @@ const Main = ({ cards, drawerWidth }) => {
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('name');
   const [selected, setSelected] = useState([]);
+  const [selectedRows, setSelectedRows] = React.useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [switchValue, setSwitchValue] = React.useState(null);
   const profileId = localStorage.getItem("profileId")
   const { data: rows, error, isError, isLoading } = useQuery(['users'], getUsers);
   const { data: articles, error_articles, isError_articles, isLoading_articles } = useQuery(['articles'], getArticles);
+
+  if(isLoading) return "Loading users..."
+
+  if(error) return "Error loading users..."
+
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -84,7 +92,6 @@ const Main = ({ cards, drawerWidth }) => {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   ////
-  const [selectedIds, setSelectedIds] = useState([]);
 
   const handleDeleteSelected = () => {
     const newRows = rows?.filter((row) => !selectedIds?.includes(row._id));
@@ -96,7 +103,6 @@ const Main = ({ cards, drawerWidth }) => {
 
     ////
 
-  const [selectedRows, setSelectedRows] = React.useState([]);
 
   const handleSelectAll = (event) => {
     if (event.target.checked) {
@@ -135,7 +141,6 @@ const Main = ({ cards, drawerWidth }) => {
 
   const filteredRows = rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
-  const [switchValue, setSwitchValue] = React.useState(null);
 
   function handleSwitchChange (e, obj) {
     e.preventDefault();
