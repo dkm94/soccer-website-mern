@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   CarouselProvider,
   Slider,
@@ -6,14 +6,14 @@ import {
   ButtonBack,
   ButtonNext,
   Image,
-  DotGroup,
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
-import slideshow from "../../seeds/home.js";
-import HomeSlideContent from "../../components/HomeSlideContent/HomeSlideContent";
-import ArrowCircleLeft from "@mui/icons-material/ArrowCircleLeft";
-import ArrowCircleRight from "@mui/icons-material/ArrowCircleRight";
-import "./Carousel.css";
+  DotGroup
+} from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import slideshow from '../../seeds/home.js';
+import HomeSlideContent from '../../components/HomeSlideContent/HomeSlideContent';
+import ArrowCircleLeft from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRight from '@mui/icons-material/ArrowCircleRight';
+import './Carousel.css';
 
 export const BackgroundImage = (props) => {
   return (
@@ -25,24 +25,20 @@ export const BackgroundImage = (props) => {
 };
 
 const childrenStyle = {
-  position: "absolute",
-  left: "50%",
-  top: "50%",
-  transform: "translate(-50%, -50%)",
-  height: "100%",
-  width: "100%",
-  background: "rgba(255, 255, 255, 0.50)",
-  padding: "150px 200px",
+  position: 'absolute',
+  left: '50%',
+  top: '50%',
+  transform: 'translate(-50%, -50%)',
+  height: '100%',
+  width: '100%',
+  background: 'rgba(255, 255, 255, 0.50)',
+  padding: '150px 200px'
 };
 
 const Carousel = () => {
   return (
     <div className="home-banner">
-      <CarouselProvider
-        naturalSlideWidth={100}
-        naturalSlideHeight={35}
-        totalSlides={4}
-      >
+      <CarouselProvider naturalSlideWidth={100} naturalSlideHeight={35} totalSlides={4}>
         <Slider>
           {slideshow?.map((item, i) => (
             <Slide key={i} index={item?.idx}>

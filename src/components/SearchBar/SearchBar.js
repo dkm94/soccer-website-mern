@@ -1,6 +1,6 @@
-import React from "react";
-import SearchIcon from "@material-ui/icons/Search";
-import "./SearchBar.css";
+import React from 'react';
+import SearchIcon from '@material-ui/icons/Search';
+import './SearchBar.css';
 
 const SearchBar = ({ value, name, onChange, type, placeholder }) => {
   return (

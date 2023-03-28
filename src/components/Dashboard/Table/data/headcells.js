@@ -1,34 +1,34 @@
 const headCells = [
   {
-    id: "name",
+    id: 'name',
     numeric: false,
     disablePadding: true,
-    label: "Name",
+    label: 'Name'
   },
   {
-    id: "email",
+    id: 'email',
     numeric: false,
     disablePadding: false,
-    label: "Email",
+    label: 'Email'
   },
   {
-    id: "isMod",
+    id: 'isMod',
     numeric: false,
     disablePadding: false,
-    label: "Moderator",
+    label: 'Moderator'
   },
   {
-    id: "accountValidated",
+    id: 'accountValidated',
     numeric: false,
     disablePadding: false,
-    label: "Profile",
+    label: 'Profile'
   },
   {
-    id: "number_of_articles",
+    id: 'number_of_articles',
     numeric: true,
     disablePadding: false,
-    label: "Nb of articles",
-  },
+    label: 'Nb of articles'
+  }
 ];
 
 export default headCells;

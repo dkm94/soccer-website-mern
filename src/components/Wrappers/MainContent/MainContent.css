@@ -12,7 +12,7 @@
 .mc-title:after {
   position: absolute;
   z-index: -1;
-  content: "";
+  content: '';
   right: -20%;
   top: 0;
   height: 100%;

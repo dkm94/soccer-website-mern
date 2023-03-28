@@ -1,22 +1,22 @@
-import axios from "axios";
-const CORS = "https://mycorsproxy-dkm.herokuapp.com";
-const BASE_URL = "https://soccer-api-2zzl.onrender.com";
-const token = localStorage.getItem("token");
+import axios from 'axios';
+const CORS = 'https://mycorsproxy-dkm.herokuapp.com';
+const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
+const token = localStorage.getItem('token');
 const authorization = { Authorization: `Bearer ${token}` };
 
 const getUsers = async () => {
   const url = `${BASE_URL}/admin/users/`;
   const config = {
-    method: "get",
+    method: 'get',
     url,
-    headers: authorization,
+    headers: authorization
   };
   try {
     const response = await axios(config);
     return response.data;
   } catch (error) {
     if (error.response) {
-      console.log("Error", error);
+      console.log('Error', error);
       // Request made and server responded
       console.log(error.response.data);
     } else if (error.request) {
@@ -24,7 +24,7 @@ const getUsers = async () => {
       console.log(error.request);
     } else {
       // Something happened in setting up the request that triggered an Error
-      console.log("Error", error.message);
+      console.log('Error', error.message);
     }
   }
 };
@@ -32,9 +32,9 @@ const getUsers = async () => {
 const changeModStatus = async ({ _id }) => {
   const url = `${BASE_URL}/admin/mods/mod/${_id}`;
   const config = {
-    method: "put",
+    method: 'put',
     url,
-    headers: authorization,
+    headers: authorization
   };
   return await axios(config);
 };

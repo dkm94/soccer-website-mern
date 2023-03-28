@@ -1,29 +1,29 @@
-import React from "react";
+import React from 'react';
 // import { useNavigate } from 'react-router-dom';
-import { Navbar, Nav, Container } from "react-bootstrap";
-import "./Navbar.css";
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import './Navbar.css';
 
 const navItems = [
   {
-    title: "home",
-    path: "/",
+    title: 'home',
+    path: '/'
   },
   {
-    title: "teams",
-    path: "/teams",
+    title: 'teams',
+    path: '/teams'
   },
   {
-    title: "competitions",
-    path: "/competitions",
+    title: 'competitions',
+    path: '/competitions'
   },
   {
-    title: "match history",
-    path: "/matchhistory",
+    title: 'match history',
+    path: '/matchhistory'
   },
   {
-    title: "news",
-    path: "/news",
-  },
+    title: 'news',
+    path: '/news'
+  }
 ];
 
 const Navigation = ({ token }) => {
@@ -40,17 +40,14 @@ const Navigation = ({ token }) => {
         collapseOnSelect
         expand="lg"
         className="nav-style"
-        style={{ position: "fixed", zIndex: 1000 }}
+        style={{ position: 'fixed', zIndex: 1000 }}
       >
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Brand href="/">
             <div className="logo-style">2LEFOOT</div>
           </Navbar.Brand>
-          <Navbar.Collapse
-            className="justify-content-center"
-            id="responsive-navbar-nav"
-          >
+          <Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
             <Nav className="nav-items">
               {navItems?.map((item, i) => (
                 <Nav.Link key={i} href={item?.path}>

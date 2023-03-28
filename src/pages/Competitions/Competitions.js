@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
-import MainContent from "../../components/Wrappers/MainContent/MainContent";
-import CompetitionCard from "../../components/Cards/Competition/Competition";
-import "./Competition.css";
+import React, { useState, useEffect } from 'react';
+import { Row, Col } from 'react-bootstrap';
+import MainContent from '../../components/Wrappers/MainContent/MainContent';
+import CompetitionCard from '../../components/Cards/Competition/Competition';
+import './Competition.css';
 
-import { getRessources } from "../../services/soccerapi_services";
+import { getRessources } from '../../services/soccerapi_services';
 
 const Competition = () => {
   const [competitions, setCompetitions] = useState([]);
@@ -16,12 +16,12 @@ const Competition = () => {
   // const handleShow = () => setShow(true);
 
   const containerStyle = {
-    padding: "1rem 3rem",
+    padding: '1rem 3rem'
   };
 
   useEffect(() => {
     async function getDatas() {
-      await getRessources("competitions").then((res) => setCompetitions(res));
+      await getRessources('competitions').then((res) => setCompetitions(res));
     }
     getDatas();
     return () => {
@@ -39,13 +39,10 @@ const Competition = () => {
   return (
     <Col lg={8}>
       <div className="layout-cols">
-        <MainContent title={"All competitions"}>
+        <MainContent title={'All competitions'}>
           <Row xs={1} md={2} lg={4} className="g-4" style={containerStyle}>
             {competitions?.map((competition, i) => (
-              <CompetitionCard
-                key={competitions?.id}
-                competition={competition}
-              />
+              <CompetitionCard key={competitions?.id} competition={competition} />
             ))}
           </Row>
         </MainContent>

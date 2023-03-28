@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import Login from "../../components/Auth/Login/Login";
-import Register from "../../components/Auth/Register/Register";
-import "./Auth.css";
+import React, { useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Login from '../../components/Auth/Login/Login';
+import Register from '../../components/Auth/Register/Register';
+import './Auth.css';
 
 const Auth = () => {
   const [form, setForm] = useState(true);

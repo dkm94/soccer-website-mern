@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import "./Match.css";
+import React, { useState } from 'react';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import './Match.css';
 
-import { getMatches } from "../../services/soccerapi_services";
+import { getMatches } from '../../services/soccerapi_services';
 
 const Match = () => {
   const [games, setGames] = useState([]);
@@ -13,14 +13,14 @@ const Match = () => {
 
   const searchMatches = (from, to) => {
     async function getDatas() {
-      await getMatches("matches", from, to).then((res) => setGames(res));
+      await getMatches('matches', from, to).then((res) => setGames(res));
     }
     return getDatas();
   };
 
   // Date format
-  const dateFrom = selectedDateFrom?.toLocaleDateString("en-CA");
-  const dateTo = selectedDateTo?.toLocaleDateString("en-CA");
+  const dateFrom = selectedDateFrom?.toLocaleDateString('en-CA');
+  const dateTo = selectedDateTo?.toLocaleDateString('en-CA');
 
   console.log(games);
 
@@ -34,10 +34,8 @@ const Match = () => {
               <DatePicker
                 selected={selectedDateFrom}
                 onChange={(date) => setSelectedDateFrom(date)}
-                placeholderText={"From"}
-                filterDate={(date) =>
-                  date.getDay() !== 6 && date.getDay() !== 0
-                } // weekends cancel
+                placeholderText={'From'}
+                filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
                 showYearDropdown // year show and scrolldown alos
                 scrollableYearDropdown
               />
@@ -46,23 +44,19 @@ const Match = () => {
               <DatePicker
                 selected={selectedDateTo}
                 onChange={(date) => setSelectedDateTo(date)}
-                placeholderText={"To"}
-                filterDate={(date) =>
-                  date.getDay() !== 6 && date.getDay() !== 0
-                } // weekends cancel
+                placeholderText={'To'}
+                filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
                 showYearDropdown // year show and scrolldown alos
                 scrollableYearDropdown
               />
             </Col>
             <Col>
-              <Button onClick={() => searchMatches(dateFrom, dateTo)}>
-                Search
-              </Button>
+              <Button onClick={() => searchMatches(dateFrom, dateTo)}>Search</Button>
             </Col>
           </Row>
         </Container>
         {games.map((match) => (
-          <Card className="text-center" style={{ marginTop: "1rem" }}>
+          <Card className="text-center" style={{ marginTop: '1rem' }}>
             <Card.Header>
               {match.competition.name} / {match.competition.area.name}
             </Card.Header>
@@ -91,7 +85,7 @@ const Match = () => {
                 <Row>
                   <Col>
                     <Card.Text>
-                      Half-time score: {match.score.halfTime.homeTeam} -{" "}
+                      Half-time score: {match.score.halfTime.homeTeam} -{' '}
                       {match.score.halfTime.awayTeam}
                     </Card.Text>
                   </Col>
@@ -99,7 +93,7 @@ const Match = () => {
                 <Row>
                   <Col>
                     <Card.Text>
-                      Full-time score: {match.score.fullTime.homeTeam} -{" "}
+                      Full-time score: {match.score.fullTime.homeTeam} -{' '}
                       {match.score.fullTime.awayTeam}
                     </Card.Text>
                   </Col>
@@ -107,8 +101,7 @@ const Match = () => {
                 <Row>
                   <Col>
                     <Card.Text>
-                      {!match.score.extraTime.homeTeam &&
-                      !match.score.extraTime.awayTeam
+                      {!match.score.extraTime.homeTeam && !match.score.extraTime.awayTeam
                         ? null
                         : `Extra-time score: ${match.score.extraTime.homeTeam} - ${match.score.extraTime.awayTeam}`}
                     </Card.Text>
