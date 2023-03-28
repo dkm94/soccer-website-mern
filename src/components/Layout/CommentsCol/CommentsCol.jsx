@@ -4,6 +4,7 @@ import './CommentsCol.css';
 
 import { getRessources } from '../../../services/dummyapi_services';
 import CommentCard from '../../Cards/CommentCard/CommentCard';
+import { Typography } from '@mui/material';
 
 const CommentsCol = () => {
   const [comments, setComments] = useState([]);
@@ -24,14 +25,16 @@ const CommentsCol = () => {
     };
   }, []);
 
+  let temp = comments.slice(-5);
+
   return (
     <Col lg={4} className="comment-layout">
       <div style={containerStyle}>
         <div className="cmt-title">
-          <span>Last comments</span>
+          <Typography variant="h2">Last comments</Typography>
         </div>
         <div className="cmt-content">
-          {comments.map((comment, index) => (
+          {temp.map((comment, index) => (
             <CommentCard
               key={index}
               message={comment.message}

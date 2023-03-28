@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '../../Header/Header';
 import CommentsCol from '../CommentsCol/CommentsCol';
 import { Container, Row } from 'react-bootstrap';
-import bgImg from '../../../../src/images/170.jpg';
 import './Main.css';
 
 const Layout = ({ children, path }) => {
@@ -12,8 +11,7 @@ const Layout = ({ children, path }) => {
       <Container
         fluid
         className={`layout ${path === '/backoffice' && 'backoffice-bg'}`}
-        style={{ minHeight: '100vh' }}
-      >
+        style={{ minHeight: '100vh' }}>
         <Container>
           <Row>
             {path !== '/backoffice' && <CommentsCol />}

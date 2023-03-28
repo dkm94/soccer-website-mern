@@ -23,7 +23,9 @@
 }
 
 .cmt-content {
-  padding: 0 2rem;
+  padding: 1rem 1rem;
+  display: grid;
+  gap: 1rem;
 }
 
 @media only screen and (max-device-width: 1024px) {
