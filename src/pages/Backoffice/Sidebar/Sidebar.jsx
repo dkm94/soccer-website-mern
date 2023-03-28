@@ -8,8 +8,7 @@ const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth }) => 
     <Box
       component="nav"
       sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-      aria-label="mailbox folders"
-    >
+      aria-label="mailbox folders">
       {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
       <Drawer
         container={container}
@@ -22,8 +21,7 @@ const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth }) => 
         sx={{
           display: { xs: 'block', sm: 'none' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
-        }}
-      >
+        }}>
         <List />
       </Drawer>
       <Drawer
@@ -36,8 +34,7 @@ const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth }) => 
             top: 'unset'
           }
         }}
-        open
-      >
+        open>
         <List />
       </Drawer>
     </Box>

@@ -7,14 +7,14 @@ import { Image } from 'react-bootstrap';
 
 const Root = styled('div')`
   table {
-    font-family: arial, sans-serif;
+    margin-top: 1.5rem;
     border-collapse: collapse;
     width: 100%;
   }
 
   td,
   th {
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 8px;
   }
@@ -56,6 +56,10 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
   & .${classes.actions} {
     display: flex;
     gap: 0.25rem;
+
+    button {
+      background-color: 'blue' !important;
+    }
   }
 `;
 
@@ -123,11 +127,11 @@ export default function CustomTable({ matches, searchInput, selected }) {
 
   return (
     <Root sx={{ width: '100%' }}>
-      <table aria-label="custom pagination table">
+      <table>
         <thead>
           <tr>
             {rowsTitles?.map((row, i) => (
-              <th>{row}</th>
+              <th key={i}>{row}</th>
             ))}
           </tr>
         </thead>
@@ -163,6 +167,12 @@ export default function CustomTable({ matches, searchInput, selected }) {
         <tfoot>
           <tr>
             <CustomTablePagination
+              sx={{
+                '& .MuiTablePagination-actions button': {
+                  borderStyle: 'unset',
+                  borderRadius: '3px'
+                }
+              }}
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows?.length}

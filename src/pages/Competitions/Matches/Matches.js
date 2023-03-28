@@ -23,17 +23,14 @@ const Matches = () => {
   const [searchInput, setSerchInput] = React.useState('');
 
   const searchFilter = () => {
-    console.log('triggered');
-    const filteredData = competition?.filter((match, i) => console.log(match));
+    const filteredData = competition?.matches.filter((match) => console.log(match));
     return filteredData;
   };
 
   const setInputValue = (e) => {
     e.preventDefault();
     setSerchInput(e.target.value);
-    console.log('executed');
     searchFilter();
-    console.log('executed 2');
   };
 
   let { code } = useParams();
@@ -42,22 +39,22 @@ const Matches = () => {
     padding: '1rem 3rem'
   };
 
-  const childrenStyle = {
-    position: 'absolute',
-    zIndex: 10000,
-    background: 'rgba(255, 255, 255, 0.5)',
-    height: '100%',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transform: 'translate(-50%, -50%)',
-    top: '50%',
-    left: '50%',
-    fontSize: '2rem',
-    textTransform: 'uppercase',
-    fontWeight: 800
-  };
+  // const childrenStyle = {
+  //   position: 'absolute',
+  //   zIndex: 10000,
+  //   background: 'rgba(255, 255, 255, 0.5)',
+  //   height: '100%',
+  //   width: '100%',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   transform: 'translate(-50%, -50%)',
+  //   top: '50%',
+  //   left: '50%',
+  //   fontSize: '2rem',
+  //   textTransform: 'uppercase',
+  //   fontWeight: 800
+  // };
 
   useEffect(() => {
     async function getDatas() {
@@ -86,8 +83,7 @@ const Matches = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 padding: '3rem 0'
-              }}
-            >
+              }}>
               <Image
                 src={competition?.competition?.emblem}
                 style={{ height: '10rem', width: 'fit-content' }}
@@ -110,8 +106,7 @@ const Matches = () => {
                     display: 'flex',
                     alignItems: 'center',
                     width: 250
-                  }}
-                >
+                  }}>
                   <InputBase
                     size="small"
                     sx={{ ml: 1, flex: 1 }}
@@ -120,7 +115,7 @@ const Matches = () => {
                     value={searchInput}
                     onChange={setInputValue}
                   />
-                  <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                  <IconButton type="button" sx={{ p: '10px' }} aria-label="search" disabled>
                     <SearchIcon />
                   </IconButton>
                 </Paper>
@@ -134,8 +129,7 @@ const Matches = () => {
                       displayEmpty
                       inputProps={{ 'aria-label': 'Without label' }}
                       label="Status"
-                      defaultValue="ALL"
-                    >
+                      defaultValue="ALL">
                       <MenuItem value="ALL">All games</MenuItem>
                       {/* <em>{`Status (all games)`}</em> */}
                       <MenuItem value="FINISHED">Played games</MenuItem>

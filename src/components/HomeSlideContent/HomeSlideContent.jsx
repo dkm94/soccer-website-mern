@@ -1,7 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Typography, Button } from '@mui/material';
-import { Box } from '@mui/system';
+import { Typography, Button, Box } from '@mui/material';
 
 const HomeSlideContent = ({ title, content }) => {
   const Title = styled(Typography)({

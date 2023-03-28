@@ -26,7 +26,7 @@ const navItems = [
   }
 ];
 
-const Navigation = ({ token }) => {
+const Navigation = () => {
   // const navigate = useNavigate();
   // const logOut = () => {
   //   console.log("déconnexion...")
@@ -40,8 +40,7 @@ const Navigation = ({ token }) => {
         collapseOnSelect
         expand="lg"
         className="nav-style"
-        style={{ position: 'fixed', zIndex: 1000 }}
-      >
+        style={{ position: 'fixed', zIndex: 1000 }}>
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Brand href="/">
