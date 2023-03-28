@@ -5,16 +5,30 @@ import { Container, Row } from 'react-bootstrap';
 import './Main.css';
 
 const Layout = ({ children, path }) => {
+  const showHeader = () => {
+    if (path === '/secret-login' || path.includes('backoffice')) {
+      return null;
+    }
+    return <Header path={path} />;
+  };
+
+  const showComments = () => {
+    if (path === '/secret-login' || path.includes('backoffice')) {
+      return null;
+    }
+    return <CommentsCol />;
+  };
+
   return (
     <>
-      {path !== '/backoffice' ? <Header path={path} /> : null}
+      {showHeader()}
       <Container
         fluid
         className={`layout ${path === '/backoffice' && 'backoffice-bg'}`}
         style={{ minHeight: '100vh' }}>
         <Container>
           <Row>
-            {path !== '/backoffice' && <CommentsCol />}
+            {showComments()}
             {children}
           </Row>
         </Container>

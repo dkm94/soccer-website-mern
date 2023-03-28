@@ -18,9 +18,6 @@ const Area = () => {
       await getRessources('areas').then((res) => setAreas(res));
     }
     getDatas();
-    return () => {
-      console.log(areas);
-    };
   }, []);
   return (
     <Col xs={8}>
@@ -47,8 +44,8 @@ const Area = () => {
                 return area.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0;
               })
               .map((area) => (
-                <Col xs={4}>
-                  <Card key={area.id} className="text-center" style={{ marginTop: '1rem' }}>
+                <Col key={area.id} xs={4}>
+                  <Card className="text-center" style={{ marginTop: '1rem' }}>
                     <ListGroup variant="flush">
                       <ListGroup.Item>{area.name}</ListGroup.Item>
                       <Card.Header>Area: {area.parentArea}</Card.Header>

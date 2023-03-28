@@ -1,39 +1,27 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import {
+  Box,
+  Grid,
+  Link,
+  Button,
+  Avatar,
+  CssBaseline,
+  TextField,
+  Typography,
+  Container
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { login } from '../../services/queries/auth_queries';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
+import { useTheme } from '@material-ui/core';
+import './Login.css';
 
 export default function SignIn() {
+  const theme = useTheme();
+
   const { isLoading, isError, error, mutate } = useMutation(login, {
     retry: 3
   });
@@ -42,12 +30,7 @@ export default function SignIn() {
     password: Yup.string().required('Password is required.')
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues
-  } = useForm({
+  const { register, handleSubmit, getValues } = useForm({
     resolver: yupResolver(validationSchema)
   });
 
@@ -62,15 +45,22 @@ export default function SignIn() {
     }
   };
 
-  const mainStyle = {
-    background: '#FFF',
-    marginTop: '4rem',
-    borderRadius: '5px'
-  };
-
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" style={mainStyle}>
+    <Container
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+      <Box
+        sx={{
+          background: '#FFF',
+          marginTop: '4rem',
+          borderRadius: '5px',
+          minHeight: '80vh',
+          width: 'fit-content',
+          padding: '3rem'
+        }}>
         <CssBaseline />
         <Box
           sx={{
@@ -78,9 +68,8 @@ export default function SignIn() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          }}>
+          <Avatar sx={{ m: 1, bgcolor: theme.palette.main }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -109,19 +98,15 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
             <Button
+              className="submit-btn"
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => {
                 mutate({ email, password });
-              }}
-            >
+              }}>
               {isLoading ? 'Connecting...' : 'SIGN IN'}
             </Button>
             <div>{isError ? error.message : ''}</div>
@@ -139,8 +124,7 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+      </Box>
+    </Container>
   );
 }

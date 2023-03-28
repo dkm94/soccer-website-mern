@@ -29,12 +29,12 @@ const THEME = createMuiTheme({
         root: {
           fontFamily: `'Nunito', sans-serif`,
           fontSize: 14
-          // "fontWeightLight": 300,
-          // "fontWeightRegular": 400,
-          // "fontWeightMedium": 500
         }
       }
     }
+  },
+  palette: {
+    main: '#a00404'
   },
   typography: {
     fontFamily: `'Nunito', sans-serif`,

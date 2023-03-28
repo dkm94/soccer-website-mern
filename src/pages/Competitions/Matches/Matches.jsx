@@ -19,8 +19,8 @@ import CustomTable from '../../../components/Table/Table';
 
 const Matches = () => {
   const [competition, setCompetition] = useState([]);
-  const [selected, setSelected] = React.useState('ALL');
-  const [searchInput, setSerchInput] = React.useState('');
+  const [selected, setSelected] = useState('ALL');
+  const [searchInput, setSerchInput] = useState('');
 
   const searchFilter = () => {
     const filteredData = competition?.matches.filter((match) => console.log(match));
@@ -39,23 +39,6 @@ const Matches = () => {
     padding: '1rem 3rem'
   };
 
-  // const childrenStyle = {
-  //   position: 'absolute',
-  //   zIndex: 10000,
-  //   background: 'rgba(255, 255, 255, 0.5)',
-  //   height: '100%',
-  //   width: '100%',
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   transform: 'translate(-50%, -50%)',
-  //   top: '50%',
-  //   left: '50%',
-  //   fontSize: '2rem',
-  //   textTransform: 'uppercase',
-  //   fontWeight: 800
-  // };
-
   useEffect(() => {
     async function getDatas() {
       await getScoreBoard('competitions', code).then((res) => {
@@ -64,9 +47,6 @@ const Matches = () => {
     }
     getDatas();
     setSelected('ALL');
-    return () => {
-      console.log(competition);
-    };
   }, []);
 
   return (
@@ -98,7 +78,6 @@ const Matches = () => {
             </Row>
             <Row xs={12} className="g-4">
               <Col md={4}>
-                {/* <TextField id="outlined-basic" label="Search" variant="outlined" size="small" /> */}
                 <Paper
                   component="form"
                   sx={{
@@ -131,7 +110,6 @@ const Matches = () => {
                       label="Status"
                       defaultValue="ALL">
                       <MenuItem value="ALL">All games</MenuItem>
-                      {/* <em>{`Status (all games)`}</em> */}
                       <MenuItem value="FINISHED">Played games</MenuItem>
                       <MenuItem value="SCHEDULED">Scheduled games</MenuItem>
                     </Select>

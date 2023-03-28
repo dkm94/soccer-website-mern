@@ -40,7 +40,7 @@ const CardHeader = styled(Card.Header)({
 
 const TextContainer = styled(Grid)({
   display: 'flex',
-  rowGap: '15px',
+  rowGap: '0.4rem',
   flexDirection: 'column'
 });
 

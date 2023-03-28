@@ -4,7 +4,7 @@ import { Typography, Button, Box } from '@mui/material';
 
 const HomeSlideContent = ({ title, content }) => {
   const Title = styled(Typography)({
-    fontSize: '3.5rem',
+    fontSize: '3rem',
     fontWeight: '700',
     fontFamily: "'Adamina', serif"
   });

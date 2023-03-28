@@ -5,7 +5,7 @@ import TablePaginationUnstyled, {
 } from '@mui/base/TablePaginationUnstyled';
 import { Image } from 'react-bootstrap';
 
-const Root = styled('div')`
+const Container = styled('div')`
   table {
     margin-top: 1.5rem;
     border-collapse: collapse;
@@ -87,7 +87,6 @@ export default function CustomTable({ matches, searchInput, selected }) {
     return data;
   };
 
-  //@todo
   const lowercasedFilter = searchInput?.toLowerCase();
   const rows = apiData()
     ?.sort((a, b) => new Date(a?.utcDate) - new Date(b?.utcDate))
@@ -97,12 +96,13 @@ export default function CustomTable({ matches, searchInput, selected }) {
       )
     )
     .filter((match) => {
-      if (selected === 'FINISHED') {
-        return match?.status === 'FINISHED';
-      } else if (selected === 'SCHEDULED') {
-        return match?.status === 'SCHEDULED';
-      } else {
-        return match;
+      switch (selected) {
+        case 'FINISHED':
+          return match?.status === 'FINISHED';
+        case 'SCHEDULED':
+          return match?.status === 'SCHEDULED';
+        default:
+          return match;
       }
     });
 
@@ -126,14 +126,10 @@ export default function CustomTable({ matches, searchInput, selected }) {
   };
 
   return (
-    <Root sx={{ width: '100%' }}>
+    <Container sx={{ width: '100%' }}>
       <table>
         <thead>
-          <tr>
-            {rowsTitles?.map((row, i) => (
-              <th key={i}>{row}</th>
-            ))}
-          </tr>
+          <tr>{rowsTitles && rowsTitles?.map((row, i) => <th key={i}>{row}</th>)}</tr>
         </thead>
         <tbody style={{ textAlignLast: 'center' }}>
           {(rowsPerPage > 0
@@ -193,6 +189,6 @@ export default function CustomTable({ matches, searchInput, selected }) {
           </tr>
         </tfoot>
       </table>
-    </Root>
+    </Container>
   );
 }
