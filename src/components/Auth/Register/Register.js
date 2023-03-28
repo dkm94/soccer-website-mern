@@ -1,12 +1,12 @@
-import React from 'react';
-import { Form, Button } from 'react-bootstrap';
-import './Register.css';
-import '../Auth.css';
-import '../../../App.css';
+import React from "react";
+import { Form, Button } from "react-bootstrap";
+import "./Register.css";
+import "../Auth.css";
+import "../../../App.css";
 
 const Register = ({ form, setForm }) => {
   return (
-    <div className='layout-cols'>
+    <div className="layout-cols">
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -26,16 +26,21 @@ const Register = ({ form, setForm }) => {
           <Form.Control type="password" placeholder="Confirm password" />
         </Form.Group>
 
-        <Form.Group className='auth-form-switch' >
-          <button className='auth-form-switch-btn' onClick={() => setForm(true)}  >Already have an account ? Log in</button>
+        <Form.Group className="auth-form-switch">
+          <button
+            className="auth-form-switch-btn"
+            onClick={() => setForm(true)}
+          >
+            Already have an account ? Log in
+          </button>
         </Form.Group>
-  
+
         <Button variant="primary" type="submit">
           Submit
         </Button>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

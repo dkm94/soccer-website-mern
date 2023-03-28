@@ -1,18 +1,17 @@
 .scoreboard-header > h2 {
-    font-size: 1.75rem;
-    font-weight: 800;
+  font-size: 1.75rem;
+  font-weight: 800;
 }
 .scoreboard-header > h3 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 .scoreboard-header > h4 {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 .scoreboard-header {
-
 }
 
 #demo-simple-select {
-    padding: 10px;
+  padding: 10px;
 }

@@ -1,33 +1,33 @@
 .comment-layout {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .comment-layout > .title {
-    background-color: #BCC3CA;
-    text-transform: uppercase;
-    padding: 1rem;
-    font-weight: 700;
+  background-color: #bcc3ca;
+  text-transform: uppercase;
+  padding: 1rem;
+  font-weight: 700;
 }
 
 .comment-layout > .content {
-    padding: 1.5rem;
+  padding: 1.5rem;
 }
 
 .cmt-title {
-    font-size: 12px !important;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0 !important;
-    padding: 1rem;
-    background-color: #BCC3CA;
+  font-size: 12px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 !important;
+  padding: 1rem;
+  background-color: #bcc3ca;
 }
 
 .cmt-content {
-    padding: 0 2rem;
+  padding: 0 2rem;
 }
 
-@media only screen and (max-device-width : 1024px) {
-    .comment-layout{
-        display: none;
-    }
+@media only screen and (max-device-width: 1024px) {
+  .comment-layout {
+    display: none;
+  }
 }

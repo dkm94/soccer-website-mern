@@ -1,32 +1,32 @@
 .mc-title {
-    position: relative;
-    background: #C40808;
-    display: inline-block;
-    color: white;
-    padding: .24em .3em .25em;
-    font-size: 12px !important;
-    padding: 1rem;  
-    /* z-index: 1000; */
+  position: relative;
+  background: #c40808;
+  display: inline-block;
+  color: white;
+  padding: 0.24em 0.3em 0.25em;
+  font-size: 12px !important;
+  padding: 1rem;
+  /* z-index: 1000; */
 }
 
 .mc-title:after {
-    position: absolute;
-    z-index: -1;
-    content: "";
-    right: -20%;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: inherit;
-    -webkit-transform: skewX(20deg);
-    -moz-transform: skewX(20deg);
-    -ms-transform: skewX(20deg);
-    transform: skewX(20deg);
+  position: absolute;
+  z-index: -1;
+  content: "";
+  right: -20%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: inherit;
+  -webkit-transform: skewX(20deg);
+  -moz-transform: skewX(20deg);
+  -ms-transform: skewX(20deg);
+  transform: skewX(20deg);
 }
 
 #mc-title {
-    font-size: 12px !important;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0 !important;
+  font-size: 12px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 !important;
 }

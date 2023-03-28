@@ -6,11 +6,11 @@ const prefix = "common";
 const getUser = async (id) => {
   const { data } = await axios.get(`${BASE_URL}/${prefix}/users/${id}`);
   return data;
-}
+};
 
 const getProfile = async (id) => {
   const { data } = await axios.get(`${BASE_URL}/${prefix}/profiles/${id}`);
   return data;
-}
+};
 
-export {getUser, getProfile};
+export { getUser, getProfile };
