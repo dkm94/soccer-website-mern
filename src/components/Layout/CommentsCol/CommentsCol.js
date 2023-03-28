@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Col } from "react-bootstrap";
-import "./CommentsCol.css";
+import React, { useEffect, useState } from 'react';
+import { Col } from 'react-bootstrap';
+import './CommentsCol.css';
 
-import { getRessources } from "../../../services/dummyapi_services";
-import CommentCard from "../../Cards/CommentCard/CommentCard";
+import { getRessources } from '../../../services/dummyapi_services';
+import CommentCard from '../../Cards/CommentCard/CommentCard';
 
 const CommentsCol = () => {
   const [comments, setComments] = useState([]);
 
   const containerStyle = {
-    background: "#fff",
+    background: '#fff',
     // float: "left"
-    width: "80%",
+    width: '80%'
   };
 
   useEffect(() => {
     async function getData() {
-      await getRessources("comment").then((res) => setComments(res.data));
+      await getRessources('comment').then((res) => setComments(res.data));
     }
     getData();
     return () => {

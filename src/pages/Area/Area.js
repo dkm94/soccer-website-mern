@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import "./Area.css";
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import './Area.css';
 
-import { getRessources } from "../../services/soccerapi_services";
+import { getRessources } from '../../services/soccerapi_services';
 
 const Area = () => {
   const [areas, setAreas] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
@@ -15,7 +15,7 @@ const Area = () => {
 
   useEffect(() => {
     async function getDatas() {
-      await getRessources("areas").then((res) => setAreas(res));
+      await getRessources('areas').then((res) => setAreas(res));
     }
     getDatas();
     return () => {
@@ -44,18 +44,11 @@ const Area = () => {
           <Row>
             {areas
               .filter((area) => {
-                return (
-                  area.name.toLowerCase().indexOf(searchValue.toLowerCase()) >=
-                  0
-                );
+                return area.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0;
               })
               .map((area) => (
                 <Col xs={4}>
-                  <Card
-                    key={area.id}
-                    className="text-center"
-                    style={{ marginTop: "1rem" }}
-                  >
+                  <Card key={area.id} className="text-center" style={{ marginTop: '1rem' }}>
                     <ListGroup variant="flush">
                       <ListGroup.Item>{area.name}</ListGroup.Item>
                       <Card.Header>Area: {area.parentArea}</Card.Header>

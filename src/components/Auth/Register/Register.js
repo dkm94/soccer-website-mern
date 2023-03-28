@@ -1,8 +1,8 @@
-import React from "react";
-import { Form, Button } from "react-bootstrap";
-import "./Register.css";
-import "../Auth.css";
-import "../../../App.css";
+import React from 'react';
+import { Form, Button } from 'react-bootstrap';
+import './Register.css';
+import '../Auth.css';
+import '../../../App.css';
 
 const Register = ({ form, setForm }) => {
   return (
@@ -27,10 +27,7 @@ const Register = ({ form, setForm }) => {
         </Form.Group>
 
         <Form.Group className="auth-form-switch">
-          <button
-            className="auth-form-switch-btn"
-            onClick={() => setForm(true)}
-          >
+          <button className="auth-form-switch-btn" onClick={() => setForm(true)}>
             Already have an account ? Log in
           </button>
         </Form.Group>

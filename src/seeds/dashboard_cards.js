@@ -1,13 +1,13 @@
-import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
-import ArticleIcon from "@mui/icons-material/Article";
-import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
-import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import ArticleIcon from '@mui/icons-material/Article';
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 
 const style = {
-  position: "absolute",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  top: "50%",
+  position: 'absolute',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  top: '50%'
 };
 
 const cards = [
@@ -20,39 +20,27 @@ const cards = [
   // },
   {
     id: 2,
-    title: "Total articles",
+    title: 'Total articles',
     // size: "sm",
     wip: false,
-    collection: "articles",
-    icon: (
-      <ArticleIcon fontSize="large" style={{ ...style, color: "#ffe100" }} />
-    ),
+    collection: 'articles',
+    icon: <ArticleIcon fontSize="large" style={{ ...style, color: '#ffe100' }} />
   },
   {
     id: 3,
-    title: "Reported comments",
+    title: 'Reported comments',
     // size: "sm",
     wip: false,
-    collection: "comments",
-    icon: (
-      <DisabledByDefaultIcon
-        fontSize="large"
-        style={{ ...style, color: "#ea5b5b" }}
-      />
-    ),
+    collection: 'comments',
+    icon: <DisabledByDefaultIcon fontSize="large" style={{ ...style, color: '#ea5b5b' }} />
   },
   {
     id: 4,
-    title: "Chat",
+    title: 'Chat',
     // size: "lg",
     wip: true,
-    icon: (
-      <MarkChatUnreadIcon
-        fontSize="large"
-        style={{ ...style, color: "#88dbef" }}
-      />
-    ),
-  },
+    icon: <MarkChatUnreadIcon fontSize="large" style={{ ...style, color: '#88dbef' }} />
+  }
 ];
 
 export default cards;

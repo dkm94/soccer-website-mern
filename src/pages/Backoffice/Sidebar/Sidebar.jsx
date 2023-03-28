@@ -1,14 +1,9 @@
-import React from "react";
-import Drawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import List from "./List/List";
+import React from 'react';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import List from './List/List';
 
-const Sidebar = ({
-  container,
-  mobileOpen,
-  handleDrawerToggle,
-  drawerWidth,
-}) => {
+const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth }) => {
   return (
     <Box
       component="nav"
@@ -22,11 +17,11 @@ const Sidebar = ({
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
         }}
       >
         <List />
@@ -34,12 +29,12 @@ const Sidebar = ({
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: "none", sm: "block" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
+          display: { xs: 'none', sm: 'block' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
             width: drawerWidth,
-            top: "unset",
-          },
+            top: 'unset'
+          }
         }}
         open
       >

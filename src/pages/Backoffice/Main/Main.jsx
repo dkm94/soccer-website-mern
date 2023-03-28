@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import { Row } from "react-bootstrap";
-import Box from "@mui/material/Box";
-import Card from "../../../components/Dashboard/TopCard/Card";
-import {
-  getUsers,
-  changeModStatus,
-} from "../../../services/queries/admin_queries";
-import { getArticles } from "../../../services/queries/public_queries";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import React, { useState } from 'react';
+import { Row } from 'react-bootstrap';
+import Box from '@mui/material/Box';
+import Card from '../../../components/Dashboard/TopCard/Card';
+import { getUsers, changeModStatus } from '../../../services/queries/admin_queries';
+import { getArticles } from '../../../services/queries/public_queries';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import {
   Table,
   TableBody,
@@ -22,14 +19,14 @@ import {
   Paper,
   FormControlLabel,
   Switch,
-  ToggleButtonGroup,
-} from "@material-ui/core";
-import { Delete as DeleteIcon } from "@material-ui/icons";
-import EnhancedToolBar from "../../../components/Dashboard/Table/Components/EnhancedToolBar";
-import headCells from "../../../components/Dashboard/Table/data/headcells";
-import ToggleButton from "../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton";
-import "./Main.css";
-import { Typography } from "@mui/material";
+  ToggleButtonGroup
+} from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
+import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
+import headCells from '../../../components/Dashboard/Table/data/headcells';
+import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
+import './Main.css';
+import { Typography } from '@mui/material';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -42,7 +39,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === "desc"
+  return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -62,56 +59,48 @@ function stableSort(array, comparator) {
 const Main = ({ cards, drawerWidth }) => {
   const queryClient = useQueryClient();
 
-  const [order, setOrder] = useState("asc");
-  const [orderBy, setOrderBy] = useState("name");
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('name');
   const [toggleValue, setToggleValue] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selectedIds, setSelectedIds] = useState([]);
 
-  const profileId = localStorage.getItem("profileId");
+  const profileId = localStorage.getItem('profileId');
 
-  const {
-    data: rows,
-    error,
-    isError,
-    isLoading,
-  } = useQuery(["users"], getUsers);
+  const { data: rows, error, isError, isLoading } = useQuery(['users'], getUsers);
   const {
     data: articles,
     error_articles,
     isError_articles,
-    isLoading_articles,
-  } = useQuery(["articles"], getArticles);
+    isLoading_articles
+  } = useQuery(['articles'], getArticles);
 
   const mutation = useMutation({
     mutationFn: changeModStatus,
     onMutate: async (updatedObj) => {
-      await queryClient.cancelQueries({ queryKey: ["users", updatedObj._id] });
-      const previousObj = queryClient.getQueryData(["users", updatedObj._id]);
-      queryClient.setQueryData(["users", updatedObj._id], updatedObj._id);
+      await queryClient.cancelQueries({ queryKey: ['users', updatedObj._id] });
+      const previousObj = queryClient.getQueryData(['users', updatedObj._id]);
+      queryClient.setQueryData(['users', updatedObj._id], updatedObj._id);
 
       return { previousObj, updatedObj };
     },
     onError: (err, updatedObj, context) => {
-      queryClient.setQueryData(
-        ["users", context.updatedObj._id],
-        context.previousObj
-      );
+      queryClient.setQueryData(['users', context.updatedObj._id], context.previousObj);
     },
     onSettled: (updatedObj) => {
-      queryClient.invalidateQueries({ queryKey: ["users", updatedObj._id] });
-    },
+      queryClient.invalidateQueries({ queryKey: ['users', updatedObj._id] });
+    }
   });
 
-  if (isLoading) return "Loading users...";
+  if (isLoading) return 'Loading users...';
 
-  if (error) return "Error loading users...";
+  if (error) return 'Error loading users...';
 
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
@@ -124,8 +113,7 @@ const Main = ({ cards, drawerWidth }) => {
     setPage(0);
   };
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleDeleteSelected = () => {
     const newRows = rows?.filter((row) => !selectedIds?.includes(row._id));
@@ -165,20 +153,17 @@ const Main = ({ cards, drawerWidth }) => {
   const isSelected = (id) => selectedIds.indexOf(id) !== -1;
 
   const handleDeleteClick = () => {
-    console.log("Deleting rows with ids:", selectedRows);
+    console.log('Deleting rows with ids:', selectedRows);
   };
 
-  const filteredRows = rows?.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage
-  );
+  const filteredRows = rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   const handleToggle = (user) => {
     var promise = new Promise((resolve, reject) => {
       if (!user) {
-        reject("Error user");
+        reject('Error user');
       } else {
-        resolve("Execute API call next");
+        resolve('Execute API call next');
       }
     });
 
@@ -188,7 +173,7 @@ const Main = ({ cards, drawerWidth }) => {
       })
       .then(() => mutation.mutate(user))
       .catch(() => {
-        throw new Error("Error mutation");
+        throw new Error('Error mutation');
       });
   };
 
@@ -199,9 +184,9 @@ const Main = ({ cards, drawerWidth }) => {
         flexGrow: 1,
         p: 3,
         width: { sm: `calc(100% - ${drawerWidth}px)` },
-        display: "grid",
-        gap: "2rem",
-        mt: "2rem",
+        display: 'grid',
+        gap: '2rem',
+        mt: '2rem'
       }}
     >
       <Row>
@@ -218,14 +203,14 @@ const Main = ({ cards, drawerWidth }) => {
         })}
       </Row>
       <Row>
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: '100%' }}>
           <Paper
             sx={{
-              width: "100%",
+              width: '100%',
               mb: 2,
-              backgroundColor: "#FFF",
-              opacity: "95%",
-              ".MuiPaper-root": { boxShadow: "none" },
+              backgroundColor: '#FFF',
+              opacity: '95%',
+              '.MuiPaper-root': { boxShadow: 'none' }
             }}
           >
             <EnhancedToolBar numSelected={selectedIds.length} />
@@ -236,13 +221,10 @@ const Main = ({ cards, drawerWidth }) => {
                     <TableRow>
                       <TableCell padding="checkbox">
                         <Checkbox
-                          indeterminate={
-                            selectedIds.length > 0 &&
-                            selectedIds.length < rows.length
-                          }
+                          indeterminate={selectedIds.length > 0 && selectedIds.length < rows.length}
                           checked={selectedIds.length === rows.length}
                           onChange={handleSelectAll}
-                          inputProps={{ "aria-label": "select all desserts" }}
+                          inputProps={{ 'aria-label': 'select all desserts' }}
                         />
                       </TableCell>
                       <TableCell>
@@ -275,24 +257,18 @@ const Main = ({ cards, drawerWidth }) => {
                           <TableCell padding="checkbox">
                             <Checkbox
                               checked={selectedIds.indexOf(row._id) !== -1}
-                              onChange={(event) =>
-                                handleSelectOne(event, row._id)
-                              }
+                              onChange={(event) => handleSelectOne(event, row._id)}
                               selected={isItemSelected}
                             />
                           </TableCell>
                           <TableCell>
-                            <Typography variant="body1">
-                              {row.id_profile?.name}
-                            </Typography>
+                            <Typography variant="body1">{row.id_profile?.name}</Typography>
                           </TableCell>
                           <TableCell>
                             <Typography variant="body1">{row.email}</Typography>
                           </TableCell>
                           <TableCell>
-                            <Typography variant="body1">
-                              {row.id_profile?.handle}
-                            </Typography>
+                            <Typography variant="body1">{row.id_profile?.handle}</Typography>
                           </TableCell>
                           <TableCell>
                             <ToggleButton
@@ -315,7 +291,7 @@ const Main = ({ cards, drawerWidth }) => {
                           </TableCell>
                           <TableCell>
                             <Typography variant="body1">
-                              {row.accountValidated ? "Yes" : "No"}
+                              {row.accountValidated ? 'Yes' : 'No'}
                             </Typography>
                           </TableCell>
                         </TableRow>

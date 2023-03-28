@@ -2,7 +2,7 @@
   height: 350px;
   margin-top: 64px;
   background-size: cover;
-  background-position: "center";
+  background-position: 'center';
 }
 
 .banner-title {
@@ -27,7 +27,7 @@
 .banner-title:after {
   position: absolute;
   z-index: -1;
-  content: "";
+  content: '';
   left: 13%;
   top: 0;
   height: 100%;

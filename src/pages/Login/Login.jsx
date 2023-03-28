@@ -1,37 +1,32 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { login } from "../../services/queries/auth_queries";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { login } from '../../services/queries/auth_queries';
 
 function Copyright(props) {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{" "}
+      </Link>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   );
 }
@@ -40,20 +35,20 @@ const theme = createTheme();
 
 export default function SignIn() {
   const { isLoading, isError, error, mutate } = useMutation(login, {
-    retry: 3,
+    retry: 3
   });
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required("Email is required."),
-    password: Yup.string().required("Password is required."),
+    email: Yup.string().required('Email is required.'),
+    password: Yup.string().required('Password is required.')
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
+    getValues
   } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(validationSchema)
   });
 
   const { email, password } = getValues();
@@ -68,9 +63,9 @@ export default function SignIn() {
   };
 
   const mainStyle = {
-    background: "#FFF",
-    marginTop: "4rem",
-    borderRadius: "5px",
+    background: '#FFF',
+    marginTop: '4rem',
+    borderRadius: '5px'
   };
 
   return (
@@ -80,25 +75,20 @@ export default function SignIn() {
         <Box
           sx={{
             marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
             <TextField
-              {...register("email", { required: true })}
+              {...register('email', { required: true })}
               margin="normal"
               required
               fullWidth
@@ -109,7 +99,7 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
-              {...register("password", { required: true })}
+              {...register('password', { required: true })}
               margin="normal"
               required
               fullWidth
@@ -132,9 +122,9 @@ export default function SignIn() {
                 mutate({ email, password });
               }}
             >
-              {isLoading ? "Connecting..." : "SIGN IN"}
+              {isLoading ? 'Connecting...' : 'SIGN IN'}
             </Button>
-            <div>{isError ? error.message : ""}</div>
+            <div>{isError ? error.message : ''}</div>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

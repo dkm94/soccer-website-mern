@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
-import ErrorAlert from "../../Alert/Error/Error";
-import { Link, withRouter, useNavigate } from "react-router-dom";
-import { useForm, Controller, FormProvider } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import axios from "axios";
-import "./Login.css";
-import "../Auth.css";
-import "../../../App.css";
+import React, { useState, useEffect } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import ErrorAlert from '../../Alert/Error/Error';
+import { Link, withRouter, useNavigate } from 'react-router-dom';
+import { useForm, Controller, FormProvider } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import axios from 'axios';
+import './Login.css';
+import '../Auth.css';
+import '../../../App.css';
 
 const Login = ({ form, setForm }) => {
   const methods = useForm();
@@ -29,16 +29,16 @@ const Login = ({ form, setForm }) => {
     const res = await axios
       .post(`auth/login`, {
         email: email,
-        password: password,
+        password: password
       })
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        const token = localStorage.getItem("token");
+        localStorage.setItem('token', res.data.token);
+        const token = localStorage.getItem('token');
         if (token) {
           setTimeout(() => {
             setLoadingButton(false);
-            window.location = "/myfavorites";
-            navigate("/myfavorites");
+            window.location = '/myfavorites';
+            navigate('/myfavorites');
           }, 500);
         }
       })
@@ -66,7 +66,7 @@ const Login = ({ form, setForm }) => {
             <Controller
               name="email"
               control={control}
-              defaultValue={""}
+              defaultValue={''}
               render={({ field: { onChange, value, ref } }) => (
                 <Form.Control
                   type="email"
@@ -88,7 +88,7 @@ const Login = ({ form, setForm }) => {
             <Controller
               name="password"
               control={control}
-              defaultValue={""}
+              defaultValue={''}
               render={({ field: { onChange, value, ref } }) => (
                 <Form.Control
                   type="password"
@@ -102,10 +102,7 @@ const Login = ({ form, setForm }) => {
           </Form.Group>
 
           <Form.Group className="auth-form-switch">
-            <button
-              className="auth-form-switch-btn"
-              onClick={() => setForm(false)}
-            >
+            <button className="auth-form-switch-btn" onClick={() => setForm(false)}>
               Already have an account ? Log in
             </button>
           </Form.Group>

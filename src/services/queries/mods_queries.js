@@ -1,16 +1,16 @@
-import axios from "axios";
-const CORS = "https://mycorsproxy-dkm.herokuapp.com";
-const BASE_URL = "https://soccer-api-2zzl.onrender.com";
-const prefix = "mod/comments";
-const token = localStorage.getItem("token");
+import axios from 'axios';
+const CORS = 'https://mycorsproxy-dkm.herokuapp.com';
+const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
+const prefix = 'mod/comments';
+const token = localStorage.getItem('token');
 const authorization = { Authorization: `Bearer ${token}` };
 
 const getReportedComments = () => {
   const url = `${BASE_URL}/${prefix}/reported/`;
   const config = {
-    method: "get",
+    method: 'get',
     url,
-    headers: authorization,
+    headers: authorization
   };
   return axios(config)
     .then((response) => {
@@ -18,7 +18,7 @@ const getReportedComments = () => {
     })
     .catch((error) => {
       if (error.response) {
-        console.log("Error", error);
+        console.log('Error', error);
         // Request made and server responded
         console.log(error.response.data);
       } else if (error.request) {
@@ -26,7 +26,7 @@ const getReportedComments = () => {
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
-        console.log("Error", error.message);
+        console.log('Error', error.message);
       }
     });
 };

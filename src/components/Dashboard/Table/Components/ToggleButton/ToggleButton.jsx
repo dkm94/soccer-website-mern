@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./ToggleButton.css";
+import React, { useState } from 'react';
+import './ToggleButton.css';
 
 function ToggleButton({ key, value, selected, onChange }) {
   // const handleToggleClick = () => {
@@ -7,7 +7,7 @@ function ToggleButton({ key, value, selected, onChange }) {
   //   };
 
   const btnToggleStyle = {
-    background: selected ? "hsl(109, 63%, 64%)" : "hsl(0, 4%, 69%)",
+    background: selected ? 'hsl(109, 63%, 64%)' : 'hsl(0, 4%, 69%)'
   };
 
   return (
@@ -15,17 +15,12 @@ function ToggleButton({ key, value, selected, onChange }) {
       <div
         id="toggle"
         onClick={onChange}
-        className={`btn-toggle__wrapper ${selected ? "active" : ""}`}
+        className={`btn-toggle__wrapper ${selected ? 'active' : ''}`}
         style={btnToggleStyle}
       >
         <div className="btn-toggle__circle"></div>
       </div>
-      <input
-        id="checkboxToggle"
-        type="checkbox"
-        className="hidden"
-        defaultChecked={selected}
-      />
+      <input id="checkboxToggle" type="checkbox" className="hidden" defaultChecked={selected} />
     </>
   );
 }
