@@ -1,18 +1,18 @@
 .layout {
-    margin-top: 4rem;
+  margin-top: 4rem;
 }
 
 .comment {
-    background-color: whitesmoke;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    margin-left: 1rem;
-    margin-bottom: 10rem;
-    padding: 2rem;
-    text-align: center;
+  background-color: whitesmoke;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 10rem;
+  padding: 2rem;
+  text-align: center;
 }
 
 .layout-cols {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }

@@ -1,0 +1,6 @@
+.unavailable {
+  background-color: lightgray !important;
+  color: darkgrey !important;
+  font-size: 1rem !important;
+  height: 100%;
+}

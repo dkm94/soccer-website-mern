@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import MainContent from '../../components/Wrappers/MainContent/MainContent';
-import CompetitionCard from "../../components/Cards/Competition/Competition"
-import './Competition.css';
+import React, { useState, useEffect } from "react";
+import { Row, Col } from "react-bootstrap";
+import MainContent from "../../components/Wrappers/MainContent/MainContent";
+import CompetitionCard from "../../components/Cards/Competition/Competition";
+import "./Competition.css";
 
-import { getRessources } from '../../services/soccerapi_services';
+import { getRessources } from "../../services/soccerapi_services";
 
 const Competition = () => {
   const [competitions, setCompetitions] = useState([]);
@@ -16,18 +16,20 @@ const Competition = () => {
   // const handleShow = () => setShow(true);
 
   const containerStyle = {
-    padding: "1rem 3rem"
-  }
+    padding: "1rem 3rem",
+  };
 
   useEffect(() => {
-    async function getDatas(){
-      await getRessources("competitions").then(res =>  setCompetitions(res));
-  }
+    async function getDatas() {
+      await getRessources("competitions").then((res) => setCompetitions(res));
+    }
     getDatas();
-      return () => {console.log(competitions)}
-  }, [])
+    return () => {
+      console.log(competitions);
+    };
+  }, []);
 
-  console.log(competitions)
+  console.log(competitions);
 
   // const openModal = async (id) => {
   //   await getRessource("competitions", id).then(res =>  setCompetition(res));
@@ -35,11 +37,16 @@ const Competition = () => {
   // }
 
   return (
-    <Col lg={8} >
-      <div className='layout-cols'>
+    <Col lg={8}>
+      <div className="layout-cols">
         <MainContent title={"All competitions"}>
           <Row xs={1} md={2} lg={4} className="g-4" style={containerStyle}>
-          {competitions?.map((competition, i) => <CompetitionCard key={competitions?.id} competition={competition} />)}
+            {competitions?.map((competition, i) => (
+              <CompetitionCard
+                key={competitions?.id}
+                competition={competition}
+              />
+            ))}
           </Row>
         </MainContent>
       </div>
@@ -51,10 +58,10 @@ const Competition = () => {
     //         <h1>All the competitions</h1>
     //         <span>Total competitions : {count}</span>
     //         {competitions?.map((competition, index) => (
-    //           <Card 
-    //             key={index} 
+    //           <Card
+    //             key={index}
     //             onClick={() => openModal(competition.id)}
-    //             className="text-center" 
+    //             className="text-center"
     //             style={{ marginTop: "1rem" }} >
     //           <Card.Header>{competition.name} / {competition.area.name}</Card.Header>
     //           <Card.Body>
@@ -107,7 +114,7 @@ const Competition = () => {
     //     </Col>
     //   </Row>
     // </Container>
-  )
-}
+  );
+};
 
-export default Competition
+export default Competition;

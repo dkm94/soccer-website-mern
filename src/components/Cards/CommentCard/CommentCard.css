@@ -1,21 +1,21 @@
 .card-header-surcharge {
-    text-align: end;
-    background-color: #2C2F35 !important;
-    color: #fff;
-    border-radius: 0px !important;
+  text-align: end;
+  background-color: #2c2f35 !important;
+  color: #fff;
+  border-radius: 0px !important;
 }
 
 .list-item-surcharge {
-    text-align: end;
+  text-align: end;
 }
 
 .comment-avatar {
-    display: flex;
-    justify-content: center;
-    margin-top: 7px;
+  display: flex;
+  justify-content: center;
+  margin-top: 7px;
 }
 
 .comment-avatar > img {
-    height: 3.5rem;
-    width: auto;
+  height: 3.5rem;
+  width: auto;
 }

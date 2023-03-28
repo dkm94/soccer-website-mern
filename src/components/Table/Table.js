@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { styled } from '@mui/system';
+import * as React from "react";
+import { styled } from "@mui/system";
 import TablePaginationUnstyled, {
   tablePaginationUnstyledClasses as classes,
-} from '@mui/base/TablePaginationUnstyled';
-import { Image } from 'react-bootstrap';
+} from "@mui/base/TablePaginationUnstyled";
+import { Image } from "react-bootstrap";
 
-const Root = styled('div')`
+const Root = styled("div")`
   table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -60,54 +60,64 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
 `;
 
 export default function CustomTable({ matches, searchInput, selected }) {
-
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  function createData(id, date, htCrest, homeTeam, atCrest, awayTeam, score, status) {
-      return { id, date, htCrest, homeTeam, atCrest, awayTeam, score, status };
+  function createData(
+    id,
+    date,
+    htCrest,
+    homeTeam,
+    atCrest,
+    awayTeam,
+    score,
+    status
+  ) {
+    return { id, date, htCrest, homeTeam, atCrest, awayTeam, score, status };
   }
 
   const apiData = () => {
-      const data = matches
-      ?.map(({ 
-        id, 
-        awayTeam,
-        homeTeam, 
-        score, 
-        status, 
-        utcDate }) => createData(id, utcDate, homeTeam?.crest, homeTeam?.shortName, awayTeam?.crest, awayTeam?.shortName, score, status))
-      return data;
-  }
+    const data = matches?.map(
+      ({ id, awayTeam, homeTeam, score, status, utcDate }) =>
+        createData(
+          id,
+          utcDate,
+          homeTeam?.crest,
+          homeTeam?.shortName,
+          awayTeam?.crest,
+          awayTeam?.shortName,
+          score,
+          status
+        )
+    );
+    return data;
+  };
 
   //@todo
   const lowercasedFilter = searchInput?.toLowerCase();
   const rows = apiData()
-        ?.sort((a,b) => new Date(a?.utcDate) - new Date(b?.utcDate))
-        .filter(item => Object.keys(item).some(key => item[key]?.toString()?.toLowerCase()?.includes(lowercasedFilter)))
-        .filter((match) => {
-          if(selected === "FINISHED"){
-              return match?.status === "FINISHED"
-          } else if(selected === "SCHEDULED"){
-              return match?.status === "SCHEDULED"
-          } else {
-              return match
-          }
-        })
-    
-  const rowsTitles = [
-    "Date",
-    "",
-    "Hometeam",
-    "",
-    "Away team",
-    "Score"
-  ]
+    ?.sort((a, b) => new Date(a?.utcDate) - new Date(b?.utcDate))
+    .filter((item) =>
+      Object.keys(item).some((key) =>
+        item[key]?.toString()?.toLowerCase()?.includes(lowercasedFilter)
+      )
+    )
+    .filter((match) => {
+      if (selected === "FINISHED") {
+        return match?.status === "FINISHED";
+      } else if (selected === "SCHEDULED") {
+        return match?.status === "SCHEDULED";
+      } else {
+        return match;
+      }
+    });
+
+  const rowsTitles = ["Date", "", "Hometeam", "", "Away team", "Score"];
 
   const formatDate = (date) => {
     let getDate = new Date(date);
-    return getDate.toLocaleDateString("en-US")
-  }
+    return getDate.toLocaleDateString("en-US");
+  };
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -127,30 +137,37 @@ export default function CustomTable({ matches, searchInput, selected }) {
       <table aria-label="custom pagination table">
         <thead>
           <tr>
-            {rowsTitles?.map((row, i) => <th>{row}</th>)}
+            {rowsTitles?.map((row, i) => (
+              <th>{row}</th>
+            ))}
           </tr>
         </thead>
         <tbody style={{ textAlignLast: "center" }}>
           {(rowsPerPage > 0
             ? rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
-          )
-          ?.map((row) => (
+          )?.map((row) => (
             <tr key={row?.id}>
               <td align="center">{formatDate(row?.date)}</td>
               <td style={{ borderRight: "0" }}>
-                <Image style={{ height: "32px", width: "32px" }} src={row?.htCrest} />
+                <Image
+                  style={{ height: "32px", width: "32px" }}
+                  src={row?.htCrest}
+                />
               </td>
-              <td style={{ textAlignLast: "left" }}>
-                {row?.homeTeam}
-              </td>
+              <td style={{ textAlignLast: "left" }}>{row?.homeTeam}</td>
               <td>
-                <Image style={{ height: "32px", width: "32px" }} src={row?.atCrest} />
+                <Image
+                  style={{ height: "32px", width: "32px" }}
+                  src={row?.atCrest}
+                />
               </td>
-              <td style={{ textAlignLast: "left" }}>
-                {row?.awayTeam}
-              </td>
-              {row?.score?.winner === null ? <td>Scheduled</td> : <td>{`${row?.score?.fullTime?.home} - ${row?.score?.fullTime?.away}`}</td>}
+              <td style={{ textAlignLast: "left" }}>{row?.awayTeam}</td>
+              {row?.score?.winner === null ? (
+                <td>Scheduled</td>
+              ) : (
+                <td>{`${row?.score?.fullTime?.home} - ${row?.score?.fullTime?.away}`}</td>
+              )}
             </tr>
           ))}
 
@@ -163,14 +180,14 @@ export default function CustomTable({ matches, searchInput, selected }) {
         <tfoot>
           <tr>
             <CustomTablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               colSpan={3}
               count={rows?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               slotProps={{
                 select: {
-                  'aria-label': 'rows per page',
+                  "aria-label": "rows per page",
                 },
                 actions: {
                   showFirstButton: true,
