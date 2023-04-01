@@ -1,4 +1,5 @@
-import * as React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import {
   Box,
   Grid,
@@ -8,13 +9,14 @@ import {
   CssBaseline,
   TextField,
   Typography,
-  Container
+  Container,
+  IconButton,
+  InputAdornment
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useMutation, useQuery } from 'react-query';
 import { login } from '../../services/queries/auth_queries';
 import { useTheme } from '@material-ui/core';
 import './Login.css';
@@ -22,27 +24,33 @@ import './Login.css';
 export default function SignIn() {
   const theme = useTheme();
 
-  const { isLoading, isError, error, mutate } = useMutation(login, {
-    retry: 3
-  });
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().required('Email is required.'),
-    password: Yup.string().required('Password is required.')
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  const { register, handleSubmit, getValues } = useForm({
-    resolver: yupResolver(validationSchema)
-  });
-
-  const { email, password } = getValues();
-
-  const onSubmit = async (data, e) => {
-    e.preventDefault();
-    try {
-      await login(data);
-    } catch (error) {
-      console.error(error);
+  const mutation = useMutation({
+    mutationFn: login,
+    onError: (error, variables, context) => {
+      setErrorMessage(error.message);
+    },
+    onSuccess: (data, variables, context) => {
+      const auth = JSON.parse(localStorage.getItem('logged_in_status'));
+      if (auth) {
+        window.location.href = '/backoffice';
+      }
     }
+  });
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({ email, password });
   };
 
   return (
@@ -58,8 +66,9 @@ export default function SignIn() {
           marginTop: '4rem',
           borderRadius: '5px',
           minHeight: '80vh',
-          width: 'fit-content',
-          padding: '3rem'
+          width: '40em',
+          padding: '3rem',
+          boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)'
         }}>
         <CssBaseline />
         <Box
@@ -69,15 +78,15 @@ export default function SignIn() {
             flexDirection: 'column',
             alignItems: 'center'
           }}>
-          <Avatar sx={{ m: 1, bgcolor: theme.palette.main }}>
+          <Avatar sx={{ m: 1, bgcolor: theme.palette.primary.light }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              {...register('email', { required: true })}
+              value={email}
               margin="normal"
               required
               fullWidth
@@ -85,39 +94,55 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              color="secondary"
+              onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
             <TextField
-              {...register('password', { required: true })}
+              value={password}
               margin="normal"
               required
               fullWidth
               name="password"
               label="Password"
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               autoComplete="current-password"
+              variant="outlined"
+              color="secondary"
+              onChange={(e) => setPassword(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end">
+                      {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+              // focused
             />
+            <Typography variant="body1">{mutation.error && errorMessage}</Typography>
             <Button
               className="submit-btn"
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={() => {
-                mutate({ email, password });
-              }}>
-              {isLoading ? 'Connecting...' : 'SIGN IN'}
+              sx={{ mt: 3, mb: 2 }}>
+              {mutation.isLoading ? 'Connecting...' : 'SIGN IN'}
             </Button>
-            <div>{isError ? error.message : ''}</div>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color={theme.palette.secondary.dark}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color={theme.palette.secondary.dark}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

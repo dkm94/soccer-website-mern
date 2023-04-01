@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { Paper, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { Col } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
 import { useQuery } from 'react-query';
-import { getUsers } from '../../../services/queries/admin_queries';
+import { getUsers } from '../../../services/queries/public_queries';
 import { getArticles } from '../../../services/queries/public_queries';
 import { getReportedComments } from '../../../services/queries/mods_queries';
 import './Card.css';

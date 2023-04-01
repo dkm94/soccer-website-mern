@@ -34,7 +34,12 @@ const THEME = createMuiTheme({
     }
   },
   palette: {
-    main: '#a00404'
+    primary: {
+      main: '#a00404'
+    },
+    secondary: {
+      main: '#BCC3CA'
+    }
   },
   typography: {
     fontFamily: `'Nunito', sans-serif`,
