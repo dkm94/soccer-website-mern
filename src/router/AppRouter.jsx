@@ -10,14 +10,12 @@ import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
 import News from '../pages/News/News';
 import CompetitionsTeams from '../pages/Competitions/Teams/Teams';
-// import Auth from '../pages/Auth/Auth';
 import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import Matches from '../pages/Competitions/Matches/Matches';
 import Login from '../pages/Login/Login';
 import Backoffice from '../pages/Backoffice/Backoffice';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-// import Login from '../components/Auth/Login/Login';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 
@@ -80,7 +78,6 @@ const AppRouter = () => {
               <Route element={<ProtectedRoutes auth={auth} />}>
                 <Route path="/backoffice" element={<Backoffice />} />
               </Route>
-              {/* <Route path="/auth"  element={<Auth/>} /> */}
             </Routes>
           </Layout>
           <Footer />

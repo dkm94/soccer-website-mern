@@ -22,7 +22,13 @@ import { Delete as DeleteIcon } from '@material-ui/icons';
 import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
 import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import './Main.css';
-import { Typography } from '@mui/material';
+import { Typography, styled } from '@mui/material';
+
+const TitleHeader = styled(Typography)({
+  fontSize: '1rem',
+  fontFamily: "'Adamina', serif !important",
+  fontWeight: 'normal'
+});
 
 // function descendingComparator(a, b, orderBy) {
 //   if (b[orderBy] < a[orderBy]) {
@@ -90,10 +96,6 @@ const Main = ({ cards, drawerWidth }) => {
       queryClient.invalidateQueries({ queryKey: ['users', updatedObj._id] });
     }
   });
-
-  if (isLoading) return 'Loading users...';
-
-  if (error) return 'Error loading users...';
 
   // const handleRequestSort = (event, property) => {
   //   const isAsc = orderBy === property && order === 'asc';
@@ -206,10 +208,21 @@ const Main = ({ cards, drawerWidth }) => {
               width: '100%',
               mb: 2,
               backgroundColor: '#FFF',
+              boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
               opacity: '95%',
               '.MuiPaper-root': { boxShadow: 'none' }
             }}>
             <EnhancedToolBar numSelected={selectedIds.length} />
+            {isLoading && (
+              <Typography variant="body1" style={{ paddingLeft: '3rem' }}>
+                Loading data...
+              </Typography>
+            )}
+            {error && (
+              <Typography variant="body1" style={{ paddingLeft: '3rem' }}>
+                Error loading data
+              </Typography>
+            )}
             {rows && (
               <TableContainer component={Paper}>
                 <Table>
@@ -224,19 +237,19 @@ const Main = ({ cards, drawerWidth }) => {
                         />
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Name</Typography>
+                        <TitleHeader variant="h6">Name</TitleHeader>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Email</Typography>
+                        <TitleHeader variant="h6">Email</TitleHeader>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Handle</Typography>
+                        <TitleHeader variant="h6">Handle</TitleHeader>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Is moderator</Typography>
+                        <TitleHeader variant="h6">Moderator</TitleHeader>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Validated account</Typography>
+                        <TitleHeader variant="h6">Validated account</TitleHeader>
                       </TableCell>
                       <TableCell padding="checkbox">
                         <IconButton onClick={handleDeleteSelected}>
@@ -272,17 +285,6 @@ const Main = ({ cards, drawerWidth }) => {
                               selected={row.isMod}
                               onChange={() => handleToggle(row)}
                             />
-                            {/* <FormControlLabel
-                              control={
-                                <Switch
-                                  checked={row.isMod}
-                                  name={`isMod-${row._id}`}
-                                  color="primary"
-                                  onClick={(e) => handleSwitchChange(e, row)}
-                                />
-                              }
-                              label=""
-                            /> */}
                           </TableCell>
                           <TableCell>
                             <Typography variant="body1">

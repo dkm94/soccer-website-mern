@@ -50,7 +50,7 @@ const Card = ({ title, icon, collection, wip }) => {
   };
 
   return (
-    <Col style={{ opacity: '95%' }}>
+    <Col style={{ opacity: '90%', boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)' }}>
       <Item className={!collection && `unavailable`}>
         <Typography style={{ textAlign: 'end' }}>{title}</Typography>
         <Typography style={{ textAlign: 'center', fontSize: '2rem' }}>
