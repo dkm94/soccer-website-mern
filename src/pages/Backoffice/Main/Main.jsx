@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import Box from '@mui/material/Box';
@@ -15,10 +16,8 @@ import {
   TableRow,
   TablePagination,
   Checkbox,
-  IconButton,
   Paper
 } from '@material-ui/core';
-import { Delete as DeleteIcon } from '@material-ui/icons';
 import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
 import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import './Main.css';
@@ -250,11 +249,6 @@ const Main = ({ cards, drawerWidth }) => {
                       </TableCell>
                       <TableCell>
                         <TitleHeader variant="h6">Validated account</TitleHeader>
-                      </TableCell>
-                      <TableCell padding="checkbox">
-                        <IconButton onClick={handleDeleteSelected}>
-                          <DeleteIcon />
-                        </IconButton>
                       </TableCell>
                     </TableRow>
                   </TableHead>
