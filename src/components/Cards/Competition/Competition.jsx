@@ -4,26 +4,25 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import './Competitions.css';
 
+const Title = styled(Card.Title)({
+  textAlign: 'center',
+  fontSize: '1rem',
+  fontWeight: 600
+});
+
+const Subtitle = styled(Card.Title)({
+  textAlign: 'center',
+  fontSize: 'unset'
+});
+
+const CardBody = styled(Card.Body)({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'end'
+});
+
 const Competition = ({ competition }) => {
-  const Title = styled(Card.Title)({
-    textAlign: 'center',
-    fontSize: '1rem',
-    fontWeight: 600
-  });
-
-  const Subtitle = styled(Card.Title)({
-    textAlign: 'center',
-    fontSize: 'unset'
-  });
-
-  const CardBody = styled(Card.Body)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'end'
-  });
-
   let navigate = useNavigate();
-  // const [season, setSeason] = useState(2022);
 
   return (
     <Col className="cpt-card-style">

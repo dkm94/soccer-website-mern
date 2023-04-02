@@ -19,7 +19,8 @@ import Backoffice from '../pages/Backoffice/Backoffice';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 // import Login from '../components/Auth/Login/Login';
 
-const token = localStorage.getItem('token');
+const auth = JSON.parse(localStorage.getItem('logged_in_status'));
+
 const path = window.location.pathname;
 
 const THEME = createMuiTheme({
@@ -65,7 +66,7 @@ const AppRouter = () => {
     <QueryClientProvider client={queryClient}>
       <MuiThemeProvider theme={THEME}>
         <Router>
-          <Navbar token={token} />
+          <Navbar auth={auth} />
           <Layout path={path}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -76,7 +77,7 @@ const AppRouter = () => {
               <Route path="/matchhistory" element={<Match />} />
               <Route path="/news" element={<News />} />
               <Route path="/secret-login" element={<Login />} />
-              <Route element={<ProtectedRoutes token={token} />}>
+              <Route element={<ProtectedRoutes auth={auth} />}>
                 <Route path="/backoffice" element={<Backoffice />} />
               </Route>
               {/* <Route path="/auth"  element={<Auth/>} /> */}

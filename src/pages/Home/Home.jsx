@@ -28,8 +28,8 @@ const Home = () => {
       <div className="layout-cols">
         <MainContent title={"Today's games"}>
           <div style={containerStyle}>
-            {matches.length === 0 && 'No matches to show today'}
-            {matches?.map((match, i) => (
+            {matches?.length === 0 && 'No matches to show today'}
+            {matches?.map((match) => (
               <Results key={match?.id} match={match} />
             ))}
           </div>
