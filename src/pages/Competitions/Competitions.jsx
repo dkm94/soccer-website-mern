@@ -41,7 +41,7 @@ const Competition = () => {
       <div className="layout-cols">
         <MainContent title={'All competitions'}>
           <Row xs={1} md={2} lg={4} className="g-4" style={containerStyle}>
-            {competitions?.map((competition, i) => (
+            {competitions?.map((competition) => (
               <CompetitionCard key={competitions?.id} competition={competition} />
             ))}
           </Row>

@@ -9,7 +9,6 @@ import Competitions from '../pages/Competitions/Competitions';
 import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
 import News from '../pages/News/News';
-import CompetitionsTeams from '../pages/Competitions/Teams/Teams';
 import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import Matches from '../pages/Competitions/Matches/Matches';
@@ -70,7 +69,6 @@ const AppRouter = () => {
               <Route path="/" element={<Home />} />
               <Route path="/teams" element={<Teams />} />
               <Route path="/competitions" element={<Competitions />} />
-              <Route path="/competitions/:id/teams" element={<CompetitionsTeams />} />
               <Route path="/competitions/:code/matches" element={<Matches />} />
               <Route path="/matchhistory" element={<Match />} />
               <Route path="/news" element={<News />} />

@@ -11,21 +11,16 @@ const navItems = [
   },
   {
     id: 2,
-    title: 'teams',
-    path: '/teams'
-  },
-  {
-    id: 3,
     title: 'competitions',
     path: '/competitions'
   },
   {
-    id: 4,
+    id: 3,
     title: 'match history',
     path: '/matchhistory'
   },
   {
-    id: 5,
+    id: 4,
     title: 'news',
     path: '/news'
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import './Competitions.css';
 
@@ -22,18 +22,16 @@ const CardBody = styled(Card.Body)({
 });
 
 const Competition = ({ competition }) => {
-  let navigate = useNavigate();
-
   return (
     <Col className="cpt-card-style">
-      <Card
-        style={{ borderRadius: '0' }}
-        onClick={() => navigate(`/competitions/${competition?.id}/teams`)}>
-        <Card.Img variant="top" style={{ padding: '1.3rem' }} src={competition?.emblem} />
-        <CardBody>
-          <Title>{competition?.name}</Title>
-          <Subtitle>{competition?.area.name}</Subtitle>
-        </CardBody>
+      <Card style={{ borderRadius: '0' }}>
+        <Link to={`/competitions/${competition?.code}/matches`} reloadDocument>
+          <Card.Img variant="top" style={{ padding: '1.3rem' }} src={competition?.emblem} />
+          <CardBody>
+            <Title>{competition?.name}</Title>
+            <Subtitle>{competition?.area.name}</Subtitle>
+          </CardBody>
+        </Link>
       </Card>
     </Col>
   );
