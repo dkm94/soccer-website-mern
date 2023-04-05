@@ -56,7 +56,7 @@ const Match = () => {
           </Row>
         </Container>
         {games.map((match) => (
-          <Card className="text-center" style={{ marginTop: '1rem' }}>
+          <Card key={match?.id} className="text-center" style={{ marginTop: '1rem' }}>
             <Card.Header>
               {match.competition.name} / {match.competition.area.name}
             </Card.Header>

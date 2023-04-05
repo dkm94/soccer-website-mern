@@ -191,7 +191,7 @@ const Main = ({ cards, drawerWidth }) => {
         {cards.map((card, i) => {
           return (
             <Card
-              key={i}
+              key={card.id}
               title={card.title}
               icon={card.icon}
               collection={card.collection}

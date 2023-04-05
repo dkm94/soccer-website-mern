@@ -9,10 +9,10 @@ const login = async (data) => {
       const { token, auth, profileId, isAdmin, isMod, userId, accountValidated } = res.data;
       setToken(token);
       localStorage.setItem('logged_in_status', JSON.stringify(auth));
-      localStorage.setItem('profileId', profileId);
+      localStorage.setItem('profileId', JSON.stringify(profileId));
       localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
       localStorage.setItem('isMod', JSON.stringify(isMod));
-      localStorage.setItem('userId', userId);
+      localStorage.setItem('userId', JSON.stringify(userId));
       localStorage.setItem('accountValidated', JSON.stringify(accountValidated));
       return res.data;
     });

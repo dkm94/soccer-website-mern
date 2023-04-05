@@ -129,7 +129,7 @@ export default function CustomTable({ matches, searchInput, selected }) {
     <Container sx={{ width: '100%' }}>
       <table>
         <thead>
-          <tr>{rowsTitles && rowsTitles?.map((row, i) => <th key={i}>{row}</th>)}</tr>
+          <tr>{rowsTitles && rowsTitles?.map((row) => <th key={row}>{row}</th>)}</tr>
         </thead>
         <tbody style={{ textAlignLast: 'center' }}>
           {(rowsPerPage > 0

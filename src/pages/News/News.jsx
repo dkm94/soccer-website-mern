@@ -15,8 +15,8 @@ const News = () => {
       <div className="layout-cols">
         <MainContent title={'Latest articles'}>
           <div style={containerStyle}>
-            {news?.map((article, i) => (
-              <Article key={i} article={article} />
+            {news?.map((article) => (
+              <Article key={article.id} article={article} />
             ))}
           </div>
         </MainContent>

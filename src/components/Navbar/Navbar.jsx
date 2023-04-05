@@ -5,22 +5,27 @@ import './Navbar.css';
 
 const navItems = [
   {
+    id: 1,
     title: 'home',
     path: '/'
   },
   {
+    id: 2,
     title: 'teams',
     path: '/teams'
   },
   {
+    id: 3,
     title: 'competitions',
     path: '/competitions'
   },
   {
+    id: 4,
     title: 'match history',
     path: '/matchhistory'
   },
   {
+    id: 5,
     title: 'news',
     path: '/news'
   }
@@ -48,8 +53,8 @@ const Navigation = () => {
           </Navbar.Brand>
           <Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
             <Nav className="nav-items">
-              {navItems?.map((item, i) => (
-                <Nav.Link key={i} href={item?.path}>
+              {navItems?.map((item) => (
+                <Nav.Link key={item.id} href={item?.path}>
                   {item?.title}
                 </Nav.Link>
               ))}

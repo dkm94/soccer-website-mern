@@ -21,9 +21,9 @@ const RedirectButton = styled(Button)({
   fontSize: 'inherit',
   width: 'fit-content',
   alignSelf: 'self-end',
-  backgroundColor: '#FFF',
+  backgroundColor: '#BCC3CA',
   color: '#000',
-  border: '#2C2F35 1px solid',
+  // border: '#2C2F35 1px solid',
   textTransform: 'unset',
   '&:hover': {
     backgroundColor: 'transparent'
@@ -32,8 +32,8 @@ const RedirectButton = styled(Button)({
 
 const CardHeader = styled(Card.Header)({
   textAlign: 'end',
-  backgroundColor: '#2c2f35',
-  color: ' #fff',
+  // backgroundColor: '#2c2f35',
+  // color: ' #fff',
   borderRadius: '0px',
   fontSize: '0.8rem'
 });

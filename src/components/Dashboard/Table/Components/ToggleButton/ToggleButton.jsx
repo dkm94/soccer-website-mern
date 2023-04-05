@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from '@material-ui/core';
 import './ToggleButton.css';
 
-function ToggleButton({ key, value, selected, onChange }) {
+function ToggleButton({ value, selected, onChange }) {
   const { palette } = useTheme();
   console.log('🚀 ~ file: ToggleButton.jsx:5 ~ ToggleButton ~ value:', value);
 
@@ -13,7 +13,6 @@ function ToggleButton({ key, value, selected, onChange }) {
   return (
     <>
       <div
-        key={key}
         id="toggle"
         onClick={onChange}
         className={`btn-toggle__wrapper ${selected ? 'active' : ''}`}

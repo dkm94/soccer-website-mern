@@ -30,7 +30,7 @@ const Carousel = () => {
       <CarouselProvider naturalSlideWidth={100} naturalSlideHeight={35} totalSlides={4}>
         <Slider>
           {slideshow?.map((item, i) => (
-            <Slide key={i} index={item?.idx}>
+            <Slide key={item.id} index={i}>
               <BackgroundImage img={item?.img}>
                 <HomeSlideContent title={item?.title} content={item?.content} />
               </BackgroundImage>

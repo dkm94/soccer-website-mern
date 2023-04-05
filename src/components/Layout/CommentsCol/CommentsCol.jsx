@@ -23,7 +23,8 @@ const CommentsCol = () => {
 
   return (
     <Col lg={4} className="comment-layout">
-      <Box sx={{ background: '#fff', width: '80%' }}>
+      <Box
+        sx={{ background: '#fff', width: '80%', boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)' }}>
         <div className="cmt-title">
           <Typography variant="h2">Last comments</Typography>
         </div>

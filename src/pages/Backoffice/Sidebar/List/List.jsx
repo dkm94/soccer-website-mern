@@ -52,10 +52,10 @@ const SideBarList = () => {
       <Toolbar />
       <Divider />
       <List>
-        {listData.map(({ name, icon }, i) => {
+        {listData.map(({ id, name, icon }) => {
           return name === 'Articles' ? (
             <>
-              <ListItem key={i} disablePadding>
+              <ListItem key={id} disablePadding>
                 <ListItemButton onClick={handleClick}>
                   <ListItemIcon color="red">{icon}</ListItemIcon>
                   <ListItemText primary={name} />
@@ -74,7 +74,7 @@ const SideBarList = () => {
               </Collapse>
             </>
           ) : (
-            <ListItem key={i} disablePadding>
+            <ListItem key={id} disablePadding>
               <ListItemButton>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={name} />
