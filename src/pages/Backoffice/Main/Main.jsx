@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import Box from '@mui/material/Box';
 import Card from '../../../components/Dashboard/TopCard/Card';
-import { getUsers, changeModStatus } from '../../../services/queries/admin_queries';
-import { getArticles } from '../../../services/queries/public_queries';
+import { changeModStatus } from '../../../services/queries/admin_queries';
+import { getUsers } from '../../../services/queries/public_queries';
+// import { getArticles } from '../../../services/queries/public_queries';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import {
   Table,
@@ -14,68 +16,68 @@ import {
   TableRow,
   TablePagination,
   Checkbox,
-  IconButton,
-  Button,
-  Paper,
-  FormControlLabel,
-  Switch,
-  ToggleButtonGroup
+  Paper
 } from '@material-ui/core';
-import { Delete as DeleteIcon } from '@material-ui/icons';
 import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
-import headCells from '../../../components/Dashboard/Table/data/headcells';
 import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import './Main.css';
-import { Typography } from '@mui/material';
+import { Typography, styled } from '@mui/material';
 
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
+const TitleHeader = styled(Typography)({
+  fontSize: '1rem',
+  fontFamily: "'Adamina', serif !important",
+  fontWeight: 'normal'
+});
 
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
+// function descendingComparator(a, b, orderBy) {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
+//   return 0;
+// }
 
-function stableSort(array, comparator) {
-  const stabilizedThis = array?.map((el, index) => [el, index]);
-  stabilizedThis?.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis?.map((el) => el[0]);
-}
+// function getComparator(order, orderBy) {
+//   return order === 'desc'
+//     ? (a, b) => descendingComparator(a, b, orderBy)
+//     : (a, b) => -descendingComparator(a, b, orderBy);
+// }
+
+// function stableSort(array, comparator) {
+//   const stabilizedThis = array?.map((el, index) => [el, index]);
+//   stabilizedThis?.sort((a, b) => {
+//     const order = comparator(a[0], b[0]);
+//     if (order !== 0) {
+//       return order;
+//     }
+//     return a[1] - b[1];
+//   });
+//   return stabilizedThis?.map((el) => el[0]);
+// }
 
 const Main = ({ cards, drawerWidth }) => {
   const queryClient = useQueryClient();
 
-  const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState('name');
+  // const [order, setOrder] = useState('asc');
+  // const [orderBy, setOrderBy] = useState('name');
+  // eslint-disable-next-line no-unused-vars
   const [toggleValue, setToggleValue] = useState(null);
-  const [selectedRows, setSelectedRows] = useState([]);
+  // const [selectedRows, setSelectedRows] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selectedIds, setSelectedIds] = useState([]);
 
-  const profileId = localStorage.getItem('profileId');
+  // const profileId = localStorage.getItem('profileId');
 
-  const { data: rows, error, isError, isLoading } = useQuery(['users'], getUsers);
-  const {
-    data: articles,
-    error_articles,
-    isError_articles,
-    isLoading_articles
-  } = useQuery(['articles'], getArticles);
+  const { data: rows, error, isLoading } = useQuery(['users'], getUsers);
+  // const {
+  //   data: articles,
+  //   error_articles,
+  //   isError_articles,
+  //   isLoading_articles
+  // } = useQuery(['articles'], getArticles);
 
   const mutation = useMutation({
     mutationFn: changeModStatus,
@@ -94,15 +96,11 @@ const Main = ({ cards, drawerWidth }) => {
     }
   });
 
-  if (isLoading) return 'Loading users...';
-
-  if (error) return 'Error loading users...';
-
-  const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
+  // const handleRequestSort = (event, property) => {
+  //   const isAsc = orderBy === property && order === 'asc';
+  //   setOrder(isAsc ? 'desc' : 'asc');
+  //   setOrderBy(property);
+  // };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -113,9 +111,10 @@ const Main = ({ cards, drawerWidth }) => {
     setPage(0);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleDeleteSelected = () => {
+    // eslint-disable-next-line no-unused-vars
     const newRows = rows?.filter((row) => !selectedIds?.includes(row._id));
     setSelectedIds([]);
     // TODO: Handle deletion of selected rows
@@ -152,9 +151,9 @@ const Main = ({ cards, drawerWidth }) => {
 
   const isSelected = (id) => selectedIds.indexOf(id) !== -1;
 
-  const handleDeleteClick = () => {
-    console.log('Deleting rows with ids:', selectedRows);
-  };
+  // const handleDeleteClick = () => {
+  //   console.log('Deleting rows with ids:', selectedRows);
+  // };
 
   const filteredRows = rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
@@ -187,13 +186,12 @@ const Main = ({ cards, drawerWidth }) => {
         display: 'grid',
         gap: '2rem',
         mt: '2rem'
-      }}
-    >
+      }}>
       <Row>
         {cards.map((card, i) => {
           return (
             <Card
-              key={i}
+              key={card.id}
               title={card.title}
               icon={card.icon}
               collection={card.collection}
@@ -209,11 +207,21 @@ const Main = ({ cards, drawerWidth }) => {
               width: '100%',
               mb: 2,
               backgroundColor: '#FFF',
+              boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
               opacity: '95%',
               '.MuiPaper-root': { boxShadow: 'none' }
-            }}
-          >
+            }}>
             <EnhancedToolBar numSelected={selectedIds.length} />
+            {isLoading && (
+              <Typography variant="body1" style={{ paddingLeft: '3rem' }}>
+                Loading data...
+              </Typography>
+            )}
+            {error && (
+              <Typography variant="body1" style={{ paddingLeft: '3rem' }}>
+                Error loading data
+              </Typography>
+            )}
             {rows && (
               <TableContainer component={Paper}>
                 <Table>
@@ -228,29 +236,24 @@ const Main = ({ cards, drawerWidth }) => {
                         />
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Name</Typography>
+                        <TitleHeader variant="h6">Name</TitleHeader>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Email</Typography>
+                        <TitleHeader variant="h6">Email</TitleHeader>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Handle</Typography>
+                        <TitleHeader variant="h6">Handle</TitleHeader>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Is moderator</Typography>
+                        <TitleHeader variant="h6">Moderator</TitleHeader>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="h6">Validated account</Typography>
-                      </TableCell>
-                      <TableCell padding="checkbox">
-                        <IconButton onClick={handleDeleteSelected}>
-                          <DeleteIcon />
-                        </IconButton>
+                        <TitleHeader variant="h6">Validated account</TitleHeader>
                       </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {filteredRows?.map((row, i) => {
+                    {filteredRows?.map((row) => {
                       const isItemSelected = isSelected(row._id);
                       return (
                         <TableRow tabIndex={-1} key={row._id}>
@@ -272,22 +275,10 @@ const Main = ({ cards, drawerWidth }) => {
                           </TableCell>
                           <TableCell>
                             <ToggleButton
-                              key={row._id}
                               value={row.isMod}
                               selected={row.isMod}
                               onChange={() => handleToggle(row)}
                             />
-                            {/* <FormControlLabel
-                              control={
-                                <Switch
-                                  checked={row.isMod}
-                                  name={`isMod-${row._id}`}
-                                  color="primary"
-                                  onClick={(e) => handleSwitchChange(e, row)}
-                                />
-                              }
-                              label=""
-                            /> */}
                           </TableCell>
                           <TableCell>
                             <Typography variant="body1">

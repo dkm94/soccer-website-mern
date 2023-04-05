@@ -5,28 +5,28 @@ import img4 from '../../src/images/seeds/1200-L-real-madrid-l-agent-de-camavinga
 
 const slideshow = [
   {
-    idx: 0,
+    id: 1,
     title: 'Title 1',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum!',
     img: img1
   },
   {
-    idx: 1,
+    id: 2,
     title: 'Title 2',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum!',
     img: img2
   },
   {
-    idx: 2,
+    id: 3,
     title: 'Title 3',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum!',
     img: img3
   },
   {
-    idx: 3,
+    id: 4,
     title: 'Title 4',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum!',

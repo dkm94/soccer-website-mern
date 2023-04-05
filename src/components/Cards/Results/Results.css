@@ -2,12 +2,15 @@
   font-size: 16px;
   background-color: #2c2f35 !important;
   color: #fff;
-  border-radius: 0;
+}
+
+.status-finished, .status-inplay, .status-scheduled, .status-paused {
+  text-transform: uppercase;
 }
 
 .status-finished {
   color: #000 !important;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .status-inplay {
@@ -17,10 +20,22 @@
 
 .status-scheduled {
   color: #000 !important;
-  font-weight: 600;
+  font-weight: 300;
 }
 
 .status-paused {
   color: #c40808 !important;
   font-weight: 600;
 }
+
+.display-score {
+ display: flex;
+ align-items: center;
+}
+
+.display-score > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+ }

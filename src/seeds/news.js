@@ -5,7 +5,7 @@ import img4 from '../images/seeds/1200-L-real-madrid-l-agent-de-camavinga-sort-d
 
 const news = [
   {
-    idx: 0,
+    id: 0,
     title:
       'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
     author: 'Boris Vian',
@@ -46,7 +46,7 @@ const news = [
         `
   },
   {
-    idx: 1,
+    id: 1,
     title:
       'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
     author: 'Boris Vian',
@@ -87,7 +87,7 @@ const news = [
         `
   },
   {
-    idx: 2,
+    id: 2,
     title:
       'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
     author: 'Boris Vian',
@@ -128,7 +128,7 @@ const news = [
         `
   },
   {
-    idx: 3,
+    id: 3,
     title:
       'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
     author: 'Boris Vian',

@@ -12,6 +12,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import ArticleIcon from '@mui/icons-material/Article';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import ContactsIcon from '@mui/icons-material/Contacts';
 
 const SideBarList = () => {
   // Moderators
@@ -38,6 +39,11 @@ const SideBarList = () => {
       id: 3,
       name: 'Reported comments',
       icon: <DisabledByDefaultIcon />
+    },
+    {
+      id: 4,
+      name: 'My profile',
+      icon: <ContactsIcon />
     }
   ];
 
@@ -46,10 +52,10 @@ const SideBarList = () => {
       <Toolbar />
       <Divider />
       <List>
-        {listData.map(({ name, icon }, i) => {
+        {listData.map(({ id, name, icon }) => {
           return name === 'Articles' ? (
             <>
-              <ListItem key={i} disablePadding>
+              <ListItem key={id} disablePadding>
                 <ListItemButton onClick={handleClick}>
                   <ListItemIcon color="red">{icon}</ListItemIcon>
                   <ListItemText primary={name} />
@@ -68,7 +74,7 @@ const SideBarList = () => {
               </Collapse>
             </>
           ) : (
-            <ListItem key={i} disablePadding>
+            <ListItem key={id} disablePadding>
               <ListItemButton>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={name} />

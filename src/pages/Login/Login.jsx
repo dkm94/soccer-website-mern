@@ -1,76 +1,75 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
+import {
+  Box,
+  Grid,
+  Link,
+  Button,
+  Avatar,
+  CssBaseline,
+  TextField,
+  Typography,
+  Container,
+  IconButton,
+  InputAdornment
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useMutation, useQuery } from 'react-query';
 import { login } from '../../services/queries/auth_queries';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
+import { useTheme } from '@material-ui/core';
+import './Login.css';
 
 export default function SignIn() {
-  const { isLoading, isError, error, mutate } = useMutation(login, {
-    retry: 3
-  });
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().required('Email is required.'),
-    password: Yup.string().required('Password is required.')
-  });
+  const theme = useTheme();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues
-  } = useForm({
-    resolver: yupResolver(validationSchema)
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  const { email, password } = getValues();
-
-  const onSubmit = async (data, e) => {
-    e.preventDefault();
-    try {
-      await login(data);
-    } catch (error) {
-      console.error(error);
+  const mutation = useMutation({
+    mutationFn: login,
+    onError: (error, variables, context) => {
+      setErrorMessage(error.message);
+    },
+    onSuccess: (data, variables, context) => {
+      const auth = JSON.parse(localStorage.getItem('logged_in_status'));
+      if (auth) {
+        window.location.href = '/backoffice';
+      }
     }
+  });
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
-  const mainStyle = {
-    background: '#FFF',
-    marginTop: '4rem',
-    borderRadius: '5px'
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({ email, password });
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" style={mainStyle}>
+    <Container
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+      <Box
+        sx={{
+          background: '#FFF',
+          marginTop: '4rem',
+          borderRadius: '5px',
+          minHeight: '80vh',
+          width: '40em',
+          padding: '3rem',
+          boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)'
+        }}>
         <CssBaseline />
         <Box
           sx={{
@@ -78,17 +77,16 @@ export default function SignIn() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          }}>
+          <Avatar sx={{ m: 1, bgcolor: theme.palette.primary.light }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              {...register('email', { required: true })}
+              value={email}
               margin="normal"
               required
               fullWidth
@@ -96,51 +94,62 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              color="secondary"
+              onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
             <TextField
-              {...register('password', { required: true })}
+              value={password}
               margin="normal"
               required
               fullWidth
               name="password"
               label="Password"
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               autoComplete="current-password"
+              variant="outlined"
+              color="secondary"
+              onChange={(e) => setPassword(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end">
+                      {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+              // focused
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
+            <Typography variant="body1">{mutation.error && errorMessage}</Typography>
             <Button
+              className="submit-btn"
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={() => {
-                mutate({ email, password });
-              }}
-            >
-              {isLoading ? 'Connecting...' : 'SIGN IN'}
+              sx={{ mt: 3, mb: 2 }}>
+              {mutation.isLoading ? 'Connecting...' : 'SIGN IN'}
             </Button>
-            <div>{isError ? error.message : ''}</div>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color={theme.palette.secondary.dark}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color={theme.palette.secondary.dark}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+      </Box>
+    </Container>
   );
 }

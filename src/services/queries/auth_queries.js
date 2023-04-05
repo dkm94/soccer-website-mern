@@ -1,27 +1,31 @@
 import axios from 'axios';
-const CORS = 'https://mycorsproxy-dkm.herokuapp.com';
+// const CORS = 'https://mycorsproxy-dkm.herokuapp.com';
 const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
 
 const login = async (data) => {
   const url = `${BASE_URL}/auth/login`;
   try {
     await axios.post(url, data).then((res) => {
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('profileId', res.data.profileId);
-      localStorage.setItem('isAdmin', res.data.isAdmin);
-      localStorage.setItem('isMod', res.data.isMod);
-      localStorage.setItem('userId', res.data.isMod);
-      localStorage.setItem('accountValidated', res.data.accountValidated);
-
-      const token = localStorage.getItem('token');
-      if (token) {
-        setTimeout(() => {
-          window.location = '/backoffice';
-        }, 500);
-      }
+      const { token, auth, profileId, isAdmin, isMod, userId, accountValidated } = res.data;
+      setToken(token);
+      localStorage.setItem('logged_in_status', JSON.stringify(auth));
+      localStorage.setItem('profileId', JSON.stringify(profileId));
+      localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
+      localStorage.setItem('isMod', JSON.stringify(isMod));
+      localStorage.setItem('userId', JSON.stringify(userId));
+      localStorage.setItem('accountValidated', JSON.stringify(accountValidated));
+      return res.data;
     });
   } catch (e) {
-    console.error(`Error: ${e.response.data.error}`);
+    throw new Error(e.response.data.error);
+  }
+
+  function setToken(token) {
+    localStorage.setItem('token', token);
+    const storedToken = localStorage.getItem('token');
+    if (!storedToken) {
+      throw new Error('Token not stored');
+    }
   }
 };
 

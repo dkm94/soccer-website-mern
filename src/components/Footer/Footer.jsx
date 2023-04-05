@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-dims">
         <div className="footer-dims___span">
-          <span>© Copyright 2022 - All rights reserved</span>
+          <span>© Copyright 2023 - All rights reserved</span>
         </div>
       </div>
     </div>

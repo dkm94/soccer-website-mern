@@ -4,8 +4,11 @@
   display: inline-block;
   color: white;
   padding: 0.24em 0.3em 0.25em;
-  font-size: 12px !important;
   padding: 1rem;
+  text-transform: uppercase !important;
+  margin: 0;
+  font-size: 1.1rem !important;
+  font-family: 'Adamina', serif !important
   /* z-index: 1000; */
 }
 
@@ -22,11 +25,4 @@
   -moz-transform: skewX(20deg);
   -ms-transform: skewX(20deg);
   transform: skewX(20deg);
-}
-
-#mc-title {
-  font-size: 12px !important;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin: 0 !important;
 }

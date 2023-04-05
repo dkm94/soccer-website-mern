@@ -7,15 +7,13 @@ const CommentsContextProvider = (props) => {
 
   useEffect(() => {
     getRessources('comment').then((res) => setComments(res.data));
-    console.log(comments);
   }, [comments]);
 
   return (
     <CommentsContext.Provider
       value={{
         comments: comments
-      }}
-    >
+      }}>
       {props.children}
     </CommentsContext.Provider>
   );

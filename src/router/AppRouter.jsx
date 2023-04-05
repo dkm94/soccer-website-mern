@@ -10,16 +10,15 @@ import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/Match';
 import News from '../pages/News/News';
 import CompetitionsTeams from '../pages/Competitions/Teams/Teams';
-// import Auth from '../pages/Auth/Auth';
 import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import Matches from '../pages/Competitions/Matches/Matches';
 import Login from '../pages/Login/Login';
 import Backoffice from '../pages/Backoffice/Backoffice';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-// import Login from '../components/Auth/Login/Login';
 
-const token = localStorage.getItem('token');
+const auth = JSON.parse(localStorage.getItem('logged_in_status'));
+
 const path = window.location.pathname;
 
 const THEME = createMuiTheme({
@@ -29,17 +28,31 @@ const THEME = createMuiTheme({
         root: {
           fontFamily: `'Nunito', sans-serif`,
           fontSize: 14
-          // "fontWeightLight": 300,
-          // "fontWeightRegular": 400,
-          // "fontWeightMedium": 500
         }
       }
     }
   },
+  palette: {
+    primary: {
+      main: '#a00404'
+    },
+    secondary: {
+      main: '#BCC3CA'
+    }
+  },
   typography: {
     fontFamily: `'Nunito', sans-serif`,
+    h2: {
+      fontSize: '1rem'
+    },
     h6: {
       fontWeight: 600
+    },
+    body1: {
+      fontSize: '0.8rem'
+    },
+    body2: {
+      fontSize: '0.75rem'
     }
   }
 });
@@ -51,7 +64,7 @@ const AppRouter = () => {
     <QueryClientProvider client={queryClient}>
       <MuiThemeProvider theme={THEME}>
         <Router>
-          <Navbar token={token} />
+          <Navbar auth={auth} />
           <Layout path={path}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -62,10 +75,9 @@ const AppRouter = () => {
               <Route path="/matchhistory" element={<Match />} />
               <Route path="/news" element={<News />} />
               <Route path="/secret-login" element={<Login />} />
-              <Route element={<ProtectedRoutes token={token} />}>
+              <Route element={<ProtectedRoutes auth={auth} />}>
                 <Route path="/backoffice" element={<Backoffice />} />
               </Route>
-              {/* <Route path="/auth"  element={<Auth/>} /> */}
             </Routes>
           </Layout>
           <Footer />

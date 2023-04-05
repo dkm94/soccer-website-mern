@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { Paper, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { Col } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
 import { useQuery } from 'react-query';
-import { getUsers } from '../../../services/queries/admin_queries';
+import { getUsers } from '../../../services/queries/public_queries';
 import { getArticles } from '../../../services/queries/public_queries';
 import { getReportedComments } from '../../../services/queries/mods_queries';
 import './Card.css';
@@ -49,7 +50,7 @@ const Card = ({ title, icon, collection, wip }) => {
   };
 
   return (
-    <Col style={{ opacity: '95%' }}>
+    <Col style={{ opacity: '90%', boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)' }}>
       <Item className={!collection && `unavailable`}>
         <Typography style={{ textAlign: 'end' }}>{title}</Typography>
         <Typography style={{ textAlign: 'center', fontSize: '2rem' }}>

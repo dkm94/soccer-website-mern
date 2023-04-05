@@ -22,8 +22,14 @@
   background-color: #bcc3ca;
 }
 
+.cmt-title > h2 {
+  font-family: 'Adamina', serif !important;
+}
+
 .cmt-content {
-  padding: 0 2rem;
+  padding: 1rem 1rem;
+  display: grid;
+  gap: 1rem;
 }
 
 @media only screen and (max-device-width: 1024px) {

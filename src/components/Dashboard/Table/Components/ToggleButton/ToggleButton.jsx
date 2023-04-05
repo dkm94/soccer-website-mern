@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useTheme } from '@material-ui/core';
 import './ToggleButton.css';
 
-function ToggleButton({ key, value, selected, onChange }) {
-  // const handleToggleClick = () => {
-  //     console.log(isMod);
-  //   };
+function ToggleButton({ value, selected, onChange }) {
+  const { palette } = useTheme();
+  console.log('🚀 ~ file: ToggleButton.jsx:5 ~ ToggleButton ~ value:', value);
 
   const btnToggleStyle = {
-    background: selected ? 'hsl(109, 63%, 64%)' : 'hsl(0, 4%, 69%)'
+    background: selected ? palette.primary.main : 'hsl(0, 4%, 69%)'
   };
 
   return (
@@ -16,8 +16,7 @@ function ToggleButton({ key, value, selected, onChange }) {
         id="toggle"
         onClick={onChange}
         className={`btn-toggle__wrapper ${selected ? 'active' : ''}`}
-        style={btnToggleStyle}
-      >
+        style={btnToggleStyle}>
         <div className="btn-toggle__circle"></div>
       </div>
       <input id="checkboxToggle" type="checkbox" className="hidden" defaultChecked={selected} />

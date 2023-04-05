@@ -3,9 +3,13 @@ import { IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { alpha } from '@mui/material/styles';
+import { useTheme } from '@material-ui/core';
 
 const EnhancedToolBar = (props) => {
   const { numSelected } = props;
+  const { palette } = useTheme();
+
+  console.log(palette.primary.dark);
 
   return (
     <Toolbar
@@ -15,14 +19,17 @@ const EnhancedToolBar = (props) => {
           bgcolor: (theme) =>
             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)
         })
-      }}
-    >
+      }}>
       {numSelected > 0 ? (
         <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle1" component="div">
           {numSelected} selected
         </Typography>
       ) : (
-        <Typography sx={{ flex: '1 1 100%' }} variant="h4" id="tableTitle" component="div">
+        <Typography
+          sx={{ flex: '1 1 100%', fontSize: '1.5rem', color: palette.secondary.dark }}
+          variant="h4"
+          id="tableTitle"
+          component="div">
           Users
         </Typography>
       )}

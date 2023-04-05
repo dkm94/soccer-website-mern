@@ -4,15 +4,10 @@ import './CommentsCol.css';
 
 import { getRessources } from '../../../services/dummyapi_services';
 import CommentCard from '../../Cards/CommentCard/CommentCard';
+import { Box, Typography } from '@mui/material';
 
 const CommentsCol = () => {
   const [comments, setComments] = useState([]);
-
-  const containerStyle = {
-    background: '#fff',
-    // float: "left"
-    width: '80%'
-  };
 
   useEffect(() => {
     async function getData() {
@@ -24,14 +19,17 @@ const CommentsCol = () => {
     };
   }, []);
 
+  let temp = comments.slice(-5);
+
   return (
     <Col lg={4} className="comment-layout">
-      <div style={containerStyle}>
+      <Box
+        sx={{ background: '#fff', width: '80%', boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)' }}>
         <div className="cmt-title">
-          <span>Last comments</span>
+          <Typography variant="h2">Last comments</Typography>
         </div>
         <div className="cmt-content">
-          {comments.map((comment, index) => (
+          {temp.map((comment, index) => (
             <CommentCard
               key={index}
               message={comment.message}
@@ -42,7 +40,7 @@ const CommentsCol = () => {
             />
           ))}
         </div>
-      </div>
+      </Box>
     </Col>
   );
 };

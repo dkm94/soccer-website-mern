@@ -5,16 +5,16 @@ import TablePaginationUnstyled, {
 } from '@mui/base/TablePaginationUnstyled';
 import { Image } from 'react-bootstrap';
 
-const Root = styled('div')`
+const Container = styled('div')`
   table {
-    font-family: arial, sans-serif;
+    margin-top: 1.5rem;
     border-collapse: collapse;
     width: 100%;
   }
 
   td,
   th {
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 8px;
   }
@@ -56,6 +56,10 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
   & .${classes.actions} {
     display: flex;
     gap: 0.25rem;
+
+    button {
+      background-color: 'blue' !important;
+    }
   }
 `;
 
@@ -83,7 +87,6 @@ export default function CustomTable({ matches, searchInput, selected }) {
     return data;
   };
 
-  //@todo
   const lowercasedFilter = searchInput?.toLowerCase();
   const rows = apiData()
     ?.sort((a, b) => new Date(a?.utcDate) - new Date(b?.utcDate))
@@ -93,12 +96,13 @@ export default function CustomTable({ matches, searchInput, selected }) {
       )
     )
     .filter((match) => {
-      if (selected === 'FINISHED') {
-        return match?.status === 'FINISHED';
-      } else if (selected === 'SCHEDULED') {
-        return match?.status === 'SCHEDULED';
-      } else {
-        return match;
+      switch (selected) {
+        case 'FINISHED':
+          return match?.status === 'FINISHED';
+        case 'SCHEDULED':
+          return match?.status === 'SCHEDULED';
+        default:
+          return match;
       }
     });
 
@@ -122,14 +126,10 @@ export default function CustomTable({ matches, searchInput, selected }) {
   };
 
   return (
-    <Root sx={{ width: '100%' }}>
-      <table aria-label="custom pagination table">
+    <Container sx={{ width: '100%' }}>
+      <table>
         <thead>
-          <tr>
-            {rowsTitles?.map((row, i) => (
-              <th>{row}</th>
-            ))}
-          </tr>
+          <tr>{rowsTitles && rowsTitles?.map((row) => <th key={row}>{row}</th>)}</tr>
         </thead>
         <tbody style={{ textAlignLast: 'center' }}>
           {(rowsPerPage > 0
@@ -163,6 +163,12 @@ export default function CustomTable({ matches, searchInput, selected }) {
         <tfoot>
           <tr>
             <CustomTablePagination
+              sx={{
+                '& .MuiTablePagination-actions button': {
+                  borderStyle: 'unset',
+                  borderRadius: '3px'
+                }
+              }}
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
               count={rows?.length}
@@ -183,6 +189,6 @@ export default function CustomTable({ matches, searchInput, selected }) {
           </tr>
         </tfoot>
       </table>
-    </Root>
+    </Container>
   );
 }
