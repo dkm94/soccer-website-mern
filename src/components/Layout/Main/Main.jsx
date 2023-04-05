@@ -12,8 +12,8 @@ const Layout = ({ children, path }) => {
     return <Header path={path} />;
   };
 
-  const showComments = () => {
-    if (path === '/secret-login' || path.includes('backoffice')) {
+  const showLastArticles = () => {
+    if (path === '/secret-login' || path === '/news' || path.includes('backoffice')) {
       return null;
     }
     return <SideArticles />;
@@ -28,7 +28,7 @@ const Layout = ({ children, path }) => {
         style={{ minHeight: '100vh' }}>
         <Container>
           <Row>
-            {showComments()}
+            {showLastArticles()}
             {children}
           </Row>
         </Container>
