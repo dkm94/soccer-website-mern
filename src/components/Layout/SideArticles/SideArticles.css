@@ -1,0 +1,26 @@
+.comment-layout {
+  padding: 0 !important;
+}
+
+.comment-layout > .title {
+  background-color: #bcc3ca;
+  text-transform: uppercase;
+  padding: 1rem;
+  font-weight: 700;
+}
+
+.comment-layout > .content {
+  padding: 1.5rem;
+}
+
+.cmt-content {
+  padding: 1rem 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+@media only screen and (max-device-width: 1024px) {
+  .comment-layout {
+    display: none;
+  }
+}

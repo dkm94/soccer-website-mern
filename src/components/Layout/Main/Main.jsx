@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../Header/Header';
-import CommentsCol from '../CommentsCol/CommentsCol';
+import SideArticles from '../SideArticles/SideArticles';
 import { Container, Row } from 'react-bootstrap';
 import './Main.css';
 
@@ -16,7 +16,7 @@ const Layout = ({ children, path }) => {
     if (path === '/secret-login' || path.includes('backoffice')) {
       return null;
     }
-    return <CommentsCol />;
+    return <SideArticles />;
   };
 
   return (

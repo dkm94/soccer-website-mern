@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Card, Col, Row, Image } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
 import defaultAvatar from '../../../images/avatar.png';
 import { Typography, Grid, Button } from '@mui/material';
-import './CommentCard.css';
+import './ArticleCard.css';
 
 const Avatar = ({ avatar }) => {
   return (
@@ -44,11 +45,12 @@ const TextContainer = styled(Grid)({
   flexDirection: 'column'
 });
 
-const Content = ({ message, date }) => {
+const Content = ({ title, date, author }) => {
   return (
     <Col xs={8}>
       <TextContainer>
-        <Typography variant="body1">{message}</Typography>
+        <Typography variant="body1">{title}</Typography>
+        <Typography variant="body2">{author}</Typography>
         <Typography variant="body2">{date}</Typography>
         <RedirectButton>Go to the article</RedirectButton>
       </TextContainer>
@@ -56,18 +58,16 @@ const Content = ({ message, date }) => {
   );
 };
 
-const CommentCard = ({ message, firstName, lastName, avatar, date }) => {
+const ArticleCard = ({ key, title, author, date }) => {
   const getDate = new Date(date);
   const formattedDate = getDate?.toLocaleDateString('en-US');
   return (
-    <Card>
-      <CardHeader> {`${firstName} ${lastName}`} </CardHeader>
+    <Card key={key}>
       <Row style={{ margin: '1rem 0px' }}>
-        <Avatar avatar={avatar} />
-        <Content message={message} date={formattedDate} />
+        <Content title={title} date={formattedDate} author={author} />
       </Row>
     </Card>
   );
 };
 
-export default CommentCard;
+export default ArticleCard;

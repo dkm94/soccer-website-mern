@@ -1,0 +1,11 @@
+
+.comment-avatar {
+  display: flex;
+  justify-content: center;
+  margin-top: 7px;
+}
+
+.comment-avatar > img {
+  height: 3.5rem;
+  width: auto;
+}
