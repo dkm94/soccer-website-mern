@@ -10,7 +10,10 @@ const MainContent = ({ title, children, width }) => {
           {title}
         </Typography>
       </div>
-      <Box sx={{ backgroundColor: '#FFF' }}>{children}</Box>
+
+      <Box sx={{ backgroundColor: '#FFF', boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)' }}>
+        {children}
+      </Box>
     </Box>
   );
 };

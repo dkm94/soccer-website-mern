@@ -7,7 +7,7 @@ import Footer from '../components/Footer/Footer';
 import Home from '../pages/Home/Home';
 import Competitions from '../pages/Competitions/Competitions';
 import Teams from '../pages/Teams/Teams';
-import Match from '../pages/Match/Match';
+import Match from '../pages/Match/MatchHistory';
 import News from '../pages/News/News';
 import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';

@@ -49,18 +49,22 @@ function getMatchesByCompetition(name, id) {
     .catch((error) => console.log('Error', error));
 }
 
-function getMatches(name, from, to) {
-  const url = `${corsEveryhere}/${BASE_URL}/${name}`;
-  return axios
-    .get(url, {
-      headers: { 'X-Auth-Token': `${tokenAPI}` },
-      params: {
-        dateFrom: from,
-        dateTo: to
-      }
-    })
-    .then((response) => response.data[`${name}`])
-    .catch((error) => console.log('Error', error));
+async function getMatches(name, from, to) {
+  console.log('🚀 ~ file: soccerapi_services.js:53 ~ getMatches ~ to:', to);
+  console.log('🚀 ~ file: soccerapi_services.js:53 ~ getMatches ~ from:', from);
+  console.log('🚀 ~ file: soccerapi_services.js:53 ~ getMatches ~ name:', name);
+  const url = `${corsEveryhere}/${BASE_URL}/${apiVersion}/${name}/`;
+  const config = {
+    method: 'get',
+    url,
+    headers: { 'X-Auth-Token': `${tokenAPI}` },
+    params: {
+      dateFrom: from,
+      dateTo: to
+    }
+  };
+  const { data } = await axios(config);
+  return data[`${name}`];
 }
 
 function getScoreBoard(name, code) {
