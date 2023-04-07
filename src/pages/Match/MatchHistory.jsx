@@ -1,14 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import CustomTable from '../../components/Table/Table';
+import { Row, Col, Button } from 'react-bootstrap';
 import { useQuery } from 'react-query';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Match.css';
 
 import { getMatches } from '../../services/soccerapi_services';
-import { Typography, styled, Box } from '@mui/material';
+import { Typography, styled, Box, Paper, InputBase, IconButton, Container } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 const SubmitButton = styled(Button)({
   backgroundColor: '#2c2f35',
@@ -18,8 +20,15 @@ const SubmitButton = styled(Button)({
   width: '6rem'
 });
 
-const SearchContainer = styled(Container)({
-  padding: '0 3rem 3rem 3rem'
+const DatePickerWrapper = styled(Container)({
+  // padding: '0 3rem 3rem 3rem'
+});
+
+const SearchWrapper = styled(Container)({
+  marginTop: '4rem',
+  marginBottom: '1rem',
+  display: 'flex',
+  justifyContent: 'end'
 });
 
 const SearchBox = styled(Box)({
@@ -34,6 +43,8 @@ const Title = styled(Typography)({
   padding: ' 2rem 2rem'
 });
 
+const TableWrapper = styled(Container)({});
+
 const MatchHistory = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -41,6 +52,8 @@ const MatchHistory = () => {
     status: false,
     message: ''
   });
+  const [selected, setSelected] = useState('ALL');
+  const [searchInput, setSerchInput] = useState('');
 
   const {
     // isPending,
@@ -86,78 +99,26 @@ const MatchHistory = () => {
     refetch();
   };
 
+  const searchFilter = () => {
+    const filteredData = matches?.filter((match) => console.log(match));
+    return filteredData;
+  };
+
+  const setInputValue = (e) => {
+    e.preventDefault();
+    setSerchInput(e.target.value);
+    searchFilter();
+  };
+
   console.log(matches);
 
   return (
     <Col lg={8}>
-      <div className="layout-cols">
-        {/* {games.map((match) => (
-          <Card key={match?.id} className="text-center" style={{ marginTop: '1rem' }}>
-            <Card.Header>
-              {match.competition.name} / {match.competition.area.name}
-            </Card.Header>
-            <Card.Body>
-              <Container>
-                <Row>
-                  <Col>
-                    <Card.Text>{match.group}</Card.Text>
-                  </Col>
-                </Row>
-                <Row className="justify-content-md-center">
-                  <Col xs={4}>
-                    <Card.Title>{match.score.fullTime.homeTeam}</Card.Title>
-                    <Card.Title>{match.homeTeam.name}</Card.Title>
-                  </Col>
-                  <Col xs={2}>
-                    <Card.Title>
-                      <span>-</span>
-                    </Card.Title>
-                  </Col>
-                  <Col xs={4}>
-                    <Card.Title>{match.score.fullTime.awayTeam}</Card.Title>
-                    <Card.Title>{match.awayTeam.name}</Card.Title>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Card.Text>
-                      Half-time score: {match.score.halfTime.homeTeam} -{' '}
-                      {match.score.halfTime.awayTeam}
-                    </Card.Text>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Card.Text>
-                      Full-time score: {match.score.fullTime.homeTeam} -{' '}
-                      {match.score.fullTime.awayTeam}
-                    </Card.Text>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Card.Text>
-                      {!match.score.extraTime.homeTeam && !match.score.extraTime.awayTeam
-                        ? null
-                        : `Extra-time score: ${match.score.extraTime.homeTeam} - ${match.score.extraTime.awayTeam}`}
-                    </Card.Text>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Card.Text>{match.group}</Card.Text>
-                  </Col>
-                </Row>
-              </Container>
-            </Card.Body>
-            <Card.Footer className="text-muted">{match.status}</Card.Footer>
-          </Card>
-        ))} */}
-      </div>
+      <div className="layout-cols"></div>
       <MainContent title={'Resumed'}>
         <Title variant="h1">Choose a date range to see all matches</Title>
 
-        <SearchContainer>
+        <DatePickerWrapper>
           <SearchBox>
             <Row style={{ marginBottom: '1rem' }}>
               <Col>
@@ -192,16 +153,43 @@ const MatchHistory = () => {
               </Typography>
             ) : null}
           </SearchBox>
-        </SearchContainer>
-        <Container>
+        </DatePickerWrapper>
+        <SearchWrapper>
+          <Row xs={12} className="g-4">
+            <Col md={4}>
+              <Paper
+                component="form"
+                sx={{
+                  p: '2px 4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: 250
+                }}>
+                <InputBase
+                  size="small"
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Search team"
+                  inputProps={{ 'aria-label': 'Search team' }}
+                  value={searchInput}
+                  onChange={setInputValue}
+                />
+                <IconButton type="button" sx={{ p: '10px' }} aria-label="search" disabled>
+                  <SearchIcon />
+                </IconButton>
+              </Paper>
+            </Col>
+          </Row>
+        </SearchWrapper>
+        <TableWrapper>
           {isError && <Typography variant="body1">{error?.response?.message?.data}</Typography>}
           {isLoading && <Typography variant="body1">Loading data</Typography>}
-          {matches?.length === 0 ? (
+          {matches?.length === 0 && (
             <Typography variant="body1">No games to display for this period</Typography>
-          ) : (
-            matches?.map((match) => <span key={match.id}>{match.id}</span>)
           )}
-        </Container>
+          <Row xs={12} className="g-4">
+            <CustomTable matches={matches} searchInput={searchInput} selected={selected} />
+          </Row>
+        </TableWrapper>
       </MainContent>
     </Col>
   );

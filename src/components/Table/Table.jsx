@@ -131,13 +131,13 @@ export default function CustomTable({ matches, searchInput, selected }) {
         <thead>
           <tr>{rowsTitles && rowsTitles?.map((row) => <th key={row}>{row}</th>)}</tr>
         </thead>
-        <tbody style={{ textAlignLast: 'center' }}>
+        <tbody>
           {(rowsPerPage > 0
             ? rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           )?.map((row) => (
             <tr key={row?.id}>
-              <td align="center">{formatDate(row?.date)}</td>
+              <td align="left">{formatDate(row?.date)}</td>
               <td style={{ borderRight: '0' }}>
                 <Image style={{ height: '32px', width: '32px' }} src={row?.htCrest} />
               </td>
@@ -160,34 +160,36 @@ export default function CustomTable({ matches, searchInput, selected }) {
             </tr>
           )}
         </tbody>
-        <tfoot>
-          <tr>
-            <CustomTablePagination
-              sx={{
-                '& .MuiTablePagination-actions button': {
-                  borderStyle: 'unset',
-                  borderRadius: '3px'
-                }
-              }}
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={rows?.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  'aria-label': 'rows per page'
-                },
-                actions: {
-                  showFirstButton: true,
-                  showLastButton: true
-                }
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </tr>
-        </tfoot>
+        {matches && (
+          <tfoot>
+            <tr>
+              <CustomTablePagination
+                sx={{
+                  '& .MuiTablePagination-actions button': {
+                    borderStyle: 'unset',
+                    borderRadius: '3px'
+                  }
+                }}
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={rows?.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    'aria-label': 'rows per page'
+                  },
+                  actions: {
+                    showFirstButton: true,
+                    showLastButton: true
+                  }
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </tr>
+          </tfoot>
+        )}{' '}
       </table>
     </Container>
   );
