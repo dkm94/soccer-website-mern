@@ -11,7 +11,12 @@ const MainContent = ({ title, children, width }) => {
         </Typography>
       </div>
 
-      <Box sx={{ backgroundColor: '#FFF', boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)' }}>
+      <Box
+        sx={{
+          backgroundColor: '#FFF',
+          boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
+          paddingBottom: '5rem'
+        }}>
         {children}
       </Box>
     </Box>

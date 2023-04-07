@@ -18,7 +18,7 @@ const SideArticles = () => {
   return (
     <Col lg={4} className="comment-layout">
       <MainContent title={'Last articles'} width={'80%'}>
-        <Box sx={{ background: '#fff', boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)' }}>
+        <Box sx={{ background: '#fff' }}>
           <div className="cmt-content">
             {isError && 'Error loading data'}
             {isLoading && 'Loading articles...'}

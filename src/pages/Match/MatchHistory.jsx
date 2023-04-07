@@ -159,7 +159,7 @@ const MatchHistory = () => {
 
         <SearchContainer>
           <SearchBox>
-            <Row>
+            <Row style={{ marginBottom: '1rem' }}>
               <Col>
                 <DatePicker
                   showIcon
@@ -186,12 +186,14 @@ const MatchHistory = () => {
                 <SubmitButton onClick={searchMatches}>Search</SubmitButton>
               </Col>
             </Row>
+            {error?.status === true ? (
+              <Typography variant="body1" color={'red'}>
+                {error?.message}
+              </Typography>
+            ) : null}
           </SearchBox>
         </SearchContainer>
         <Container>
-          {error?.status === true ? (
-            <Typography variant="body1">{error?.message}</Typography>
-          ) : null}
           {isError && <Typography variant="body1">{error?.response?.message?.data}</Typography>}
           {isLoading && <Typography variant="body1">Loading data</Typography>}
           {matches?.length === 0 ? (
