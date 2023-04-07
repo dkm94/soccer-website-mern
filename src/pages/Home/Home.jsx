@@ -8,12 +8,21 @@ import MainContent from '../../components/Wrappers/MainContent/MainContent';
 import Select from '../../components/Select/Competition';
 import Results from '../../components/Cards/Results/Results';
 import { useQuery } from 'react-query';
-import { Pagination, Typography, styled } from '@mui/material';
+import { Container, Pagination, Typography, styled } from '@mui/material';
 
 const StyledContainer = styled('div')({
   padding: '1rem 7rem',
   display: 'grid',
   rowGap: '1rem'
+});
+
+const SelectWrapper = styled(Container)({
+  padding: '0 !important',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  '& div': {
+    width: '15rem'
+  }
 });
 
 const Home = () => {
@@ -59,11 +68,13 @@ const Home = () => {
           <StyledContainer>
             {isPending && <Typography>Loading matches list...</Typography>}
             {isError && <Typography>Error loading matches</Typography>}
-            <Select
-              competition={competition}
-              temp={formattedCompetitions}
-              setCompetition={setCompetition}
-            />
+            <SelectWrapper>
+              <Select
+                competition={competition}
+                temp={formattedCompetitions}
+                setCompetition={setCompetition}
+              />
+            </SelectWrapper>
             {_DATA?.currentData() &&
               _DATA?.currentData().map((match) => <Results key={match?.id} match={match} />)}
             <Pagination count={getCount()} page={currentPage} onChange={handleChange}></Pagination>

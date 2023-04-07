@@ -29,6 +29,20 @@ const THEME = createMuiTheme({
           fontSize: 14
         }
       }
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: '0.9rem'
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          fontSize: '0.9rem'
+        }
+      }
     }
   },
   palette: {
