@@ -4,20 +4,14 @@ import React from 'react';
 import { Col } from 'react-bootstrap';
 import './SideArticles.css';
 
-// import { getRessources } from '../../../services/dummyapi_services';
 import { getArticles } from '../../../services/queries/public_queries';
 import ArticleCard from '../../Cards/ArticleCard/ArticleCard';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import MainContent from '../../Wrappers/MainContent/MainContent';
 import { useQuery } from 'react-query';
 
 const SideArticles = () => {
-  const {
-    data: articles,
-    error_articles,
-    isError,
-    isLoading
-  } = useQuery(['articles'], getArticles);
+  const { data: articles, error, isError, isLoading } = useQuery(['articles'], getArticles);
 
   let temp = articles?.slice(-5);
 

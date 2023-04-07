@@ -50,9 +50,6 @@ function getMatchesByCompetition(name, id) {
 }
 
 async function getMatches(name, from, to) {
-  console.log('🚀 ~ file: soccerapi_services.js:53 ~ getMatches ~ to:', to);
-  console.log('🚀 ~ file: soccerapi_services.js:53 ~ getMatches ~ from:', from);
-  console.log('🚀 ~ file: soccerapi_services.js:53 ~ getMatches ~ name:', name);
   const url = `${corsEveryhere}/${BASE_URL}/${apiVersion}/${name}/`;
   const config = {
     method: 'get',

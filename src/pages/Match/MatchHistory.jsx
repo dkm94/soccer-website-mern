@@ -13,18 +13,25 @@ import { Typography, styled, Box } from '@mui/material';
 const SubmitButton = styled(Button)({
   backgroundColor: '#2c2f35',
   border: 'none',
-  color: ' #FFF'
+  color: ' #FFF',
+  height: '100%',
+  width: '6rem'
 });
 
 const SearchContainer = styled(Container)({
-  padding: '3rem'
+  padding: '0 3rem 3rem 3rem'
 });
 
 const SearchBox = styled(Box)({
   backgroundColor: '#EFF1ED',
   padding: '2rem 3rem',
-  borderRadius: '5px',
-  boxShadow: '0px 6px 12px -3px rgba(0,0,0,0.1)'
+  borderRadius: '5px'
+  // boxShadow: '0px 6px 12px -3px rgba(0,0,0,0.1)'
+});
+
+const Title = styled(Typography)({
+  fontSize: ' 1.3rem',
+  padding: ' 2rem 2rem'
 });
 
 const MatchHistory = () => {
@@ -34,7 +41,6 @@ const MatchHistory = () => {
     status: false,
     message: ''
   });
-  console.log('🚀 ~ file: MatchHistory.jsx:19 ~ MatchHistory ~ errorDateRange:', error);
 
   const {
     // isPending,
@@ -149,6 +155,8 @@ const MatchHistory = () => {
         ))} */}
       </div>
       <MainContent title={'Resumed'}>
+        <Title variant="h1">Choose a date range to see all matches</Title>
+
         <SearchContainer>
           <SearchBox>
             <Row>
