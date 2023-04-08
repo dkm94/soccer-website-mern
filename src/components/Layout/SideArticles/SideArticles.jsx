@@ -6,10 +6,9 @@ import './SideArticles.css';
 
 import { getArticles } from '../../../services/queries/public_queries';
 import ArticleCard from '../../Cards/ArticleCard/ArticleCard';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import MainContent from '../../Wrappers/MainContent/MainContent';
 import { useQuery } from 'react-query';
-import Cards from '../../Loaders/Skeletons/Home/SideArticles/Cards';
 import ArticlesLoader from '../../Loaders/Skeletons/Home/SideArticles/Cards';
 
 const SideArticles = () => {

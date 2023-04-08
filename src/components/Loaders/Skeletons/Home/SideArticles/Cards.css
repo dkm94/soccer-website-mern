@@ -1,7 +1,6 @@
 .wrapper {
     display: grid;
     row-gap: 0.7rem;
-    /* justify-self: end; */
 }
 
 #article-img {
