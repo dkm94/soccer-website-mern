@@ -9,6 +9,8 @@ import ArticleCard from '../../Cards/ArticleCard/ArticleCard';
 import { Box, Typography } from '@mui/material';
 import MainContent from '../../Wrappers/MainContent/MainContent';
 import { useQuery } from 'react-query';
+import Cards from '../../Loaders/Skeletons/Home/SideArticles/Cards';
+import ArticlesLoader from '../../Loaders/Skeletons/Home/SideArticles/Cards';
 
 const SideArticles = () => {
   const { data: articles, error, isError, isLoading } = useQuery(['articles'], getArticles);
@@ -21,7 +23,7 @@ const SideArticles = () => {
         <Box sx={{ background: '#fff' }}>
           <div className="cmt-content">
             {isError && 'Error loading data'}
-            {isLoading && 'Loading articles...'}
+            {isLoading && <ArticlesLoader />}
             {temp &&
               temp.map(({ id, title, author, createdAt }, i) => (
                 <ArticleCard key={id} title={title} author={author} date={createdAt} />

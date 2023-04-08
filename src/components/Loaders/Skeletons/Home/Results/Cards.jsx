@@ -2,7 +2,7 @@ import { Container, Box } from '@mui/material';
 import React from 'react';
 import './Cards.css';
 
-const Card = () => {
+const ResultsLoader = () => {
   return (
     <Box
       sx={{
@@ -10,19 +10,19 @@ const Card = () => {
         rowGap: '3rem'
       }}>
       <div className="wrapper">
-        <Container id="header" className="load sidebar" />
-        <Container id="main" className="load sidebar" />
+        <Container id="header" className="load" />
+        <Container id="main" className="load" />
       </div>
       <div className="wrapper">
-        <Container id="header" className="load sidebar" />
-        <Container id="main" className="load sidebar" />
+        <Container id="header" className="load" />
+        <Container id="main" className="load" />
       </div>
       <div className="wrapper">
-        <Container id="header" className="load sidebar" />
-        <Container id="main" className="load sidebar" />
+        <Container id="header" className="load" />
+        <Container id="main" className="load" />
       </div>
     </Box>
   );
 };
 
-export default Card;
+export default ResultsLoader;
