@@ -23,7 +23,7 @@ const RedirectButton = styled(Button)({
   width: 'fit-content',
   alignSelf: 'self-end',
   backgroundColor: '#BCC3CA',
-  color: '#000',
+  color: '#2c2f35',
   // border: '#2C2F35 1px solid',
   textTransform: 'unset',
   '&:hover': {

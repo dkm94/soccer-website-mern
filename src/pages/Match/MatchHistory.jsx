@@ -17,7 +17,13 @@ const SubmitButton = styled(Button)({
   border: 'none',
   color: ' #FFF',
   height: '100%',
-  width: '6rem'
+  width: '6rem',
+  transition: 'background-color 0.3s',
+  ':hover': {
+    backgroundColor: '#fffcfc',
+    color: '#2c2f35',
+    border: '1px solid #2c2f35'
+  }
 });
 
 const DatePickerWrapper = styled(Container)({

@@ -9,6 +9,7 @@ import Select from '../../components/Select/Competition';
 import Results from '../../components/Cards/Results/Results';
 import { useQuery } from 'react-query';
 import { Container, Pagination, Typography, styled } from '@mui/material';
+import Card from '../../components/Loaders/Skeletons/Home/Results/Cards';
 
 const StyledContainer = styled('div')({
   padding: '1rem 7rem',
@@ -75,8 +76,11 @@ const Home = () => {
                 setCompetition={setCompetition}
               />
             </SelectWrapper>
-            {_DATA?.currentData() &&
-              _DATA?.currentData().map((match) => <Results key={match?.id} match={match} />)}
+            {_DATA?.currentData() ? (
+              _DATA?.currentData().map((match) => <Results key={match?.id} match={match} />)
+            ) : (
+              <Card />
+            )}
             <Pagination count={getCount()} page={currentPage} onChange={handleChange}></Pagination>
           </StyledContainer>
         </MainContent>

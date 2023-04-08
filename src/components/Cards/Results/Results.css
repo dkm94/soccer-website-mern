@@ -9,7 +9,7 @@
 }
 
 .status-finished {
-  color: #000 !important;
+  color: #2c2f35 !important;
   font-weight: 600;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .status-scheduled {
-  color: #000 !important;
+  color: #2c2f35 !important;
   font-weight: 300;
 }
 

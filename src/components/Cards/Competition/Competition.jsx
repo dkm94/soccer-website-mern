@@ -9,7 +9,7 @@ const Title = styled(Card.Title)({
   textAlign: 'center',
   fontSize: '1rem',
   fontWeight: 600,
-  color: '#000'
+  color: '#2c2f35'
 });
 
 const Subtitle = styled(Card.Title)({
