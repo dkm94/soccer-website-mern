@@ -124,7 +124,6 @@ const MatchHistory = () => {
       <div className="layout-cols"></div>
       <MainContent title={'Resumed'}>
         <Title variant="h1">Choose a date range to see all matches</Title>
-
         <DatePickerWrapper>
           <SearchBox>
             <Row style={{ marginBottom: '1rem' }}>

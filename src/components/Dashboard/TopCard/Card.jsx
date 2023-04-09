@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import { getUsers } from '../../../services/queries/public_queries';
 import { getArticles } from '../../../services/queries/public_queries';
 import { getReportedComments } from '../../../services/queries/mods_queries';
+import Suspense from '../../Loaders/Animation/Suspense/Suspense';
 import './Card.css';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -38,15 +39,9 @@ const Card = ({ title, icon, collection, wip }) => {
     bottom: '70%'
   }));
 
-  const total = (name) => {
-    switch (name) {
-      case 'articles':
-        return cardData?.length;
-      case 'comments':
-        return cardData?.length;
-      default:
-        return 'Unavailable';
-    }
+  const count = {
+    articles: cardData?.length,
+    comments: cardData?.length
   };
 
   return (
@@ -54,9 +49,10 @@ const Card = ({ title, icon, collection, wip }) => {
       <Item className={!collection && `unavailable`}>
         <Typography style={{ textAlign: 'end' }}>{title}</Typography>
         <Typography style={{ textAlign: 'center', fontSize: '2rem' }}>
-          {isLoading && collection ? '...' : total(collection)}
+          {!collection ? 'Unavailable' : count[collection]}
         </Typography>
         <Icon>{icon}</Icon>
+        {isLoading && collection && <Suspense />}
       </Item>
     </Col>
   );
