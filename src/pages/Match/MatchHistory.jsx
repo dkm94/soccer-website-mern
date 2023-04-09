@@ -11,6 +11,7 @@ import './Match.css';
 import { getMatches } from '../../services/soccerapi_services';
 import { Typography, styled, Box, Paper, InputBase, IconButton, Container } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import LoaderAnimation from '../../components/Loaders/Animation/Dashboard/LoaderAnimation';
 
 const SubmitButton = styled(Button)({
   backgroundColor: '#2c2f35',
@@ -188,7 +189,6 @@ const MatchHistory = () => {
         </SearchWrapper>
         <TableWrapper>
           {isError && <Typography variant="body1">{error?.response?.message?.data}</Typography>}
-          {isLoading && <Typography variant="body1">Loading data</Typography>}
           {matches?.length === 0 && (
             <Typography variant="body1">No games to display for this period</Typography>
           )}
@@ -196,6 +196,7 @@ const MatchHistory = () => {
             <CustomTable matches={matches} searchInput={searchInput} selected={selected} />
           </Row>
         </TableWrapper>
+        {isLoading && <LoaderAnimation />}
       </MainContent>
     </Col>
   );
