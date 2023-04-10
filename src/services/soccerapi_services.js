@@ -64,10 +64,13 @@ async function getMatches(name, from, to) {
   return data[`${name}`];
 }
 
-function getScoreBoard(name, code) {
+async function getScoreBoard(name, code) {
   const url = `${corsEveryhere}/${BASE_URL}/${apiVersion}/${name}/${code}/matches`;
-  return axios
-    .get(url, { headers: { 'X-Auth-Token': `${tokenAPI}` } })
-    .then((response) => response.data)
-    .catch((error) => console.log('Error', error));
+  const config = {
+    method: 'get',
+    url,
+    headers: { 'X-Auth-Token': `${tokenAPI}` }
+  };
+  const { data } = await axios(config);
+  return data;
 }

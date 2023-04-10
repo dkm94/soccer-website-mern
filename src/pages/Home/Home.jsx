@@ -12,7 +12,7 @@ import { Container, Pagination, Typography, styled } from '@mui/material';
 import ResultsLoader from '../../components/Loaders/Skeletons/Home/Results/Cards';
 
 const StyledContainer = styled('div')({
-  padding: '1rem 7rem',
+  padding: '1rem 5rem',
   display: 'grid',
   rowGap: '1rem'
 });

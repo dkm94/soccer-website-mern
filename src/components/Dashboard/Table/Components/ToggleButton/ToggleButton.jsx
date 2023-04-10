@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useTheme } from '@material-ui/core';
 import './ToggleButton.css';
 
 function ToggleButton({ value, selected, onChange }) {
   const { palette } = useTheme();
-  console.log('🚀 ~ file: ToggleButton.jsx:5 ~ ToggleButton ~ value:', value);
 
   const btnToggleStyle = {
     background: selected ? palette.primary.main : 'hsl(0, 4%, 69%)'

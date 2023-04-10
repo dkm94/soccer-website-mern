@@ -9,8 +9,6 @@ const EnhancedToolBar = (props) => {
   const { numSelected } = props;
   const { palette } = useTheme();
 
-  console.log(palette.primary.dark);
-
   return (
     <Toolbar
       sx={{

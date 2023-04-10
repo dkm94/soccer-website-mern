@@ -15,6 +15,7 @@ import Matches from '../pages/Competitions/Matches/Matches';
 import Login from '../pages/Login/Login';
 import Backoffice from '../pages/Backoffice/Backoffice';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import MatchesLoader from '../components/Loaders/Animation/Matches/MatchesLoader';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 
@@ -84,6 +85,7 @@ const AppRouter = () => {
               <Route path="/teams" element={<Teams />} />
               <Route path="/competitions" element={<Competitions />} />
               <Route path="/competitions/:code/matches" element={<Matches />} />
+              <Route path="/competitions/:code/matchescache" element={<MatchesLoader />} />
               <Route path="/matchhistory" element={<Match />} />
               <Route path="/news" element={<News />} />
               <Route path="/secret-login" element={<Login />} />
