@@ -9,6 +9,9 @@ const ResultsLoader = () => {
         display: 'grid',
         rowGap: '3rem'
       }}>
+      <div className="wrapper load-home__select">
+        <Container id="load-home__select" className="load" />
+      </div>
       <div className="wrapper">
         <Container id="header" className="load" />
         <Container id="main" className="load" />

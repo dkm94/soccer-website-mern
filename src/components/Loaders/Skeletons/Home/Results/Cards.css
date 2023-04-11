@@ -29,3 +29,12 @@
         transform: translateX(100%);
    }
 }
+
+.load-home__select {
+    justify-content: end;
+}
+
+#load-home__select {
+    height: 3rem;
+    width: 14rem;
+}

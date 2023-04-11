@@ -28,7 +28,8 @@ const SelectWrapper = styled(Container)({
 
 const Home = () => {
   const {
-    isPending,
+    // isPending,
+    isLoading,
     isError,
     data: matches
   } = useQuery({
@@ -67,8 +68,7 @@ const Home = () => {
       <div className="layout-cols">
         <MainContent title={"Today's games"}>
           <StyledContainer>
-            {isPending && <ResultsLoader />}
-            {isError && <Typography>Error loading matches</Typography>}
+            {isLoading && <ResultsLoader />}
             <SelectWrapper>
               <Select
                 competition={competition}
@@ -78,6 +78,7 @@ const Home = () => {
             </SelectWrapper>
             {_DATA?.currentData() &&
               _DATA?.currentData().map((match) => <Results key={match?.id} match={match} />)}
+            {isError && <Typography>Error loading matches</Typography>}
             <Pagination count={getCount()} page={currentPage} onChange={handleChange}></Pagination>
           </StyledContainer>
         </MainContent>
