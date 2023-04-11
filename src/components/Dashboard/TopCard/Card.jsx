@@ -29,7 +29,10 @@ const Card = ({ title, icon, collection, wip }) => {
     error,
     isError,
     isLoading
-  } = useQuery([collection], getResource[collection]);
+  } = useQuery({
+    queryKey: [collection],
+    queryFn: getResource[collection]
+  });
 
   const Icon = styled(Paper)(({ theme }) => ({
     height: 48,

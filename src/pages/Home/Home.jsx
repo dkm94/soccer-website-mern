@@ -28,7 +28,6 @@ const SelectWrapper = styled(Container)({
 
 const Home = () => {
   const {
-    // isPending,
     isLoading,
     isError,
     data: matches

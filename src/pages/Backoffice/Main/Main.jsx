@@ -72,13 +72,14 @@ const Main = ({ cards, drawerWidth }) => {
 
   // const profileId = localStorage.getItem('profileId');
 
-  const { data: rows, error, isLoading } = useQuery(['users'], getUsers);
-  // const {
-  //   data: articles,
-  //   error_articles,
-  //   isError_articles,
-  //   isLoading_articles
-  // } = useQuery(['articles'], getArticles);
+  const {
+    isLoading,
+    isError,
+    data: rows
+  } = useQuery({
+    queryKey: ['users'],
+    queryFn: getUsers
+  });
 
   const mutation = useMutation({
     mutationFn: changeModStatus,
@@ -214,7 +215,7 @@ const Main = ({ cards, drawerWidth }) => {
             }}>
             <EnhancedToolBar numSelected={selectedIds.length} />
             {isLoading && <LoaderAnimation />}
-            {error && (
+            {isError && (
               <Typography variant="body1" style={{ paddingLeft: '3rem' }}>
                 Error loading data
               </Typography>

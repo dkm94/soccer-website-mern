@@ -12,7 +12,15 @@ import { useQuery } from 'react-query';
 import ArticlesLoader from '../../Loaders/Skeletons/Home/SideArticles/Cards';
 
 const SideArticles = () => {
-  const { data: articles, error, isError, isLoading } = useQuery(['articles'], getArticles);
+  const {
+    data: articles,
+    error,
+    isError,
+    isLoading
+  } = useQuery({
+    queryKey: ['articles'],
+    queryFn: getArticles
+  });
 
   let temp = articles?.slice(-5);
 
