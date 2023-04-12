@@ -112,7 +112,8 @@ const Matches = () => {
                         label="Status"
                         defaultValue="ALL">
                         <MenuItem value="ALL">All games</MenuItem>
-                        <MenuItem value="FINISHED">Played games</MenuItem>
+                        <MenuItem value="FINISHED">Completed games</MenuItem>
+                        <MenuItem value="TIMED">Timed games</MenuItem>
                         <MenuItem value="SCHEDULED">Scheduled games</MenuItem>
                       </Select>
                     </FormControl>

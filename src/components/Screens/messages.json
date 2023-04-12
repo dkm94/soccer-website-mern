@@ -7,5 +7,10 @@
             "action": "reload",
             "content": "Reload now"
         }
+    },
+    "DATA_NOT_FOUND":{
+        "img": "no-data.png",
+        "type": "No data to display",
+        "content":"There's no content to show here."
     }
 }

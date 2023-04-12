@@ -12,6 +12,7 @@ import { getMatches } from '../../services/soccerapi_services';
 import { Typography, styled, Box, Paper, InputBase, IconButton, Container } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import LoaderAnimation from '../../components/Loaders/Animation/Dashboard/LoaderAnimation';
+import Message from '../../components/Screens/Message';
 
 const SubmitButton = styled(Button)({
   backgroundColor: '#2c2f35',
@@ -208,9 +209,6 @@ const MatchHistory = () => {
         </SearchWrapper>
         <TableWrapper>
           {isError && <Typography variant="body1">{error?.response?.message?.data}</Typography>}
-          {matches?.length === 0 && (
-            <Typography variant="body1">No games to display for this period</Typography>
-          )}
           <Row xs={12} className="g-4">
             <TableHeader>
               <TableTitle variant="body1">Completed games</TableTitle>
@@ -225,6 +223,7 @@ const MatchHistory = () => {
           </Row>
         </TableWrapper>
         {isLoading && <LoaderAnimation />}
+        {matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={true} />}
       </MainContent>
     </Col>
   );

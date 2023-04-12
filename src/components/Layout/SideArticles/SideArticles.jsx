@@ -29,7 +29,7 @@ const SideArticles = () => {
     <Col lg={4} className="comment-layout">
       <MainContent title={'Last articles'} width={'80%'}>
         <Box sx={{ background: '#fff' }}>
-          {isError && <Message error={error} img={false} />}
+          {isError && <Message error={error?.code} img={false} />}
           <div className="cmt-content">
             {isLoading && <ArticlesLoader />}
             {temp &&

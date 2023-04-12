@@ -23,8 +23,9 @@ const Btn = styled(Button)({
   backgroundColor: ' #000',
   color: '#FFF'
 });
-const Message = ({ error, img }) => {
-  const message = messages[error?.code];
+const Message = ({ code, img }) => {
+  const message = messages[code];
+
   const refreshPage = () => window.location.reload();
   return (
     <Box
@@ -49,7 +50,7 @@ const Message = ({ error, img }) => {
       )}
       <MessageType variant="body1">{message?.type}</MessageType>
       <MessageContent variant="body2">{message?.content}</MessageContent>
-      <Btn onClick={refreshPage}>{message?.button.content}</Btn>
+      {message?.button && <Btn onClick={refreshPage}>{message?.button.content}</Btn>}
     </Box>
   );
 };

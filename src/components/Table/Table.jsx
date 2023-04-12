@@ -4,6 +4,7 @@ import TablePaginationUnstyled, {
   tablePaginationUnstyledClasses as classes
 } from '@mui/base/TablePaginationUnstyled';
 import { Image } from 'react-bootstrap';
+import status from '../../data/status.json';
 
 const Container = styled('div')`
   table {
@@ -102,12 +103,13 @@ export default function CustomTable({ matches, searchInput, selected }) {
           return match?.status === 'FINISHED';
         case 'SCHEDULED':
           return match?.status === 'SCHEDULED';
+        case 'TIMED':
+          return match?.status === 'TIMED';
         default:
           return match;
       }
     });
 
-  console.log('🚀 ~ file: Table.jsx:93 ~ CustomTable ~ rows:', rows);
   const rowsTitles = ['Date', '', 'Hometeam', '', 'Away team', 'Score'];
 
   const formatDate = (date) => {
@@ -148,10 +150,20 @@ export default function CustomTable({ matches, searchInput, selected }) {
                 <Image style={{ height: '32px', width: '32px' }} src={row?.atCrest} />
               </td>
               <td style={{ textAlignLast: 'left' }}>{row?.awayTeam}</td>
-              {row?.score?.winner === null ? (
-                <td>Scheduled</td>
-              ) : (
+              {row?.status === 'FINISHED' ? (
                 <td>{`${row?.score?.fullTime?.home} - ${row?.score?.fullTime?.away}`}</td>
+              ) : row?.status === 'IN_PLAY' ? (
+                <td
+                  style={{
+                    color: '#0c893c'
+                  }}>{`${row?.score?.halfTime?.home} - ${row?.score?.halfTime?.away}`}</td>
+              ) : row?.status === 'PAUSED' ? (
+                <td
+                  style={{
+                    color: '#0c893c'
+                  }}>{`${row?.score?.fullTime?.home} - ${row?.score?.fullTime?.away}`}</td>
+              ) : (
+                <td>{status[row?.status].title}</td>
               )}
             </tr>
           ))}

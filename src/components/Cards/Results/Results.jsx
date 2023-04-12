@@ -16,11 +16,6 @@ const Results = ({ match }) => {
   let htScore = match?.score?.fullTime?.home;
   let atScore = match?.score?.fullTime?.away;
 
-  // const containerStyle = {
-  //   marginTop: '1rem'
-  //   // borderRadius: '0'
-  // };
-
   const avatarStyle = {
     height: '3.5rem',
     width: 'auto'
@@ -52,6 +47,8 @@ const Results = ({ match }) => {
       return '300';
     }
   };
+
+  console.log(status[match?.status]?.icon);
 
   return (
     <CardContainer key={match?.id} className="text-center">
