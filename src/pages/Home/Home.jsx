@@ -8,8 +8,9 @@ import MainContent from '../../components/Wrappers/MainContent/MainContent';
 import Select from '../../components/Select/Competition';
 import Results from '../../components/Cards/Results/Results';
 import { useQuery } from 'react-query';
-import { Container, Pagination, Typography, styled } from '@mui/material';
+import { Container, Pagination, styled } from '@mui/material';
 import ResultsLoader from '../../components/Loaders/Skeletons/Home/Results/Cards';
+import Message from '../../components/Screens/Message';
 
 const StyledContainer = styled('div')({
   padding: '1rem 5rem',
@@ -30,6 +31,7 @@ const Home = () => {
   const {
     isLoading,
     isError,
+    error,
     data: matches
   } = useQuery({
     queryKey: ['matches'],
@@ -62,23 +64,33 @@ const Home = () => {
     _DATA.jump(p);
   };
 
+  console.log(isError);
+  console.log(error);
+
   return (
     <Col lg={8}>
       <div className="layout-cols">
         <MainContent title={"Today's games"}>
           <StyledContainer>
+            {isError && <Message error={error} img={true} />}
             {isLoading && <ResultsLoader />}
-            <SelectWrapper>
-              <Select
-                competition={competition}
-                temp={formattedCompetitions}
-                setCompetition={setCompetition}
-              />
-            </SelectWrapper>
+            {!isError && (
+              <SelectWrapper>
+                <Select
+                  competition={competition}
+                  temp={formattedCompetitions}
+                  setCompetition={setCompetition}
+                />
+              </SelectWrapper>
+            )}
             {_DATA?.currentData() &&
               _DATA?.currentData().map((match) => <Results key={match?.id} match={match} />)}
-            {isError && <Typography>Error loading matches</Typography>}
-            <Pagination count={getCount()} page={currentPage} onChange={handleChange}></Pagination>
+            {!isError && (
+              <Pagination
+                count={getCount()}
+                page={currentPage}
+                onChange={handleChange}></Pagination>
+            )}
           </StyledContainer>
         </MainContent>
       </div>

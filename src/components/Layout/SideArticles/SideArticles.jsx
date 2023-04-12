@@ -10,6 +10,7 @@ import { Box } from '@mui/material';
 import MainContent from '../../Wrappers/MainContent/MainContent';
 import { useQuery } from 'react-query';
 import ArticlesLoader from '../../Loaders/Skeletons/Home/SideArticles/Cards';
+import Message from '../../Screens/Message';
 
 const SideArticles = () => {
   const {
@@ -29,7 +30,7 @@ const SideArticles = () => {
       <MainContent title={'Last articles'} width={'80%'}>
         <Box sx={{ background: '#fff' }}>
           <div className="cmt-content">
-            {isError && 'Error loading data'}
+            {isError && <Message error={error} img={false} />}
             {isLoading && <ArticlesLoader />}
             {temp &&
               temp.map(({ id, title, author, createdAt }, i) => (

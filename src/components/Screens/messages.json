@@ -1,0 +1,11 @@
+{
+    "ERR_NETWORK":{
+        "img": "error-img.png",
+        "type": "Network issues",
+        "content":"The network connection is lost, please try to reload the page.",
+        "button": {
+            "action": "reload",
+            "content": "Reload now"
+        }
+    }
+}
