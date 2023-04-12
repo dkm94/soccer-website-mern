@@ -3,6 +3,7 @@
     padding: 1rem;
     border: none;
     border-radius: 9px;
+    width: 100%;
 }
 
 .react-datepicker__header {
@@ -63,5 +64,9 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    width: 250px;
+}
+
+
+.react-datepicker__input-container > input:focus-visible {
+    outline: none;
 }

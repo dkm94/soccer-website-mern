@@ -33,12 +33,21 @@
     width: 100%;
 }
 
-th {
-    padding: 0 1rem;
-}
-td {
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border-bottom: 1px solid #ddd;
     text-align: left;
-    padding: 1rem;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #ddd;
+    font-weight: 600;
   }
 
   .loader-table-cellule {

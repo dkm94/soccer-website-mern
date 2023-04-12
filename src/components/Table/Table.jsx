@@ -7,7 +7,7 @@ import { Image } from 'react-bootstrap';
 
 const Container = styled('div')`
   table {
-    margin-top: 1.5rem;
+    // margin-top: 1.5rem;
     border-collapse: collapse;
     width: 100%;
   }
@@ -21,6 +21,7 @@ const Container = styled('div')`
 
   th {
     background-color: #ddd;
+    font-weight: 600;
   }
 `;
 
@@ -106,6 +107,7 @@ export default function CustomTable({ matches, searchInput, selected }) {
       }
     });
 
+  console.log('🚀 ~ file: Table.jsx:93 ~ CustomTable ~ rows:', rows);
   const rowsTitles = ['Date', '', 'Hometeam', '', 'Away team', 'Score'];
 
   const formatDate = (date) => {
@@ -126,7 +128,7 @@ export default function CustomTable({ matches, searchInput, selected }) {
   };
 
   return (
-    <Container sx={{ width: '100%' }}>
+    <Container sx={{ width: '100%', padding: 0, margin: 0 }}>
       <table>
         <thead>
           <tr>{rowsTitles && rowsTitles?.map((row) => <th key={row}>{row}</th>)}</tr>

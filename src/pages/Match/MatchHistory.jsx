@@ -17,8 +17,7 @@ const SubmitButton = styled(Button)({
   backgroundColor: '#2c2f35',
   border: 'none',
   color: ' #FFF',
-  height: '100%',
-  width: '6rem',
+  // height: '100%',
   transition: 'background-color 0.3s',
   ':hover': {
     backgroundColor: '#fffcfc',
@@ -39,15 +38,30 @@ const SearchWrapper = styled(Container)({
 });
 
 const SearchBox = styled(Box)({
-  backgroundColor: '#EFF1ED',
-  padding: '2rem 3rem',
+  // padding: '2rem 3rem',
   borderRadius: '5px'
   // boxShadow: '0px 6px 12px -3px rgba(0,0,0,0.1)'
 });
 
 const Title = styled(Typography)({
-  fontSize: ' 1.3rem',
-  padding: ' 2rem 2rem'
+  fontSize: ' 1rem',
+  paddingTop: ' 2rem'
+});
+
+const TableHeader = styled(Container)({
+  backgroundColor: '#2c2f35',
+  color: '#fff',
+  width: '100%',
+  padding: '1rem 1rem 3rem 1.5rem',
+  borderRadius: '5px 5px 0 0'
+});
+
+const TableTitle = styled(Typography)({
+  fontSize: '2rem'
+});
+
+const TableSubtitle = styled(Typography)({
+  fontSize: '1.1rem'
 });
 
 const TableWrapper = styled(Container)({});
@@ -117,16 +131,22 @@ const MatchHistory = () => {
     searchFilter();
   };
 
-  console.log(matches);
-
   return (
     <Col lg={8}>
       <div className="layout-cols"></div>
       <MainContent title={'Resumed'}>
-        <Title variant="h1">Choose a date range to see all matches</Title>
+        <Container>
+          <Title variant="h1">Choose a date range to see all matches</Title>
+        </Container>
         <DatePickerWrapper>
           <SearchBox>
-            <Row style={{ marginBottom: '1rem' }}>
+            <Row
+              style={{
+                marginTop: '1rem',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center'
+              }}>
               <Col>
                 <DatePicker
                   showIcon
@@ -149,7 +169,7 @@ const MatchHistory = () => {
                   scrollableYearDropdown
                 />
               </Col>
-              <Col style={{ textAlign: 'end' }}>
+              <Col>
                 <SubmitButton onClick={searchMatches}>Search</SubmitButton>
               </Col>
             </Row>
@@ -192,6 +212,15 @@ const MatchHistory = () => {
             <Typography variant="body1">No games to display for this period</Typography>
           )}
           <Row xs={12} className="g-4">
+            <TableHeader>
+              <TableTitle variant="body1">Completed games</TableTitle>
+              {matches && (
+                <TableSubtitle variant="body2">{`From ${startDate?.toLocaleDateString(
+                  'en-CA'
+                )} to ${endDate?.toLocaleDateString('en-CA')}`}</TableSubtitle>
+              )}
+            </TableHeader>
+
             <CustomTable matches={matches} searchInput={searchInput} selected={selected} />
           </Row>
         </TableWrapper>

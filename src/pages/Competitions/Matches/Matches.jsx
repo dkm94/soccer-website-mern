@@ -59,7 +59,6 @@ const Matches = () => {
             <Wrapper>
               <Row
                 xs={12}
-                className="g-4"
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
@@ -79,7 +78,7 @@ const Matches = () => {
                   </Typography>
                 </div>
               </Row>
-              <Row xs={12} className="g-4">
+              <Row xs={12}>
                 <Col md={4}>
                   <Paper
                     component="form"
@@ -120,7 +119,7 @@ const Matches = () => {
                   </Box>
                 </Col>
               </Row>
-              <Row xs={12} className="g-4">
+              <Row xs={12}>
                 <CustomTable
                   matches={competition?.matches}
                   searchInput={searchInput}

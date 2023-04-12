@@ -6,7 +6,8 @@ const MatchesLoader = () => {
   const HeaderWrapper = styled(Container)({
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '3rem'
+    marginTop: '3rem',
+    width: '80%'
   });
   const Header = styled(Container)({
     display: 'grid',
@@ -24,7 +25,6 @@ const MatchesLoader = () => {
   return (
     <Box
       sx={{
-        padding: '1rem 3rem',
         display: 'grid',
         rowGap: '2rem'
       }}>
