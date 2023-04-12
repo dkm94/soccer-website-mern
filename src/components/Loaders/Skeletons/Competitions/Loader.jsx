@@ -21,7 +21,7 @@ const CompetitionsLoader = () => {
         display: 'grid',
         rowGap: '3rem',
         columnGap: '1rem',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(8rem, 1fr))',
         width: '100%'
       }}>
       {cards}

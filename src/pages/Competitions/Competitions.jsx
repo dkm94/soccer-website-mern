@@ -8,32 +8,46 @@ import './Competition.css';
 
 import { getRessources } from '../../services/soccerapi_services';
 import CompetitionsLoader from '../../components/Loaders/Skeletons/Competitions/Loader';
+import Message from '../../components/Screens/Message';
+import { styled } from '@mui/material';
+
+const StyledContainer = styled('div')({
+  padding: '1rem 0'
+});
 
 const Competition = () => {
   const {
     isLoading,
-    // isError,
+    isError,
+    error,
     data: competitions
   } = useQuery({
     queryKey: ['competitions'],
     queryFn: () => getRessources('competitions')
   });
 
-  const containerStyle = {
-    padding: '1rem 3rem'
-  };
-
   return (
     <Col lg={8}>
       <div className="layout-cols">
         <MainContent title={'All competitions'}>
-          <Row xs={1} md={2} lg={4} className="g-4" style={containerStyle}>
+          <StyledContainer>
+            {isError && <Message error={error} img={true} />}
             {isLoading && <CompetitionsLoader />}
-            {competitions &&
-              competitions?.map((competition) => (
-                <CompetitionCard key={competitions?.id} competition={competition} />
-              ))}
-          </Row>
+            {competitions && (
+              <Row
+                xs={1}
+                md={2}
+                lg={4}
+                className="g-4"
+                style={{
+                  padding: '1rem 0'
+                }}>
+                {competitions?.map((competition) => (
+                  <CompetitionCard key={competitions?.id} competition={competition} />
+                ))}
+              </Row>
+            )}
+          </StyledContainer>
         </MainContent>
       </div>
     </Col>

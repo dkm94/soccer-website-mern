@@ -29,8 +29,8 @@ const SideArticles = () => {
     <Col lg={4} className="comment-layout">
       <MainContent title={'Last articles'} width={'80%'}>
         <Box sx={{ background: '#fff' }}>
+          {isError && <Message error={error} img={false} />}
           <div className="cmt-content">
-            {isError && <Message error={error} img={false} />}
             {isLoading && <ArticlesLoader />}
             {temp &&
               temp.map(({ id, title, author, createdAt }, i) => (
