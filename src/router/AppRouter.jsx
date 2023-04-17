@@ -13,7 +13,6 @@ import Layout from '../components/Layout/Main/Main';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import Matches from '../pages/Competitions/Matches/Matches';
 import Login from '../pages/Login/Login';
-import Backoffice from '../pages/Backoffice/Backoffice';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
@@ -21,6 +20,11 @@ import {
 } from '@mui/material';
 import { theme as MuiTheme } from '../styles/muiTheme';
 import { cssVars } from '../styles/customVars';
+import { lazy, Suspense } from 'react';
+const Admin = lazy(() => import('../pages/Backoffice/Backoffice'));
+import LazyLoad from '../components/Loaders/Lazy/LazyLoad';
+import { ErrorBoundary } from 'react-error-boundary';
+import Message from '../components/Screens/Message';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 
@@ -48,7 +52,18 @@ const AppRouter = () => {
                 <Route path="/news" element={<News />} />
                 <Route path="/secret-login" element={<Login />} />
                 <Route element={<ProtectedRoutes auth={auth} />}>
-                  <Route path="/backoffice" element={<Backoffice />} />
+                  <Route
+                    path="/backoffice"
+                    element={
+                      <ErrorBoundary
+                        FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
+                        onReset={() => (window.location.href = '/')}>
+                        <Suspense fallback={<LazyLoad />}>
+                          <Admin />
+                        </Suspense>
+                      </ErrorBoundary>
+                    }
+                  />
                 </Route>
               </Routes>
             </Layout>

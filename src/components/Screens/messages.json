@@ -12,5 +12,14 @@
         "img": "no-data.png",
         "type": "No data to display",
         "content":"There's no content to show here."
+    },
+    "DEFAULT_ERROR":{
+        "img": "no-data.png",
+        "type": "Oops...",
+        "content":"Something went wrong.",
+        "button": {
+            "action": "reload",
+            "content": "Reload now"
+        }
     }
 }
