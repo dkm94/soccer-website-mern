@@ -27,13 +27,13 @@
 
 .react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
     border-radius: 0.3rem;
-    background-color: #2c2f35;
-    color: #FFF;
+    background-color: var(--palette-black-dark);
+    color: var(--palette-white-light);
 }
 
 .react-datepicker__day--selected {
-    background-color: #2c2f35;
-    color: #FFF;
+    background-color: var(--palette-black-dark);
+    color: var(--palette-white-light);
 }
 
 .react-datepicker-wrapper {
@@ -45,11 +45,11 @@
 }
 
 .react-datepicker__year-dropdown {
-    background-color: #f9f9f9;
+    background-color: var(--palette-grey-lighter);
 }
 
 .react-datepicker__input-container {
-    background-color: #fff;
+    background-color: var(--palette-white-light);
     color: rgba(0, 0, 0, 0.87);
     -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;

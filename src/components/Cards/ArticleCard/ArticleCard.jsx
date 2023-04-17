@@ -1,40 +1,23 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Card, Col, Row, Image } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
-import defaultAvatar from '../../../images/avatar.png';
 import { Typography, Grid, Button } from '@mui/material';
 import './ArticleCard.css';
 
-const Avatar = ({ avatar }) => {
-  return (
-    <Col xs={4} className="comment-avatar">
-      <Image
-        roundedCircle
-        src={avatar ? avatar : defaultAvatar}
-        style={{ border: '4px #c40808 solid' }}
-      />
-    </Col>
-  );
-};
-
-const RedirectButton = styled(Button)({
+const RedirectButton = styled(Button)(({ theme }) => ({
   fontSize: 'inherit',
   width: 'fit-content',
   alignSelf: 'self-end',
-  backgroundColor: '#BCC3CA',
-  color: '#2c2f35',
-  // border: '#2C2F35 1px solid',
   textTransform: 'unset',
   '&:hover': {
-    backgroundColor: 'transparent'
+    backgroundColor: theme.palette.white.main,
+    color: theme.palette.black.light
   }
-});
+}));
 
 const CardHeader = styled(Card.Header)({
   textAlign: 'end',
-  // backgroundColor: '#2c2f35',
-  // color: ' #fff',
   borderRadius: '0px',
   fontSize: '0.8rem'
 });
@@ -52,7 +35,9 @@ const Content = ({ title, date, author }) => {
         <Typography variant="body1">{title}</Typography>
         <Typography variant="body2">{author}</Typography>
         <Typography variant="body2">{date}</Typography>
-        <RedirectButton>Go to the article</RedirectButton>
+        <RedirectButton sx={{ backgroundColor: 'black.light' }} variant="contained">
+          Go to the article
+        </RedirectButton>
       </TextContainer>
     </Col>
   );

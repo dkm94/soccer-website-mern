@@ -1,7 +1,7 @@
 #card-header-style {
   font-size: 16px;
-  background-color: #2c2f35 !important;
-  color: #fff;
+  background-color: var(--palette-black-main) !important;
+  color: var(--palette-black-contrastText);
 }
 
 .status-finished, .status-inplay, .status-scheduled, .status-paused {
@@ -9,22 +9,22 @@
 }
 
 .status-finished {
-  color: #2c2f35 !important;
+  color: var(--palette-black-main) !important;
   font-weight: 600;
 }
 
 .status-inplay {
-  color: #0c893c !important;
+  color: var(--palette-green-main) !important;
   font-weight: 600;
 }
 
 .status-scheduled {
-  color: #2c2f35 !important;
+  color: var(--palette-black-main) !important;
   font-weight: 300;
 }
 
 .status-paused {
-  color: #c40808 !important;
+  color: var(--palette-primary-light) !important;
   font-weight: 600;
 }
 

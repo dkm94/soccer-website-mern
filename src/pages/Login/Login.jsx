@@ -62,7 +62,7 @@ export default function SignIn() {
       }}>
       <Box
         sx={{
-          background: '#FFF',
+          background: theme.palette.white.light,
           marginTop: '4rem',
           borderRadius: '5px',
           minHeight: '80vh',

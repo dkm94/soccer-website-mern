@@ -21,7 +21,7 @@ import {
 import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
 import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import './Main.css';
-import { Typography, styled } from '@mui/material';
+import { Typography, styled, useTheme } from '@mui/material';
 import LoaderAnimation from '../../../components/Loaders/Animation/Dashboard/LoaderAnimation';
 
 const TitleHeader = styled(Typography)({
@@ -59,6 +59,7 @@ const TitleHeader = styled(Typography)({
 // }
 
 const Main = ({ cards, drawerWidth }) => {
+  const { palette } = useTheme();
   const queryClient = useQueryClient();
 
   // const [order, setOrder] = useState('asc');
@@ -208,7 +209,7 @@ const Main = ({ cards, drawerWidth }) => {
             sx={{
               width: '100%',
               mb: 2,
-              backgroundColor: '#FFF',
+              backgroundColor: palette.white.light,
               boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
               opacity: '95%',
               '.MuiPaper-root': { boxShadow: 'none' }

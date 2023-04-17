@@ -3,7 +3,5 @@
   "name": "Soccer results",
   "icons": [],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#2c2f35000",
-  "background_color": "#ffffff"
+  "display": "standalone"
 }

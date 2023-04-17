@@ -15,6 +15,10 @@ import Matches from '../pages/Competitions/Matches/Matches';
 import Login from '../pages/Login/Login';
 import Backoffice from '../pages/Backoffice/Backoffice';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  experimental_extendTheme as extendTheme
+} from '@mui/material';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 
@@ -47,10 +51,23 @@ const THEME = createMuiTheme({
   },
   palette: {
     primary: {
-      main: '#a00404'
+      main: '#ad0606',
+      contrastText: '#FDFFFC'
     },
     secondary: {
-      main: '#BCC3CA'
+      main: '#998da0'
+    },
+    black: {
+      main: '#2c2f35',
+      light: '#3e4249',
+      contrastText: '#FDFFFC'
+    },
+    white: {
+      main: '#FDFFFC'
+    },
+    grey: {
+      main: ' #a9a9a9',
+      contrastText: ' #2c2f35'
     }
   },
   typography: {
@@ -70,31 +87,71 @@ const THEME = createMuiTheme({
   }
 });
 
+const theme = extendTheme({
+  cssVarPrefix: '',
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#ad0606',
+          contrastText: '#FDFFFC'
+        },
+        secondary: {
+          main: '#998da0'
+        },
+        black: {
+          main: '#2c2f35',
+          light: '#3e4249',
+          contrastText: '#FDFFFC'
+        },
+        white: {
+          main: '#FDFFFC',
+          light: '#FFF',
+          contrastText: ' #2c2f35'
+        },
+        grey: {
+          main: ' #a9a9a9',
+          light: ' #cccccc',
+          lighter: '#eae8e8',
+          dark: '#a9a9a9',
+          contrastText: ' #2c2f35'
+        },
+        green: {
+          main: '#0c893c',
+          contrastText: '#FDFFFC'
+        }
+      }
+    }
+  }
+});
+
 const AppRouter = () => {
   const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MuiThemeProvider theme={THEME}>
-        <Router>
-          <Navbar auth={auth} />
-          <Layout path={path}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/teams" element={<Teams />} />
-              <Route path="/competitions" element={<Competitions />} />
-              <Route path="/competitions/:code/matches" element={<Matches />} />
-              <Route path="/matchhistory" element={<Match />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/secret-login" element={<Login />} />
-              <Route element={<ProtectedRoutes auth={auth} />}>
-                <Route path="/backoffice" element={<Backoffice />} />
-              </Route>
-            </Routes>
-          </Layout>
-          <Footer />
-        </Router>
-      </MuiThemeProvider>
+      <CssVarsProvider theme={theme}>
+        <MuiThemeProvider theme={THEME}>
+          <Router>
+            <Navbar auth={auth} />
+            <Layout path={path}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/teams" element={<Teams />} />
+                <Route path="/competitions" element={<Competitions />} />
+                <Route path="/competitions/:code/matches" element={<Matches />} />
+                <Route path="/matchhistory" element={<Match />} />
+                <Route path="/news" element={<News />} />
+                <Route path="/secret-login" element={<Login />} />
+                <Route element={<ProtectedRoutes auth={auth} />}>
+                  <Route path="/backoffice" element={<Backoffice />} />
+                </Route>
+              </Routes>
+            </Layout>
+            <Footer />
+          </Router>
+        </MuiThemeProvider>
+      </CssVarsProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

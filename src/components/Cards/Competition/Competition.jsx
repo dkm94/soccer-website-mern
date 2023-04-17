@@ -5,12 +5,12 @@ import { styled } from '@mui/material/styles';
 import { Container } from '@mui/material';
 import './Competitions.css';
 
-const Title = styled(Card.Title)({
+const Title = styled(Card.Title)(({ theme }) => ({
   textAlign: 'center',
   fontSize: '1rem',
   fontWeight: 600,
-  color: '#2c2f35'
-});
+  color: theme.palette.black.light
+}));
 
 const Subtitle = styled(Card.Title)({
   textAlign: 'center',

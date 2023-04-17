@@ -1,6 +1,6 @@
 .mc-title {
   position: relative;
-  background: #c40808;
+  background: var(--palette-primary-light);
   display: inline-block;
   color: white;
   padding: 0.24em 0.3em 0.25em;

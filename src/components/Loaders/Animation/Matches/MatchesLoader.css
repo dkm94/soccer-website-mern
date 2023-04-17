@@ -21,11 +21,11 @@
 
 #match-table-header {
     height: 2.5rem;
-    background-color: #edeeef;
+    background-color: var(--palette-grey-lighter);
 }
 
 .match-table-title {
-    background-color: #edeeef;
+    background-color: var(--palette-grey-lighter);
 }
 
 .loader-table {

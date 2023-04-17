@@ -18,11 +18,12 @@ const MessageContent = styled(Typography)({
   fontSize: '1.2rem'
 });
 
-const Btn = styled(Button)({
+const Btn = styled(Button)(({ theme }) => ({
   textTransform: 'unset',
-  backgroundColor: ' #000',
-  color: '#FFF'
-});
+  backgroundColor: theme.palette.black.light,
+  color: theme.palette.black.contrastText
+}));
+
 const Message = ({ code, img }) => {
   const message = messages[code];
 

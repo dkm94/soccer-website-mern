@@ -3,7 +3,7 @@
 }
 
 .comment-layout > .title {
-  background-color: #bcc3ca;
+  background-color: var(--palette-grey-main);
   text-transform: uppercase;
   padding: 1rem;
   font-weight: 700;

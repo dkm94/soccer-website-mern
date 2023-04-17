@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/system';
+import { styled, useTheme } from '@mui/system';
 import TablePaginationUnstyled, {
   tablePaginationUnstyledClasses as classes
 } from '@mui/base/TablePaginationUnstyled';
@@ -8,7 +8,6 @@ import status from '../../data/status.json';
 
 const Container = styled('div')`
   table {
-    // margin-top: 1.5rem;
     border-collapse: collapse;
     width: 100%;
   }
@@ -66,6 +65,8 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
 `;
 
 export default function CustomTable({ matches, searchInput, selected }) {
+  const { palette } = useTheme();
+  console.log('🚀 ~ file: Table.jsx:69 ~ CustomTable ~ palette:', palette);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -155,12 +156,12 @@ export default function CustomTable({ matches, searchInput, selected }) {
               ) : row?.status === 'IN_PLAY' ? (
                 <td
                   style={{
-                    color: '#0c893c'
+                    color: palette.green.main
                   }}>{`${row?.score?.halfTime?.home} - ${row?.score?.halfTime?.away}`}</td>
               ) : row?.status === 'PAUSED' ? (
                 <td
                   style={{
-                    color: '#0c893c'
+                    color: palette.green.main
                   }}>{`${row?.score?.fullTime?.home} - ${row?.score?.fullTime?.away}`}</td>
               ) : (
                 <td>{status[row?.status].title}</td>

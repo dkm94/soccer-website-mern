@@ -2,30 +2,38 @@
 import React, { useState } from 'react';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
 import CustomTable from '../../components/Table/Table';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { useQuery } from 'react-query';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Match.css';
 
 import { getMatches } from '../../services/soccerapi_services';
-import { Typography, styled, Box, Paper, InputBase, IconButton, Container } from '@mui/material';
+import {
+  Typography,
+  styled,
+  Box,
+  Paper,
+  InputBase,
+  IconButton,
+  Container,
+  Button
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import LoaderAnimation from '../../components/Loaders/Animation/Dashboard/LoaderAnimation';
 import Message from '../../components/Screens/Message';
 
-const SubmitButton = styled(Button)({
-  backgroundColor: '#2c2f35',
+const SubmitButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.black.main,
   border: 'none',
-  color: ' #FFF',
-  // height: '100%',
+  textTransform: 'unset',
   transition: 'background-color 0.3s',
   ':hover': {
-    backgroundColor: '#fffcfc',
-    color: '#2c2f35',
-    border: '1px solid #2c2f35'
+    backgroundColor: theme.palette.white.main,
+    color: theme.palette.black.light,
+    border: `1px solid ${theme.palette.black.main}`
   }
-});
+}));
 
 const DatePickerWrapper = styled(Container)({
   // padding: '0 3rem 3rem 3rem'
@@ -49,13 +57,13 @@ const Title = styled(Typography)({
   paddingTop: ' 2rem'
 });
 
-const TableHeader = styled(Container)({
-  backgroundColor: '#2c2f35',
-  color: '#fff',
+const TableHeader = styled(Container)(({ theme }) => ({
+  backgroundColor: theme.palette.black.main,
+  color: theme.palette.white.main,
   width: '100%',
   padding: '1rem 1rem 3rem 1.5rem',
   borderRadius: '5px 5px 0 0'
-});
+}));
 
 const TableTitle = styled(Typography)({
   fontSize: '2rem'
@@ -74,12 +82,10 @@ const MatchHistory = () => {
     status: false,
     message: ''
   });
-  const [selected, setSelected] = useState('ALL');
+  const selected = 'ALL';
   const [searchInput, setSerchInput] = useState('');
 
   const {
-    // isPending,
-    // error,
     isError,
     isLoading,
     refetch,
@@ -155,7 +161,7 @@ const MatchHistory = () => {
                   selected={startDate}
                   onChange={handleStartDate}
                   placeholderText={'from (yyyy/mm/dd)'}
-                  showYearDropdown // year show and scrolldown alos
+                  showYearDropdown
                   scrollableYearDropdown
                 />
               </Col>
@@ -166,12 +172,14 @@ const MatchHistory = () => {
                   selected={endDate}
                   onChange={handleEndDate}
                   placeholderText={'to (yyyy/mm/dd)'}
-                  showYearDropdown // year show and scrolldown alos
+                  showYearDropdown
                   scrollableYearDropdown
                 />
               </Col>
               <Col>
-                <SubmitButton onClick={searchMatches}>Search</SubmitButton>
+                <SubmitButton onClick={searchMatches} variant="contained">
+                  Search
+                </SubmitButton>
               </Col>
             </Row>
             {error?.status === true ? (

@@ -75,16 +75,15 @@ const Home = () => {
             {matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={true} />}
             {isError && <Message error={error} img={true} />}
             {isLoading && <ResultsLoader />}
-            {!isError ||
-              (!matches?.length === 0 && (
-                <SelectWrapper>
-                  <Select
-                    competition={competition}
-                    temp={formattedCompetitions}
-                    setCompetition={setCompetition}
-                  />
-                </SelectWrapper>
-              ))}
+            {isError || matches?.length === 0 ? null : (
+              <SelectWrapper>
+                <Select
+                  competition={competition}
+                  temp={formattedCompetitions}
+                  setCompetition={setCompetition}
+                />
+              </SelectWrapper>
+            )}
             {_DATA?.currentData() &&
               _DATA?.currentData().map((match) => <Results key={match?.id} match={match} />)}
             {!isError && (

@@ -7,7 +7,7 @@
 
 .banner-title {
   position: relative;
-  background: #6f0000;
+  background: var(--palette-primary-dark);
   opacity: 80%;
   display: inline-block;
   color: white;
