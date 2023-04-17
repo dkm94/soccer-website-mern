@@ -11,7 +11,6 @@ import MainContent from '../../Wrappers/MainContent/MainContent';
 import { useQuery } from 'react-query';
 import ArticlesLoader from '../../Loaders/Skeletons/Home/SideArticles/Cards';
 import Message from '../../Screens/Message';
-// import useTheme from '@mui/material';
 
 const SideArticles = () => {
   const {

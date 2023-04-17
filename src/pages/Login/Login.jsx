@@ -19,10 +19,12 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useMutation, useQuery } from 'react-query';
 import { login } from '../../services/queries/auth_queries';
 import { useTheme } from '@material-ui/core';
+
 import './Login.css';
 
 export default function SignIn() {
   const theme = useTheme();
+  console.log('🚀 ~ file: Login.jsx:27 ~ SignIn ~ theme:', theme);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -62,7 +64,7 @@ export default function SignIn() {
       }}>
       <Box
         sx={{
-          background: theme.palette.white.light,
+          backgroundColor: theme.palette.white.main,
           marginTop: '4rem',
           borderRadius: '5px',
           minHeight: '80vh',
@@ -135,7 +137,7 @@ export default function SignIn() {
               sx={{ mt: 3, mb: 2 }}>
               {mutation.isLoading ? 'Connecting...' : 'SIGN IN'}
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2" color={theme.palette.secondary.dark}>
                   Forgot password?
@@ -146,7 +148,7 @@ export default function SignIn() {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </Box>
       </Box>
