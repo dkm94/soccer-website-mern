@@ -41,7 +41,7 @@
 }
 
 .react-datepicker__day-name {
-    color: grey;
+    color: var(--palette-grey-dark);
 }
 
 .react-datepicker__year-dropdown {

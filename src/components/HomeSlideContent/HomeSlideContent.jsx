@@ -14,9 +14,10 @@ const HomeSlideContent = ({ title, content }) => {
   });
 
   const RedirectionButton = styled(Button)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
-    border: 'none'
+    border: 'none',
+    textTransform: 'unset'
   }));
 
   return (
