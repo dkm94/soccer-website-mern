@@ -19,111 +19,15 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme
 } from '@mui/material';
+import { theme as MuiTheme } from '../styles/muiTheme';
+import { cssVars } from '../styles/customVars';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 
 const path = window.location.pathname;
 
-const THEME = createMuiTheme({
-  components: {
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          fontFamily: `'Nunito', sans-serif`,
-          fontSize: 14
-        }
-      }
-    },
-    MuiInputLabel: {
-      styleOverrides: {
-        root: {
-          fontSize: '0.9rem'
-        }
-      }
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          fontSize: '0.9rem'
-        }
-      }
-    }
-  },
-  palette: {
-    primary: {
-      main: '#ad0606',
-      contrastText: '#FDFFFC'
-    },
-    secondary: {
-      main: '#998da0'
-    },
-    black: {
-      main: '#2c2f35',
-      light: '#3e4249',
-      contrastText: '#FDFFFC'
-    },
-    white: {
-      main: '#FDFFFC'
-    },
-    grey: {
-      main: ' #a9a9a9',
-      contrastText: ' #2c2f35'
-    }
-  },
-  typography: {
-    fontFamily: `'Nunito', sans-serif`,
-    h2: {
-      fontSize: '1rem'
-    },
-    h6: {
-      fontWeight: 600
-    },
-    body1: {
-      fontSize: '0.8rem'
-    },
-    body2: {
-      fontSize: '0.75rem'
-    }
-  }
-});
-
-const theme = extendTheme({
-  cssVarPrefix: '',
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          main: '#ad0606',
-          contrastText: '#FDFFFC'
-        },
-        secondary: {
-          main: '#998da0'
-        },
-        black: {
-          main: '#2c2f35',
-          light: '#3e4249',
-          contrastText: '#FDFFFC'
-        },
-        white: {
-          main: '#FDFFFC',
-          light: '#FFF',
-          contrastText: ' #2c2f35'
-        },
-        grey: {
-          main: ' #a9a9a9',
-          light: ' #cccccc',
-          lighter: '#eae8e8',
-          dark: '#a9a9a9',
-          contrastText: ' #2c2f35'
-        },
-        green: {
-          main: '#0c893c',
-          contrastText: '#FDFFFC'
-        }
-      }
-    }
-  }
-});
+const THEME = createMuiTheme(MuiTheme);
+const theme = extendTheme(cssVars);
 
 const AppRouter = () => {
   const queryClient = new QueryClient();
