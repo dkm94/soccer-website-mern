@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import './MainContent.css';
 
 const MainContent = ({ title, children, width }) => {
@@ -7,9 +7,7 @@ const MainContent = ({ title, children, width }) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: { width } }}>
       <div>
-        <Typography variant="h2" component="h3" className="mc-title">
-          {title}
-        </Typography>
+        <span className="mc-title">{title}</span>
       </div>
 
       <Box

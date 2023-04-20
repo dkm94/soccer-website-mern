@@ -6,7 +6,6 @@ import { getScoreBoard } from '../../../services/soccerapi_services';
 import { useQuery } from 'react-query';
 import './Matches.css';
 import {
-  Typography,
   Paper,
   IconButton,
   InputBase,
@@ -66,20 +65,22 @@ const Matches = () => {
                   alignItems: 'center',
                   padding: '3rem 0'
                 }}>
-                <Image
-                  src={competition?.competition?.emblem}
-                  style={{ height: '10rem', width: 'fit-content' }}
-                />
-                <div style={{ width: 'fit-content' }} className="scoreboard-header">
-                  <Typography variant="h2">{competition?.competition?.name}</Typography>
-                  <Typography variant="h3">Season {competition?.filters?.season}</Typography>
-                  <Typography variant="h4">
+                <div className="scoreboard-header__img">
+                  <Image
+                    src={competition?.competition?.emblem}
+                    style={{ height: '10rem', width: 'fit-content' }}
+                  />
+                </div>
+                <div className="scoreboard-header">
+                  <span id="name">{competition?.competition?.name}</span>
+                  <span id="season">Season {competition?.filters?.season}</span>
+                  <span id="matchday">
                     Match day {competition?.matches?.[0].season?.currentMatchday}
-                  </Typography>
+                  </span>
                 </div>
               </Row>
-              <Row xs={12}>
-                <Col md={4}>
+              <Row xs={12} style={{ alignItems: 'center', marginBottom: '2rem' }}>
+                <Col md={6}>
                   <Paper
                     component="form"
                     sx={{
@@ -96,12 +97,12 @@ const Matches = () => {
                       value={searchInput}
                       onChange={setInputValue}
                     />
-                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search" disabled>
+                    <IconButton type="button" sx={{ p: '5px' }} aria-label="search" disabled>
                       <SearchIcon />
                     </IconButton>
                   </Paper>
                 </Col>
-                <Col md={{ span: 4, offset: 4 }} style={{ display: 'flex', justifyContent: 'end' }}>
+                <Col md={6} style={{ display: 'flex', justifyContent: 'end' }}>
                   <Box sx={{ width: 150 }}>
                     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                       <Select

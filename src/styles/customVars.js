@@ -17,7 +17,7 @@ export const cssVars = {
         },
         white: {
           main: '#FDFFFC',
-          light: '#FFF',
+          light: '#FFFFFF',
           contrastText: ' #2c2f35'
         },
         grey: {

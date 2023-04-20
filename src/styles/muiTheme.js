@@ -4,21 +4,21 @@ export const theme = {
       styleOverrides: {
         root: {
           fontFamily: `'Nunito', sans-serif`,
-          fontSize: 14
+          fontSize: '0.8rem'
         }
       }
     },
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          fontSize: '0.9rem'
+          // fontSize: '0.9rem'
         }
       }
     },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          fontSize: '0.9rem'
+          // fontSize: '0.9rem'
         }
       }
     }
@@ -34,6 +34,7 @@ export const theme = {
     black: {
       main: '#2c2f35',
       light: '#3e4249',
+      dark: '#000000',
       contrastText: '#FDFFFC'
     },
     white: {
@@ -41,6 +42,9 @@ export const theme = {
     },
     grey: {
       main: ' #a9a9a9',
+      light: ' #cccccc',
+      lighter: '#eae8e8',
+      dark: '#706d6d',
       contrastText: ' #2c2f35'
     }
   },

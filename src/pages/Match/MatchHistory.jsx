@@ -36,7 +36,7 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 }));
 
 const DatePickerWrapper = styled(Container)({
-  // padding: '0 3rem 3rem 3rem'
+  marginTop: '3rem'
 });
 
 const SearchWrapper = styled(Container)({
@@ -66,11 +66,12 @@ const TableHeader = styled(Container)(({ theme }) => ({
 }));
 
 const TableTitle = styled(Typography)({
-  fontSize: '2rem'
+  fontSize: '2rem',
+  fontFamily: "'Adamina', serif"
 });
 
 const TableSubtitle = styled(Typography)({
-  fontSize: '1.1rem'
+  // fontSize: '1.1rem'
 });
 
 const TableWrapper = styled(Container)({});
@@ -141,10 +142,7 @@ const MatchHistory = () => {
   return (
     <Col lg={8}>
       <div className="layout-cols"></div>
-      <MainContent title={'Resumed'}>
-        <Container>
-          <Title variant="h1">Choose a date range to see all matches</Title>
-        </Container>
+      <MainContent title={'SEARCH'}>
         <DatePickerWrapper>
           <SearchBox>
             <Row
@@ -219,7 +217,7 @@ const MatchHistory = () => {
           {isError && <Typography variant="body1">{error?.response?.message?.data}</Typography>}
           <Row xs={12} className="g-4">
             <TableHeader>
-              <TableTitle variant="body1">Completed games</TableTitle>
+              <TableTitle variant="body1">Results</TableTitle>
               {matches && (
                 <TableSubtitle variant="body2">{`From ${startDate?.toLocaleDateString(
                   'en-CA'

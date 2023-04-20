@@ -7,16 +7,16 @@ import './Competitions.css';
 
 const Title = styled(Card.Title)(({ theme }) => ({
   textAlign: 'center',
-  fontSize: '1rem',
-  fontWeight: 600,
-  color: theme.palette.black.light
+  fontSize: '0.9rem',
+  color: theme.palette.black.dark,
+  fontFamily: "'Adamina', serif"
 }));
 
-const Subtitle = styled(Card.Title)({
+const Subtitle = styled(Card.Title)(({ theme }) => ({
   textAlign: 'center',
   fontSize: 'unset',
-  color: 'grey'
-});
+  color: theme.palette.grey.dark
+}));
 
 const CardBody = styled(Card.Body)({
   display: 'flex',
@@ -24,10 +24,17 @@ const CardBody = styled(Card.Body)({
   justifyContent: 'end'
 });
 
+const CardItem = styled(Card)({
+  borderRadius: '5px',
+  border: '1px solid #f2efef',
+  // boxShadow: '5px 5px 0px -2px rgba(166,162,161,0.17)'
+  boxShadow: '5px -7px 5px -2px rgba(166,162,161,0.17)'
+});
+
 const Competition = ({ competition }) => {
   return (
     <Col className="cpt-card-style">
-      <Card style={{ borderRadius: '0' }}>
+      <CardItem>
         <Link
           to={`/competitions/${competition?.code}/matches`}
           style={{ height: '100%', textDecoration: 'none' }}
@@ -41,7 +48,7 @@ const Competition = ({ competition }) => {
             </CardBody>
           </Container>
         </Link>
-      </Card>
+      </CardItem>
     </Col>
   );
 };
