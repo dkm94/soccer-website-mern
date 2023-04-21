@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
-import { Typography, Grid, Button } from '@mui/material';
+import { Typography, Grid, Button, Card, CardMedia, CardActions, CardContent } from '@mui/material';
 import './ArticleCard.css';
 
 const RedirectButton = styled(Button)(({ theme }) => ({
@@ -16,41 +16,46 @@ const RedirectButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-const CardHeader = styled(Card.Header)({
-  textAlign: 'end',
-  borderRadius: '0px',
-  fontSize: '0.8rem'
-});
-
-const TextContainer = styled(Grid)({
+const Content = styled(CardContent)(({ theme }) => ({
   display: 'flex',
-  rowGap: '0.4rem',
-  flexDirection: 'column'
-});
+  flexDirection: 'column',
+  paddingBottom: 0,
+  ' span:nth-child(1)': {
+    fontFamily: "'Adamina', serif",
+    display: '-webkit-box',
+    '-webkit-line-clamp': '2',
+    '-webkit-box-orient': 'vertical',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
+  },
+  ' span:nth-child(2n+2)': {
+    textAlign: 'end',
+    marginTop: '0.7rem'
+  }
+}));
 
-const Content = ({ title, date, author }) => {
-  return (
-    <Col xs={8}>
-      <TextContainer>
-        <Typography variant="body1">{title}</Typography>
-        <Typography variant="body2">{author}</Typography>
-        <Typography variant="body2">{date}</Typography>
-        <RedirectButton sx={{ backgroundColor: 'black.light' }} variant="contained">
-          Go to the article
-        </RedirectButton>
-      </TextContainer>
-    </Col>
-  );
-};
+const Actions = styled(CardActions)(({ theme }) => ({
+  justifyContent: 'end'
+}));
 
-const ArticleCard = ({ key, title, author, date }) => {
+const ArticleCard = ({ key, title, file, caption, date }) => {
+  const formattedPath = file?.replaceAll('\\', '/');
+  const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
+
   const getDate = new Date(date);
-  const formattedDate = getDate?.toLocaleDateString('en-US');
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = getDate?.toDateString('en-US', options);
+
   return (
-    <Card key={key}>
-      <Row style={{ margin: '1rem 0px' }}>
-        <Content title={title} date={formattedDate} author={author} />
-      </Row>
+    <Card key={key} sx={{ borderRadius: 0 }}>
+      <CardMedia sx={{ height: 140 }} image={URL} title={caption} />
+      <Content>
+        <span>{title}</span>
+        <span>Posted on {formattedDate}</span>
+      </Content>
+      <Actions>
+        <RedirectButton>Read the article</RedirectButton>
+      </Actions>
     </Card>
   );
 };

@@ -35,8 +35,14 @@ const SideArticles = () => {
           <div className="cmt-content">
             {isLoading && <ArticlesLoader />}
             {temp &&
-              temp.map(({ id, title, author, createdAt }, i) => (
-                <ArticleCard key={id} title={title} author={author} date={createdAt} />
+              temp.map(({ id, title, caption, file, updatedAt }, i) => (
+                <ArticleCard
+                  key={id}
+                  title={title}
+                  file={file}
+                  caption={caption}
+                  date={updatedAt}
+                />
               ))}
           </div>
         </Box>

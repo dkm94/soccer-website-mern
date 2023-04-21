@@ -13,7 +13,7 @@ const SelectMatches = ({ competition, temp, setCompetition, postsPerPage, totalP
   const selectData = temp.filter(({ id }, index) => !ids.includes(id, index + 1));
 
   return (
-    <FormControl>
+    <FormControl size="small">
       <InputLabel id="outline-select-label">Select a competition</InputLabel>
       <Select
         labelId="select-label"

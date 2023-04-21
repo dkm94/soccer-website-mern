@@ -47,7 +47,8 @@ table {
 
   th {
     background-color: #ddd;
-    font-weight: 600;
+    font-weight: normal;
+    font-family: 'Adamina', serif
   }
 
   .loader-table-cellule {

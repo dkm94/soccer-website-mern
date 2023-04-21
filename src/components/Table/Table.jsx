@@ -17,11 +17,11 @@ const Container = styled('div')`
     border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 8px;
+    // fontfamily: "'Adamina', serif";
   }
 
   th {
     background-color: #ddd;
-    font-weight: 600;
   }
 `;
 

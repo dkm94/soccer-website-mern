@@ -30,11 +30,11 @@
    }
 }
 
-.load-home__select {
+.load-result-card__select {
     justify-content: end;
 }
 
-#load-home__select {
+#load-result-card__select {
     height: 3rem;
     width: 14rem;
 }

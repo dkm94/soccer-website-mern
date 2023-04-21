@@ -1,7 +1,8 @@
-#card-header-style {
-  font-size: 16px;
+#result-card__header {
   background-color: var(--palette-black-main) !important;
   color: var(--palette-black-contrastText);
+  font-family: 'Adamina', serif;
+  letter-spacing: 1px;
 }
 
 .status-finished, .status-inplay, .status-scheduled, .status-paused {
@@ -28,14 +29,32 @@
   font-weight: 600;
 }
 
-.display-score {
+.result-card__display-score {
  display: flex;
  align-items: center;
 }
 
-.display-score > div {
+.result-card__display-score > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0;
+ }
+
+ .card-header:first-child {
+  border-radius: 0px !important;
+ }
+
+ .result-card__crest {
+  height: 3.5rem;
+  width: auto;
+ }
+
+ .result-card__time {
+  font-size: '20px';
+  font-weight: '600';
+ }
+
+ .result-card__team-name {
+  font-size: 1rem;
  }
