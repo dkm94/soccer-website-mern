@@ -1,51 +1,67 @@
 import React from 'react';
-import { IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
+import { IconButton, Toolbar, Tooltip, Typography, useTheme } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { alpha } from '@mui/material/styles';
-import { useTheme } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
+
+const CustomToolbar = styled(Toolbar)(({ theme }) => ({
+  justifyContent: 'end',
+  backgroundColor: theme.palette.black.main,
+  color: theme.palette.white.main,
+  width: '100%'
+  // borderRadius: '5px 5px 0 0'
+}));
+
+const TableTitle = styled(Typography)({
+  fontSize: '1.5rem',
+  // fontFamily: "'Adamina', serif",
+  flex: '1 1 100%'
+});
+
+const Selected = styled(Typography)(({ theme }) => ({
+  fontSize: '1.5rem',
+  // fontFamily: "'Adamina', serif",
+  flex: '1 1 100%',
+  color: theme.palette.white.main
+}));
 
 const EnhancedToolBar = (props) => {
   const { numSelected } = props;
   const { palette } = useTheme();
 
   return (
-    <Toolbar
+    <CustomToolbar
       sx={{
-        padding: '1rem 2rem',
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)
-        })
+        padding: '1rem 2rem'
+        // ...(numSelected > 0 && {
+        //   bgcolor: (theme) =>
+        //     alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)
+        // })
       }}>
       {numSelected > 0 ? (
-        <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle1" component="div">
+        <Selected variant="body1" component="div">
           {numSelected} selected
-        </Typography>
+        </Selected>
       ) : (
-        <Typography
-          sx={{ flex: '1 1 100%', fontSize: '1.5rem', color: palette.secondary.dark }}
-          variant="h4"
-          id="tableTitle"
-          component="div">
+        <TableTitle variant="body1" id="tableTitle" component="div">
           Users
-        </Typography>
+        </TableTitle>
       )}
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
-            <DeleteIcon />
+            <DeleteIcon sx={{ color: palette?.white?.main }} />
           </IconButton>
         </Tooltip>
       ) : (
         <Tooltip title="Filter list">
           <IconButton>
-            <FilterListIcon />
+            <FilterListIcon sx={{ color: palette?.white?.main }} />
           </IconButton>
         </Tooltip>
       )}
-    </Toolbar>
+    </CustomToolbar>
   );
 };
 

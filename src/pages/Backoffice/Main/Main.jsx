@@ -11,6 +11,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  Container,
   TableContainer,
   TableHead,
   TableRow,
@@ -25,9 +26,10 @@ import { Typography, styled, useTheme } from '@mui/material';
 import LoaderAnimation from '../../../components/Loaders/Animation/Dashboard/LoaderAnimation';
 
 const TitleHeader = styled(Typography)({
-  fontSize: '1rem',
+  fontSize: '0.8rem',
   fontFamily: "'Adamina', serif !important",
-  fontWeight: 'normal'
+  fontWeight: 'normal',
+  padding: '0px !important'
 });
 
 // function descendingComparator(a, b, orderBy) {
@@ -210,6 +212,7 @@ const Main = ({ cards, drawerWidth }) => {
               width: '100%',
               mb: 2,
               backgroundColor: palette.white.main,
+              borderRadius: '5px 5px 0 0',
               boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
               opacity: '95%',
               '.MuiPaper-root': { boxShadow: 'none' }
@@ -223,11 +226,11 @@ const Main = ({ cards, drawerWidth }) => {
             )}
             {rows && (
               <>
-                <TableContainer component={Paper}>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell padding="checkbox">
+                <div style={{ width: '100%', padding: 'inherit', margin: 0 }}>
+                  <table>
+                    <thead>
+                      <tr className="custom__table-row">
+                        <th>
                           <Checkbox
                             indeterminate={
                               selectedIds.length > 0 && selectedIds.length < rows.length
@@ -236,63 +239,53 @@ const Main = ({ cards, drawerWidth }) => {
                             onChange={handleSelectAll}
                             inputProps={{ 'aria-label': 'select all desserts' }}
                           />
-                        </TableCell>
-                        <TableCell>
-                          <TitleHeader variant="h6">Name</TitleHeader>
-                        </TableCell>
-                        <TableCell>
-                          <TitleHeader variant="h6">Email</TitleHeader>
-                        </TableCell>
-                        <TableCell>
-                          <TitleHeader variant="h6">Handle</TitleHeader>
-                        </TableCell>
-                        <TableCell>
-                          <TitleHeader variant="h6">Moderator</TitleHeader>
-                        </TableCell>
-                        <TableCell>
-                          <TitleHeader variant="h6">Validated account</TitleHeader>
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
+                        </th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Handle</th>
+                        <th>Moderator</th>
+                        <th>Validated account</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                       {filteredRows?.map((row) => {
                         const isItemSelected = isSelected(row._id);
                         return (
-                          <TableRow tabIndex={-1} key={row._id}>
-                            <TableCell padding="checkbox">
+                          <tr tabIndex={-1} key={row._id}>
+                            <td>
                               <Checkbox
                                 checked={selectedIds.indexOf(row._id) !== -1}
                                 onChange={(event) => handleSelectOne(event, row._id)}
                                 selected={isItemSelected}
                               />
-                            </TableCell>
-                            <TableCell>
+                            </td>
+                            <td>
                               <Typography variant="body1">{row.id_profile?.name}</Typography>
-                            </TableCell>
-                            <TableCell>
+                            </td>
+                            <td>
                               <Typography variant="body1">{row.email}</Typography>
-                            </TableCell>
-                            <TableCell>
+                            </td>
+                            <td>
                               <Typography variant="body1">{row.id_profile?.handle}</Typography>
-                            </TableCell>
-                            <TableCell>
+                            </td>
+                            <td>
                               <ToggleButton
                                 value={row.isMod}
                                 selected={row.isMod}
                                 onChange={() => handleToggle(row)}
                               />
-                            </TableCell>
-                            <TableCell>
+                            </td>
+                            <td>
                               <Typography variant="body1">
                                 {row.accountValidated ? 'Yes' : 'No'}
                               </Typography>
-                            </TableCell>
-                          </TableRow>
+                            </td>
+                          </tr>
                         );
                       })}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+                    </tbody>
+                  </table>
+                </div>
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 25]}
                   component="div"

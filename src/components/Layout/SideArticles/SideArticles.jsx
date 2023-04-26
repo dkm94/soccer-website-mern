@@ -22,6 +22,7 @@ const SideArticles = () => {
     queryKey: ['articles'],
     queryFn: getArticles
   });
+  console.log('🚀 ~ file: SideArticles.jsx:25 ~ SideArticles ~ articles:', articles);
 
   const { palette } = useTheme();
 
