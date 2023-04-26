@@ -16,7 +16,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { login } from '../../services/queries/auth_queries';
 import { useTheme } from '@material-ui/core';
 
@@ -24,7 +24,6 @@ import './Login.css';
 
 export default function SignIn() {
   const theme = useTheme();
-  console.log('🚀 ~ file: Login.jsx:27 ~ SignIn ~ theme:', theme);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

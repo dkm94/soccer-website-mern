@@ -26,7 +26,7 @@ const navItems = [
   }
 ];
 
-const Navigation = () => {
+const Navigation = ({ auth }) => {
   // const navigate = useNavigate();
   // const logOut = () => {
   //   console.log("déconnexion...")
@@ -53,6 +53,11 @@ const Navigation = () => {
                   {item?.title}
                 </Nav.Link>
               ))}
+              {auth && (
+                <Nav.Link key={5} href={'/backoffice'}>
+                  Backoffice
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

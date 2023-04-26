@@ -15,9 +15,6 @@ import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
 const SideBarList = () => {
-  // Moderators
-  // Articles: mes articles, tous les articles
-  // Reported comments
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -47,6 +44,18 @@ const SideBarList = () => {
     }
   ];
 
+  const articlesItems = [
+    {
+      id: 1,
+      name: 'Create a new article',
+      path: '/backoffice/articles/create'
+    },
+    {
+      id: 2,
+      name: 'See all articles'
+    }
+  ];
+
   return (
     <div>
       <Toolbar />
@@ -64,12 +73,14 @@ const SideBarList = () => {
               </ListItem>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 10 }}>
-                    <ListItemText primary="My articles" />
-                  </ListItemButton>
-                  <ListItemButton sx={{ pl: 10 }}>
-                    <ListItemText primary="All articles" />
-                  </ListItemButton>
+                  {articlesItems.map((item) => (
+                    <ListItemButton
+                      key={`article-item-${item?.id}`}
+                      sx={{ pl: 10 }}
+                      href={item?.path}>
+                      <ListItemText primary={item?.name} />
+                    </ListItemButton>
+                  ))}
                 </List>
               </Collapse>
             </>

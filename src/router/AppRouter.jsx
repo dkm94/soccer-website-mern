@@ -64,6 +64,18 @@ const AppRouter = () => {
                       </ErrorBoundary>
                     }
                   />
+                  <Route
+                    path="/backoffice/articles/create"
+                    element={
+                      <ErrorBoundary
+                        FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
+                        onReset={() => (window.location.href = '/backoffice')}>
+                        <Suspense fallback={<LazyLoad />}>
+                          <Admin />
+                        </Suspense>
+                      </ErrorBoundary>
+                    }
+                  />
                 </Route>
               </Routes>
             </Layout>

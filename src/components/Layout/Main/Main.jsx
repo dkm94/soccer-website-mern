@@ -24,7 +24,8 @@ const Layout = ({ children, path }) => {
       {showHeader()}
       <Container
         fluid
-        className={`layout ${path === '/backoffice' && 'backoffice-bg'}`}
+        // className={`layout ${path === '/backoffice' && 'backoffice-bg'}`}
+        className={`layout ${path.startsWith('/backoffice') && 'backoffice-bg'}`}
         style={{ minHeight: '100vh' }}>
         <Container>
           <Row>
