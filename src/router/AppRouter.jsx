@@ -10,7 +10,7 @@ import Teams from '../pages/Teams/Teams';
 import Match from '../pages/Match/MatchHistory';
 import News from '../pages/News/News';
 import Layout from '../components/Layout/Main/Main';
-import ProtectedRoutes from '../components/ProtectedRoutes';
+import IsLogged from './ProtectedRoutes/IsLogged';
 import Matches from '../pages/Competitions/Matches/Matches';
 import Login from '../pages/Login/Login';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
@@ -25,8 +25,10 @@ const Admin = lazy(() => import('../pages/Backoffice/Backoffice'));
 import LazyLoad from '../components/Loaders/Lazy/LazyLoad';
 import { ErrorBoundary } from 'react-error-boundary';
 import Message from '../components/Screens/Message';
+import IsMod from './ProtectedRoutes/IsMod';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
+const isMod = JSON.parse(localStorage.getItem('isMod'));
 
 const path = window.location.pathname;
 
@@ -51,7 +53,7 @@ const AppRouter = () => {
                 <Route path="/matchhistory" element={<Match />} />
                 <Route path="/news" element={<News />} />
                 <Route path="/secret-login" element={<Login />} />
-                <Route element={<ProtectedRoutes auth={auth} />}>
+                <Route element={<IsLogged auth={auth} />}>
                   <Route
                     path="/backoffice"
                     element={
@@ -65,7 +67,7 @@ const AppRouter = () => {
                     }
                   />
                   <Route
-                    path="/backoffice/articles/create"
+                    path="/backoffice/articles"
                     element={
                       <ErrorBoundary
                         FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
@@ -76,6 +78,20 @@ const AppRouter = () => {
                       </ErrorBoundary>
                     }
                   />
+                  <Route element={<IsMod isMod={isMod} />}>
+                    <Route
+                      path="/backoffice/articles/create"
+                      element={
+                        <ErrorBoundary
+                          FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
+                          onReset={() => (window.location.href = '/backoffice')}>
+                          <Suspense fallback={<LazyLoad />}>
+                            <Admin />
+                          </Suspense>
+                        </ErrorBoundary>
+                      }
+                    />
+                  </Route>
                 </Route>
               </Routes>
             </Layout>

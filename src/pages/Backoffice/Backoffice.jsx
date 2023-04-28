@@ -5,11 +5,13 @@ import cards from '../../seeds/dashboard_cards';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 import CreateArticleForm from './Articles/Forms/CreateArticle/CreateArticleForm';
+import Articles from './Articles/Articles/Articles';
 
 const drawerWidth = 240;
 
 const backofficeComponent = {
   '/backoffice': <Main cards={cards} drawerWidth={drawerWidth} />,
+  '/backoffice/articles': <Articles drawerWidth={drawerWidth} />,
   '/backoffice/articles/create': <CreateArticleForm drawerWidth={drawerWidth} />
 };
 

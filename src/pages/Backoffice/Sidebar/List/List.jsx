@@ -16,6 +16,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 
 const SideBarList = () => {
   const [open, setOpen] = useState(false);
+  const modStatus = JSON.parse(localStorage.getItem('isMod'));
 
   const handleClick = () => {
     setOpen(!open);
@@ -52,7 +53,8 @@ const SideBarList = () => {
     },
     {
       id: 2,
-      name: 'See all articles'
+      name: 'See all articles',
+      path: '/backoffice/articles'
     }
   ];
 
@@ -77,6 +79,7 @@ const SideBarList = () => {
                     <ListItemButton
                       key={`article-item-${item?.id}`}
                       sx={{ pl: 10 }}
+                      disabled={item?.id === 1 && !modStatus}
                       href={item?.path}>
                       <ListItemText primary={item?.name} />
                     </ListItemButton>

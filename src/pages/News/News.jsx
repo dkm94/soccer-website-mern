@@ -1,7 +1,9 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
-import news from '../../seeds/news';
+// import news from '../../seeds/news';
+import { getArticles } from '../../services/queries/public_queries';
+import { useQuery } from 'react-query';
+import { Grid } from '@mui/material';
 import Article from './Article';
 import './News.css';
 
@@ -10,18 +12,29 @@ const News = () => {
     padding: '1rem 3rem'
   };
 
+  const {
+    data: articles
+    // error,
+    // isError,
+    // isLoading
+  } = useQuery({
+    queryKey: ['articles'],
+    queryFn: getArticles
+  });
+
   return (
-    <Col lg={8}>
-      <div className="layout-cols">
-        <MainContent title={'Latest articles'}>
-          <div style={containerStyle}>
-            {news?.map((article) => (
+    <div className="layout-cols">
+      <MainContent title={'Latest articles'}>
+        <div style={containerStyle}>
+          <Grid></Grid>
+          <Grid container spacing={2}>
+            {articles?.map((article) => (
               <Article key={article.id} article={article} />
             ))}
-          </div>
-        </MainContent>
-      </div>
-    </Col>
+          </Grid>
+        </div>
+      </MainContent>
+    </div>
   );
 };
 

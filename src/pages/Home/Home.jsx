@@ -64,9 +64,6 @@ const Home = () => {
     _DATA.jump(p);
   };
 
-  console.log(isError);
-  console.log(error);
-
   return (
     <Col lg={8}>
       <div className="layout-cols">

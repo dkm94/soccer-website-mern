@@ -27,11 +27,23 @@
   color: var(--palette-grey-lighter) !important;
 }
 
-@media only screen and (max-device-width: 1024px) {
-  /* .guest__updateForm > form {
-        width: 100%;
-    }
-    .guest__updateForm > form > input {
-        width: 100%;
-    } */
+#logout-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-device-width: 1199px) {
+  #logout-btn {
+    margin-right: 40px;
+  }
+}
+
+@media only screen and (max-device-width: 991px) {
+  #logout-btn {
+    position: unset;
+    right: unset;
+    margin-right: unset;
+  }
 }

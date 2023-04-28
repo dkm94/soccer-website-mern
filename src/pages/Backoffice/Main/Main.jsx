@@ -7,18 +7,7 @@ import { changeModStatus } from '../../../services/queries/admin_queries';
 import { getUsers } from '../../../services/queries/public_queries';
 // import { getArticles } from '../../../services/queries/public_queries';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  Container,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TablePagination,
-  Checkbox,
-  Paper
-} from '@material-ui/core';
+import { TablePagination, Checkbox, Paper } from '@material-ui/core';
 import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
 import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import './Main.css';

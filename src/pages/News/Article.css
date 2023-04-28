@@ -1,0 +1,9 @@
+.news__article-card > p:last-of-type {
+    margin-top: auto;
+}
+
+.news__article-card {
+    margin-top: 2rem !important;
+    display: flex;
+    flex-direction: column !important;
+}

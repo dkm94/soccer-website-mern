@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../../Header/Header';
 import SideArticles from '../SideArticles/SideArticles';
-import { Container, Row } from 'react-bootstrap';
+import { Row, Container } from 'react-bootstrap';
+import { Box } from '@mui/material';
 import './Main.css';
 
 const Layout = ({ children, path }) => {
@@ -19,6 +20,10 @@ const Layout = ({ children, path }) => {
     return <SideArticles />;
   };
 
+  const ContentWrapper = ({ children }) => {
+    return path === '/news' ? <Box>{children}</Box> : <Row>{children}</Row>;
+  };
+
   return (
     <>
       {showHeader()}
@@ -28,10 +33,10 @@ const Layout = ({ children, path }) => {
         className={`layout ${path.startsWith('/backoffice') && 'backoffice-bg'}`}
         style={{ minHeight: '100vh' }}>
         <Container>
-          <Row>
+          <ContentWrapper>
             {showLastArticles()}
             {children}
-          </Row>
+          </ContentWrapper>
         </Container>
       </Container>
     </>
