@@ -15,6 +15,10 @@ import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
 const SideBarList = () => {
+  // let { id } = useParams();
+  // console.log('🚀 ~ file: MyArticles.jsx:24 ~ MyArticles ~ params:', id);
+  const profileId = JSON.parse(localStorage.getItem('profileId'));
+
   const [open, setOpen] = useState(false);
   const modStatus = JSON.parse(localStorage.getItem('isMod'));
 
@@ -53,8 +57,8 @@ const SideBarList = () => {
     },
     {
       id: 2,
-      name: 'See all articles',
-      path: '/backoffice/articles'
+      name: 'My articles',
+      path: `/backoffice/articles/author/${profileId}`
     }
   ];
 

@@ -5,14 +5,30 @@ import cards from '../../seeds/dashboard_cards';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 import CreateArticleForm from './Articles/Forms/CreateArticle/CreateArticleForm';
-import Articles from './Articles/Articles/Articles';
+import MyArticles from './Articles/MyArticles/MyArticles';
 
 const drawerWidth = 240;
 
-const backofficeComponent = {
-  '/backoffice': <Main cards={cards} drawerWidth={drawerWidth} />,
-  '/backoffice/articles': <Articles drawerWidth={drawerWidth} />,
-  '/backoffice/articles/create': <CreateArticleForm drawerWidth={drawerWidth} />
+const profileId = JSON.parse(localStorage.getItem('profileId'));
+const path = window.location.pathname;
+
+// const backofficeComponent = {
+//   '/backoffice': <Main cards={cards} drawerWidth={drawerWidth} />,
+//   '/backoffice/articles/author/:id': <MyArticles drawerWidth={drawerWidth} />,
+//   '/backoffice/articles/create': <CreateArticleForm drawerWidth={drawerWidth} />
+// };
+
+const backofficeComponent = () => {
+  switch (path) {
+    case '/backoffice':
+      return <Main cards={cards} drawerWidth={drawerWidth} />;
+    case '/backoffice/articles/create':
+      return <CreateArticleForm drawerWidth={drawerWidth} />;
+    case `/backoffice/articles/author/${profileId}`:
+      return <MyArticles drawerWidth={drawerWidth} profileId={profileId} />;
+    default:
+      break;
+  }
 };
 
 function ResponsiveDrawer() {
@@ -33,7 +49,8 @@ function ResponsiveDrawer() {
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
       />
-      {backofficeComponent[window.location.pathname]}
+      {/* {backofficeComponent[window.location.pathname]} */}
+      {backofficeComponent()}
     </Box>
   );
 }
