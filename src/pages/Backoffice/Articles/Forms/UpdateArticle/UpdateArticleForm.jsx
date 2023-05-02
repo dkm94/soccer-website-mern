@@ -77,10 +77,11 @@ const UpdateArticleForm = ({ drawerWidth }) => {
     queryKey: ['articles'],
     queryFn: () => getArticle(id),
     onSuccess: (data) => {
-      const { online, title, topic, summary, caption, content } = data;
+      const { online, title, topic, file, summary, caption, content } = data;
       setOnline(online);
       setTitle(title);
       setTopic(topic);
+      setFiles(file);
       setSummary(summary);
       setCaption(caption);
       setContent(content);
@@ -95,17 +96,6 @@ const UpdateArticleForm = ({ drawerWidth }) => {
   const [online, setOnline] = useState(false);
   const [content, setContent] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  // const mutation = useMutation({
-  //   mutationFn: () => editPost(id),
-  //   onError: (error, variables, context) => {
-  //     setErrorMessage(error.message);
-  //   },
-  //   onSuccess: (data, variables, context) => {
-  //     // success toast
-  //     alert('Post ok!');
-  //   }
-  // });
 
   const submitPost = (e) => {
     e.preventDefault();

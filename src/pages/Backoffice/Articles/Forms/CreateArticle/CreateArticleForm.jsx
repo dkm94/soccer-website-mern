@@ -88,7 +88,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
 
   const submitPost = (e) => {
     e.preventDefault();
-    mutation.mutate({ title, topic, summary, file: files, caption, content });
+    mutation.mutate({ online, title, topic, summary, file: files, caption, content });
   };
 
   return (

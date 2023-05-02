@@ -1,7 +1,7 @@
 import axios from 'axios';
 // const CORS = 'https://mycorsproxy-dkm.herokuapp.com';
-// const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
+// const BASE_URL = 'http://localhost:3001';
 const token = localStorage.getItem('token');
 const authorization = { Authorization: `Bearer ${token}` };
 
@@ -32,13 +32,16 @@ const getReportedComments = () => {
 };
 
 const createPost = async ({ online, title, topic, summary, file, caption, content }) => {
+  console.log('🚀 ~ file: mods_queries.js:35 ~ createPost ~ file:', file);
   const url = `${BASE_URL}/mod/articles/create`;
   const form = new FormData();
   form.set('online', online);
   form.set('title', title);
   form.set('topic', topic);
   form.set('summary', summary);
-  form.set('file', file);
+  if (file?.[0]) {
+    form.set('file', file?.[0]);
+  }
   form.set('caption', caption);
   form.set('content', content);
   const customHeaders = {

@@ -15,8 +15,6 @@ import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
 const SideBarList = () => {
-  // let { id } = useParams();
-  // console.log('🚀 ~ file: MyArticles.jsx:24 ~ MyArticles ~ params:', id);
   const profileId = JSON.parse(localStorage.getItem('profileId'));
 
   const [open, setOpen] = useState(false);
