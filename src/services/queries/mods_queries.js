@@ -32,23 +32,24 @@ const getReportedComments = () => {
 };
 
 const createPost = async ({ online, title, topic, summary, file, caption, content }) => {
+  // deplacer le code dans le try
   console.log('🚀 ~ file: mods_queries.js:35 ~ createPost ~ file:', file);
-  const url = `${BASE_URL}/mod/articles/create`;
-  const form = new FormData();
-  form.set('online', online);
-  form.set('title', title);
-  form.set('topic', topic);
-  form.set('summary', summary);
-  if (file?.[0]) {
-    form.set('file', file?.[0]);
-  }
-  form.set('caption', caption);
-  form.set('content', content);
-  const customHeaders = {
-    Authorization: `Bearer ${token}`,
-    'Content-Type': 'multipart/form-data'
-  };
   try {
+    const url = `${BASE_URL}/mod/articles/create`;
+    const form = new FormData();
+    form.set('online', online);
+    form.set('title', title);
+    form.set('topic', topic);
+    form.set('summary', summary);
+    if (file?.[0]) {
+      form.set('file', file?.[0]);
+    }
+    form.set('caption', caption);
+    form.set('content', content);
+    const customHeaders = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data'
+    };
     const { data } = await axios.post(url, form, { headers: customHeaders });
     return data;
   } catch (e) {
@@ -83,4 +84,19 @@ const editPost = async ({ _id, online, title, topic, summary, file, caption, con
   }
 };
 
-export { getReportedComments, createPost, editPost };
+const deletePost = async (_id) => {
+  console.log('🚀 ~ file: mods_queries.js:88 ~ deletePost ~ _id:', _id);
+  const url = `${BASE_URL}/mod/articles/delete/${_id}`;
+  const customHeaders = {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'multipart/form-data'
+  };
+  try {
+    const { data } = await axios.delete(url, { headers: customHeaders });
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+export { getReportedComments, createPost, editPost, deletePost };

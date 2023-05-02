@@ -22,6 +22,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useParams } from 'react-router-dom';
 import { getArticle } from '../../../../../services/queries/public_queries';
 import competitionSeeds from '../../../../../seeds/competitions';
+import { useDeletePost } from '../../../../../services/mutations/useDeletePost';
 
 const modules = {
   toolbar: [
@@ -65,6 +66,7 @@ const formats = [
 const UpdateArticleForm = ({ drawerWidth }) => {
   let { id } = useParams();
   const mutation = useEditPost();
+  const deleteMutation = useDeletePost();
   const { palette } = useTheme();
 
   const {
@@ -99,20 +101,6 @@ const UpdateArticleForm = ({ drawerWidth }) => {
 
   const submitPost = (e) => {
     e.preventDefault();
-    // const promise = new Promise((resolve, reject) => {
-    //   if (!title || !topic || !summary || !files || !caption || !content) {
-    //     reject('Error articles');
-    //   } else {
-    //     resolve('Execute API call next');
-    //   }
-    // });
-
-    // promise
-    //   .then(() =>
-    //   )
-    //   .catch(() => {
-    //     throw new Error('Error mutation');
-    //   });
     if (!title || !topic || !summary || !files || !caption || !content) {
       //handle empty with error obj
       alert('empty field');
@@ -122,6 +110,11 @@ const UpdateArticleForm = ({ drawerWidth }) => {
         id
       );
     }
+  };
+
+  const deletePost = (e) => {
+    e.preventDefault();
+    deleteMutation.mutate(id);
   };
 
   return (
@@ -256,8 +249,11 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             <Typography variant="body1">{errorMessage}</Typography>
           </Grid>
         )}
-        <Grid container direction="row" justifyContent="flex-end">
+        <Grid container direction="row" justifyContent="center">
           <Button type="submit">{mutation.isLoading ? 'Uploading...' : 'Edit post'}</Button>
+          <Button onClick={deletePost}>
+            {deleteMutation.isLoading ? 'Uploading...' : 'Delete post'}
+          </Button>
         </Grid>
       </Grid>
     </Box>
