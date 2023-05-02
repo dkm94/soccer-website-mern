@@ -5,7 +5,9 @@ import cards from '../../seeds/dashboard_cards';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 import CreateArticleForm from './Articles/Forms/CreateArticle/CreateArticleForm';
+import UpdateArticleForm from './Articles/Forms/UpdateArticle/UpdateArticleForm';
 import MyArticles from './Articles/MyArticles/MyArticles';
+import { useParams } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -19,6 +21,7 @@ const path = window.location.pathname;
 // };
 
 const backofficeComponent = () => {
+  let { id } = useParams();
   switch (path) {
     case '/backoffice':
       return <Main cards={cards} drawerWidth={drawerWidth} />;
@@ -26,6 +29,8 @@ const backofficeComponent = () => {
       return <CreateArticleForm drawerWidth={drawerWidth} />;
     case `/backoffice/articles/author/${profileId}`:
       return <MyArticles drawerWidth={drawerWidth} profileId={profileId} />;
+    case `/backoffice/articles/edit/${id}`:
+      return <UpdateArticleForm drawerWidth={drawerWidth} />;
     default:
       break;
   }

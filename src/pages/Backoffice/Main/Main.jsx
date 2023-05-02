@@ -152,7 +152,7 @@ const Main = ({ cards, drawerWidth }) => {
   const filteredRows = rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   const handleToggle = (user) => {
-    var promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
       if (!user) {
         reject('Error user');
       } else {

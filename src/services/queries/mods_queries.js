@@ -1,7 +1,7 @@
 import axios from 'axios';
 // const CORS = 'https://mycorsproxy-dkm.herokuapp.com';
-const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
-// const BASE_URL = 'http://localhost:3001';
+// const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
+const BASE_URL = 'http://localhost:3001';
 const token = localStorage.getItem('token');
 const authorization = { Authorization: `Bearer ${token}` };
 
@@ -31,10 +31,12 @@ const getReportedComments = () => {
     });
 };
 
-const createPost = async ({ title, summary, file, caption, content }) => {
+const createPost = async ({ online, title, topic, summary, file, caption, content }) => {
   const url = `${BASE_URL}/mod/articles/create`;
   const form = new FormData();
+  form.set('online', online);
   form.set('title', title);
+  form.set('topic', topic);
   form.set('summary', summary);
   form.set('file', file);
   form.set('caption', caption);
@@ -51,4 +53,31 @@ const createPost = async ({ title, summary, file, caption, content }) => {
   }
 };
 
-export { getReportedComments, createPost };
+const editPost = async ({ _id, online, title, topic, summary, file, caption, content }) => {
+  try {
+    const url = `${BASE_URL}/mod/articles/edit/${_id}`;
+    const form = new FormData();
+    form.set('title', title);
+    form.set('topic', topic);
+    form.set('summary', summary);
+    form.set('caption', caption);
+    form.set('content', content);
+    form.set('online', online);
+    if (file?.[0]) {
+      form.set('file', file?.[0]);
+    }
+
+    const customHeaders = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data'
+    };
+
+    const { data } = await axios.put(url, form, { headers: customHeaders });
+    return data;
+  } catch (e) {
+    // console.log('🚀 ~ file: mods_queries.js:72 ~ editPost ~ e:', e);
+    throw new Error(e.response.data.error);
+  }
+};
+
+export { getReportedComments, createPost, editPost };

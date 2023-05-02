@@ -33,6 +33,7 @@ const SideArticles = () => {
         <Box sx={{ background: palette?.white?.main }}>
           {isError && <Message error={error?.code} img={false} />}
           <div className="cmt-content">
+            {articles?.length === 0 && <span>{"There's no content to load yet."}</span>}
             {isLoading && <ArticlesLoader />}
             {temp &&
               temp.map(({ id, title, caption, file, updatedAt }, i) => (

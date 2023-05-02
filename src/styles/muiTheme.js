@@ -46,6 +46,10 @@ export const theme = {
       lighter: '#eae8e8',
       dark: '#706d6d',
       contrastText: ' #2c2f35'
+    },
+    green: {
+      main: '#0c893c',
+      contrastText: '#FDFFFC'
     }
   },
   typography: {

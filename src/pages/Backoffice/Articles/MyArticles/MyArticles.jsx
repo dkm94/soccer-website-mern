@@ -31,7 +31,6 @@ const MyArticles = ({ drawerWidth, profileId }) => {
     queryKey: ['articles'],
     queryFn: () => getArticlesByAuthor(profileId)
   });
-  console.log(thisUserArticles);
 
   // let formattedArticles = [];
   // articles?.forEach((article) => {
@@ -57,7 +56,7 @@ const MyArticles = ({ drawerWidth, profileId }) => {
       <Grid item>
         <Grid container spacing={2}>
           {thisUserArticles?.map((article) => (
-            <Article key={article.id} article={article} />
+            <Article key={article.id} article={article} profileId={profileId} />
           ))}
         </Grid>
       </Grid>

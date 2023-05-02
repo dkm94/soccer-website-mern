@@ -1,9 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Box, InputLabel, TextField, Grid, Button, Typography } from '@mui/material';
+import {
+  Box,
+  InputLabel,
+  TextField,
+  Grid,
+  Button,
+  Typography,
+  Select,
+  FormControl,
+  MenuItem,
+  FormControlLabel,
+  Switch
+} from '@mui/material';
 import { useMutation } from 'react-query';
 import { useTheme } from '@mui/material';
 import { createPost } from '../../../../../services/queries/mods_queries';
+import competitionSeeds from '../../../../../seeds/competitions';
 import ReactQuill from 'react-quill';
 import './CreateArticleForm.css';
 import 'react-quill/dist/quill.snow.css';
@@ -48,9 +61,13 @@ const formats = [
 ];
 
 const CreateArticleForm = ({ drawerWidth }) => {
+  const profileId = JSON.parse(localStorage.getItem('profileId'));
+
   const { palette } = useTheme();
 
+  const [online, setOnline] = useState(false);
   const [title, setTitle] = useState('');
+  const [topic, setTopic] = useState('');
   const [summary, setSummary] = useState('');
   const [files, setFiles] = useState('');
   const [caption, setCaption] = useState('');
@@ -63,14 +80,15 @@ const CreateArticleForm = ({ drawerWidth }) => {
       setErrorMessage(error.message);
     },
     onSuccess: (data, variables, context) => {
-      // success popup
+      // success toast
       alert('Post ok!');
+      window.location.href = `/backoffice/articles/author/${profileId}`;
     }
   });
 
   const submitPost = (e) => {
     e.preventDefault();
-    mutation.mutate({ title, summary, file: files[0], caption, content });
+    mutation.mutate({ title, topic, summary, file: files, caption, content });
   };
 
   return (
@@ -88,6 +106,15 @@ const CreateArticleForm = ({ drawerWidth }) => {
         borderRadius: '5px'
       }}>
       <Grid container spacing={3}>
+        <Grid container direction="row" marginTop={4} justifyContent="flex-end" xs={12}>
+          <FormControlLabel
+            value={online}
+            label={online ? 'Online' : 'Offline'}
+            labelPlacement="end"
+            onChange={() => setOnline(!online)}
+            control={<Switch color="success" />}
+          />
+        </Grid>
         <Grid item xs={12} sm={2}>
           <InputLabel>Title</InputLabel>
         </Grid>
@@ -104,6 +131,42 @@ const CreateArticleForm = ({ drawerWidth }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <InputLabel>Topic</InputLabel>
+        </Grid>
+        <Grid item xs={12} sm={10}>
+          {/* <TextField
+            required
+            id="title"
+            name="title"
+            // label="Title"
+            fullWidth
+            size="small"
+            autoComplete="off"
+            // variant="outlined"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          /> */}
+          <Box sx={{ width: 150 }}>
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <Select
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+                displayEmpty
+                inputProps={{ 'aria-label': 'Without label' }}>
+                {/* <MenuItem value="ALL">All games</MenuItem>
+                <MenuItem value="FINISHED">Completed games</MenuItem>
+                <MenuItem value="TIMED">Timed games</MenuItem>
+                <MenuItem value="SCHEDULED">Scheduled games</MenuItem> */}
+                {competitionSeeds.map((item, i) => (
+                  <MenuItem value={item.idx} key={item.idx}>
+                    {item.title}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
         </Grid>
         <Grid item xs={12} sm={2}>
           <InputLabel>Summary</InputLabel>
