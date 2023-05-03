@@ -97,7 +97,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
       onSubmit={submitPost}
       sx={{
         flexGrow: 1,
-        p: 3,
+        padding: '2rem 4rem',
         width: { sm: `calc(100% - ${drawerWidth}px)` },
         display: 'grid',
         gap: '2rem',
@@ -106,6 +106,11 @@ const CreateArticleForm = ({ drawerWidth }) => {
         borderRadius: '5px'
       }}>
       <Grid container spacing={3}>
+        <Grid item>
+          <Typography variant="h1" className="title-section">
+            Create an article
+          </Typography>
+        </Grid>
         <Grid container direction="row" marginTop={4} justifyContent="flex-end" xs={12}>
           <FormControlLabel
             value={online}

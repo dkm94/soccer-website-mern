@@ -7,3 +7,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.title-section {
+  font-size: 2rem !important;
+  font-family: 'Adamina', serif !important;
+  margin-top: 1rem !important;
+  color: var(--palette-black-light)
+}

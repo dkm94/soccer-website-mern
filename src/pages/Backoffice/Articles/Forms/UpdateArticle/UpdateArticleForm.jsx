@@ -11,7 +11,8 @@ import {
   FormControlLabel,
   FormControl,
   Select,
-  MenuItem
+  MenuItem,
+  styled
 } from '@mui/material';
 import { useQuery } from 'react-query';
 import { useEditPost } from '../../../../../services/mutations/useEditPost';
@@ -23,6 +24,13 @@ import { useParams } from 'react-router-dom';
 import { getArticle } from '../../../../../services/queries/public_queries';
 import competitionSeeds from '../../../../../seeds/competitions';
 import { useDeletePost } from '../../../../../services/mutations/useDeletePost';
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  marginTop: '1rem',
+  backgroundColor: theme.palette.primary.main,
+  width: 'fit-content',
+  textTransform: 'unset'
+}));
 
 const modules = {
   toolbar: [
@@ -123,15 +131,21 @@ const UpdateArticleForm = ({ drawerWidth }) => {
       onSubmit={submitPost}
       sx={{
         flexGrow: 1,
-        p: 3,
+        padding: '2rem 4rem',
         width: { sm: `calc(100% - ${drawerWidth}px)` },
         display: 'grid',
         gap: '2rem',
         mt: '2rem',
         backgroundColor: palette?.white.main,
-        borderRadius: '5px'
+        borderRadius: '5px',
+        boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)'
       }}>
       <Grid container spacing={3}>
+        <Grid item>
+          <Typography variant="h1" className="title-section">
+            Edit your article
+          </Typography>
+        </Grid>
         <Grid container direction="row" marginTop={4} justifyContent="flex-end" xs={12}>
           <FormControlLabel
             value={online}
@@ -163,7 +177,7 @@ const UpdateArticleForm = ({ drawerWidth }) => {
         </Grid>
         <Grid item xs={12} sm={10}>
           <Box sx={{ width: 150 }}>
-            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <FormControl sx={{ minWidth: 120 }} size="small">
               <Select
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
@@ -249,11 +263,13 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             <Typography variant="body1">{errorMessage}</Typography>
           </Grid>
         )}
-        <Grid container direction="row" justifyContent="center">
-          <Button type="submit">{mutation.isLoading ? 'Uploading...' : 'Edit post'}</Button>
-          <Button onClick={deletePost}>
+        <Grid container direction="row" justifyContent="space-evenly" marginTop={'3rem'}>
+          <StyledButton type="submit" variant="contained" size="small">
+            {mutation.isLoading ? 'Uploading...' : 'Edit post'}
+          </StyledButton>
+          <StyledButton variant="contained" size="small" onClick={deletePost}>
             {deleteMutation.isLoading ? 'Uploading...' : 'Delete post'}
-          </Button>
+          </StyledButton>
         </Grid>
       </Grid>
     </Box>

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Box, Select, useTheme, Grid, Container, styled } from '@mui/material';
+import { Box, Typography, useTheme, Grid, Container, styled } from '@mui/material';
 import { getArticlesByAuthor } from '../../../../services/queries/public_queries';
 import { useQuery } from 'react-query';
 import Article from '../../../News/Article';
@@ -45,7 +45,7 @@ const MyArticles = ({ drawerWidth, profileId }) => {
       component="form"
       sx={{
         flexGrow: 1,
-        p: 3,
+        padding: '2rem 4rem',
         width: { sm: `calc(100% - ${drawerWidth}px)` },
         display: 'grid',
         gap: '2rem',
@@ -53,7 +53,12 @@ const MyArticles = ({ drawerWidth, profileId }) => {
         backgroundColor: palette?.white.main,
         borderRadius: '5px'
       }}>
-      <Grid item>
+      <Grid>
+        <Grid item>
+          <Typography variant="h1" className="title-section">
+            My articles
+          </Typography>
+        </Grid>
         <Grid container spacing={2}>
           {thisUserArticles?.map((article) => (
             <Article key={article.id} article={article} profileId={profileId} />
