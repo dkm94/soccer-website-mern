@@ -5,6 +5,7 @@ import { getArticlesByAuthor } from '../../../../services/queries/public_queries
 import { useQuery } from 'react-query';
 import Article from '../../../News/Article';
 import SelectArticles from '../../../../components/Select/Articles';
+import { Link } from 'react-router-dom';
 
 const Card = () => {
   return <div>Card</div>;
@@ -51,7 +52,8 @@ const MyArticles = ({ drawerWidth, profileId }) => {
         gap: '2rem',
         mt: '2rem',
         backgroundColor: palette?.white.main,
-        borderRadius: '5px'
+        minHeight: '20rem',
+        boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)'
       }}>
       <Grid>
         <Grid item>
@@ -63,6 +65,13 @@ const MyArticles = ({ drawerWidth, profileId }) => {
           {thisUserArticles?.map((article) => (
             <Article key={article.id} article={article} profileId={profileId} />
           ))}
+          <Grid mt={8}>
+            {thisUserArticles?.length === 0 && (
+              <span>
+                You can write your first article, <a href="/backoffice/articles/create">here</a>.
+              </span>
+            )}
+          </Grid>
         </Grid>
       </Grid>
     </Box>

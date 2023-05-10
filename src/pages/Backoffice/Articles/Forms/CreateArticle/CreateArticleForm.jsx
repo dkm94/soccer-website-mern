@@ -103,7 +103,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
         gap: '2rem',
         mt: '2rem',
         backgroundColor: palette?.white.main,
-        borderRadius: '5px'
+        boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)'
       }}>
       <Grid container spacing={3}>
         <Grid item>
@@ -128,11 +128,9 @@ const CreateArticleForm = ({ drawerWidth }) => {
             required
             id="title"
             name="title"
-            // label="Title"
             fullWidth
             size="small"
             autoComplete="off"
-            // variant="outlined"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -141,18 +139,6 @@ const CreateArticleForm = ({ drawerWidth }) => {
           <InputLabel>Topic</InputLabel>
         </Grid>
         <Grid item xs={12} sm={10}>
-          {/* <TextField
-            required
-            id="title"
-            name="title"
-            // label="Title"
-            fullWidth
-            size="small"
-            autoComplete="off"
-            // variant="outlined"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          /> */}
           <Box sx={{ width: 150 }}>
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
               <Select
@@ -160,10 +146,6 @@ const CreateArticleForm = ({ drawerWidth }) => {
                 onChange={(e) => setTopic(e.target.value)}
                 displayEmpty
                 inputProps={{ 'aria-label': 'Without label' }}>
-                {/* <MenuItem value="ALL">All games</MenuItem>
-                <MenuItem value="FINISHED">Completed games</MenuItem>
-                <MenuItem value="TIMED">Timed games</MenuItem>
-                <MenuItem value="SCHEDULED">Scheduled games</MenuItem> */}
                 {competitionSeeds.map((item, i) => (
                   <MenuItem value={item.idx} key={item.idx}>
                     {item.title}
@@ -181,11 +163,9 @@ const CreateArticleForm = ({ drawerWidth }) => {
             required
             id="summary"
             name="summary"
-            // label="Title"
             fullWidth
             size="small"
             autoComplete="off"
-            // variant="outlined"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
           />
@@ -199,11 +179,9 @@ const CreateArticleForm = ({ drawerWidth }) => {
             id="file"
             name="file"
             type="file"
-            // label="Title"
             fullWidth
             size="small"
             autoComplete="off"
-            // variant="outlined"
             onChange={(e) => setFiles(e.target.files)}
           />
         </Grid>
@@ -215,11 +193,9 @@ const CreateArticleForm = ({ drawerWidth }) => {
             required
             id="caption"
             name="caption"
-            // label="Title"
             fullWidth
             size="small"
             autoComplete="off"
-            // variant="outlined"
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
           />

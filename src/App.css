@@ -14,3 +14,7 @@
   margin-top: 1rem !important;
   color: var(--palette-black-light)
 }
+
+.close-icon:hover {
+  cursor: pointer;
+  }

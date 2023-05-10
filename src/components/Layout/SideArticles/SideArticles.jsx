@@ -36,10 +36,12 @@ const SideArticles = () => {
             {articles?.length === 0 && <span>{"There's no content to load yet."}</span>}
             {isLoading && <ArticlesLoader />}
             {temp &&
-              temp.map(({ id, title, caption, file, updatedAt }, i) => (
+              temp.map(({ _id, title, topic, caption, file, updatedAt }, i) => (
                 <ArticleCard
-                  key={id}
+                  id={_id}
+                  key={_id}
                   title={title}
+                  topic={topic}
                   file={file}
                   caption={caption}
                   date={updatedAt}

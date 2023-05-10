@@ -2,7 +2,8 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
-import { Typography, Grid, Button, Card, CardMedia, CardActions, CardContent } from '@mui/material';
+import { Button, Card, CardMedia, CardActions, CardContent } from '@mui/material';
+import competitionSeeds from '../../../seeds/competitions';
 import './ArticleCard.css';
 
 const RedirectButton = styled(Button)(({ theme }) => ({
@@ -38,7 +39,7 @@ const Actions = styled(CardActions)(({ theme }) => ({
   justifyContent: 'end'
 }));
 
-const ArticleCard = ({ key, title, file, caption, date }) => {
+const ArticleCard = ({ id, title, topic, file, caption, date }) => {
   const formattedPath = file?.replaceAll('\\', '/');
   const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
 
@@ -46,15 +47,18 @@ const ArticleCard = ({ key, title, file, caption, date }) => {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const formattedDate = getDate?.toDateString('en-US', options);
 
+  const competition = competitionSeeds.filter((competition) => competition.idx == topic);
+  const code = competition[0].code;
+
   return (
-    <Card key={key} sx={{ borderRadius: 0 }}>
+    <Card key={id} sx={{ borderRadius: 0 }}>
       <CardMedia sx={{ height: 140 }} image={URL} title={caption} />
       <Content>
         <span>{title}</span>
         <span>Posted on {formattedDate}</span>
       </Content>
       <Actions>
-        <RedirectButton>Read the article</RedirectButton>
+        <RedirectButton href={`/news/${code}/${id}`}>Read the article</RedirectButton>
       </Actions>
     </Card>
   );

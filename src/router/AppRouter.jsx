@@ -26,6 +26,7 @@ import LazyLoad from '../components/Loaders/Lazy/LazyLoad';
 import { ErrorBoundary } from 'react-error-boundary';
 import Message from '../components/Screens/Message';
 import IsMod from './ProtectedRoutes/IsMod';
+import NewsPage from '../pages/NewsPage/NewsPage';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 const isMod = JSON.parse(localStorage.getItem('isMod'));
@@ -52,6 +53,7 @@ const AppRouter = () => {
                 <Route path="/competitions/:code/matches" element={<Matches />} />
                 <Route path="/matchhistory" element={<Match />} />
                 <Route path="/news" element={<News />} />
+                <Route path="/news/:code/:id" element={<NewsPage />} />
                 <Route path="/secret-login" element={<Login />} />
                 <Route element={<IsLogged auth={auth} />}>
                   <Route

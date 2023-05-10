@@ -14,14 +14,14 @@ const Layout = ({ children, path }) => {
   };
 
   const showLastArticles = () => {
-    if (path === '/secret-login' || path === '/news' || path.includes('backoffice')) {
+    if (path === '/secret-login' || path.includes('news') || path.includes('backoffice')) {
       return null;
     }
     return <SideArticles />;
   };
 
   const ContentWrapper = ({ children }) => {
-    return path === '/news' ? <Box>{children}</Box> : <Row>{children}</Row>;
+    return path.includes('news') ? <Box>{children}</Box> : <Row>{children}</Row>;
   };
 
   return (

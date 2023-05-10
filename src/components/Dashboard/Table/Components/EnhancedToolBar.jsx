@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IconButton, Toolbar, Tooltip, Typography, useTheme } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { styled } from '@mui/material/styles';
+import ConfirmationModal from '../../../Modal/Confirmation/Confirmation';
 
 const CustomToolbar = styled(Toolbar)(({ theme }) => ({
   justifyContent: 'end',
@@ -29,6 +30,12 @@ const EnhancedToolBar = (props) => {
   const { numSelected } = props;
   const { palette } = useTheme();
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+
+  const message = 'Supprimer le modérateur';
+  const content = 'Êtes-vous sûr de vouloir supprimer cet élément ?';
+
   return (
     <CustomToolbar
       sx={{
@@ -50,8 +57,9 @@ const EnhancedToolBar = (props) => {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton onClick={handleOpen}>
             <DeleteIcon sx={{ color: palette?.white?.main }} />
+            <ConfirmationModal setOpen={setOpen} open={open} message={message} content={content} />
           </IconButton>
         </Tooltip>
       ) : (
