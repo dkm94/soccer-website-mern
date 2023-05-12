@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { Button, Card, CardMedia, CardActions, CardContent } from '@mui/material';
 import competitionSeeds from '../../../seeds/competitions';
 import './ArticleCard.css';
+import getFormattedDate from '../../../utils/getFormattedDate';
 
 const RedirectButton = styled(Button)(({ theme }) => ({
   fontSize: 'inherit',
@@ -43,9 +44,7 @@ const ArticleCard = ({ id, title, topic, file, caption, date }) => {
   const formattedPath = file?.replaceAll('\\', '/');
   const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
 
-  const getDate = new Date(date);
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const formattedDate = getDate?.toDateString('en-US', options);
+  const formattedDate = getFormattedDate('short', date);
 
   const competition = competitionSeeds.filter((competition) => competition.idx == topic);
   const code = competition[0]?.code;

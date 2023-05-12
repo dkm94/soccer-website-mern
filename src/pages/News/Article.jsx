@@ -3,6 +3,7 @@ import { CardMedia, Grid, Typography, styled, Button, Box, useTheme } from '@mui
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import competitionSeeds from '../../seeds/competitions';
 import './Article.css';
+import getFormattedDate from '../../utils/getFormattedDate';
 
 const EditButton = styled(Button)(({ theme }) => ({
   marginTop: '1rem',
@@ -50,9 +51,7 @@ const Article = ({ article, profileId, path }) => {
   const formattedPath = file?.replaceAll('\\', '/');
   const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
 
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const date = new Date(createdAt);
-  const formattedDate = date.toLocaleDateString('en-UK', options);
+  const date = getFormattedDate('long', createdAt);
 
   const competition = competitionSeeds.filter((competition) => competition.idx == topic);
   const code = competition[0]?.code;
@@ -87,7 +86,7 @@ const Article = ({ article, profileId, path }) => {
       <SummaryText variant="body2" gutterBottom>
         {summary}
       </SummaryText>
-      <ArticleDate gutterBottom>Written on {formattedDate} </ArticleDate>
+      <ArticleDate gutterBottom>Written on {date} </ArticleDate>
     </Grid>
   );
 };
