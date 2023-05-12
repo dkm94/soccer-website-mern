@@ -1,5 +1,6 @@
 import React from 'react';
-import { CardMedia, Grid, Typography, styled, Button, Box } from '@mui/material';
+import { CardMedia, Grid, Typography, styled, Button, Box, useTheme } from '@mui/material';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import competitionSeeds from '../../seeds/competitions';
 import './Article.css';
 
@@ -43,21 +44,34 @@ const ArticleDate = styled(Typography)(({ theme }) => ({
   color: theme.palette.grey.main
 }));
 
-const Article = ({ article, profileId }) => {
-  const { _id, title, createdAt, file, topic, summary, id_profile } = article;
+const Article = ({ article, profileId, path }) => {
+  const { palette } = useTheme();
+  const { _id, title, createdAt, file, topic, summary, id_profile, online } = article;
   const formattedPath = file?.replaceAll('\\', '/');
   const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
 
-  console.log('🚀 ~ file: Article.jsx:51 ~ Article ~ URL:', URL);
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const date = new Date(createdAt);
   const formattedDate = date.toLocaleDateString('en-UK', options);
 
   const competition = competitionSeeds.filter((competition) => competition.idx == topic);
-  const code = competition[0].code;
+  const code = competition[0]?.code;
+
+  const showStatus = path && path.startsWith('/backoffice');
 
   return (
     <Grid item key={_id} xs={12} md={4} className="news__article-card">
+      {showStatus && (
+        <Box sx={{ display: 'flex', alignSelf: 'end', marginBottom: '1rem' }}>
+          <div className="article-status">
+            <FiberManualRecordIcon
+              fontSize="small"
+              style={{ color: online ? palette.green.main : palette.primary.main }}
+            />
+            {online ? 'online' : 'offline'}
+          </div>
+        </Box>
+      )}
       <CardMedia sx={{ height: 140 }} image={URL} title={title} />
       {profileId === id_profile && (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>

@@ -28,7 +28,7 @@ const backofficeComponent = () => {
     case '/backoffice/articles/create':
       return <CreateArticleForm drawerWidth={drawerWidth} />;
     case `/backoffice/articles/author/${profileId}`:
-      return <MyArticles drawerWidth={drawerWidth} profileId={profileId} />;
+      return <MyArticles drawerWidth={drawerWidth} profileId={profileId} path={path} />;
     case `/backoffice/articles/edit/${id}`:
       return <UpdateArticleForm drawerWidth={drawerWidth} />;
     default:

@@ -48,10 +48,10 @@ const ArticleCard = ({ id, title, topic, file, caption, date }) => {
   const formattedDate = getDate?.toDateString('en-US', options);
 
   const competition = competitionSeeds.filter((competition) => competition.idx == topic);
-  const code = competition[0].code;
+  const code = competition[0]?.code;
 
   return (
-    <Card key={id} sx={{ borderRadius: 0 }}>
+    <Card key={id} className="article-card">
       <CardMedia sx={{ height: 140 }} image={URL} title={caption} />
       <Content>
         <span>{title}</span>

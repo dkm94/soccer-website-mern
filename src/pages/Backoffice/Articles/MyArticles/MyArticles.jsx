@@ -20,7 +20,7 @@ const SelectWrapper = styled(Container)({
   }
 });
 
-const MyArticles = ({ drawerWidth, profileId }) => {
+const MyArticles = ({ drawerWidth, profileId, path }) => {
   const { palette } = useTheme();
 
   const {
@@ -63,7 +63,7 @@ const MyArticles = ({ drawerWidth, profileId }) => {
         </Grid>
         <Grid container spacing={2}>
           {thisUserArticles?.map((article) => (
-            <Article key={article.id} article={article} profileId={profileId} />
+            <Article key={article.id} article={article} profileId={profileId} path={path} />
           ))}
           <Grid mt={8}>
             {thisUserArticles?.length === 0 && (

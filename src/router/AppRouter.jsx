@@ -75,7 +75,7 @@ const AppRouter = () => {
                         FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
                         onReset={() => (window.location.href = '/backoffice')}>
                         <Suspense fallback={<LazyLoad />}>
-                          <Admin />
+                          <Admin path={path} />
                         </Suspense>
                       </ErrorBoundary>
                     }

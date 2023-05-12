@@ -35,7 +35,6 @@ const NewsPage = () => {
   const imageURL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
 
   const competition = competitionSeeds.filter((competition) => competition.idx == article?.topic);
-
   const options = {
     weekday: 'long',
     year: 'numeric',

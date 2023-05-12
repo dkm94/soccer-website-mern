@@ -32,8 +32,8 @@ const getReportedComments = () => {
 };
 
 const createPost = async ({ online, title, topic, summary, file, caption, content }) => {
-  // deplacer le code dans le try
-  console.log('🚀 ~ file: mods_queries.js:35 ~ createPost ~ file:', file);
+  // faire les checks à la main ou avec YUP
+  // le non respect des limites de caractères cause l'erreur 502 Bad Gateway
   try {
     const url = `${BASE_URL}/mod/articles/create`;
     const form = new FormData();
@@ -41,7 +41,7 @@ const createPost = async ({ online, title, topic, summary, file, caption, conten
     form.set('title', title);
     form.set('topic', topic);
     form.set('summary', summary);
-    if (file?.[0]) {
+    if (file) {
       form.set('file', file?.[0]);
     }
     form.set('caption', caption);
@@ -51,6 +51,7 @@ const createPost = async ({ online, title, topic, summary, file, caption, conten
       'Content-Type': 'multipart/form-data'
     };
     const { data } = await axios.post(url, form, { headers: customHeaders });
+    console.log('🚀 ~ file: mods_queries.js:54 ~ createPost ~ data:', data);
     return data;
   } catch (e) {
     throw new Error(e);
