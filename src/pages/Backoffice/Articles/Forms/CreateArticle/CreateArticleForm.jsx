@@ -11,11 +11,14 @@ import {
   FormControl,
   MenuItem,
   FormControlLabel,
-  Switch
+  Switch,
+  Snackbar
 } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import { useMutation } from 'react-query';
 import { useTheme } from '@mui/material';
 import { createPost } from '../../../../../services/queries/mods_queries';
+import { useCreatePost } from '../../../../../services/mutations/useCreatePost';
 import competitionSeeds from '../../../../../seeds/competitions';
 import ReactQuill from 'react-quill';
 import './CreateArticleForm.css';
@@ -60,6 +63,10 @@ const formats = [
   'color'
 ];
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const CreateArticleForm = ({ drawerWidth }) => {
   const profileId = JSON.parse(localStorage.getItem('profileId'));
 
@@ -73,18 +80,18 @@ const CreateArticleForm = ({ drawerWidth }) => {
   const [caption, setCaption] = useState('');
   const [content, setContent] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
 
-  const mutation = useMutation({
-    mutationFn: createPost,
-    onError: (error, variables, context) => {
-      setErrorMessage(error.message);
-    },
-    onSuccess: (data, variables, context) => {
-      // success toast
-      alert('Post ok!');
-      window.location.href = `/backoffice/articles/author/${profileId}`;
+  const mutation = useCreatePost(setSuccessMessage, setOpenSuccess, setOpenError);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
     }
-  });
+    setOpenSuccess(false);
+  };
 
   const submitPost = (e) => {
     e.preventDefault();
@@ -220,6 +227,16 @@ const CreateArticleForm = ({ drawerWidth }) => {
           <Button type="submit">{mutation.isLoading ? 'Uploading...' : 'Create post'}</Button>
         </Grid>
       </Grid>
+      <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
+        <Alert severity="success" sx={{ width: '100%' }}>
+          {successMessage}
+        </Alert>
+      </Snackbar>
+      {/* <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          {successMessage}
+        </Alert>
+      </Snackbar> */}
     </Box>
   );
 };

@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import { useQuery } from 'react-query';
 import { getUsers } from '../../../services/queries/public_queries';
 import { getArticles } from '../../../services/queries/public_queries';
-import { getReportedComments } from '../../../services/queries/mods_queries';
+// import { getReportedComments } from '../../../services/queries/mods_queries';
 import Suspense from '../../Loaders/Animation/Suspense/Suspense';
 import './Card.css';
 
@@ -20,8 +20,8 @@ const Item = styled(Paper)(({ theme }) => ({
 const Card = ({ title, icon, collection, wip }) => {
   const getResource = {
     users: getUsers,
-    articles: getArticles,
-    comments: getReportedComments
+    articles: getArticles
+    // comments: getReportedComments
   };
 
   const {

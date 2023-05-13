@@ -3,33 +3,33 @@ import axios from 'axios';
 const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
 // const BASE_URL = 'http://localhost:3001';
 const token = localStorage.getItem('token');
-const authorization = { Authorization: `Bearer ${token}` };
+// const authorization = { Authorization: `Bearer ${token}` };
 
-const getReportedComments = () => {
-  const url = `${BASE_URL}/mod/comments/reported/`;
-  const config = {
-    method: 'get',
-    url,
-    headers: authorization
-  };
-  return axios(config)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      if (error.response) {
-        console.log('Error', error);
-        // Request made and server responded
-        console.log(error.response.data);
-      } else if (error.request) {
-        // The request was made but no response was received
-        console.log(error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log('Error', error.message);
-      }
-    });
-};
+// const getReportedComments = () => {
+//   const url = `${BASE_URL}/mod/comments/reported/`;
+//   const config = {
+//     method: 'get',
+//     url,
+//     headers: authorization
+//   };
+//   return axios(config)
+//     .then((response) => {
+//       return response.data;
+//     })
+//     .catch((error) => {
+//       if (error.response) {
+//         console.log('Error', error);
+//         // Request made and server responded
+//         console.log(error.response.data);
+//       } else if (error.request) {
+//         // The request was made but no response was received
+//         console.log(error.request);
+//       } else {
+//         // Something happened in setting up the request that triggered an Error
+//         console.log('Error', error.message);
+//       }
+//     });
+// };
 
 const createPost = async ({ online, title, topic, summary, file, caption, content }) => {
   // faire les checks à la main ou avec YUP
@@ -51,10 +51,15 @@ const createPost = async ({ online, title, topic, summary, file, caption, conten
       'Content-Type': 'multipart/form-data'
     };
     const { data } = await axios.post(url, form, { headers: customHeaders });
-    console.log('🚀 ~ file: mods_queries.js:54 ~ createPost ~ data:', data);
     return data;
-  } catch (e) {
-    throw new Error(e);
+  } catch (error) {
+    let errors = [];
+
+    Object.values(error.response.data).forEach((value) => {
+      errors.push(value);
+    });
+
+    throw new Error(errors);
   }
 };
 
@@ -100,4 +105,4 @@ const deletePost = async (_id) => {
   }
 };
 
-export { getReportedComments, createPost, editPost, deletePost };
+export { createPost, editPost, deletePost };

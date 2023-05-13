@@ -61,7 +61,7 @@ const Article = ({ article, profileId, path }) => {
   return (
     <Grid item key={_id} xs={12} md={4} className="news__article-card">
       {showStatus && (
-        <Box sx={{ display: 'flex', alignSelf: 'end', marginBottom: '1rem' }}>
+        <Box sx={{ display: 'flex', alignSelf: 'end', marginBottom: '0.5rem' }}>
           <div className="article-status">
             <FiberManualRecordIcon
               fontSize="small"
