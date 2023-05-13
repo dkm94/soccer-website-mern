@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { useMutation } from 'react-query';
-import { createPost } from '../queries/mods_queries';
+import { createPost } from '../../queries/mods_queries';
 
-export const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError) => {
+export const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError, setErrorMessage) => {
   const profileId = JSON.parse(localStorage.getItem('profileId'));
 
   return useMutation({
     mutationFn: createPost,
     onError: (error, newObject, context) => {
-      console.log('🚀 ~ file: useCreatePost.js:23 ~ useCreatePost ~ error:', error);
-      setOpenError();
+      setOpenError(true);
+      setErrorMessage('Request has failed');
     },
     onSuccess: (data, variables, context) => {
       const { message } = data;

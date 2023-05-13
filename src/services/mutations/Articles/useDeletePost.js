@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from 'react-query';
-import { deletePost } from '../queries/mods_queries';
+import { deletePost } from '../../queries/mods_queries';
 
 export const useDeletePost = () => {
   const queryClient = useQueryClient();
   const profileId = JSON.parse(localStorage.getItem('profileId'));
 
   return useMutation({
-    // mutationFn: () => editPost(id),
     mutationFn: deletePost,
     onMutate: async (deletedObj) => {
       await queryClient.cancelQueries({ queryKey: ['articles', deletedObj._id] });

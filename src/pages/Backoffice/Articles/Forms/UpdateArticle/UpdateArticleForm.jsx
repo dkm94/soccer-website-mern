@@ -15,7 +15,7 @@ import {
   styled
 } from '@mui/material';
 import { useQuery } from 'react-query';
-import { useEditPost } from '../../../../../services/mutations/useEditPost';
+import { useEditPost } from '../../../../../services/mutations/Articles/useEditPost';
 import { useTheme } from '@mui/material';
 import ReactQuill from 'react-quill';
 import './UpdateArticleForm.css';
@@ -23,7 +23,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useParams } from 'react-router-dom';
 import { getArticle } from '../../../../../services/queries/public_queries';
 import competitionSeeds from '../../../../../seeds/competitions';
-import { useDeletePost } from '../../../../../services/mutations/useDeletePost';
+import { useDeletePost } from '../../../../../services/mutations/Articles/useDeletePost';
 
 const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: '1rem',

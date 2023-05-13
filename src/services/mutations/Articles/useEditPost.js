@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from 'react-query';
-import { editPost } from '../queries/mods_queries';
+import { editPost } from '../../queries/mods_queries';
 
 export const useEditPost = () => {
   const queryClient = useQueryClient();

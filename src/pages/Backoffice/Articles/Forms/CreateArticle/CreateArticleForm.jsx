@@ -18,7 +18,7 @@ import MuiAlert from '@mui/material/Alert';
 import { useMutation } from 'react-query';
 import { useTheme } from '@mui/material';
 import { createPost } from '../../../../../services/queries/mods_queries';
-import { useCreatePost } from '../../../../../services/mutations/useCreatePost';
+import { useCreatePost } from '../../../../../services/mutations/Articles/useCreatePost';
 import competitionSeeds from '../../../../../seeds/competitions';
 import ReactQuill from 'react-quill';
 import './CreateArticleForm.css';
@@ -84,7 +84,11 @@ const CreateArticleForm = ({ drawerWidth }) => {
   const [openError, setOpenError] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  const mutation = useCreatePost(setSuccessMessage, setOpenSuccess, setOpenError);
+  const mutation = useCreatePost(setSuccessMessage, setOpenSuccess, setOpenError, setErrorMessage);
+  console.log(
+    '🚀 ~ file: CreateArticleForm.jsx:88 ~ CreateArticleForm ~ mutation:',
+    typeof mutation.error?.message
+  );
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -97,6 +101,8 @@ const CreateArticleForm = ({ drawerWidth }) => {
     e.preventDefault();
     mutation.mutate({ online, title, topic, summary, file: files, caption, content });
   };
+
+  const result = mutation.error?.message.replace(/,/g, '\n');
 
   return (
     <Box
@@ -220,7 +226,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
         </Grid>
         {mutation.error && (
           <Grid item>
-            <Typography variant="body1">{errorMessage}</Typography>
+            <Typography variant="body1">{result}</Typography>
           </Grid>
         )}
         <Grid container direction="row" justifyContent="flex-end">
@@ -232,11 +238,11 @@ const CreateArticleForm = ({ drawerWidth }) => {
           {successMessage}
         </Alert>
       </Snackbar>
-      {/* <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+      <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
         <Alert severity="error" sx={{ width: '100%' }}>
-          {successMessage}
+          {errorMessage}
         </Alert>
-      </Snackbar> */}
+      </Snackbar>
     </Box>
   );
 };
