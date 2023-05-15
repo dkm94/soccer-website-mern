@@ -52,14 +52,9 @@ const createPost = async ({ online, title, topic, summary, file, caption, conten
     };
     const { data } = await axios.post(url, form, { headers: customHeaders });
     return data;
-  } catch (error) {
-    let errors = [];
-
-    Object.values(error.response.data).forEach((value) => {
-      errors.push(value);
-    });
-
-    throw new Error(errors);
+  } catch (err) {
+    console.log('🚀 ~ file: mods_queries.js:56 ~ createPost ~ err:', err);
+    throw err;
   }
 };
 

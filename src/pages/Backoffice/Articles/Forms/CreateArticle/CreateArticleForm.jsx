@@ -15,9 +15,7 @@ import {
   Snackbar
 } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
-import { useMutation } from 'react-query';
 import { useTheme } from '@mui/material';
-import { createPost } from '../../../../../services/queries/mods_queries';
 import { useCreatePost } from '../../../../../services/mutations/Articles/useCreatePost';
 import competitionSeeds from '../../../../../seeds/competitions';
 import ReactQuill from 'react-quill';
@@ -68,8 +66,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const CreateArticleForm = ({ drawerWidth }) => {
-  const profileId = JSON.parse(localStorage.getItem('profileId'));
-
   const { palette } = useTheme();
 
   const [online, setOnline] = useState(false);
@@ -79,16 +75,12 @@ const CreateArticleForm = ({ drawerWidth }) => {
   const [files, setFiles] = useState('');
   const [caption, setCaption] = useState('');
   const [content, setContent] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState(null);
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  const mutation = useCreatePost(setSuccessMessage, setOpenSuccess, setOpenError, setErrorMessage);
-  console.log(
-    '🚀 ~ file: CreateArticleForm.jsx:88 ~ CreateArticleForm ~ mutation:',
-    typeof mutation.error?.message
-  );
+  const mutation = useCreatePost(setSuccessMessage, setOpenSuccess, setOpenError, setError);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -102,7 +94,10 @@ const CreateArticleForm = ({ drawerWidth }) => {
     mutation.mutate({ online, title, topic, summary, file: files, caption, content });
   };
 
-  const result = mutation.error?.message.replace(/,/g, '\n');
+  let invalidFields;
+  error ? (invalidFields = error.fields) : (invalidFields = []);
+
+  // const isError = error && true;
 
   return (
     <Box
@@ -146,6 +141,8 @@ const CreateArticleForm = ({ drawerWidth }) => {
             autoComplete="off"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            error={invalidFields.includes('title')}
+            // helperText={invalidFields.includes('title') && 'Show error'}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -158,6 +155,8 @@ const CreateArticleForm = ({ drawerWidth }) => {
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
                 displayEmpty
+                name="topic"
+                error={invalidFields.includes('topic')}
                 inputProps={{ 'aria-label': 'Without label' }}>
                 {competitionSeeds.map((item, i) => (
                   <MenuItem value={item.idx} key={item.idx}>
@@ -181,6 +180,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
             autoComplete="off"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
+            error={invalidFields.includes('summary')}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -211,6 +211,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
             autoComplete="off"
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
+            error={invalidFields.includes('caption')}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -226,7 +227,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
         </Grid>
         {mutation.error && (
           <Grid item>
-            <Typography variant="body1">{result}</Typography>
+            <Typography variant="body1">{error?.messages}</Typography>
           </Grid>
         )}
         <Grid container direction="row" justifyContent="flex-end">
@@ -240,7 +241,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
       </Snackbar>
       <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
         <Alert severity="error" sx={{ width: '100%' }}>
-          {errorMessage}
+          {error?.error}
         </Alert>
       </Snackbar>
     </Box>

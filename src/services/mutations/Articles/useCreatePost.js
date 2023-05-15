@@ -2,14 +2,16 @@
 import { useMutation } from 'react-query';
 import { createPost } from '../../queries/mods_queries';
 
-export const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError, setErrorMessage) => {
+export const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError, setError) => {
   const profileId = JSON.parse(localStorage.getItem('profileId'));
 
   return useMutation({
     mutationFn: createPost,
     onError: (error, newObject, context) => {
+      const errorObject = error.response.data;
       setOpenError(true);
-      setErrorMessage('Request has failed');
+      errorObject['error'] = 'Request has failed';
+      setError(errorObject);
     },
     onSuccess: (data, variables, context) => {
       const { message } = data;
