@@ -78,6 +78,7 @@ const NewsPage = () => {
               <Typography variant="caption" display="block" gutterBottom>
                 {article?.caption}
               </Typography>
+              <div>{article?.content}</div>
             </Box>
           </Container>
         </MainContent>

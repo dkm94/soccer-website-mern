@@ -14,6 +14,7 @@ import {
   MenuItem,
   styled
 } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useQuery } from 'react-query';
 import { useEditPost } from '../../../../../services/mutations/Articles/useEditPost';
 import { useTheme } from '@mui/material';
@@ -24,6 +25,7 @@ import { useParams } from 'react-router-dom';
 import { getArticle } from '../../../../../services/queries/public_queries';
 import competitionSeeds from '../../../../../seeds/competitions';
 import { useDeletePost } from '../../../../../services/mutations/Articles/useDeletePost';
+import UploadButton from '../../../../../components/Buttons/Upload/UploadButton';
 
 const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: '1rem',
@@ -183,10 +185,6 @@ const UpdateArticleForm = ({ drawerWidth }) => {
                 onChange={(e) => setTopic(e.target.value)}
                 displayEmpty
                 inputProps={{ 'aria-label': 'Without label' }}>
-                {/* <MenuItem value="ALL">All games</MenuItem>
-                <MenuItem value="FINISHED">Completed games</MenuItem>
-                <MenuItem value="TIMED">Timed games</MenuItem>
-                <MenuItem value="SCHEDULED">Scheduled games</MenuItem> */}
                 {competitionSeeds.map((item, i) => (
                   <MenuItem value={item.idx} key={item.idx}>
                     {item.title}
@@ -216,19 +214,8 @@ const UpdateArticleForm = ({ drawerWidth }) => {
         <Grid item xs={12} sm={2}>
           <InputLabel>Image</InputLabel>
         </Grid>
-        <Grid item xs={12} sm={10}>
-          <TextField
-            required
-            id="file"
-            name="file"
-            type="file"
-            // label="Title"
-            fullWidth
-            size="small"
-            autoComplete="off"
-            // variant="outlined"
-            onChange={(e) => setFiles(e.target.files)}
-          />
+        <Grid item xs={12} sm={10} style={{ display: 'flex', flexDirection: 'row' }}>
+          <UploadButton getFiles={setFiles} files={files} />
         </Grid>
         <Grid item xs={12} sm={2}>
           <InputLabel>Image caption</InputLabel>

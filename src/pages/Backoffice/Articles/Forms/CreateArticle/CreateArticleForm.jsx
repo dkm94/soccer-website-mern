@@ -15,7 +15,6 @@ import {
   Snackbar,
   styled
 } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import MuiAlert from '@mui/material/Alert';
 import { useTheme } from '@mui/material';
 import { useCreatePost } from '../../../../../services/mutations/Articles/useCreatePost';
@@ -23,6 +22,7 @@ import competitionSeeds from '../../../../../seeds/competitions';
 import ReactQuill from 'react-quill';
 import './CreateArticleForm.css';
 import 'react-quill/dist/quill.snow.css';
+import UploadButton from '../../../../../components/Buttons/Upload/UploadButton';
 
 const modules = {
   toolbar: [
@@ -70,17 +70,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const SubmitButton = styled(Button)(({ theme }) => ({
   textTransform: 'unset',
   marginTop: '2rem'
-}));
-
-const UploadText = styled(Typography)(({ theme }) => ({
-  placeSelf: 'center',
-  marginLeft: '1rem'
-}));
-
-const UploadLabel = styled('label')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'row',
-  placeItems: 'center'
 }));
 
 const CreateArticleForm = ({ drawerWidth }) => {
@@ -206,35 +195,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
           <InputLabel>Image</InputLabel>
         </Grid>
         <Grid item xs={12} sm={10} style={{ display: 'flex', flexDirection: 'row' }}>
-          <UploadLabel htmlFor="file">
-            <input
-              style={{ display: 'none' }}
-              id="file"
-              name="file"
-              type="file"
-              onChange={(e) => setFiles(e.target.files)}
-            />
-            {files[0] ? (
-              <Button
-                color="success"
-                variant="contained"
-                component="span"
-                id="upload-file-btn"
-                style={{ width: '10rem' }}
-                endIcon={<CheckCircleIcon style={{ color: '#fff' }} />}>
-                Choose file
-              </Button>
-            ) : (
-              <Button color="secondary" variant="contained" component="span" id="upload-file-btn">
-                Choose file
-              </Button>
-            )}
-            {files[0] ? (
-              <UploadText variant="body1">{files[0]?.name}</UploadText>
-            ) : (
-              <UploadText variant="body1">No file chosen</UploadText>
-            )}
-          </UploadLabel>
+          <UploadButton getFiles={setFiles} files={files} />
         </Grid>
         <Grid item xs={12} sm={2}>
           <InputLabel>Image caption</InputLabel>

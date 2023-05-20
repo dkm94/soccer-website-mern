@@ -32,8 +32,6 @@ const token = localStorage.getItem('token');
 // };
 
 const createPost = async ({ online, title, topic, summary, file, caption, content }) => {
-  // faire les checks à la main ou avec YUP
-  // le non respect des limites de caractères cause l'erreur 502 Bad Gateway
   try {
     const url = `${BASE_URL}/mod/articles/create`;
     const form = new FormData();
@@ -56,7 +54,7 @@ const createPost = async ({ online, title, topic, summary, file, caption, conten
     });
     return data;
   } catch (err) {
-    console.log('🚀 ~ file: mods_queries.js:56 ~ createPost ~ err:', err);
+    console.error(err);
     throw err;
   }
 };

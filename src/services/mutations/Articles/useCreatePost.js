@@ -10,7 +10,6 @@ export const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError, s
     onError: (error, newObject, context) => {
       const errorObject = error.response.data;
       setOpenError(true);
-      // errorObject['error'] = 'Request has failed';
       setError(errorObject);
     },
     onSuccess: (data, variables, context) => {
