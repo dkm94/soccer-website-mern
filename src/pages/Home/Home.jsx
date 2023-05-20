@@ -34,9 +34,9 @@ const Home = () => {
     error,
     data: matches
   } = useQuery({
-    staleTime: Infinity,
+    // staleTime: Infinity,
     queryKey: ['matches'],
-    queryFn: ({ signal }) => getRessources('matches', signal)
+    queryFn: () => getRessources('matches')
   });
 
   const [competition, setCompetition] = useState('');

@@ -27,52 +27,22 @@ import { getArticle } from '../../../../../services/queries/public_queries';
 import competitionSeeds from '../../../../../seeds/competitions';
 import { useDeletePost } from '../../../../../services/mutations/Articles/useDeletePost';
 import UploadButton from '../../../../../components/Buttons/Upload/UploadButton';
+import modules from '../../../../../utils/quillVars/modules';
+import formats from '../../../../../utils/quillVars/formats';
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  marginTop: '1rem',
-  backgroundColor: theme.palette.primary.main,
+const SubmitButton = styled(Button)(({ theme }) => ({
+  // marginTop: '2rem',
+  backgroundColor: theme.palette.black.dark,
   width: 'fit-content',
   textTransform: 'unset'
 }));
 
-const modules = {
-  toolbar: [
-    ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-    ['blockquote', 'code-block'],
-
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: 'ordered' }, { list: 'bullet' }],
-    [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-    [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-    [{ direction: 'rtl' }], // text direction
-
-    [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }],
-    [{ align: [] }],
-
-    ['clean'] // remove formatting button
-  ]
-};
-
-const formats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'list',
-  'bullet',
-  'indent',
-  'link',
-  'image',
-  'color'
-];
+const DeleteButton = styled(Button)(({ theme }) => ({
+  // marginTop: '2rem',
+  // backgroundColor: theme.palette.primary.main,
+  width: 'fit-content',
+  textTransform: 'unset'
+}));
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -277,15 +247,17 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             onChange={(newContent) => setContent(newContent)}
             modules={modules}
             formats={formats}
+            placeholder="Write something"
           />
         </Grid>
-        <Grid container direction="row" justifyContent="space-evenly" marginTop={'3rem'}>
-          <StyledButton type="submit" variant="contained" size="small">
-            {mutation.isLoading ? 'Uploading...' : 'Edit post'}
-          </StyledButton>
-          <StyledButton variant="contained" size="small" onClick={deletePost}>
+        <Grid item xs={12} sm={2} />
+        <Grid item xs={12} sm={10} direction="row" display={'flex'} justifyContent="space-between">
+          <DeleteButton variant="outlined" onClick={deletePost}>
             {deleteMutation.isLoading ? 'Uploading...' : 'Delete post'}
-          </StyledButton>
+          </DeleteButton>
+          <SubmitButton type="submit" variant="contained">
+            {mutation.isLoading ? 'Uploading...' : 'Edit post'}
+          </SubmitButton>
         </Grid>
         <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
           <Alert severity="success" sx={{ width: '100%' }}>

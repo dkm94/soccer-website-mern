@@ -23,45 +23,8 @@ import ReactQuill from 'react-quill';
 import './CreateArticleForm.css';
 import 'react-quill/dist/quill.snow.css';
 import UploadButton from '../../../../../components/Buttons/Upload/UploadButton';
-
-const modules = {
-  toolbar: [
-    ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-    ['blockquote', 'code-block'],
-
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: 'ordered' }, { list: 'bullet' }],
-    [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-    [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-    [{ direction: 'rtl' }], // text direction
-
-    [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }],
-    [{ align: [] }],
-
-    ['clean'] // remove formatting button
-  ]
-};
-
-const formats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'list',
-  'bullet',
-  'indent',
-  'link',
-  'image',
-  'color'
-];
+import formats from '../../../../../utils/quillVars/formats';
+import modules from '../../../../../utils/quillVars/modules';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -69,7 +32,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   textTransform: 'unset',
-  marginTop: '2rem'
+  marginTop: '2rem',
+  backgroundColor: theme.palette.black.dark
 }));
 
 const CreateArticleForm = ({ drawerWidth }) => {
@@ -223,10 +187,11 @@ const CreateArticleForm = ({ drawerWidth }) => {
             onChange={(newContent) => setContent(newContent)}
             modules={modules}
             formats={formats}
+            placeholder="Write something"
           />
         </Grid>
         <Grid container direction="row" justifyContent="flex-end">
-          <SubmitButton type="submit" variant="contained" color="black">
+          <SubmitButton type="submit" variant="contained">
             {mutation.isLoading ? 'Uploading...' : 'Create post'}
           </SubmitButton>
         </Grid>

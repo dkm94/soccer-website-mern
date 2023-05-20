@@ -16,7 +16,7 @@ export {
   getScoreBoard
 };
 
-async function getRessources(name, signal) {
+async function getRessources(name) {
   try {
     const url = `${corsEveryhere}/${BASE_URL}/${apiVersion}/${name}`;
     const config = {
@@ -25,8 +25,8 @@ async function getRessources(name, signal) {
       headers: {
         'X-Auth-Token': `${tokenAPI}`,
         'X-Response-Control': 'full'
-      },
-      signal
+      }
+      // signal
     };
     const { data } = await axios(config);
     return data[`${name}`];
