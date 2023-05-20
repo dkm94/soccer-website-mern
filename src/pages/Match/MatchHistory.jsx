@@ -8,7 +8,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Match.css';
 
-import { getMatches } from '../../services/soccerapi_services';
+import { getMatches } from '../../services/publicAPIs/soccerapi_services';
 import {
   Typography,
   styled,

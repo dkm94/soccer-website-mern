@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import usePagination from '../../hooks/usePagination';
 import { Col } from 'react-bootstrap';
-import { getRessources } from '../../services/soccerapi_services';
+import { getRessources } from '../../services/publicAPIs/soccerapi_services';
 import './Home.css';
 import '../../App.css';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
@@ -34,8 +34,9 @@ const Home = () => {
     error,
     data: matches
   } = useQuery({
+    staleTime: Infinity,
     queryKey: ['matches'],
-    queryFn: () => getRessources('matches')
+    queryFn: ({ signal }) => getRessources('matches', signal)
   });
 
   const [competition, setCompetition] = useState('');
@@ -70,7 +71,7 @@ const Home = () => {
         <MainContent title={"Today's games"}>
           <StyledContainer>
             {matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={true} />}
-            {isError && <Message error={error} img={true} />}
+            {isError && <Message code={'DEFAULT_ERROR'} img={true} error={error} />}
             {matches && matches?.length > 0 && (
               <SelectWrapper>
                 <Select

@@ -50,7 +50,10 @@ const createPost = async ({ online, title, topic, summary, file, caption, conten
       Authorization: `Bearer ${token}`,
       'Content-Type': 'multipart/form-data'
     };
-    const { data } = await axios.post(url, form, { headers: customHeaders });
+    const { data } = await axios.post(url, form, {
+      headers: customHeaders,
+      signal: new AbortController().signal
+    });
     return data;
   } catch (err) {
     console.log('🚀 ~ file: mods_queries.js:56 ~ createPost ~ err:', err);
@@ -86,7 +89,6 @@ const editPost = async ({ _id, online, title, topic, summary, file, caption, con
 };
 
 const deletePost = async (_id) => {
-  console.log('🚀 ~ file: mods_queries.js:88 ~ deletePost ~ _id:', _id);
   const url = `${BASE_URL}/mod/articles/delete/${_id}`;
   const customHeaders = {
     Authorization: `Bearer ${token}`,

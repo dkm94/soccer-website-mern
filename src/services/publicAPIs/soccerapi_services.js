@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiVersion = 'v4';
-const BASE_URL = 'http://api.football-data.org/';
+const BASE_URL = 'https://api.football-data.org';
 // eslint-disable-next-line no-undef
 const tokenAPI = process.env.REACT_APP_API_FOOTBALL_TOKEN;
 const corsEveryhere = 'https://mycorsproxy-dkm.herokuapp.com';
@@ -16,15 +16,23 @@ export {
   getScoreBoard
 };
 
-async function getRessources(name) {
-  const url = `${corsEveryhere}/${BASE_URL}/${apiVersion}/${name}`;
-  const config = {
-    method: 'get',
-    url,
-    headers: { 'X-Auth-Token': `${tokenAPI}` }
-  };
-  const { data } = await axios(config);
-  return data[`${name}`];
+async function getRessources(name, signal) {
+  try {
+    const url = `${corsEveryhere}/${BASE_URL}/${apiVersion}/${name}`;
+    const config = {
+      method: 'get',
+      url,
+      headers: {
+        'X-Auth-Token': `${tokenAPI}`,
+        'X-Response-Control': 'full'
+      },
+      signal
+    };
+    const { data } = await axios(config);
+    return data[`${name}`];
+  } catch (error) {
+    throw new Error('Failed to fetch data from API Football data server', error);
+  }
 }
 
 function getCount(name) {

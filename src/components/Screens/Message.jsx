@@ -21,10 +21,11 @@ const MessageContent = styled(Typography)({
 const Btn = styled(Button)(({ theme }) => ({
   textTransform: 'unset',
   backgroundColor: theme.palette.black.light,
-  color: theme.palette.black.contrastText
+  color: theme.palette.black.contrastText,
+  margin: '2rem'
 }));
 
-const Message = ({ code, img }) => {
+const Message = ({ code, img, error }) => {
   const message = messages[code];
 
   const refreshPage = () => window.location.reload();
@@ -50,7 +51,7 @@ const Message = ({ code, img }) => {
         </ImageWrapper>
       )}
       <MessageType variant="body1">{message?.type}</MessageType>
-      <MessageContent variant="body2">{message?.content}</MessageContent>
+      <MessageContent variant="body2">{error?.message || message?.content}</MessageContent>
       {message?.button && <Btn onClick={refreshPage}>{message?.button.content}</Btn>}
     </Box>
   );

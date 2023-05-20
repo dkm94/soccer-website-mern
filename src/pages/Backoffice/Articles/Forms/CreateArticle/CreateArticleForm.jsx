@@ -13,7 +13,6 @@ import {
   FormControlLabel,
   Switch,
   Snackbar,
-  IconButton,
   styled
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -68,6 +67,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+const SubmitButton = styled(Button)(({ theme }) => ({
+  textTransform: 'unset',
+  marginTop: '2rem'
+}));
+
 const UploadText = styled(Typography)(({ theme }) => ({
   placeSelf: 'center',
   marginLeft: '1rem'
@@ -96,11 +100,9 @@ const CreateArticleForm = ({ drawerWidth }) => {
 
   const mutation = useCreatePost(setSuccessMessage, setOpenSuccess, setOpenError, setError);
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
+  const handleClose = (event) => {
     setOpenSuccess(false);
+    setOpenError(false);
   };
 
   const submitPost = (e) => {
@@ -108,11 +110,12 @@ const CreateArticleForm = ({ drawerWidth }) => {
     mutation.mutate({ online, title, topic, summary, file: files, caption, content });
   };
 
-  let invalidFields;
-  error ? (invalidFields = error.fields) : (invalidFields = []);
-
-  // const isError = error && true;
-  console.log(files[0]);
+  const helperText = (field) => error?.messages[field];
+  const catchError = (field) => {
+    if (error?.messages) {
+      return field in error.messages;
+    }
+  };
 
   return (
     <Box
@@ -156,8 +159,8 @@ const CreateArticleForm = ({ drawerWidth }) => {
             autoComplete="off"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            error={invalidFields.includes('title')}
-            // helperText={invalidFields.includes('title') && 'Show error'}
+            error={catchError('title')}
+            helperText={helperText('title')}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -167,11 +170,11 @@ const CreateArticleForm = ({ drawerWidth }) => {
           <Box sx={{ width: 150 }}>
             <FormControl sx={{ minWidth: 120, ml: 'none' }} size="small">
               <Select
+                required
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
                 displayEmpty
                 name="topic"
-                error={invalidFields.includes('topic')}
                 inputProps={{ 'aria-label': 'Without label' }}>
                 {competitionSeeds.map((item, i) => (
                   <MenuItem value={item.idx} key={item.idx}>
@@ -195,7 +198,8 @@ const CreateArticleForm = ({ drawerWidth }) => {
             autoComplete="off"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
-            error={invalidFields.includes('summary')}
+            error={catchError('summary')}
+            helperText={helperText('summary')}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -245,7 +249,8 @@ const CreateArticleForm = ({ drawerWidth }) => {
             autoComplete="off"
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
-            error={invalidFields.includes('caption')}
+            error={catchError('caption')}
+            helperText={helperText('caption')}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -259,13 +264,10 @@ const CreateArticleForm = ({ drawerWidth }) => {
             formats={formats}
           />
         </Grid>
-        {mutation.error && (
-          <Grid item>
-            <Typography variant="body1">{error?.messages}</Typography>
-          </Grid>
-        )}
         <Grid container direction="row" justifyContent="flex-end">
-          <Button type="submit">{mutation.isLoading ? 'Uploading...' : 'Create post'}</Button>
+          <SubmitButton type="submit" variant="contained" color="black">
+            {mutation.isLoading ? 'Uploading...' : 'Create post'}
+          </SubmitButton>
         </Grid>
       </Grid>
       <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
@@ -275,7 +277,7 @@ const CreateArticleForm = ({ drawerWidth }) => {
       </Snackbar>
       <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
         <Alert severity="error" sx={{ width: '100%' }}>
-          {error?.error}
+          {error?.error.message}
         </Alert>
       </Snackbar>
     </Box>

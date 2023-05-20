@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Col, Row, Image } from 'react-bootstrap';
 import MainContent from '../../../components/Wrappers/MainContent/MainContent';
-import { getScoreBoard } from '../../../services/soccerapi_services';
+import { getScoreBoard } from '../../../services/publicAPIs/soccerapi_services';
 import { useQuery } from 'react-query';
 import './Matches.css';
 import {
