@@ -12,9 +12,10 @@ import {
   FormControl,
   Select,
   MenuItem,
+  Snackbar,
   styled
 } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import MuiAlert from '@mui/material/Alert';
 import { useQuery } from 'react-query';
 import { useEditPost } from '../../../../../services/mutations/Articles/useEditPost';
 import { useTheme } from '@mui/material';
@@ -73,9 +74,34 @@ const formats = [
   'color'
 ];
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const UpdateArticleForm = ({ drawerWidth }) => {
   let { id } = useParams();
-  const mutation = useEditPost();
+
+  const [title, setTitle] = useState('');
+  const [topic, setTopic] = useState('');
+  const [summary, setSummary] = useState('');
+  const [files, setFiles] = useState('');
+  const [caption, setCaption] = useState('');
+  const [online, setOnline] = useState(false);
+  const [content, setContent] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [openError, setOpenError] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  const [tempForm, setTempForm] = useState(null);
+
+  const mutation = useEditPost(
+    setSuccessMessage,
+    setOpenSuccess,
+    setOpenError,
+    setErrorMessage,
+    setTempForm
+  );
   const deleteMutation = useDeletePost();
   const { palette } = useTheme();
 
@@ -90,41 +116,49 @@ const UpdateArticleForm = ({ drawerWidth }) => {
     queryFn: () => getArticle(id),
     onSuccess: (data) => {
       const { online, title, topic, file, summary, caption, content } = data;
-      setOnline(online);
-      setTitle(title);
-      setTopic(topic);
-      setFiles(file);
-      setSummary(summary);
-      setCaption(caption);
-      setContent(content);
-    }
+      if (!tempForm) {
+        setOnline(online);
+        setTitle(title);
+        setTopic(topic);
+        setFiles(file);
+        setSummary(summary);
+        setCaption(caption);
+        setContent(content);
+      } else {
+        setOnline(tempForm?.online);
+        setTitle(tempForm?.title);
+        setTopic(tempForm?.topic);
+        setSummary(tempForm?.summary);
+        setCaption(tempForm?.caption);
+        setContent(tempForm?.content);
+        if (tempForm?.file[0]) {
+          setFiles(tempForm?.files);
+        }
+      }
+    },
+    keepPreviousData: true
   });
 
-  const [title, setTitle] = useState('');
-  const [topic, setTopic] = useState('');
-  const [summary, setSummary] = useState('');
-  const [files, setFiles] = useState('');
-  const [caption, setCaption] = useState('');
-  const [online, setOnline] = useState(false);
-  const [content, setContent] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const handleClose = (event) => {
+    setOpenSuccess(false);
+    setOpenError(false);
+  };
 
   const submitPost = (e) => {
     e.preventDefault();
-    if (!title || !topic || !summary || !files || !caption || !content) {
-      //handle empty with error obj
-      alert('empty field');
-    } else {
-      mutation.mutate(
-        { _id: id, online, title, topic, summary, file: files, caption, content },
-        id
-      );
-    }
+    mutation.mutate({ _id: id, online, title, topic, summary, file: files, caption, content }, id);
   };
 
   const deletePost = (e) => {
     e.preventDefault();
     deleteMutation.mutate(id);
+  };
+
+  const helperText = (field) => error?.messages[field];
+  const catchError = (field) => {
+    if (error?.messages) {
+      return field in error.messages;
+    }
   };
 
   return (
@@ -165,13 +199,13 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             required
             id="title"
             name="title"
-            // label="Title"
             fullWidth
             size="small"
             autoComplete="off"
-            // variant="outlined"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            error={catchError('title')}
+            helperText={helperText('title')}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -202,13 +236,13 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             required
             id="summary"
             name="summary"
-            // label="Title"
             fullWidth
             size="small"
             autoComplete="off"
-            // variant="outlined"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
+            error={catchError('summary')}
+            helperText={helperText('summary')}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -225,13 +259,13 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             required
             id="caption"
             name="caption"
-            // label="Title"
             fullWidth
             size="small"
             autoComplete="off"
-            // variant="outlined"
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
+            error={catchError('caption')}
+            helperText={helperText('caption')}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -245,11 +279,6 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             formats={formats}
           />
         </Grid>
-        {mutation.error && (
-          <Grid item>
-            <Typography variant="body1">{errorMessage}</Typography>
-          </Grid>
-        )}
         <Grid container direction="row" justifyContent="space-evenly" marginTop={'3rem'}>
           <StyledButton type="submit" variant="contained" size="small">
             {mutation.isLoading ? 'Uploading...' : 'Edit post'}
@@ -258,6 +287,16 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             {deleteMutation.isLoading ? 'Uploading...' : 'Delete post'}
           </StyledButton>
         </Grid>
+        <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
+          <Alert severity="success" sx={{ width: '100%' }}>
+            {successMessage}
+          </Alert>
+        </Snackbar>
+        <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
+          <Alert severity="error" sx={{ width: '100%' }}>
+            {errorMessage}
+          </Alert>
+        </Snackbar>
       </Grid>
     </Box>
   );

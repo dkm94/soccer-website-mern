@@ -14,6 +14,8 @@ const UploadLabel = styled('label')({
 });
 
 const UploadButton = ({ getFiles, files }) => {
+  console.log('🚀 ~ file: UploadButton.jsx:17 ~ UploadButton ~ files:', files); // si edit = path / if new = object
+
   return (
     <UploadLabel htmlFor="file">
       <input

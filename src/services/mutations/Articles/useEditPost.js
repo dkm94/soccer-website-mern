@@ -2,11 +2,18 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { editPost } from '../../queries/mods_queries';
 
-export const useEditPost = () => {
+export const useEditPost = (
+  setSuccessMessage,
+  setOpenSuccess,
+  setOpenError,
+  setErrorMessage,
+  setTempForm
+) => {
   const queryClient = useQueryClient();
 
+  const profileId = JSON.parse(localStorage.getItem('profileId'));
+
   return useMutation({
-    // mutationFn: () => editPost(id),
     mutationFn: editPost,
     onMutate: async (updatedObj) => {
       await queryClient.cancelQueries({ queryKey: ['articles', updatedObj._id] });
@@ -15,8 +22,11 @@ export const useEditPost = () => {
 
       return { previousObj, updatedObj };
     },
-    onError: (err, updatedObj, context) => {
-      // handle error, display "err"
+    onError: (error, updatedObj, context) => {
+      const errorObject = error.response.data;
+      setOpenError(true);
+      setTempForm(updatedObj);
+      setErrorMessage(errorObject.error.message);
       queryClient.setQueryData(['articles', context.updatedObj._id], context.previousObj);
     },
     onSettled: (updatedObj) => {
@@ -24,8 +34,11 @@ export const useEditPost = () => {
     },
     // Notice the second argument is the variables object that the `mutate` function receives
     onSuccess: (data, variables) => {
-      //handle success with toast
-      alert('Post ok!');
+      setOpenSuccess(true);
+      setSuccessMessage(data);
+      setTimeout(() => {
+        window.location.href = `/backoffice/articles/author/${profileId}`;
+      }, 3000);
     }
   });
 };

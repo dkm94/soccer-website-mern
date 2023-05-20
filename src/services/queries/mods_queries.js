@@ -80,9 +80,9 @@ const editPost = async ({ _id, online, title, topic, summary, file, caption, con
 
     const { data } = await axios.put(url, form, { headers: customHeaders });
     return data;
-  } catch (e) {
-    // console.log('🚀 ~ file: mods_queries.js:72 ~ editPost ~ e:', e);
-    throw new Error(e.response.data.error);
+  } catch (err) {
+    console.error(err);
+    throw err;
   }
 };
 
