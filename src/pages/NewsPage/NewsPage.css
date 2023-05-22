@@ -1,0 +1,8 @@
+.news-page {
+    max-width: 960px !important;
+}
+
+.news-page__img-article {
+    max-width: 100%;
+    height: auto;
+}

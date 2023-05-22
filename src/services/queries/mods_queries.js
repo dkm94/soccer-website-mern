@@ -54,8 +54,7 @@ const createPost = async ({ online, title, topic, summary, file, caption, conten
     });
     return data;
   } catch (err) {
-    console.error(err);
-    throw err;
+    if (err) throw err;
   }
 };
 
@@ -81,8 +80,7 @@ const editPost = async ({ _id, online, title, topic, summary, file, caption, con
     const { data } = await axios.put(url, form, { headers: customHeaders });
     return data;
   } catch (err) {
-    console.error(err);
-    throw err;
+    if (err) throw err;
   }
 };
 
