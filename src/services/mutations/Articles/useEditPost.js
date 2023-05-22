@@ -7,7 +7,8 @@ export const useEditPost = (
   setOpenSuccess,
   setOpenError,
   setErrorMessage,
-  setTempForm
+  setTempForm,
+  setErrorObj
 ) => {
   const queryClient = useQueryClient();
 
@@ -27,6 +28,7 @@ export const useEditPost = (
       setOpenError(true);
       setTempForm(updatedObj);
       setErrorMessage(errorObject.error.message);
+      setErrorObj(errorObject);
       queryClient.setQueryData(['articles', context.updatedObj._id], context.previousObj);
     },
     onSettled: (updatedObj) => {

@@ -13,9 +13,7 @@ const UploadLabel = styled('label')({
   placeItems: 'center'
 });
 
-const UploadButton = ({ getFiles, files }) => {
-  console.log('🚀 ~ file: UploadButton.jsx:17 ~ UploadButton ~ files:', files); // si edit = path / if new = object
-
+const UploadButton = ({ getFiles, files, oldFile }) => {
   return (
     <UploadLabel htmlFor="file">
       <input
@@ -25,7 +23,7 @@ const UploadButton = ({ getFiles, files }) => {
         type="file"
         onChange={(e) => getFiles(e.target.files)}
       />
-      {files[0] ? (
+      {files[0] || oldFile ? (
         <Button
           color="success"
           variant="contained"
@@ -40,8 +38,8 @@ const UploadButton = ({ getFiles, files }) => {
           Choose file
         </Button>
       )}
-      {files[0] ? (
-        <UploadText variant="body1">{files[0]?.name}</UploadText>
+      {files[0] || oldFile ? (
+        <UploadText variant="body1">{files[0]?.name || oldFile}</UploadText>
       ) : (
         <UploadText variant="body1">No file chosen</UploadText>
       )}

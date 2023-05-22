@@ -29,6 +29,7 @@ import { useDeletePost } from '../../../../../services/mutations/Articles/useDel
 import UploadButton from '../../../../../components/Buttons/Upload/UploadButton';
 import modules from '../../../../../utils/quillVars/modules';
 import formats from '../../../../../utils/quillVars/formats';
+import UpdateArticleFormSkeleton from '../../../../../components/Loaders/Skeletons/Forms/UpdateArticleFormSkeleton';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   // marginTop: '2rem',
@@ -55,9 +56,11 @@ const UpdateArticleForm = ({ drawerWidth }) => {
   const [topic, setTopic] = useState('');
   const [summary, setSummary] = useState('');
   const [files, setFiles] = useState('');
+  const [oldFile, setOldFile] = useState('');
   const [caption, setCaption] = useState('');
   const [online, setOnline] = useState(false);
   const [content, setContent] = useState('');
+  const [errorObj, setErrorObj] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [openError, setOpenError] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
@@ -70,7 +73,8 @@ const UpdateArticleForm = ({ drawerWidth }) => {
     setOpenSuccess,
     setOpenError,
     setErrorMessage,
-    setTempForm
+    setTempForm,
+    setErrorObj
   );
   const deleteMutation = useDeletePost();
   const { palette } = useTheme();
@@ -90,7 +94,7 @@ const UpdateArticleForm = ({ drawerWidth }) => {
         setOnline(online);
         setTitle(title);
         setTopic(topic);
-        setFiles(file);
+        setOldFile(file);
         setSummary(summary);
         setCaption(caption);
         setContent(content);
@@ -124,10 +128,10 @@ const UpdateArticleForm = ({ drawerWidth }) => {
     deleteMutation.mutate(id);
   };
 
-  const helperText = (field) => error?.messages[field];
+  const helperText = (field) => errorObj?.messages[field];
   const catchError = (field) => {
-    if (error?.messages) {
-      return field in error.messages;
+    if (errorObj?.messages) {
+      return field in errorObj.messages;
     }
   };
 
@@ -146,130 +150,140 @@ const UpdateArticleForm = ({ drawerWidth }) => {
         borderRadius: '5px',
         boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)'
       }}>
-      <Grid container spacing={3}>
-        <Grid item>
-          <Typography variant="h1" className="title-section">
-            Edit your article
-          </Typography>
-        </Grid>
-        <Grid container direction="row" marginTop={4} justifyContent="flex-end" xs={12}>
-          <FormControlLabel
-            value={online}
-            label={online ? 'Online' : 'Offline'}
-            labelPlacement="end"
-            onChange={() => setOnline(!online)}
-            control={<Switch color="success" />}
-          />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <InputLabel>Title</InputLabel>
-        </Grid>
-        <Grid item xs={12} sm={10}>
-          <TextField
-            required
-            id="title"
-            name="title"
-            fullWidth
-            size="small"
-            autoComplete="off"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            error={catchError('title')}
-            helperText={helperText('title')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <InputLabel>Topic</InputLabel>
-        </Grid>
-        <Grid item xs={12} sm={10}>
-          <Box sx={{ width: 150 }}>
-            <FormControl sx={{ minWidth: 120 }} size="small">
-              <Select
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}>
-                {competitionSeeds.map((item, i) => (
-                  <MenuItem value={item.idx} key={item.idx}>
-                    {item.title}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <InputLabel>Summary</InputLabel>
-        </Grid>
-        <Grid item xs={12} sm={10}>
-          <TextField
-            required
-            id="summary"
-            name="summary"
-            fullWidth
-            size="small"
-            autoComplete="off"
-            value={summary}
-            onChange={(e) => setSummary(e.target.value)}
-            error={catchError('summary')}
-            helperText={helperText('summary')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <InputLabel>Image</InputLabel>
-        </Grid>
-        <Grid item xs={12} sm={10} style={{ display: 'flex', flexDirection: 'row' }}>
-          <UploadButton getFiles={setFiles} files={files} />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <InputLabel>Image caption</InputLabel>
-        </Grid>
-        <Grid item xs={12} sm={10}>
-          <TextField
-            required
-            id="caption"
-            name="caption"
-            fullWidth
-            size="small"
-            autoComplete="off"
-            value={caption}
-            onChange={(e) => setCaption(e.target.value)}
-            error={catchError('caption')}
-            helperText={helperText('caption')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <InputLabel>Content</InputLabel>
-        </Grid>
-        <Grid item xs={12} sm={10}>
-          <ReactQuill
-            value={content}
-            onChange={(newContent) => setContent(newContent)}
-            modules={modules}
-            formats={formats}
-            placeholder="Write something"
-          />
-        </Grid>
-        <Grid item xs={12} sm={2} />
-        <Grid item xs={12} sm={10} direction="row" display={'flex'} justifyContent="space-between">
-          <DeleteButton variant="outlined" onClick={deletePost}>
-            {deleteMutation.isLoading ? 'Uploading...' : 'Delete post'}
-          </DeleteButton>
-          <SubmitButton type="submit" variant="contained">
-            {mutation.isLoading ? 'Uploading...' : 'Edit post'}
-          </SubmitButton>
-        </Grid>
-        <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
-          <Alert severity="success" sx={{ width: '100%' }}>
-            {successMessage}
-          </Alert>
-        </Snackbar>
-        <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
-          <Alert severity="error" sx={{ width: '100%' }}>
-            {errorMessage}
-          </Alert>
-        </Snackbar>
+      <Grid item>
+        <Typography variant="h1" className="title-section">
+          Edit your article
+        </Typography>
       </Grid>
+      {isLoading && <UpdateArticleFormSkeleton />}
+      {article && (
+        <Grid container spacing={3}>
+          <Grid container direction="row" marginTop={4} justifyContent="flex-end" xs={12}>
+            <FormControlLabel
+              value={online}
+              label={online ? 'Online' : 'Offline'}
+              labelPlacement="end"
+              onChange={() => setOnline(!online)}
+              control={<Switch color="success" />}
+            />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <InputLabel>Title</InputLabel>
+          </Grid>
+          <Grid item xs={12} sm={10}>
+            <TextField
+              required
+              id="title"
+              name="title"
+              fullWidth
+              size="small"
+              autoComplete="off"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              error={catchError('title')}
+              helperText={helperText('title')}
+            />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <InputLabel>Topic</InputLabel>
+          </Grid>
+          <Grid item xs={12} sm={10}>
+            <Box sx={{ width: 150 }}>
+              <FormControl sx={{ minWidth: 120 }} size="small">
+                <Select
+                  required
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}>
+                  {competitionSeeds.map((item, i) => (
+                    <MenuItem value={item.idx} key={item.idx}>
+                      {item.title}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <InputLabel>Summary</InputLabel>
+          </Grid>
+          <Grid item xs={12} sm={10}>
+            <TextField
+              required
+              id="summary"
+              name="summary"
+              fullWidth
+              size="small"
+              autoComplete="off"
+              value={summary}
+              onChange={(e) => setSummary(e.target.value)}
+              error={catchError('summary')}
+              helperText={helperText('summary')}
+            />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <InputLabel>Image</InputLabel>
+          </Grid>
+          <Grid item xs={12} sm={10} style={{ display: 'flex', flexDirection: 'row' }}>
+            <UploadButton getFiles={setFiles} files={files} oldFile={oldFile} />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <InputLabel>Image caption</InputLabel>
+          </Grid>
+          <Grid item xs={12} sm={10}>
+            <TextField
+              required
+              id="caption"
+              name="caption"
+              fullWidth
+              size="small"
+              autoComplete="off"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              error={catchError('caption')}
+              helperText={helperText('caption')}
+            />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <InputLabel>Content</InputLabel>
+          </Grid>
+          <Grid item xs={12} sm={10}>
+            <ReactQuill
+              value={content}
+              onChange={(newContent) => setContent(newContent)}
+              modules={modules}
+              formats={formats}
+              placeholder="Write something"
+            />
+          </Grid>
+          <Grid item xs={12} sm={2} />
+          <Grid
+            item
+            xs={12}
+            sm={10}
+            direction="row"
+            display={'flex'}
+            justifyContent="space-between">
+            <DeleteButton variant="outlined" onClick={deletePost}>
+              {deleteMutation.isLoading ? 'Uploading...' : 'Delete post'}
+            </DeleteButton>
+            <SubmitButton type="submit" variant="contained">
+              {mutation.isLoading ? 'Uploading...' : 'Edit post'}
+            </SubmitButton>
+          </Grid>
+          <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
+            <Alert severity="success" sx={{ width: '100%' }}>
+              {successMessage}
+            </Alert>
+          </Snackbar>
+          <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
+            <Alert severity="error" sx={{ width: '100%' }}>
+              {errorMessage}
+            </Alert>
+          </Snackbar>
+        </Grid>
+      )}
     </Box>
   );
 };
