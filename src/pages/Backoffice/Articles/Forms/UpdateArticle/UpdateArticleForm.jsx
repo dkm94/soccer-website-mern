@@ -30,6 +30,7 @@ import UploadButton from '../../../../../components/Buttons/Upload/UploadButton'
 import modules from '../../../../../utils/quillVars/modules';
 import formats from '../../../../../utils/quillVars/formats';
 import UpdateArticleFormSkeleton from '../../../../../components/Loaders/Skeletons/Forms/UpdateArticleFormSkeleton';
+import Message from '../../../../../components/Screens/Message';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   // marginTop: '2rem',
@@ -135,6 +136,9 @@ const UpdateArticleForm = ({ drawerWidth }) => {
     }
   };
 
+  const status = error?.response?.status;
+  const message = error?.response?.data;
+
   return (
     <Box
       component="form"
@@ -156,6 +160,8 @@ const UpdateArticleForm = ({ drawerWidth }) => {
         </Typography>
       </Grid>
       {isLoading && <UpdateArticleFormSkeleton />}
+      {isError && status == 404 && <Message code={'DEFAULT_ERROR'} error={message} img={true} />}
+      {isError && status !== 404 && <Message code={'DEFAULT_ERROR'} img={true} />}
       {article && (
         <Grid container spacing={3}>
           <Grid container direction="row" marginTop={4} justifyContent="flex-end" xs={12}>

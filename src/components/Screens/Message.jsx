@@ -52,6 +52,7 @@ const Message = ({ code, img, error }) => {
       )}
       <MessageType variant="body1">{message?.type}</MessageType>
       <MessageContent variant="body2">{error?.message || message?.content}</MessageContent>
+      {error?.description && <MessageContent variant="body2">{error?.description}</MessageContent>}
       {message?.button && <Btn onClick={refreshPage}>{message?.button.content}</Btn>}
     </Box>
   );
