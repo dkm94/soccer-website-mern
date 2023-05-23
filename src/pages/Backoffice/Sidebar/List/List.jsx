@@ -9,7 +9,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+// import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import ArticleIcon from '@mui/icons-material/Article';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -25,11 +25,11 @@ const SideBarList = () => {
   };
 
   const listData = [
-    {
-      id: 1,
-      name: 'Moderators',
-      icon: <SupervisedUserCircleIcon />
-    },
+    // {
+    //   id: 1,
+    //   name: 'Moderators',
+    //   icon: <SupervisedUserCircleIcon />
+    // },
     {
       id: 2,
       name: 'Articles',
@@ -43,7 +43,8 @@ const SideBarList = () => {
     {
       id: 4,
       name: 'My profile',
-      icon: <ContactsIcon />
+      icon: <ContactsIcon />,
+      path: `/backoffice/profile/${profileId}`
     }
   ];
 
@@ -65,7 +66,7 @@ const SideBarList = () => {
       <Toolbar />
       <Divider />
       <List>
-        {listData.map(({ id, name, icon }) => {
+        {listData.map(({ id, name, icon, path }) => {
           return name === 'Articles' ? (
             <>
               <ListItem key={id} disablePadding>
@@ -91,7 +92,7 @@ const SideBarList = () => {
             </>
           ) : (
             <ListItem key={id} disablePadding>
-              <ListItemButton>
+              <ListItemButton href={path}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={name} />
               </ListItemButton>

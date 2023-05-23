@@ -14,8 +14,8 @@ const getProfiles = async () => {
 };
 
 const getProfile = async (id) => {
-  const profileId = id.queryKey[1];
-  const { data } = await axios.get(`${BASE_URL}/public/profiles/${profileId}`);
+  // const profileId = id.queryKey[1];
+  const { data } = await axios.get(`${BASE_URL}/public/profiles/${id}`);
   return data;
 };
 

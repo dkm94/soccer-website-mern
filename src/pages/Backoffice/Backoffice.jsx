@@ -8,6 +8,7 @@ import CreateArticleForm from './Articles/Forms/CreateArticle/CreateArticleForm'
 import UpdateArticleForm from './Articles/Forms/UpdateArticle/UpdateArticleForm';
 import MyArticles from './Articles/MyArticles/MyArticles';
 import { useParams } from 'react-router-dom';
+import Profile from './Profile/Profile';
 
 const drawerWidth = 240;
 
@@ -31,6 +32,8 @@ const backofficeComponent = () => {
       return <MyArticles drawerWidth={drawerWidth} profileId={profileId} path={path} />;
     case `/backoffice/articles/edit/${id}`:
       return <UpdateArticleForm drawerWidth={drawerWidth} />;
+    case `/backoffice/profile/${id}`:
+      return <Profile drawerWidth={drawerWidth} profileId={profileId} />;
     default:
       break;
   }

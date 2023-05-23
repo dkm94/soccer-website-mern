@@ -61,6 +61,7 @@ const UpdateArticleForm = ({ drawerWidth }) => {
   const [caption, setCaption] = useState('');
   const [online, setOnline] = useState(false);
   const [content, setContent] = useState('');
+
   const [errorObj, setErrorObj] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [openError, setOpenError] = useState(false);
@@ -275,7 +276,7 @@ const UpdateArticleForm = ({ drawerWidth }) => {
               {deleteMutation.isLoading ? 'Uploading...' : 'Delete post'}
             </DeleteButton>
             <SubmitButton type="submit" variant="contained">
-              {mutation.isLoading ? 'Uploading...' : 'Edit post'}
+              {mutation.isLoading ? 'Saving...' : 'Edit post'}
             </SubmitButton>
           </Grid>
           <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
