@@ -6,7 +6,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 import CreateArticleForm from './Articles/Forms/CreateArticle/CreateArticleForm';
 import UpdateArticleForm from './Articles/Forms/UpdateArticle/UpdateArticleForm';
-import MyArticles from './Articles/MyArticles/MyArticles';
+import UserArticles from './Articles/UserArticles/UserArticles';
 import { useParams } from 'react-router-dom';
 import Profile from './Profile/Profile';
 
@@ -17,7 +17,7 @@ const path = window.location.pathname;
 
 // const backofficeComponent = {
 //   '/backoffice': <Main cards={cards} drawerWidth={drawerWidth} />,
-//   '/backoffice/articles/author/:id': <MyArticles drawerWidth={drawerWidth} />,
+//   '/backoffice/articles/author/:id': <UserArticles drawerWidth={drawerWidth} />,
 //   '/backoffice/articles/create': <CreateArticleForm drawerWidth={drawerWidth} />
 // };
 
@@ -29,7 +29,7 @@ const backofficeComponent = () => {
     case '/backoffice/articles/create':
       return <CreateArticleForm drawerWidth={drawerWidth} />;
     case `/backoffice/articles/author/${profileId}`:
-      return <MyArticles drawerWidth={drawerWidth} profileId={profileId} path={path} />;
+      return <UserArticles drawerWidth={drawerWidth} profileId={profileId} path={path} />;
     case `/backoffice/articles/edit/${id}`:
       return <UpdateArticleForm drawerWidth={drawerWidth} />;
     case `/backoffice/profile/${id}`:

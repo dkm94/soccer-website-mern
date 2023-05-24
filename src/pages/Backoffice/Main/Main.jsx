@@ -13,6 +13,7 @@ import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleB
 import './Main.css';
 import { Typography, styled, useTheme } from '@mui/material';
 import LoaderAnimation from '../../../components/Loaders/Animation/Dashboard/LoaderAnimation';
+import Message from '../../../components/Screens/Message';
 
 const TitleHeader = styled(Typography)({
   fontSize: '0.8rem',
@@ -208,11 +209,7 @@ const Main = ({ cards, drawerWidth }) => {
             }}>
             <EnhancedToolBar numSelected={selectedIds.length} />
             {isLoading && <LoaderAnimation />}
-            {isError && (
-              <Typography variant="body1" style={{ paddingLeft: '3rem' }}>
-                Error loading data
-              </Typography>
-            )}
+            {isError && <Message code={'DEFAULT_ERROR'} img={true} />}
             {rows && (
               <>
                 <div style={{ width: '100%', padding: 'inherit', margin: 0 }}>

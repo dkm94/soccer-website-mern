@@ -214,7 +214,7 @@ const MatchHistory = () => {
           </Row>
         </SearchWrapper>
         <TableWrapper>
-          {isError && <Typography variant="body1">{error?.response?.message?.data}</Typography>}
+          {isError && <Message code={'DEFAULT_ERROR'} img={true} />}
           <Row xs={12} className="g-4">
             <TableHeader>
               <TableTitle variant="body1">Results</TableTitle>

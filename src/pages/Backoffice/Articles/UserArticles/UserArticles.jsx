@@ -5,41 +5,34 @@ import { getArticlesByAuthor } from '../../../../services/queries/public_queries
 import { useQuery } from 'react-query';
 import Article from '../../../News/Article';
 import SelectArticles from '../../../../components/Select/Articles';
-import { Link } from 'react-router-dom';
+import UserArticlesSkeleton from '../../../../components/Loaders/Skeletons/UserArticles/UserArticlesSkeleton';
+import Message from '../../../../components/Screens/Message';
 
-const Card = () => {
-  return <div>Card</div>;
-};
+// const Card = () => {
+//   return <div>Card</div>;
+// };
 
-const SelectWrapper = styled(Container)({
-  padding: '0 !important',
-  display: 'flex',
-  justifyContent: 'flex-end',
-  '& div': {
-    width: '15rem'
-  }
-});
+// const SelectWrapper = styled(Container)({
+//   padding: '0 !important',
+//   display: 'flex',
+//   justifyContent: 'flex-end',
+//   '& div': {
+//     width: '15rem'
+//   }
+// });
 
-const MyArticles = ({ drawerWidth, profileId, path }) => {
+const UserArticles = ({ drawerWidth, profileId, path }) => {
   const { palette } = useTheme();
 
   const {
     data: thisUserArticles,
-    error,
+    // error,
     isError,
     isLoading
   } = useQuery({
     queryKey: ['articles'],
     queryFn: () => getArticlesByAuthor(profileId)
   });
-
-  // let formattedArticles = [];
-  // articles?.forEach((article) => {
-  //   return formattedArticles.push({
-  //     id: article?._id,
-  //     author: article?.id_profile
-  //   });
-  // });
 
   return (
     <Box
@@ -62,6 +55,8 @@ const MyArticles = ({ drawerWidth, profileId, path }) => {
           </Typography>
         </Grid>
         <Grid container spacing={2}>
+          {isError && <Message error={'DEFAULT_ERROR'} img={true} />}
+          {isLoading && <UserArticlesSkeleton />}
           {thisUserArticles?.map((article) => (
             <Article key={article.id} article={article} profileId={profileId} path={path} />
           ))}
@@ -78,4 +73,4 @@ const MyArticles = ({ drawerWidth, profileId, path }) => {
   );
 };
 
-export default MyArticles;
+export default UserArticles;

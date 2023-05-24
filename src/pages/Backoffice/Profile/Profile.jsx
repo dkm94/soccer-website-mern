@@ -164,23 +164,22 @@ const Profile = ({ drawerWidth, profileId }) => {
           <Typography variant="h1" className="title-section">
             My profile
           </Typography>
-          {/* <Box
-            component="img"
-            sx={{
-              height: 200,
-              width: 200,
-              maxHeight: { xs: 100, md: 150, lg: 200 },
-              maxWidth: { xs: 100, md: 150, lg: 200 },
-              borderRadius: '50%',
-              alignSelf: 'center',
-              mt: '2rem'
-            }}
-            alt="The house from the offer."
-            // src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-            src={profile?.file?.url}
-          /> */}
+
           {profile?.file === '' ? (
-            <img style={{ width: 220, height: 229 }} src={avatar} alt="avatar" />
+            <Box
+              component="img"
+              sx={{
+                height: 229,
+                width: 220,
+                maxHeight: { xs: 100, md: 150, lg: 200 },
+                maxWidth: { xs: 100, md: 150, lg: 200 },
+                borderRadius: '50%',
+                alignSelf: 'center',
+                mt: '2rem'
+              }}
+              alt="default avatar"
+              src={avatar}
+            />
           ) : (
             <AdvancedImage cldImg={myImage} />
           )}
