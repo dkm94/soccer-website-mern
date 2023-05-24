@@ -18,6 +18,15 @@ import { useQuery } from 'react-query';
 import { getProfile } from '../../../services/queries/public_queries';
 import { useEditProfile } from '../../../services/mutations/Profiles/useEditProfile';
 import { useParams } from 'react-router-dom';
+import { CloudinaryImage } from '@cloudinary/url-gen';
+import { fill, crop, scale } from '@cloudinary/url-gen/actions/resize';
+import { AdvancedImage } from '@cloudinary/react';
+import { focusOn } from '@cloudinary/url-gen/qualifiers/gravity';
+import { format } from '@cloudinary/url-gen/actions/delivery';
+import { max } from '@cloudinary/url-gen/actions/roundCorners';
+import { auto } from '@cloudinary/url-gen/qualifiers/format';
+import { face } from '@cloudinary/url-gen/qualifiers/focusOn';
+import avatar from '../../../../src/images/avatar.png';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   // marginTop: '2rem',
@@ -39,6 +48,7 @@ const Profile = ({ drawerWidth, profileId }) => {
   const [intro, setIntro] = useState('');
   const [files, setFiles] = useState('');
   const [oldFile, setOldFile] = useState('');
+  const [fileName, setFilename] = useState('');
 
   const [tempForm, setTempForm] = useState(null);
 
@@ -54,7 +64,8 @@ const Profile = ({ drawerWidth, profileId }) => {
     setOpenError,
     setErrorMessage,
     setTempForm,
-    setErrorObj
+    setErrorObj,
+    setFilename
   );
 
   const {
@@ -95,12 +106,44 @@ const Profile = ({ drawerWidth, profileId }) => {
     mutation.mutate({ _id: id, name, handle, intro, file: files }, id);
   };
 
+  // const formattedPath = profile?.file?.replaceAll('\\', '/');
+  // const imageURL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
+  // console.log(imageURL);
+
+  const handleImage = async (e) => {
+    const img = e.target.files[0];
+    const base64 = await convertToBase64(img);
+    setFilename(img.name);
+    setFiles(base64);
+  };
+
+  const convertToBase64 = (img) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
   const helperText = (field) => errorObj?.messages[field];
   const catchError = (field) => {
     if (errorObj?.messages) {
       return field in errorObj.messages;
     }
   };
+
+  const imageSrc = profile?.file?.public_id;
+
+  const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' })
+    .resize(crop().width(400).height(400).gravity(focusOn(face())))
+    .roundCorners(max())
+    .resize(scale().width(200))
+    .delivery(format(auto()));
 
   return (
     <Box
@@ -117,10 +160,30 @@ const Profile = ({ drawerWidth, profileId }) => {
         boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)'
       }}>
       <Grid container spacing={3}>
-        <Grid lg={12} item mb={'2rem'}>
+        <Grid lg={12} item className="profile__avatar">
           <Typography variant="h1" className="title-section">
             My profile
           </Typography>
+          {/* <Box
+            component="img"
+            sx={{
+              height: 200,
+              width: 200,
+              maxHeight: { xs: 100, md: 150, lg: 200 },
+              maxWidth: { xs: 100, md: 150, lg: 200 },
+              borderRadius: '50%',
+              alignSelf: 'center',
+              mt: '2rem'
+            }}
+            alt="The house from the offer."
+            // src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+            src={profile?.file?.url}
+          /> */}
+          {profile?.file === '' ? (
+            <img style={{ width: 220, height: 229 }} src={avatar} alt="avatar" />
+          ) : (
+            <AdvancedImage cldImg={myImage} />
+          )}
         </Grid>
         <Grid item xs={12} sm={2}>
           <InputLabel>Name</InputLabel>
@@ -179,7 +242,8 @@ const Profile = ({ drawerWidth, profileId }) => {
           <InputLabel>Avatar</InputLabel>
         </Grid>
         <Grid item xs={12} sm={10} style={{ display: 'flex', flexDirection: 'row' }}>
-          <UploadButton getFiles={setFiles} files={files} />
+          {/* <UploadButton getFiles={setFiles} files={files} /> */}
+          <UploadButton getFiles={handleImage} files={files} fileName={fileName} />
         </Grid>
         <Grid item xs={12} sm={2} />
         <Grid item xs={12} sm={10} direction="row" display={'flex'} justifyContent="flex-end">

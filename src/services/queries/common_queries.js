@@ -13,24 +13,17 @@ const getProfile = async (id) => {
   return data;
 };
 
-const editProfile = async ({ _id, name, handle, intro, file }) => {
+const editProfile = async (form) => {
   try {
-    const url = `${BASE_URL}/common/users/profile/edit/${_id}`;
-
-    const form = new FormData();
-    form.set('name', name);
-    form.set('handle', handle);
-    form.set('intro', intro);
-    if (file?.[0]) {
-      form.set('file', file?.[0]);
-    }
-
+    const id = form?._id;
+    const url = `${BASE_URL}/common/users/profile/edit/${id}`;
     const customHeaders = {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'application/x-www-form-urlencoded'
     };
 
     const { data } = await axios.put(url, form, { headers: customHeaders });
+
     return data;
   } catch (err) {
     if (err) throw err;

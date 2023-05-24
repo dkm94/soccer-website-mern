@@ -8,7 +8,8 @@ export const useEditProfile = (
   setOpenError,
   setErrorMessage,
   setTempForm,
-  setErrorObj
+  setErrorObj,
+  setFilename
 ) => {
   const queryClient = useQueryClient();
 
@@ -33,6 +34,7 @@ export const useEditProfile = (
       queryClient.invalidateQueries({ queryKey: ['profiles', updatedObj?._id] });
     },
     onSuccess: (data, variables) => {
+      setFilename('');
       setOpenSuccess(true);
       setSuccessMessage(data);
     }

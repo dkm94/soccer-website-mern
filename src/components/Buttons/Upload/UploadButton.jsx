@@ -13,7 +13,7 @@ const UploadLabel = styled('label')({
   placeItems: 'center'
 });
 
-const UploadButton = ({ getFiles, files, oldFile }) => {
+const UploadButton = ({ getFiles, files, oldFile, fileName }) => {
   return (
     <UploadLabel htmlFor="file">
       <input
@@ -21,9 +21,10 @@ const UploadButton = ({ getFiles, files, oldFile }) => {
         id="file"
         name="file"
         type="file"
-        onChange={(e) => getFiles(e.target.files)}
+        accept=".jpeg, .png, .jpg"
+        onChange={getFiles}
       />
-      {files[0] || oldFile ? (
+      {files || oldFile ? (
         <Button
           color="success"
           variant="contained"
@@ -38,8 +39,8 @@ const UploadButton = ({ getFiles, files, oldFile }) => {
           Choose file
         </Button>
       )}
-      {files[0] || oldFile ? (
-        <UploadText variant="body1">{files[0]?.name || oldFile}</UploadText>
+      {files || oldFile ? (
+        <UploadText variant="body1">{fileName || oldFile}</UploadText>
       ) : (
         <UploadText variant="body1">No file chosen</UploadText>
       )}
