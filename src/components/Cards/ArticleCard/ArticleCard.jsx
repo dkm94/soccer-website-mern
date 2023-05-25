@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Col } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
-import { Button, Card, CardMedia, CardActions, CardContent } from '@mui/material';
+import { Button, Card, CardMedia, CardActions, CardContent, Grid } from '@mui/material';
 import competitionSeeds from '../../../seeds/competitions';
+import { AdvancedImage } from '@cloudinary/react';
+import { CloudinaryImage } from '@cloudinary/url-gen';
+import { fill, scale, crop } from '@cloudinary/url-gen/actions/resize';
+import { quality } from '@cloudinary/url-gen/actions/delivery';
 import './ArticleCard.css';
 import getFormattedDate from '../../../utils/getFormattedDate';
 
@@ -41,17 +44,19 @@ const Actions = styled(CardActions)(({ theme }) => ({
 }));
 
 const ArticleCard = ({ id, title, topic, file, caption, date }) => {
-  // const formattedPath = file?.replaceAll('\\', '/');
-  // const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
-
   const formattedDate = getFormattedDate('short', date);
 
   const competition = competitionSeeds.filter((competition) => competition.idx == topic);
   const code = competition[0]?.code;
 
+  const imageSrc = file?.public_id;
+  const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' }).delivery(quality(100));
+
   return (
     <Card key={id} className="article-card">
-      <CardMedia sx={{ height: 140 }} image={URL} title={caption} />
+      <Grid className="backoffice__news_article-card">
+        <AdvancedImage cldImg={myImage} />
+      </Grid>
       <Content>
         <span>{title}</span>
         <span>Posted on {formattedDate}</span>
