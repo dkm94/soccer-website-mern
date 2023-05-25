@@ -251,12 +251,12 @@ const Profile = ({ drawerWidth, profileId }) => {
           </SubmitButton>
         </Grid>
         <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
-          <Alert severity="success" sx={{ width: '100%' }}>
+          <Alert severity="success" sx={{ width: '100%', color: '#FFF' }}>
             {successMessage}
           </Alert>
         </Snackbar>
         <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
-          <Alert severity="error" sx={{ width: '100%' }}>
+          <Alert severity="error" sx={{ width: '100%', color: '#FFF' }}>
             {errorMessage}
           </Alert>
         </Snackbar>

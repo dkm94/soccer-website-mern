@@ -148,8 +148,6 @@ const UpdateArticleForm = ({ drawerWidth }) => {
   const status = error?.response?.status;
   const message = error?.response?.data;
 
-  console.log(error);
-
   return (
     <Box
       component="form"
@@ -290,12 +288,12 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             </SubmitButton>
           </Grid>
           <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
-            <Alert severity="success" sx={{ width: '100%' }}>
+            <Alert severity="success" sx={{ width: '100%', color: '#FFF' }}>
               {successMessage}
             </Alert>
           </Snackbar>
           <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
-            <Alert severity="error" sx={{ width: '100%' }}>
+            <Alert severity="error" sx={{ width: '100%', color: '#FFF' }}>
               {error?.message}
             </Alert>
           </Snackbar>

@@ -54,7 +54,7 @@ const UserArticles = ({ drawerWidth, profileId, path }) => {
             My articles
           </Typography>
         </Grid>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} ml={0}>
           {isError && <Message error={'DEFAULT_ERROR'} img={true} />}
           {isLoading && <UserArticlesSkeleton />}
           {thisUserArticles?.map((article) => (
@@ -62,7 +62,7 @@ const UserArticles = ({ drawerWidth, profileId, path }) => {
           ))}
           <Grid mt={8}>
             {thisUserArticles?.length === 0 && (
-              <span>
+              <span style={{ fontSize: '1rem' }}>
                 You can write your first article, <a href="/backoffice/articles/create">here</a>.
               </span>
             )}
