@@ -24,6 +24,11 @@ const getArticles = async () => {
   return data;
 };
 
+const getLastArticles = async () => {
+  const { data } = await axios.get(`${BASE_URL}/${prefix}/`);
+  return data;
+};
+
 const getArticlesByAuthor = async (profileId) => {
   const { data } = await axios.get(`${BASE_URL}/${prefix}/author/${profileId}`);
   return data;
@@ -52,5 +57,6 @@ export {
   getArticlesByAuthor,
   getArticle,
   getCommentsByArticle,
-  getComment
+  getComment,
+  getLastArticles
 };

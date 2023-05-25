@@ -4,7 +4,7 @@ import React from 'react';
 import { Col } from 'react-bootstrap';
 import './SideArticles.css';
 
-import { getArticles } from '../../../services/queries/public_queries';
+import { getLastArticles } from '../../../services/queries/public_queries';
 import ArticleCard from '../../Cards/ArticleCard/ArticleCard';
 import { Box, useTheme } from '@mui/material';
 import MainContent from '../../Wrappers/MainContent/MainContent';
@@ -20,12 +20,10 @@ const SideArticles = () => {
     isLoading
   } = useQuery({
     queryKey: ['articles'],
-    queryFn: getArticles
+    queryFn: getLastArticles
   });
 
   const { palette } = useTheme();
-
-  let temp = articles?.slice(-5);
 
   return (
     <Col lg={4} className="comment-layout">
@@ -35,8 +33,8 @@ const SideArticles = () => {
           <div className="cmt-content">
             {articles?.length === 0 && <span>{"There's no content to load yet."}</span>}
             {isLoading && <ArticlesLoader />}
-            {temp &&
-              temp.map(({ _id, title, topic, caption, file, updatedAt }, i) => (
+            {articles &&
+              articles.map(({ _id, title, topic, caption, file, updatedAt }, i) => (
                 <ArticleCard
                   id={_id}
                   key={_id}
