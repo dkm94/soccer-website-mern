@@ -31,22 +31,11 @@ const token = localStorage.getItem('token');
 //     });
 // };
 
-const createPost = async ({ online, title, topic, summary, file, caption, content }) => {
+const createPost = async (form) => {
   try {
     const url = `${BASE_URL}/mod/articles/create`;
-    const form = new FormData();
-    form.set('online', online);
-    form.set('title', title);
-    form.set('topic', topic);
-    form.set('summary', summary);
-    if (file) {
-      form.set('file', file?.[0]);
-    }
-    form.set('caption', caption);
-    form.set('content', content);
     const customHeaders = {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data'
+      Authorization: `Bearer ${token}`
     };
     const { data } = await axios.post(url, form, {
       headers: customHeaders,

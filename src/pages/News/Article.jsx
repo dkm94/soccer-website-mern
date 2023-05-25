@@ -1,9 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { CardMedia, Grid, Typography, styled, Button, Box, useTheme } from '@mui/material';
+import { Grid, Typography, styled, Button, Box, useTheme, Container } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import competitionSeeds from '../../seeds/competitions';
 import './Article.css';
 import getFormattedDate from '../../utils/getFormattedDate';
+import { AdvancedImage } from '@cloudinary/react';
+import { CloudinaryImage } from '@cloudinary/url-gen';
+import { fill, scale, crop } from '@cloudinary/url-gen/actions/resize';
+import { quality } from '@cloudinary/url-gen/actions/delivery';
 
 const EditButton = styled(Button)(({ theme }) => ({
   marginTop: '1rem',
@@ -48,8 +53,11 @@ const ArticleDate = styled(Typography)(({ theme }) => ({
 const Article = ({ article, profileId, path }) => {
   const { palette } = useTheme();
   const { _id, title, createdAt, file, topic, summary, id_profile, online } = article;
-  const formattedPath = file?.replaceAll('\\', '/');
-  const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
+
+  const imageSrc = file?.public_id;
+  const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' })
+    // .resize(scale().height(140).width(140))
+    .delivery(quality(100));
 
   const date = getFormattedDate('long', createdAt);
 
@@ -71,7 +79,9 @@ const Article = ({ article, profileId, path }) => {
           </div>
         </Box>
       )}
-      <CardMedia sx={{ height: 140 }} image={URL} title={title} />
+      <Grid className="backoffice__news_article-card">
+        <AdvancedImage cldImg={myImage} />
+      </Grid>
       {profileId === id_profile && (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
           <EditButton variant="contained" size="small" href={`/backoffice/articles/edit/${_id}`}>

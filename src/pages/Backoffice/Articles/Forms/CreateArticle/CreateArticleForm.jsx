@@ -46,16 +46,47 @@ const CreateArticleForm = ({ drawerWidth }) => {
   const [files, setFiles] = useState('');
   const [caption, setCaption] = useState('');
   const [content, setContent] = useState('');
+  const [fileName, setFilename] = useState('');
+
+  const [tempForm, setTempForm] = useState(null);
+
   const [error, setError] = useState(null);
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  const mutation = useCreatePost(setSuccessMessage, setOpenSuccess, setOpenError, setError);
+  const mutation = useCreatePost(
+    setSuccessMessage,
+    setOpenSuccess,
+    setOpenError,
+    setError,
+    setFilename,
+    setTempForm
+  );
 
   const handleClose = (event) => {
     setOpenSuccess(false);
     setOpenError(false);
+  };
+
+  const handleImage = async (e) => {
+    const img = e.target.files[0];
+    const base64 = await convertToBase64(img);
+    setFilename(img.name);
+    setFiles(base64);
+  };
+
+  const convertToBase64 = (img) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
   };
 
   const submitPost = (e) => {
@@ -159,7 +190,8 @@ const CreateArticleForm = ({ drawerWidth }) => {
           <InputLabel>Image</InputLabel>
         </Grid>
         <Grid item xs={12} sm={10} style={{ display: 'flex', flexDirection: 'row' }}>
-          <UploadButton getFiles={setFiles} files={files} />
+          {/* <UploadButton getFiles={setFiles} files={files} /> */}
+          <UploadButton getFiles={handleImage} files={files} fileName={fileName} />
         </Grid>
         <Grid item xs={12} sm={2}>
           <InputLabel>Image caption</InputLabel>

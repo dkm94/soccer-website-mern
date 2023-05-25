@@ -284,7 +284,7 @@ const UpdateArticleForm = ({ drawerWidth }) => {
               {deleteMutation.isLoading ? 'Uploading...' : 'Delete post'}
             </DeleteButton>
             <SubmitButton type="submit" variant="contained">
-              {mutation.isLoading ? 'Saving...' : 'Edit post'}
+              {mutation.isLoading ? 'Saving...' : 'Save changes'}
             </SubmitButton>
           </Grid>
           <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>

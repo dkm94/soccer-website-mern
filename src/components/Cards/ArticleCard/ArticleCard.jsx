@@ -41,8 +41,8 @@ const Actions = styled(CardActions)(({ theme }) => ({
 }));
 
 const ArticleCard = ({ id, title, topic, file, caption, date }) => {
-  const formattedPath = file?.replaceAll('\\', '/');
-  const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
+  // const formattedPath = file?.replaceAll('\\', '/');
+  // const URL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
 
   const formattedDate = getFormattedDate('short', date);
 

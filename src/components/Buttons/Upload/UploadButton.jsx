@@ -32,7 +32,7 @@ const UploadButton = ({ getFiles, files, oldFile, fileName }) => {
           id="upload-file-btn"
           style={{ width: '10rem' }}
           endIcon={<CheckCircleIcon style={{ color: '#fff' }} />}>
-          Choose file
+          Edit file
         </Button>
       ) : (
         <Button color="secondary" variant="contained" component="span" id="upload-file-btn">
@@ -40,7 +40,7 @@ const UploadButton = ({ getFiles, files, oldFile, fileName }) => {
         </Button>
       )}
       {files || oldFile ? (
-        <UploadText variant="body1">{fileName || oldFile}</UploadText>
+        <UploadText variant="body1">{fileName || oldFile.public_id}</UploadText>
       ) : (
         <UploadText variant="body1">No file chosen</UploadText>
       )}

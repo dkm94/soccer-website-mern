@@ -8,6 +8,7 @@ export const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError, s
   return useMutation({
     mutationFn: createPost,
     onError: (error, newObject, context) => {
+      console.log('🚀 ~ file: useCreatePost.js:24 ~ useCreatePost ~ error:', error);
       const errorObject = error.response.data;
       setOpenError(true);
       setError(errorObject);
