@@ -25,10 +25,12 @@ export const useEditPost = (
     },
     onError: (error, updatedObj, context) => {
       const errorObject = error.response.data;
+
       setOpenError(true);
       setTempForm(updatedObj);
       setErrorMessage(errorObject.error.message);
       setErrorObj(errorObject);
+
       queryClient.setQueryData(['articles', context.updatedObj._id], context.previousObj);
     },
     onSettled: (updatedObj) => {
@@ -38,6 +40,7 @@ export const useEditPost = (
     onSuccess: (data, variables) => {
       setOpenSuccess(true);
       setSuccessMessage(data);
+
       setTimeout(() => {
         window.location.href = `/backoffice/articles/author/${profileId}`;
       }, 3000);

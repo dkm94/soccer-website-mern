@@ -2,7 +2,13 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { deletePost } from '../../queries/mods_queries';
 
-export const useDeletePost = () => {
+export const useDeletePost = (
+  setSuccessMessage,
+  setOpenSuccess,
+  setOpenError,
+  setErrorMessage,
+  setErrorObj
+) => {
   const queryClient = useQueryClient();
   const profileId = JSON.parse(localStorage.getItem('profileId'));
 
@@ -15,8 +21,13 @@ export const useDeletePost = () => {
 
       return { previousObj, deletedObj };
     },
-    onError: (err, deletedObj, context) => {
-      // handle error, display "err"
+    onError: (error, deletedObj, context) => {
+      const errorObject = error.response.data;
+
+      setOpenError(true);
+      setErrorMessage(errorObject.error.message);
+      setErrorObj(errorObject);
+
       queryClient.setQueryData(['articles', context.deletedObj._id], context.previousObj);
     },
     onSettled: (deletedObj) => {
@@ -24,10 +35,12 @@ export const useDeletePost = () => {
     },
     // Notice the second argument is the variables object that the `mutate` function receives
     onSuccess: (data, variables) => {
-      //handle success with toast
-      alert('Post deleted!');
-      console.log('🚀 ~ file: useDeletePost.js:32 ~ useDeletePost ~ variables:', variables);
-      window.location.href = `/backoffice/articles/author/${profileId}`;
+      setOpenSuccess(true);
+      setSuccessMessage(data);
+
+      setTimeout(() => {
+        window.location.href = `/backoffice/articles/author/${profileId}`;
+      }, 3000);
     }
   });
 };

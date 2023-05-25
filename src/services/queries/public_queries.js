@@ -25,7 +25,7 @@ const getArticles = async () => {
 };
 
 const getLastArticles = async () => {
-  const { data } = await axios.get(`${BASE_URL}/${prefix}/`);
+  const { data } = await axios.get(`${BASE_URL}/${prefix}/last`);
   return data;
 };
 

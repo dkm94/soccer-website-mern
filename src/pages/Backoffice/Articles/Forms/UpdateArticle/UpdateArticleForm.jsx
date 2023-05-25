@@ -78,7 +78,15 @@ const UpdateArticleForm = ({ drawerWidth }) => {
     setTempForm,
     setErrorObj
   );
-  const deleteMutation = useDeletePost();
+
+  const deleteMutation = useDeletePost(
+    setSuccessMessage,
+    setOpenSuccess,
+    setOpenError,
+    setErrorMessage,
+    setErrorObj
+  );
+
   const { palette } = useTheme();
 
   const {
@@ -139,6 +147,8 @@ const UpdateArticleForm = ({ drawerWidth }) => {
 
   const status = error?.response?.status;
   const message = error?.response?.data;
+
+  console.log(error);
 
   return (
     <Box
@@ -286,7 +296,7 @@ const UpdateArticleForm = ({ drawerWidth }) => {
           </Snackbar>
           <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
             <Alert severity="error" sx={{ width: '100%' }}>
-              {errorMessage}
+              {error?.message}
             </Alert>
           </Snackbar>
         </Grid>

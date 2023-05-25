@@ -93,8 +93,8 @@ const deletePost = async (_id) => {
   try {
     const { data } = await axios.delete(url, { headers: customHeaders });
     return data;
-  } catch (e) {
-    throw new Error(e);
+  } catch (err) {
+    if (err) throw err;
   }
 };
 
