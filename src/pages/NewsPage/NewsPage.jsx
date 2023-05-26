@@ -11,6 +11,7 @@ import { AdvancedImage } from '@cloudinary/react';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
 import './NewsPage.css';
+import NewsPageSkeleton from '../../components/Loaders/Skeletons/NewsPage/NewsPageSkeleton';
 
 const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.black.main,
@@ -29,14 +30,11 @@ const Summary = styled(Typography)(({ theme }) => ({
 const NewsPage = () => {
   let { id } = useParams();
 
-  const { data: article } = useQuery({
+  const { data: article, isLoading } = useQuery({
     staleTime: Infinity,
     queryKey: ['articles'],
     queryFn: () => getArticle(id)
   });
-
-  // const formattedPath = article?.file?.replaceAll('\\', '/');
-  // const imageURL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
 
   const competition = competitionSeeds.filter((competition) => competition.idx == article?.topic);
   const options = {
@@ -63,7 +61,8 @@ const NewsPage = () => {
   return (
     <article>
       <Container className="news-page">
-        <MainContent title={competition[0]?.title}>
+        <MainContent title={competition ? competition[0]?.title : 'Loading...'}>
+          {isLoading && <NewsPageSkeleton />}
           {article && (
             <Container>
               <Title variant="h1">{article?.title}</Title>

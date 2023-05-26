@@ -15,7 +15,6 @@ const News = () => {
 
   const {
     data: articles,
-    // error,
     isError,
     isLoading
   } = useQuery({
