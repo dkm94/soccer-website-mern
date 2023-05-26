@@ -1,0 +1,18 @@
+.author-card__wrapper {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+}
+
+.author-card__img {
+    height: 48px;
+    width: 48px;
+    margin-right: 1rem;
+}
+
+.author-card__img > img {
+    height: 100%;
+    width: inherit;
+    object-fit: cover;
+    border-radius: 50%;
+}

@@ -12,6 +12,7 @@ import { CloudinaryImage } from '@cloudinary/url-gen';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
 import './NewsPage.css';
 import NewsPageSkeleton from '../../components/Loaders/Skeletons/NewsPage/NewsPageSkeleton';
+import AuthorCard from '../../components/Cards/Author/AuthorCard';
 
 const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.black.main,
@@ -53,7 +54,7 @@ const NewsPage = () => {
   const editedDate = new Date(article?.updatedAt);
   const formattedUpdatedDate = editedDate?.toLocaleString('en-UK', options);
 
-  const author = article?.id_profile?.handle;
+  const author = article?.id_profile;
 
   const imageSrc = article?.file?.public_id;
   const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' }).delivery(quality(100));
@@ -67,11 +68,19 @@ const NewsPage = () => {
             <Container>
               <Title variant="h1">{article?.title}</Title>
               <Summary variant="h2">{article?.summary}</Summary>
-              <Grid container>
-                <Grid container alignItems="flex-end" xs={6}>
-                  <Typography variant="body1">{author}</Typography>
+              <Grid container mb={2}>
+                <Grid item alignItems="flex-end" sm={12} md={6}>
+                  <AuthorCard infos={author} />
                 </Grid>
-                <Grid container direction="column" alignItems="self-end" xs={6}>
+                <Grid
+                  item
+                  direction="column"
+                  alignItems="self-end"
+                  justifyContent="flex-end"
+                  alignSelf="end"
+                  textAlign="end"
+                  sm={12}
+                  md={6}>
                   {formattedCreatedDate === 'Invalid Date' ? (
                     ''
                   ) : (
@@ -85,12 +94,6 @@ const NewsPage = () => {
                 </Grid>
               </Grid>
               <Box>
-                {/* <Image
-                  src={imageURL}
-                  width={'auto'}
-                  height="420px"
-                  className="news-page__img-article"
-                /> */}
                 <Grid className="news-page__article-img">
                   <AdvancedImage cldImg={myImage} />
                 </Grid>
