@@ -61,6 +61,7 @@ const UpdateArticleForm = ({ drawerWidth }) => {
   const [caption, setCaption] = useState('');
   const [online, setOnline] = useState(false);
   const [content, setContent] = useState('');
+  const [fileName, setFilename] = useState('');
 
   const [errorObj, setErrorObj] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -76,7 +77,8 @@ const UpdateArticleForm = ({ drawerWidth }) => {
     setOpenError,
     setErrorMessage,
     setTempForm,
-    setErrorObj
+    setErrorObj,
+    setFilename
   );
 
   const deleteMutation = useDeletePost(
@@ -122,6 +124,26 @@ const UpdateArticleForm = ({ drawerWidth }) => {
     },
     keepPreviousData: true
   });
+
+  const handleImage = async (e) => {
+    const img = e.target.files[0];
+    const base64 = await convertToBase64(img);
+    setFilename(img.name);
+    setFiles(base64);
+  };
+
+  const convertToBase64 = (img) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const handleClose = (event) => {
     setOpenSuccess(false);
@@ -241,7 +263,12 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             <InputLabel>Image</InputLabel>
           </Grid>
           <Grid item xs={12} sm={10} style={{ display: 'flex', flexDirection: 'row' }}>
-            <UploadButton getFiles={setFiles} files={files} oldFile={oldFile} />
+            <UploadButton
+              getFiles={handleImage}
+              files={files}
+              oldFile={oldFile}
+              fileName={fileName}
+            />
           </Grid>
           <Grid item xs={12} sm={2}>
             <InputLabel>Image caption</InputLabel>

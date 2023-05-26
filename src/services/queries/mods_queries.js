@@ -47,26 +47,18 @@ const createPost = async (form) => {
   }
 };
 
-const editPost = async ({ _id, online, title, topic, summary, file, caption, content }) => {
+const editPost = async (form) => {
   try {
+    const { _id } = form;
     const url = `${BASE_URL}/mod/articles/edit/${_id}`;
-    const form = new FormData();
-    form.set('title', title);
-    form.set('topic', topic);
-    form.set('summary', summary);
-    form.set('caption', caption);
-    form.set('content', content);
-    form.set('online', online);
-    if (file?.[0]) {
-      form.set('file', file?.[0]);
-    }
-
     const customHeaders = {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data'
+      Authorization: `Bearer ${token}`
     };
 
-    const { data } = await axios.put(url, form, { headers: customHeaders });
+    const { data } = await axios.put(url, form, {
+      headers: customHeaders,
+      signal: new AbortController().signal
+    });
     return data;
   } catch (err) {
     if (err) throw err;

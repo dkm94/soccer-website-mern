@@ -106,10 +106,6 @@ const Profile = ({ drawerWidth, profileId }) => {
     mutation.mutate({ _id: id, name, handle, intro, file: files }, id);
   };
 
-  // const formattedPath = profile?.file?.replaceAll('\\', '/');
-  // const imageURL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
-  // console.log(imageURL);
-
   const handleImage = async (e) => {
     const img = e.target.files[0];
     const base64 = await convertToBase64(img);
@@ -241,7 +237,6 @@ const Profile = ({ drawerWidth, profileId }) => {
           <InputLabel>Avatar</InputLabel>
         </Grid>
         <Grid item xs={12} sm={10} style={{ display: 'flex', flexDirection: 'row' }}>
-          {/* <UploadButton getFiles={setFiles} files={files} /> */}
           <UploadButton getFiles={handleImage} files={files} fileName={fileName} />
         </Grid>
         <Grid item xs={12} sm={2} />
