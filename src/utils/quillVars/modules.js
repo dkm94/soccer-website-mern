@@ -7,6 +7,10 @@ const modules = {
     ['link'],
     ['clean']
   ]
+  // counter: {
+  //   container: '#counter',
+  //   unit: 'character'
+  // }
 };
 
 export default modules;

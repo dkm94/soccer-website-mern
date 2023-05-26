@@ -31,6 +31,7 @@ import modules from '../../../../../utils/quillVars/modules';
 import formats from '../../../../../utils/quillVars/formats';
 import UpdateArticleFormSkeleton from '../../../../../components/Loaders/Skeletons/Forms/UpdateArticleFormSkeleton';
 import Message from '../../../../../components/Screens/Message';
+import CustomTexField from '../../../../../components/Inputs/TextField/CustomTexField';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   // marginTop: '2rem',
@@ -208,8 +209,10 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             <InputLabel>Title</InputLabel>
           </Grid>
           <Grid item xs={12} sm={10}>
-            <TextField
+            <CustomTexField
               required
+              counter
+              type="text"
               id="title"
               name="title"
               fullWidth
@@ -219,6 +222,9 @@ const UpdateArticleForm = ({ drawerWidth }) => {
               onChange={(e) => setTitle(e.target.value)}
               error={catchError('title')}
               helperText={helperText('title')}
+              inputProps={{
+                maxLength: 250
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -246,8 +252,10 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             <InputLabel>Summary</InputLabel>
           </Grid>
           <Grid item xs={12} sm={10}>
-            <TextField
+            <CustomTexField
               required
+              counter
+              type="text"
               id="summary"
               name="summary"
               fullWidth
@@ -257,6 +265,9 @@ const UpdateArticleForm = ({ drawerWidth }) => {
               onChange={(e) => setSummary(e.target.value)}
               error={catchError('summary')}
               helperText={helperText('summary')}
+              inputProps={{
+                maxLength: 500
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -274,8 +285,10 @@ const UpdateArticleForm = ({ drawerWidth }) => {
             <InputLabel>Image caption</InputLabel>
           </Grid>
           <Grid item xs={12} sm={10}>
-            <TextField
+            <CustomTexField
               required
+              counter
+              type="text"
               id="caption"
               name="caption"
               fullWidth
@@ -285,6 +298,9 @@ const UpdateArticleForm = ({ drawerWidth }) => {
               onChange={(e) => setCaption(e.target.value)}
               error={catchError('caption')}
               helperText={helperText('caption')}
+              inputProps={{
+                maxLength: 200
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -321,7 +337,7 @@ const UpdateArticleForm = ({ drawerWidth }) => {
           </Snackbar>
           <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
             <Alert severity="error" sx={{ width: '100%', color: '#FFF' }}>
-              {error?.message}
+              {errorMessage || error?.message}
             </Alert>
           </Snackbar>
         </Grid>
