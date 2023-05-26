@@ -1,33 +1,25 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Box, Container } from '@mui/material';
+import { Grid, Container } from '@mui/material';
 import './NewsSkeleton.css';
 
 const Card = () => {
   return (
-    <div className="wrapper">
+    <Grid item xs={12} md={6} lg={4} className="wrapper">
       <Container className="load skeleton-content" />
       <Container className="load skeleton-text-100" />
       <Container className="load skeleton-text-100" />
       <Container className="load skeleton-text-100" />
-    </div>
+    </Grid>
   );
 };
 
 const NewsSkeleton = () => {
   const cards = Array(6).fill(<Card />);
   return (
-    <Box
-      sx={{
-        display: 'grid',
-        rowGap: '3rem',
-        columnGap: '1rem',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(16rem, 1fr))',
-        width: '100%',
-        paddingTop: '2rem'
-      }}>
+    <Grid container spacing={4} mt={4}>
       {cards}
-    </Box>
+    </Grid>
   );
 };
 
