@@ -6,9 +6,11 @@ import { getArticle } from '../../services/queries/public_queries';
 import competitionSeeds from '../../seeds/competitions';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
 import { styled } from '@mui/material/styles';
-import './NewsPage.css';
-import { Image } from 'react-bootstrap';
 import * as DOMPurify from 'dompurify';
+import { AdvancedImage } from '@cloudinary/react';
+import { CloudinaryImage } from '@cloudinary/url-gen';
+import { quality } from '@cloudinary/url-gen/actions/delivery';
+import './NewsPage.css';
 
 const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.black.main,
@@ -33,8 +35,8 @@ const NewsPage = () => {
     queryFn: () => getArticle(id)
   });
 
-  const formattedPath = article?.file?.replaceAll('\\', '/');
-  const imageURL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
+  // const formattedPath = article?.file?.replaceAll('\\', '/');
+  // const imageURL = `https://soccer-api-2zzl.onrender.com/${formattedPath}`;
 
   const competition = competitionSeeds.filter((competition) => competition.idx == article?.topic);
   const options = {
@@ -54,6 +56,9 @@ const NewsPage = () => {
   const formattedUpdatedDate = editedDate?.toLocaleString('en-UK', options);
 
   const author = article?.id_profile?.handle;
+
+  const imageSrc = article?.file?.public_id;
+  const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' }).delivery(quality(100));
 
   return (
     <article>
@@ -81,15 +86,20 @@ const NewsPage = () => {
                 </Grid>
               </Grid>
               <Box>
-                <Image
+                {/* <Image
                   src={imageURL}
                   width={'auto'}
                   height="420px"
                   className="news-page__img-article"
-                />
-                <Typography variant="caption" display="block" gutterBottom>
-                  {article?.caption}
-                </Typography>
+                /> */}
+                <Grid className="news-page__article-img">
+                  <AdvancedImage cldImg={myImage} />
+                </Grid>
+                <Grid className="news-page__article-caption">
+                  <Typography variant="caption" display="block" gutterBottom>
+                    {article?.caption}
+                  </Typography>
+                </Grid>
                 <div
                   style={{ marginTop: '2rem' }}
                   dangerouslySetInnerHTML={{ __html: cleanContent }}></div>
