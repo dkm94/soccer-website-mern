@@ -26,10 +26,12 @@ import LazyLoad from '../components/Loaders/Lazy/LazyLoad';
 import { ErrorBoundary } from 'react-error-boundary';
 import Message from '../components/Screens/Message';
 import IsMod from './ProtectedRoutes/IsMod';
+import IsAdmin from './ProtectedRoutes/IsAdmin';
 import NewsPage from '../pages/NewsPage/NewsPage';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 const isMod = JSON.parse(localStorage.getItem('isMod'));
+const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
 
 const path = window.location.pathname;
 
@@ -104,6 +106,20 @@ const AppRouter = () => {
                       </ErrorBoundary>
                     }
                   />
+                  <Route element={<IsAdmin isAdmin={isAdmin} />}>
+                    <Route
+                      path="/backoffice/moderators"
+                      element={
+                        <ErrorBoundary
+                          FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
+                          onReset={() => (window.location.href = '/backoffice')}>
+                          <Suspense fallback={<LazyLoad />}>
+                            <Admin />
+                          </Suspense>
+                        </ErrorBoundary>
+                      }
+                    />
+                  </Route>
                   <Route element={<IsMod isMod={isMod} />}>
                     <Route
                       path="/backoffice/articles/create"

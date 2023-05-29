@@ -9,17 +9,12 @@ import UpdateArticleForm from './Articles/Forms/UpdateArticle/UpdateArticleForm'
 import UserArticles from './Articles/UserArticles/UserArticles';
 import { useParams } from 'react-router-dom';
 import Profile from './Profile/Profile';
+import Moderators from './Moderators/Main/Moderators';
 
 const drawerWidth = 240;
 
 const profileId = JSON.parse(localStorage.getItem('profileId'));
 const path = window.location.pathname;
-
-// const backofficeComponent = {
-//   '/backoffice': <Main cards={cards} drawerWidth={drawerWidth} />,
-//   '/backoffice/articles/author/:id': <UserArticles drawerWidth={drawerWidth} />,
-//   '/backoffice/articles/create': <CreateArticleForm drawerWidth={drawerWidth} />
-// };
 
 const backofficeComponent = () => {
   let { id } = useParams();
@@ -34,6 +29,8 @@ const backofficeComponent = () => {
       return <UpdateArticleForm drawerWidth={drawerWidth} />;
     case `/backoffice/profile/${id}`:
       return <Profile drawerWidth={drawerWidth} profileId={profileId} />;
+    case `/backoffice/moderators`:
+      return <Moderators drawerWidth={drawerWidth} />;
     default:
       break;
   }

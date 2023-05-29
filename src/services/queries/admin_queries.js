@@ -14,4 +14,17 @@ const changeModStatus = async ({ _id }) => {
   return await axios(config);
 };
 
-export { changeModStatus };
+const createMod = async (form) => {
+  try {
+    const url = `${BASE_URL}/admin/mods`;
+    const { data } = await axios.post(url, form, {
+      signal: new AbortController().signal,
+      headers: authorization
+    });
+    return data;
+  } catch (error) {
+    if (error) throw error;
+  }
+};
+
+export { changeModStatus, createMod };

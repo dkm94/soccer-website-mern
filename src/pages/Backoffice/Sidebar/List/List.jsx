@@ -9,10 +9,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-// import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import ArticleIcon from '@mui/icons-material/Article';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const SideBarList = () => {
   const profileId = JSON.parse(localStorage.getItem('profileId'));
@@ -25,23 +26,30 @@ const SideBarList = () => {
   };
 
   const listData = [
-    // {
-    //   id: 1,
-    //   name: 'Moderators',
-    //   icon: <SupervisedUserCircleIcon />
-    // },
+    {
+      id: 1,
+      name: 'Dashboard',
+      icon: <DashboardIcon />,
+      path: `/backoffice`
+    },
     {
       id: 2,
+      name: 'Moderators',
+      icon: <SupervisedUserCircleIcon />,
+      path: `/backoffice/moderators`
+    },
+    {
+      id: 3,
       name: 'Articles',
       icon: <ArticleIcon />
     },
     {
-      id: 3,
+      id: 4,
       name: 'Reported comments',
       icon: <DisabledByDefaultIcon />
     },
     {
-      id: 4,
+      id: 5,
       name: 'My profile',
       icon: <ContactsIcon />,
       path: `/backoffice/profile/${profileId}`
