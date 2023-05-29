@@ -42,7 +42,7 @@ const UploadButton = ({ getFiles, files, oldFile, fileName }) => {
       {files || oldFile ? (
         <UploadText variant="body1">{fileName || oldFile.public_id}</UploadText>
       ) : (
-        <UploadText variant="body1">No file chosen</UploadText>
+        <UploadText variant="body1">(.jpeg, .png, .jpg)</UploadText>
       )}
     </UploadLabel>
   );

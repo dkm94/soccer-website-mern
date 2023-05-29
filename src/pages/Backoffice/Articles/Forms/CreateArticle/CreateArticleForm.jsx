@@ -25,6 +25,7 @@ import 'react-quill/dist/quill.snow.css';
 import UploadButton from '../../../../../components/Buttons/Upload/UploadButton';
 import formats from '../../../../../utils/quillVars/formats';
 import modules from '../../../../../utils/quillVars/modules';
+import CustomTexField from '../../../../../components/Inputs/TextField/CustomTexField';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -134,8 +135,10 @@ const CreateArticleForm = ({ drawerWidth }) => {
           <InputLabel>Title</InputLabel>
         </Grid>
         <Grid item xs={12} sm={10}>
-          <TextField
+          <CustomTexField
             required
+            counter
+            type="text"
             id="title"
             name="title"
             fullWidth
@@ -145,6 +148,9 @@ const CreateArticleForm = ({ drawerWidth }) => {
             onChange={(e) => setTitle(e.target.value)}
             error={catchError('title')}
             helperText={helperText('title')}
+            inputProps={{
+              maxLength: 250
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -173,8 +179,10 @@ const CreateArticleForm = ({ drawerWidth }) => {
           <InputLabel>Summary</InputLabel>
         </Grid>
         <Grid item xs={12} sm={10}>
-          <TextField
+          <CustomTexField
             required
+            counter
+            type="text"
             id="summary"
             name="summary"
             fullWidth
@@ -184,6 +192,9 @@ const CreateArticleForm = ({ drawerWidth }) => {
             onChange={(e) => setSummary(e.target.value)}
             error={catchError('summary')}
             helperText={helperText('summary')}
+            inputProps={{
+              maxLength: 500
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
@@ -197,8 +208,10 @@ const CreateArticleForm = ({ drawerWidth }) => {
           <InputLabel>Image caption</InputLabel>
         </Grid>
         <Grid item xs={12} sm={10}>
-          <TextField
+          <CustomTexField
             required
+            counter
+            type="text"
             id="caption"
             name="caption"
             fullWidth
@@ -208,6 +221,9 @@ const CreateArticleForm = ({ drawerWidth }) => {
             onChange={(e) => setCaption(e.target.value)}
             error={catchError('caption')}
             helperText={helperText('caption')}
+            inputProps={{
+              maxLength: 200
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={2}>
