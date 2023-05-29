@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import usePagination from '../../hooks/usePagination';
 import { Col } from 'react-bootstrap';
-import { getRessources } from '../../services/publicAPIs/soccerapi_services';
+import { getMatchesOfTheDay } from '../../services/publicAPIs/soccerapi_services';
 import './Home.css';
 import '../../App.css';
 import MainContent from '../../components/Wrappers/MainContent/MainContent';
@@ -32,18 +32,18 @@ const Home = () => {
     isLoading,
     isError,
     error,
-    data: matches
+    data: result
   } = useQuery({
     // staleTime: Infinity,
-    queryKey: ['matches'],
-    queryFn: () => getRessources('matches')
+    queryKey: ['result?.matches'],
+    queryFn: () => getMatchesOfTheDay()
   });
 
   const [competition, setCompetition] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
   let formattedCompetitions = [];
-  matches?.forEach((match) => {
+  result?.matches?.forEach((match) => {
     return formattedCompetitions.push({
       id: match?.competition?.code,
       name: match?.competition?.name
@@ -51,12 +51,12 @@ const Home = () => {
   });
 
   const perPage = 5;
-  const _DATA = usePagination(matches, perPage, competition);
+  const _DATA = usePagination(result?.matches, perPage, competition);
   const getCount = () => {
     if (competition) {
       return Math.ceil(_DATA.dataByCompetition().length / perPage);
     } else {
-      return Math.ceil(matches?.length / perPage);
+      return Math.ceil(result?.matches?.length / perPage);
     }
   };
 
@@ -70,9 +70,9 @@ const Home = () => {
       <div className="layout-cols">
         <MainContent title={"Today's games"}>
           <StyledContainer>
-            {matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={true} />}
+            {result?.matches?.length === 0 && <Message code={'GAMES_NOT_FOUND'} img={true} />}
             {isError && <Message code={'DEFAULT_ERROR'} img={true} error={error} />}
-            {matches && matches?.length > 0 && (
+            {result?.matches && result?.matches?.length > 0 && (
               <SelectWrapper>
                 <Select
                   competition={competition}

@@ -20,8 +20,13 @@ const getProfile = async (id) => {
 };
 
 const getArticles = async () => {
-  const { data } = await axios.get(`${BASE_URL}/${prefix}/`);
-  return data;
+  try {
+    const { data } = await axios.get(`${BASE_URL}/${prefix}/`);
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw new Error('Oops, something went wrong...');
+  }
 };
 
 const getLastArticles = async () => {

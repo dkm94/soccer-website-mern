@@ -13,6 +13,15 @@
         "type": "No data to display",
         "content":"There's no content to show here."
     },
+    "GAMES_NOT_FOUND":{
+        "img": "no-data.png",
+        "type": "Oops...",
+        "content":"There's no games scheduled for today.",
+        "button": {
+            "action": "redirect",
+            "content": "Check the latest articles"
+        }
+    },
     "DEFAULT_ERROR":{
         "img": "no-data.png",
         "type": "Oops...",

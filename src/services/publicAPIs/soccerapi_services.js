@@ -13,7 +13,8 @@ export {
   getMatches,
   getCount,
   getMatchesByCompetition,
-  getScoreBoard
+  getScoreBoard,
+  getMatchesOfTheDay
 };
 
 async function getRessources(name) {
@@ -30,6 +31,25 @@ async function getRessources(name) {
     };
     const { data } = await axios(config);
     return data[`${name}`];
+  } catch (error) {
+    throw new Error('Failed to fetch data from API Football data server', error);
+  }
+}
+
+async function getMatchesOfTheDay() {
+  try {
+    const url = `${corsEveryhere}/${BASE_URL}/${apiVersion}/matches`;
+    const config = {
+      method: 'get',
+      url,
+      headers: {
+        'X-Auth-Token': `${tokenAPI}`,
+        'X-Response-Control': 'full'
+      }
+      // signal
+    };
+    const { data } = await axios(config);
+    return data;
   } catch (error) {
     throw new Error('Failed to fetch data from API Football data server', error);
   }
