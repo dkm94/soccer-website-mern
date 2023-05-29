@@ -14,7 +14,8 @@ export {
   getCount,
   getMatchesByCompetition,
   getScoreBoard,
-  getMatchesOfTheDay
+  getMatchesOfTheDay,
+  getCompetitions
 };
 
 async function getRessources(name) {
@@ -67,6 +68,24 @@ function getRessource(name, id) {
   return axios
     .get(url, { headers: { 'X-Auth-Token': `${tokenAPI}` } })
     .then((response) => response.data);
+}
+
+async function getCompetitions() {
+  try {
+    const url = `${corsEveryhere}/${BASE_URL}/${apiVersion}/competitions`;
+    const config = {
+      method: 'get',
+      url,
+      headers: {
+        'X-Auth-Token': `${tokenAPI}`,
+        'X-Response-Control': 'full'
+      }
+    };
+    const { data } = await axios(config);
+    return data;
+  } catch (error) {
+    throw new Error('Failed to fetch data from API Football data server', error);
+  }
 }
 
 function getMatchesByCompetition(name, id) {

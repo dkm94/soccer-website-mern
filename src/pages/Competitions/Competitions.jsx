@@ -6,7 +6,7 @@ import CompetitionCard from '../../components/Cards/Competition/Competition';
 import { useQuery } from 'react-query';
 import './Competition.css';
 
-import { getRessources } from '../../services/publicAPIs/soccerapi_services';
+import { getCompetitions } from '../../services/publicAPIs/soccerapi_services';
 import CompetitionsLoader from '../../components/Loaders/Skeletons/Competitions/Loader';
 import Message from '../../components/Screens/Message';
 import { styled } from '@mui/material';
@@ -16,15 +16,12 @@ const StyledContainer = styled('div')({
 });
 
 const Competition = () => {
-  const {
-    isLoading,
-    isError,
-    error,
-    data: competitions
-  } = useQuery({
+  const { isLoading, isError, error, data } = useQuery({
     queryKey: ['competitions'],
-    queryFn: () => getRessources('competitions')
+    queryFn: () => getCompetitions()
   });
+
+  const competitions = data?.competitions;
 
   return (
     <Col lg={8}>
