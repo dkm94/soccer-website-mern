@@ -19,7 +19,7 @@
         "content":"There's no games scheduled for today.",
         "button": {
             "action": "redirect",
-            "content": "Check the latest articles"
+            "content": "See games' history"
         }
     },
     "DEFAULT_ERROR":{

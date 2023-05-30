@@ -32,13 +32,13 @@ const Message = ({ code, img, error }) => {
   const message = messages[code];
 
   const refreshPage = () => window.location.reload();
-  const redirectToArticles = () => (window.location.href = '/news');
+  const redirectToMatchHistory = () => (window.location.href = '/matchhistory');
 
   const action = () => {
     const { button } = message;
     switch (button.action) {
       case 'redirect':
-        redirectToArticles();
+        redirectToMatchHistory();
         break;
       case 'reload':
         refreshPage();
