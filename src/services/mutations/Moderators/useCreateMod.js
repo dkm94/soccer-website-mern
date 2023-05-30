@@ -9,7 +9,8 @@ export const useCreateMod = (
   setError,
   setTempForm,
   setEmail,
-  setName
+  setName,
+  onClose
 ) => {
   return useMutation({
     mutationFn: createMod,
@@ -22,9 +23,12 @@ export const useCreateMod = (
     onSuccess: (data, variables, context) => {
       const { message } = data;
       setOpenSuccess(true);
-      setSuccessMessage(message);
+      setSuccessMessage('Saved !');
       setEmail('');
       setName('');
+      setTimeout(() => {
+        onClose();
+      }, [2000]);
     }
   });
 };

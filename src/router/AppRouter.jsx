@@ -28,6 +28,7 @@ import Message from '../components/Screens/Message';
 import IsMod from './ProtectedRoutes/IsMod';
 import IsAdmin from './ProtectedRoutes/IsAdmin';
 import NewsPage from '../pages/NewsPage/NewsPage';
+import AddModeratorModal from '../components/Modal/Moderators/Forms/AddModeratorModal/AddModeratorModal';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 const isMod = JSON.parse(localStorage.getItem('isMod'));
@@ -151,6 +152,9 @@ const AppRouter = () => {
             </Layout>
             <Footer />
           </Router>
+          <div className="clipping-container">
+            <AddModeratorModal />
+          </div>
         </MuiThemeProvider>
       </CssVarsProvider>
       <ReactQueryDevtools initialIsOpen={false} />

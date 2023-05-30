@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Box, Grid, InputLabel, Button, Typography, styled } from '@mui/material';
 import CustomTexField from '../../../../../components/Inputs/TextField/CustomTexField';
+import { useCreateMod } from '../../../../../services/mutations/Moderators/useCreateMod';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   textTransform: 'unset',
@@ -8,11 +10,20 @@ const SubmitButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.black.dark
 }));
 
-const AddMod = () => {
+const ErrorMessage = styled(Button)(({ theme }) => ({
+  color: theme.palette.primary.main
+}));
+
+const AddMod = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
 
   const [tempForm, setTempForm] = useState(null);
+
+  const [error, setError] = useState(null);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const mutation = useCreateMod(
     setSuccessMessage,
@@ -21,7 +32,8 @@ const AddMod = () => {
     setError,
     setTempForm,
     setEmail,
-    setName
+    setName,
+    onClose
   );
 
   const addMod = (e) => {
@@ -35,6 +47,8 @@ const AddMod = () => {
       return field in error.messages;
     }
   };
+
+  const { isSuccess, isLoading, isError } = mutation;
 
   return (
     <Box component="form" onSubmit={addMod}>
@@ -89,9 +103,10 @@ const AddMod = () => {
       </Grid>
       <Grid container direction="row" justifyContent="flex-end">
         <SubmitButton type="submit" variant="contained">
-          {mutation.isLoading ? 'Saving...' : 'New moderator'}
+          {isLoading ? 'Saving...' : isSuccess ? successMessage : 'Save'}
         </SubmitButton>
       </Grid>
+      {isError && <ErrorMessage>Request has failed, please try again</ErrorMessage>}
     </Box>
   );
 };

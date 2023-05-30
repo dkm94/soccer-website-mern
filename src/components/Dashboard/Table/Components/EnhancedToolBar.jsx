@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { IconButton, Toolbar, Box, Tooltip, Typography, Button, useTheme } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { styled } from '@mui/material/styles';
 import ConfirmationModal from '../../../Modal/Confirmation/Confirmation';
 import AddIcon from '@mui/icons-material/Add';
+import AddModeratorModalContent from '../../../Modal/Moderators/Forms/AddModeratorModal/AddModeratorModal';
 
 const CustomToolbar = styled(Toolbar)(({ theme }) => ({
   justifyContent: 'end',
@@ -43,6 +45,9 @@ const EnhancedToolBar = (props) => {
   const { palette } = useTheme();
 
   const [open, setOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  console.log('🚀 ~ file: EnhancedToolBar.jsx:49 ~ EnhancedToolBar ~ showModal:', showModal);
+
   const handleOpen = () => setOpen(true);
 
   const message = 'Supprimer le modérateur';
@@ -88,14 +93,19 @@ const EnhancedToolBar = (props) => {
             </IconButton>
           </Tooltip>
         ) : (
-          // <Tooltip title="Filter list">
-          //   <IconButton>
-          //     <FilterListIcon sx={{ color: palette?.white?.main }} />
-          //   </IconButton>
-          // </Tooltip>
-          <AddButton variant="contained" startIcon={<AddIcon />}>
-            Add new moderator
-          </AddButton>
+          <>
+            <AddButton
+              variant="contained"
+              startIcon={<AddIcon />}
+              onClick={() => setShowModal(true)}>
+              Add new moderator
+            </AddButton>
+            {showModal &&
+              createPortal(
+                <AddModeratorModalContent onClose={() => setShowModal(false)} />,
+                document.body
+              )}
+          </>
         )}
       </Box>
     </CustomToolbar>
