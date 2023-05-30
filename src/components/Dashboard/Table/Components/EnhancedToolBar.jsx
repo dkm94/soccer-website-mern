@@ -1,13 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { IconButton, Toolbar, Box, Tooltip, Typography, Button, useTheme } from '@mui/material';
+import { IconButton, Toolbar, Box, Tooltip, Typography, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { styled } from '@mui/material/styles';
-import ConfirmationModal from '../../../Modal/Confirmation/Confirmation';
 import AddIcon from '@mui/icons-material/Add';
-import AddModeratorModalContent from '../../../Modal/Moderators/Forms/AddModeratorModal/AddModeratorModal';
+import ModalComponent from '../../../Modal/ModalComponent';
 
 const CustomToolbar = styled(Toolbar)(({ theme }) => ({
   justifyContent: 'end',
@@ -42,16 +40,14 @@ const AddButton = styled(Button)(({ theme }) => ({
 
 const EnhancedToolBar = (props) => {
   const { numSelected } = props;
-  const { palette } = useTheme();
 
-  const [open, setOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  console.log('🚀 ~ file: EnhancedToolBar.jsx:49 ~ EnhancedToolBar ~ showModal:', showModal);
+  const [modalName, setModalName] = useState('');
 
-  const handleOpen = () => setOpen(true);
-
-  const message = 'Supprimer le modérateur';
-  const content = 'Êtes-vous sûr de vouloir supprimer cet élément ?';
+  const openModal = (componentName) => {
+    setShowModal(true);
+    setModalName(componentName);
+  };
 
   return (
     <CustomToolbar
@@ -81,28 +77,29 @@ const EnhancedToolBar = (props) => {
 
       <Box sx={{ width: 'fit-content' }}>
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton onClick={handleOpen}>
-              <DeleteIcon />
-              <ConfirmationModal
-                setOpen={setOpen}
-                open={open}
-                message={message}
-                content={content}
-              />
-            </IconButton>
-          </Tooltip>
+          <>
+            <Tooltip title="Delete">
+              <IconButton onClick={() => openModal('deleteMod')}>
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+            {showModal &&
+              createPortal(
+                <ModalComponent onClose={() => setShowModal(false)} component={modalName} />,
+                document.body
+              )}
+          </>
         ) : (
           <>
             <AddButton
               variant="contained"
               startIcon={<AddIcon />}
-              onClick={() => setShowModal(true)}>
+              onClick={() => openModal('addMod')}>
               Add new moderator
             </AddButton>
             {showModal &&
               createPortal(
-                <AddModeratorModalContent onClose={() => setShowModal(false)} />,
+                <ModalComponent onClose={() => setShowModal(false)} component={modalName} />,
                 document.body
               )}
           </>

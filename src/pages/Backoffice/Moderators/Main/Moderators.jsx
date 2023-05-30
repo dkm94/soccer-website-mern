@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Box, Grid, Typography, InputLabel, styled, Button, Snackbar } from '@mui/material';
+import { Box, Snackbar } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useTheme } from '@mui/material';
-import CustomTexField from '../../../../components/Inputs/TextField/CustomTexField';
-import { useCreateMod } from '../../../../services/mutations/Moderators/useCreateMod';
 import ModsTable from '../Table/ModsTable';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -14,30 +12,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const Moderators = ({ drawerWidth }) => {
   const { palette } = useTheme();
 
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-
   const [error, setError] = useState(null);
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
-
-  const [tempForm, setTempForm] = useState(null);
-
-  const mutation = useCreateMod(
-    setSuccessMessage,
-    setOpenSuccess,
-    setOpenError,
-    setError,
-    setTempForm,
-    setEmail,
-    setName
-  );
-
-  const submitPost = (e) => {
-    e.preventDefault();
-    mutation.mutate({ email, name });
-  };
 
   const handleClose = (event) => {
     setOpenSuccess(false);
