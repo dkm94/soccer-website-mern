@@ -24,7 +24,7 @@ export const cssVars = {
           main: ' #a9a9a9',
           light: ' #cccccc',
           lighter: '#eae8e8',
-          dark: '#a9a9a9',
+          dark: '#706b6b',
           contrastText: ' #2c2f35'
         },
         green: {

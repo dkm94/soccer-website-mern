@@ -66,7 +66,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
 
 export default function CustomTable({ matches, searchInput, selected }) {
   const { palette } = useTheme();
-  console.log('🚀 ~ file: Table.jsx:69 ~ CustomTable ~ palette:', palette);
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

@@ -7,7 +7,7 @@ function ToggleButton({ value, selected, onChange }) {
   const { palette } = useTheme();
 
   const btnToggleStyle = {
-    background: selected ? palette.primary.main : 'hsl(0, 4%, 69%)'
+    background: selected ? palette.green.light : 'hsl(0, 4%, 69%)'
   };
 
   return (

@@ -196,7 +196,7 @@ const Main = ({ cards, drawerWidth }) => {
         })}
       </Row>
       <Row>
-        <Box sx={{ width: '100%' }}>
+        {/* <Box sx={{ width: '100%' }}>
           <Paper
             sx={{
               width: '100%',
@@ -284,7 +284,7 @@ const Main = ({ cards, drawerWidth }) => {
               </>
             )}
           </Paper>
-        </Box>
+        </Box> */}
       </Row>
     </Box>
   );

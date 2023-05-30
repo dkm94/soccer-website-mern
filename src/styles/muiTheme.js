@@ -26,6 +26,7 @@ export const theme = {
   palette: {
     primary: {
       main: '#ad0606',
+      lighter: '#e8889a',
       contrastText: '#FDFFFC'
     },
     secondary: {
@@ -49,7 +50,12 @@ export const theme = {
     },
     green: {
       main: '#0c893c',
+      light: '#73bc8f',
       contrastText: '#FDFFFC'
+    },
+    blue: {
+      main: '#1976D2',
+      light: '#88bae8'
     }
   },
   typography: {

@@ -46,10 +46,14 @@ table {
   }
 
   th {
-    background-color: #ddd;
+    /* background-color: #ddd; */
     font-weight: normal;
-    font-family: 'Adamina', serif
+    /* font-family: 'Adamina', serif; */
+    color: var(--palette-grey-dark);
+    font-weight: 600;
   }
+
+  tr:nth-child(2n+1){background-color: #F4F6FA;}
 
   .loader-table-cellule {
     height: 26px;
