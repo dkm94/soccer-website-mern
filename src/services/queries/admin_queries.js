@@ -27,4 +27,19 @@ const createMod = async (form) => {
   }
 };
 
-export { changeModStatus, createMod };
+const deleteMods = async (ids) => {
+  console.log('🚀 ~ file: admin_queries.js:31 ~ deleteMods ~ ids:', ids);
+  //https://stackoverflow.com/questions/67139045/how-to-pass-an-array-of-ids-to-delete-using-an-endpoint-rather-than-just-one-id
+  try {
+    const url = `${BASE_URL}/admin/mods/delete`;
+    const { data } = await axios.delete(url, ids, {
+      signal: new AbortController().signal,
+      headers: authorization
+    });
+    return data;
+  } catch (error) {
+    if (error) throw error;
+  }
+};
+
+export { changeModStatus, createMod, deleteMods };
