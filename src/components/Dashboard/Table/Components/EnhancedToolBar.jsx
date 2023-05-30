@@ -38,9 +38,8 @@ const AddButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-const EnhancedToolBar = (props) => {
-  const { numSelected } = props;
-
+const EnhancedToolBar = ({ numSelected, selectedIds }) => {
+  console.log('🚀 ~ file: EnhancedToolBar.jsx:42 ~ EnhancedToolBar ~ selectedIds:', selectedIds);
   const [showModal, setShowModal] = useState(false);
   const [modalName, setModalName] = useState('');
 
@@ -85,7 +84,11 @@ const EnhancedToolBar = (props) => {
             </Tooltip>
             {showModal &&
               createPortal(
-                <ModalComponent onClose={() => setShowModal(false)} component={modalName} />,
+                <ModalComponent
+                  onClose={() => setShowModal(false)}
+                  component={modalName}
+                  selectedIds={selectedIds}
+                />,
                 document.body
               )}
           </>

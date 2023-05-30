@@ -125,7 +125,7 @@ const ModsTable = () => {
           position: 'relative',
           height: '100%'
         }}>
-        <EnhancedToolBar numSelected={selectedIds.length} />
+        <EnhancedToolBar numSelected={selectedIds.length} selectedIds={selectedIds} />
         {isLoading && <LoaderAnimation />}
         {isError && <Message code={'DEFAULT_ERROR'} img={true} />}
         {rows && (
