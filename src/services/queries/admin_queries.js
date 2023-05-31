@@ -28,10 +28,9 @@ const createMod = async (form) => {
 };
 
 const deleteMods = async (ids) => {
-  const stringifiedArray = JSON.stringify(ids);
   try {
     const url = `${BASE_URL}/admin/mods/delete`;
-    const { data } = await axios.post(url, stringifiedArray, {
+    const { data } = await axios.post(url, ids, {
       signal: new AbortController().signal,
       headers: authorization
     });

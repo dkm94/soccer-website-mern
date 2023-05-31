@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Box, Paper, Checkbox, Typography, TablePagination, Chip } from '@mui/material';
-import { styled, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 import EnhancedToolBar from '../../../../components/Dashboard/Table/Components/EnhancedToolBar';
 import ToggleButton from '../../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import { getUsers } from '../../../../services/queries/public_queries';
@@ -125,7 +125,11 @@ const ModsTable = () => {
           position: 'relative',
           height: '100%'
         }}>
-        <EnhancedToolBar numSelected={selectedIds.length} selectedIds={selectedIds} />
+        <EnhancedToolBar
+          numSelected={selectedIds.length}
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
+        />
         {isLoading && <LoaderAnimation />}
         {isError && <Message code={'DEFAULT_ERROR'} img={true} />}
         {rows && (

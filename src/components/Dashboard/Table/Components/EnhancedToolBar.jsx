@@ -38,8 +38,7 @@ const AddButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-const EnhancedToolBar = ({ numSelected, selectedIds }) => {
-  console.log('🚀 ~ file: EnhancedToolBar.jsx:42 ~ EnhancedToolBar ~ selectedIds:', selectedIds);
+const EnhancedToolBar = ({ numSelected, selectedIds, setSelectedIds }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalName, setModalName] = useState('');
 
@@ -88,6 +87,7 @@ const EnhancedToolBar = ({ numSelected, selectedIds }) => {
                   onClose={() => setShowModal(false)}
                   component={modalName}
                   selectedIds={selectedIds}
+                  setSelectedIds={setSelectedIds}
                 />,
                 document.body
               )}

@@ -5,22 +5,9 @@ import Box from '@mui/material/Box';
 import Card from '../../../components/Dashboard/TopCard/Card';
 import { changeModStatus } from '../../../services/queries/admin_queries';
 import { getUsers } from '../../../services/queries/public_queries';
-// import { getArticles } from '../../../services/queries/public_queries';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { TablePagination, Checkbox, Paper } from '@material-ui/core';
-import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
-import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import './Main.css';
 import { Typography, styled, useTheme } from '@mui/material';
-import LoaderAnimation from '../../../components/Loaders/Animation/Dashboard/LoaderAnimation';
-import Message from '../../../components/Screens/Message';
-
-const TitleHeader = styled(Typography)({
-  fontSize: '0.8rem',
-  fontFamily: "'Adamina', serif !important",
-  fontWeight: 'normal',
-  padding: '0px !important'
-});
 
 // function descendingComparator(a, b, orderBy) {
 //   if (b[orderBy] < a[orderBy]) {

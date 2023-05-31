@@ -2,39 +2,35 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { deleteMods } from '../../queries/admin_queries';
 
-export const useDeleteMods = (
-  setSuccessMessage,
-  setOpenSuccess,
-  setOpenError,
-  setErrorMessage,
-  setErrorObj
-) => {
+export const useDeleteMods = (setResultMessage, setSelectedIds, onClose) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: deleteMods,
-    onMutate: async (deletedObj) => {
-      await queryClient.cancelQueries({ queryKey: ['users', deletedObj._id] });
-      const previousObj = queryClient.getQueryData(['users', deletedObj._id]);
-      queryClient.setQueryData(['users', deletedObj._id], deletedObj._id);
+    onMutate: async (userIds) => {
+      await queryClient.cancelQueries({ queryKey: ['users', 'profiles'] });
+      queryClient.setQueryData(['users', 'profiles']);
 
-      return { previousObj, deletedObj };
+      return userIds;
     },
-    onError: (error, deletedObj, context) => {
+    onError: (error, updatedObj, context) => {
       const errorObject = error.response.data;
+      setResultMessage(errorObject.message);
 
-      setOpenError(true);
-      setErrorMessage(errorObject.error.message);
-      setErrorObj(errorObject);
-
-      queryClient.setQueryData(['users', context.deletedObj._id], context.previousObj);
+      queryClient.setQueryData(['users', 'profiles']);
     },
-    onSettled: (deletedObj) => {
-      queryClient.invalidateQueries({ queryKey: ['users', deletedObj?._id] });
+    onSettled: (updatedObj) => {
+      queryClient.invalidateQueries({ queryKey: ['users', 'profiles'] });
     },
     onSuccess: (data, variables) => {
-      setOpenSuccess(true);
-      setSuccessMessage(data);
+      const { success, message } = data;
+      if (success) {
+        queryClient.invalidateQueries('users', 'profiles');
+        setSelectedIds([]);
+        setTimeout(() => {
+          onClose();
+        }, [2000]);
+      }
     }
   });
 };

@@ -4,10 +4,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 import DeleteModModal from './Moderators/Forms/DeleteModModal/DeleteModModal';
 
-const ModalComponent = ({ onClose, component, selectedIds }) => {
+const ModalComponent = ({ onClose, component, selectedIds, setSelectedIds }) => {
   const selectedModal = {
     addMod: <AddModeratorModalContent onClose={onClose} />,
-    deleteMod: <DeleteModModal onClose={onClose} selectedIds={selectedIds} />
+    deleteMod: (
+      <DeleteModModal onClose={onClose} selectedIds={selectedIds} setSelectedIds={setSelectedIds} />
+    )
   };
 
   return (
