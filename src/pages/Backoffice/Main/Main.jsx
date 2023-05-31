@@ -1,13 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Row } from 'react-bootstrap';
 import Box from '@mui/material/Box';
 import Card from '../../../components/Dashboard/TopCard/Card';
 import { changeModStatus } from '../../../services/queries/admin_queries';
-import { getUsers } from '../../../services/queries/public_queries';
+import { getArticles, getUsers } from '../../../services/queries/public_queries';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import './Main.css';
-import { Typography, styled, useTheme } from '@mui/material';
+import { Grid, Typography, styled, useTheme, Paper, Container } from '@mui/material';
+import { CloudinaryImage } from '@cloudinary/url-gen';
+import { fill } from '@cloudinary/url-gen/actions/resize';
+import { AdvancedImage } from '@cloudinary/react';
+import { format } from '@cloudinary/url-gen/actions/delivery';
+import { max } from '@cloudinary/url-gen/actions/roundCorners';
+import { auto } from '@cloudinary/url-gen/qualifiers/format';
+import avatar from '../../../../src/images/avatar.png';
 
 // function descendingComparator(a, b, orderBy) {
 //   if (b[orderBy] < a[orderBy]) {
@@ -36,6 +42,77 @@ import { Typography, styled, useTheme } from '@mui/material';
 //   });
 //   return stabilizedThis?.map((el) => el[0]);
 // }
+const Item = styled(Paper)(({ theme }) => ({
+  padding: '1rem 2rem',
+  position: 'relative',
+  width: '95%',
+  textAlign: 'center'
+}));
+
+const Name = styled(Paper)(({ theme }) => ({
+  fontSize: 'initial',
+  fontFamily: "'Adamina', serif"
+}));
+
+const Handle = styled(Paper)(({ theme }) => ({
+  color: theme.palette.grey.dark
+}));
+
+const UserCard = ({ name, handle, img, userArticles }) => {
+  const imageSrc = img?.public_id;
+  const articlesCount = userArticles?.length;
+
+  const onLineArticlesCount = userArticles?.filter((article) => article.online == true).length;
+
+  const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' })
+    .roundCorners(max())
+    .resize(fill().height(100))
+    .delivery(format(auto()));
+
+  return (
+    <Grid item xs={12} md={3} className="dashboard__user-card">
+      <Item>
+        {!img ? (
+          <Box
+            component="img"
+            sx={{
+              height: 229,
+              width: 220,
+              maxHeight: { xs: 50, md: 75, lg: 100 },
+              maxWidth: { xs: 50, md: 75, lg: 100 },
+              borderRadius: '50%',
+              alignSelf: 'center',
+              mt: '1rem',
+              mb: '2rem'
+            }}
+            alt="default avatar"
+            src={avatar}
+          />
+        ) : (
+          <div style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+            <AdvancedImage cldImg={myImage} />
+          </div>
+        )}
+        <Box>
+          <Grid>
+            <Name variant="body1">{name}</Name>
+          </Grid>
+          <Grid>
+            <Handle variant="body2">{handle || 'Handle'}</Handle>
+          </Grid>
+        </Box>
+        <Box mt={2}>
+          <Grid>
+            <Typography variant="body2">Total posts: {articlesCount}</Typography>
+          </Grid>
+          <Grid>
+            <Typography variant="body2">online posts: {onLineArticlesCount}</Typography>
+          </Grid>
+        </Box>
+      </Item>
+    </Grid>
+  );
+};
 
 const Main = ({ cards, drawerWidth }) => {
   const { palette } = useTheme();
@@ -51,6 +128,7 @@ const Main = ({ cards, drawerWidth }) => {
   const [selectedIds, setSelectedIds] = useState([]);
 
   // const profileId = localStorage.getItem('profileId');
+  // const parsedProfileId = JSON.parse(profileId);
 
   const {
     isLoading,
@@ -60,6 +138,19 @@ const Main = ({ cards, drawerWidth }) => {
     queryKey: ['users'],
     queryFn: getUsers
   });
+
+  const {
+    isLoadingArticles,
+    isErrorArticles,
+    data: articles
+  } = useQuery({
+    queryKey: ['articles'],
+    queryFn: getArticles
+  });
+  // console.log('🚀 ~ file: Main.jsx:132 ~ Main ~ articles:', articles);
+  // const userArticles = rows?.map((user) => {
+  //   articles?.filter((userArticle) => userArticle.id_profile == user._id);
+  // });
 
   const mutation = useMutation({
     mutationFn: changeModStatus,
@@ -169,7 +260,7 @@ const Main = ({ cards, drawerWidth }) => {
         gap: '2rem',
         mt: '2rem'
       }}>
-      <Row>
+      <Grid spacing={2} container md={12}>
         {cards.map((card, i) => {
           return (
             <Card
@@ -181,98 +272,27 @@ const Main = ({ cards, drawerWidth }) => {
             />
           );
         })}
-      </Row>
-      <Row>
-        {/* <Box sx={{ width: '100%' }}>
-          <Paper
-            sx={{
-              width: '100%',
-              mb: 2,
-              backgroundColor: palette.white.main,
-              borderRadius: '5px 5px 0 0',
-              boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
-              opacity: '95%',
-              '.MuiPaper-root': { boxShadow: 'none' }
-            }}>
-            <EnhancedToolBar numSelected={selectedIds.length} />
-            {isLoading && <LoaderAnimation />}
-            {isError && <Message code={'DEFAULT_ERROR'} img={true} />}
-            {rows && (
-              <>
-                <div style={{ width: '100%', padding: 'inherit', margin: 0 }}>
-                  <table>
-                    <thead>
-                      <tr className="custom__table-row">
-                        <th>
-                          <Checkbox
-                            indeterminate={
-                              selectedIds.length > 0 && selectedIds.length < rows.length
-                            }
-                            checked={selectedIds.length === rows.length}
-                            onChange={handleSelectAll}
-                            inputProps={{ 'aria-label': 'select all desserts' }}
-                          />
-                        </th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Handle</th>
-                        <th>Moderator</th>
-                        <th>Validated account</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredRows?.map((row) => {
-                        const isItemSelected = isSelected(row._id);
-                        return (
-                          <tr tabIndex={-1} key={row._id}>
-                            <td>
-                              <Checkbox
-                                checked={selectedIds.indexOf(row._id) !== -1}
-                                onChange={(event) => handleSelectOne(event, row._id)}
-                                selected={isItemSelected}
-                              />
-                            </td>
-                            <td>
-                              <Typography variant="body1">{row.id_profile?.name}</Typography>
-                            </td>
-                            <td>
-                              <Typography variant="body1">{row.email}</Typography>
-                            </td>
-                            <td>
-                              <Typography variant="body1">{row.id_profile?.handle}</Typography>
-                            </td>
-                            <td>
-                              <ToggleButton
-                                value={row.isMod}
-                                selected={row.isMod}
-                                onChange={() => handleToggle(row)}
-                              />
-                            </td>
-                            <td>
-                              <Typography variant="body1">
-                                {row.accountValidated ? 'Yes' : 'No'}
-                              </Typography>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25]}
-                  component="div"
-                  count={rows?.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
+      </Grid>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2} mt={4}>
+          {rows &&
+            rows.map((user) => {
+              const { name, handle, file } = user.id_profile;
+              const userArticles = articles?.filter(
+                (userArticle) => userArticle.id_profile == user.id_profile._id
+              );
+              return (
+                <UserCard
+                  key={user?._id}
+                  name={name}
+                  handle={handle}
+                  img={file}
+                  userArticles={userArticles}
                 />
-              </>
-            )}
-          </Paper>
-        </Box> */}
-      </Row>
+              );
+            })}
+        </Grid>
+      </Box>
     </Box>
   );
 };

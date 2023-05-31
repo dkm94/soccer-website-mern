@@ -27,6 +27,7 @@
   width: 250px;
   height: 80px;
   overflow: hidden;
+  display: none;
 }
   
   .modal-custom {

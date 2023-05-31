@@ -31,7 +31,7 @@ const cards = [
     title: 'Reported comments',
     // size: "sm",
     wip: false,
-    collection: 'comments',
+    // collection: 'comments',
     icon: <DisabledByDefaultIcon fontSize="large" style={{ ...style, color: '#ea5b5b' }} />
   },
   {

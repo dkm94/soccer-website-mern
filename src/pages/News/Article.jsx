@@ -55,9 +55,7 @@ const Article = ({ article, profileId, path }) => {
   const { _id, title, createdAt, file, topic, summary, id_profile, online } = article;
 
   const imageSrc = file?.public_id;
-  const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' })
-    // .resize(scale().height(140).width(140))
-    .delivery(quality(100));
+  const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' }).delivery(quality(100));
 
   const date = getFormattedDate('long', createdAt);
 
