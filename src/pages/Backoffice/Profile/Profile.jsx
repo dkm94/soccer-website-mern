@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Box,
   Grid,
@@ -8,7 +9,9 @@ import {
   InputLabel,
   Snackbar,
   styled,
-  Button
+  Button,
+  FormControlLabel,
+  Collapse
 } from '@mui/material';
 import { useTheme } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
@@ -27,6 +30,8 @@ import { max } from '@cloudinary/url-gen/actions/roundCorners';
 import { auto } from '@cloudinary/url-gen/qualifiers/format';
 import { face } from '@cloudinary/url-gen/qualifiers/focusOn';
 import avatar from '../../../../src/images/avatar.png';
+import { getUser } from '../../../services/queries/common_queries';
+import ModalComponent from '../../../components/Modal/ModalComponent';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   // marginTop: '2rem',
@@ -35,11 +40,23 @@ const SubmitButton = styled(Button)(({ theme }) => ({
   textTransform: 'unset'
 }));
 
+const ChangePwdButton = styled(Button)(({ theme }) => ({
+  // marginTop: '2rem',
+  color: theme.palette.black.dark,
+  width: 'fit-content',
+  textTransform: 'unset',
+  borderColor: theme.palette.black.dark
+  // ':hover': {
+  //   borderColor: theme.palette.black.dark
+  // }
+}));
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const Profile = ({ drawerWidth, profileId }) => {
+  const userId = JSON.parse(localStorage.getItem('userId'));
   let { id } = useParams();
   const { palette } = useTheme();
 
@@ -49,6 +66,15 @@ const Profile = ({ drawerWidth, profileId }) => {
   const [files, setFiles] = useState('');
   const [oldFile, setOldFile] = useState('');
   const [fileName, setFilename] = useState('');
+
+  const [email, setEmail] = useState('');
+  const [currentPwd, setCurrentPwd] = useState('');
+  const [newPwd, setNewPwd] = useState('');
+  const [confirmPwd, setconfirmPwd] = useState('');
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalName, setModalName] = useState('');
+  const [showPwdSettings, setShowPwdSettings] = useState(false);
 
   const [tempForm, setTempForm] = useState(null);
 
@@ -95,6 +121,26 @@ const Profile = ({ drawerWidth, profileId }) => {
     },
     keepPreviousData: true
   });
+
+  const {
+    data: currentUser,
+    errorCurrentUser,
+    isErrorCurrentUser,
+    isLoadingCurrentUser
+  } = useQuery({
+    staleTime: Infinity,
+    queryKey: ['users'],
+    queryFn: () => getUser(userId),
+    onSuccess: (data) => {
+      const { email } = data;
+      setEmail(email);
+    }
+  });
+
+  const openModal = (componentName) => {
+    setShowModal(true);
+    setModalName(componentName);
+  };
 
   const handleClose = (event) => {
     setOpenSuccess(false);
@@ -255,6 +301,122 @@ const Profile = ({ drawerWidth, profileId }) => {
             {errorMessage}
           </Alert>
         </Snackbar>
+      </Grid>
+      <Grid container mt={8} spacing={3}>
+        <Grid lg={12} item>
+          <Typography mb={8} variant="h1" className="title-section">
+            Account settings
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <InputLabel>Email</InputLabel>
+        </Grid>
+        <Grid item xs={12} sm={10}>
+          <TextField
+            required
+            disabled
+            id="email"
+            name="email"
+            fullWidth
+            size="small"
+            autoComplete="off"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <InputLabel>Password</InputLabel>
+        </Grid>
+        <Grid item xs={12} sm={10}>
+          <FormControlLabel
+            style={{ margin: 0 }}
+            control={
+              <ChangePwdButton
+                variant="outlined"
+                onClick={() => setShowPwdSettings(!showPwdSettings)}>
+                Change password
+              </ChangePwdButton>
+            }
+          />
+        </Grid>
+        <Grid item md={12}>
+          <Collapse in={showPwdSettings}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={2}>
+                <InputLabel>Current Password</InputLabel>
+              </Grid>
+              <Grid item xs={12} sm={10}>
+                <TextField
+                  required
+                  id="currentPwd"
+                  name="currentPwd"
+                  fullWidth
+                  size="small"
+                  autoComplete="off"
+                  value={currentPwd}
+                  onChange={(e) => setCurrentPwd(e.target.value)}
+                  error={catchError('password')}
+                  helperText={helperText('password')}
+                />
+              </Grid>
+              <Grid item xs={12} sm={2}>
+                <InputLabel>New password</InputLabel>
+              </Grid>
+              <Grid item xs={12} sm={10}>
+                <TextField
+                  required
+                  id="newPwd"
+                  name="newPwd"
+                  fullWidth
+                  size="small"
+                  autoComplete="off"
+                  value={newPwd}
+                  onChange={(e) => setNewPwd(e.target.value)}
+                  error={catchError('newPwd')}
+                  helperText={helperText('newPwd')}
+                />
+              </Grid>
+              <Grid item xs={12} sm={2}>
+                <InputLabel>Confirm new password</InputLabel>
+              </Grid>
+              <Grid item xs={12} sm={10}>
+                <TextField
+                  required
+                  id="confirmPwd"
+                  name="confirmPwd"
+                  fullWidth
+                  size="small"
+                  autoComplete="off"
+                  value={confirmPwd}
+                  onChange={(e) => setconfirmPwd(e.target.value)}
+                  error={catchError('confirmPwd')}
+                  helperText={helperText('confirmPwd')}
+                />
+              </Grid>
+              <Grid item xs={12} sm={2} />
+              <Grid item xs={12} sm={10} direction="row" display={'flex'} justifyContent="flex-end">
+                <SubmitButton
+                  type="button"
+                  variant="contained"
+                  onClick={() => openModal('changePassword')}>
+                  Save changes
+                </SubmitButton>
+                {showModal &&
+                  createPortal(
+                    <ModalComponent
+                      onClose={() => setShowModal(false)}
+                      component={modalName}
+                      password={currentPwd}
+                      newPwd={newPwd}
+                      confirmPwd={confirmPwd}
+                      id={userId}
+                    />,
+                    document.body
+                  )}
+              </Grid>
+            </Grid>
+          </Collapse>
+        </Grid>
       </Grid>
     </Box>
   );
