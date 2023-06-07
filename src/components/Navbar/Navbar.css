@@ -34,6 +34,12 @@
   transform: translate(-50%, -50%);
 }
 
+#active {
+  font-weight: 600;
+  background-color: #a7a8aa !important;
+  color: black !important;
+}
+
 @media only screen and (max-device-width: 1199px) {
   #logout-btn {
     margin-right: 40px;

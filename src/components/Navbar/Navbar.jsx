@@ -1,14 +1,14 @@
 import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import './Navbar.css';
 import { Button } from '@mui/material';
+import './Navbar.css';
 
 const navItems = [
   {
     id: 1,
     title: 'home',
-    path: '/'
+    path: '/home'
   },
   {
     id: 2,
@@ -58,7 +58,10 @@ const Navigation = ({ auth }) => {
           <Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
             <Nav className="nav-items">
               {navItems?.map((item) => (
-                <Nav.Link key={item.id} href={item?.path}>
+                <Nav.Link
+                  key={item.id}
+                  href={item?.path}
+                  id={window.location.pathname === item.path ? 'active' : ''}>
                   {item?.title}
                 </Nav.Link>
               ))}
@@ -67,6 +70,7 @@ const Navigation = ({ auth }) => {
                   <Nav.Link
                     key={5}
                     href={'/backoffice'}
+                    id={window.location.pathname.startsWith('/backoffice') ? 'active' : ''}
                     onClick={() => localStorage.setItem('list-item-idx', 0)}>
                     Backoffice
                   </Nav.Link>
