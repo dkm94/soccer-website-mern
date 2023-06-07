@@ -64,7 +64,10 @@ const Navigation = ({ auth }) => {
               ))}
               {auth && (
                 <>
-                  <Nav.Link key={5} href={'/backoffice'}>
+                  <Nav.Link
+                    key={5}
+                    href={'/backoffice'}
+                    onClick={() => localStorage.setItem('list-item-idx', 0)}>
                     Backoffice
                   </Nav.Link>
                   <Button size="small" onClick={logOut} id="logout-btn" key={6} variant="text">
