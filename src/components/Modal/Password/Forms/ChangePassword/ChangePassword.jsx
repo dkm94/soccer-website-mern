@@ -3,7 +3,6 @@ import ConfirmationModal from '../../../Confirmation/Confirmation';
 import { useUpdatePassword } from '../../../../../services/mutations/Users/useUpdatePassword';
 
 const ChangePwd = ({ onClose, password, newPwd, confirmPwd, id }) => {
-  console.log('TOOOOOOOOOOOOC');
   const message = 'Are you sure you want to change your password ?';
   const content = 'Warning : This action is definitive and irreversible';
   const successBtn = 'Saved !';
@@ -17,15 +16,6 @@ const ChangePwd = ({ onClose, password, newPwd, confirmPwd, id }) => {
   const { isLoading, isSuccess, isError } = mutation;
 
   const updatePassword = (e) => {
-    console.log(
-      '🚀 ~ file: ChangePassword.jsx:6 ~ ChangePwd ~ onClose, password, newPwd, confirmPwd, id:',
-      onClose,
-      password,
-      newPwd,
-      confirmPwd,
-      id
-    );
-
     e.preventDefault();
     mutation.mutate({ password, newPwd, confirmPwd, _id: id });
   };

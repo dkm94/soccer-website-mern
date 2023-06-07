@@ -106,7 +106,7 @@ const UserCard = ({ name, handle, img, userArticles }) => {
             <Typography variant="body2">Total posts: {articlesCount}</Typography>
           </Grid>
           <Grid>
-            <Typography variant="body2">online posts: {onLineArticlesCount}</Typography>
+            <Typography variant="body2">Online posts: {onLineArticlesCount}</Typography>
           </Grid>
         </Box>
       </Item>
