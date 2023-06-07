@@ -1,7 +1,7 @@
 import React from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import Home from '../pages/Home/Home';
@@ -50,7 +50,8 @@ const AppRouter = () => {
             <Navbar auth={auth} />
             <Layout path={path}>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Navigate to="/home" />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/teams" element={<Teams />} />
                 <Route path="/competitions" element={<Competitions />} />
                 <Route path="/competitions/:code/matches" element={<Matches />} />
