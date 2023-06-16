@@ -1,0 +1,7 @@
+.custom__table-header {
+    background-color: var(--palette-black-main);
+  color:  var(--palette-white-lighter);
+  width: 100%;
+  padding: 1rem 1rem 3rem 1.5rem;
+  border-radius: 5px 5px 0 0
+}

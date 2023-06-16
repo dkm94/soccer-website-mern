@@ -1,7 +1,8 @@
-#card-header-style {
-  font-size: 16px;
-  background-color: #2c2f35 !important;
-  color: #fff;
+#result-card__header {
+  background-color: var(--palette-black-main) !important;
+  color: var(--palette-black-contrastText);
+  font-family: 'Adamina', serif;
+  letter-spacing: 1px;
 }
 
 .status-finished, .status-inplay, .status-scheduled, .status-paused {
@@ -9,33 +10,51 @@
 }
 
 .status-finished {
-  color: #000 !important;
+  color: var(--palette-black-main) !important;
   font-weight: 600;
 }
 
 .status-inplay {
-  color: #0c893c !important;
+  color: var(--palette-green-main) !important;
   font-weight: 600;
 }
 
 .status-scheduled {
-  color: #000 !important;
+  color: var(--palette-black-main) !important;
   font-weight: 300;
 }
 
 .status-paused {
-  color: #c40808 !important;
+  color: var(--palette-primary-light) !important;
   font-weight: 600;
 }
 
-.display-score {
+.result-card__display-score {
  display: flex;
  align-items: center;
 }
 
-.display-score > div {
+.result-card__display-score > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0;
+ }
+
+ .card-header:first-child {
+  border-radius: 0px !important;
+ }
+
+ .result-card__crest {
+  height: 3.5rem;
+  width: auto;
+ }
+
+ .result-card__time {
+  font-size: '20px';
+  font-weight: '600';
+ }
+
+ .result-card__team-name {
+  font-size: 1rem;
  }

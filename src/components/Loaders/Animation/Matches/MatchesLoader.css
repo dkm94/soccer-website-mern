@@ -1,0 +1,61 @@
+#match-name, #match-season, #match-matchday {
+    height: 1.5rem;
+}
+
+#match-img {
+    height: 7rem;
+    border-radius: 10px;
+}
+
+#match-search-input  {
+    height: 2.5rem;
+    border-radius: 10px;
+    width: 10rem;
+}
+
+#match-select  {
+    height: 2.5rem;
+    border-radius: 10px;
+    width: 10rem;
+}
+
+#match-table-header {
+    height: 2.5rem;
+    background-color: var(--palette-grey-lighter);
+}
+
+.match-table-title {
+    background-color: var(--palette-grey-lighter);
+}
+
+.loader-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    /* background-color: #ddd; */
+    font-weight: normal;
+    /* font-family: 'Adamina', serif; */
+    color: var(--palette-grey-dark);
+    font-weight: 600;
+  }
+
+  tr:nth-child(2n+1){background-color: #F4F6FA;}
+
+  .loader-table-cellule {
+    height: 26px;
+    border-radius: 6px;
+  }

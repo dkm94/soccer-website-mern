@@ -5,31 +5,16 @@ import { Typography, styled } from '@mui/material';
 import './Results.css';
 
 const Score = styled(Typography)({
-  fontSize: '2.5rem'
+  fontSize: '2rem'
 });
 
 const CardContainer = styled(Card)({
-  // maxWidth: '80%'
+  borderRadius: 0
 });
 
 const Results = ({ match }) => {
   let htScore = match?.score?.fullTime?.home;
   let atScore = match?.score?.fullTime?.away;
-
-  // const containerStyle = {
-  //   marginTop: '1rem'
-  //   // borderRadius: '0'
-  // };
-
-  const avatarStyle = {
-    height: '3.5rem',
-    width: 'auto'
-  };
-
-  const timeStyle = {
-    fontSize: '20px',
-    fontWeight: '600'
-  };
 
   const handleTime = (date) => {
     let data = new Date(date);
@@ -55,23 +40,24 @@ const Results = ({ match }) => {
 
   return (
     <CardContainer key={match?.id} className="text-center">
-      <Card.Header id="card-header-style">
+      <Card.Header id="result-card__header">
         {match?.competition?.name} - Matchday {match?.matchday}
       </Card.Header>
-      <Card.Body style={{ padding: '2rem 1rem' }}>
-        <Card.Title style={timeStyle}>{handleTime(match?.utcDate)}</Card.Title>
-
+      <Card.Body style={{ padding: '1rem' }}>
+        <Card.Title className="result-card__time">{handleTime(match?.utcDate)}</Card.Title>
         <Container>
           <Row className="justify-content-md-center">
             <Col xs={4}>
               <Container>
-                <Image src={match?.homeTeam?.crest} className="avatar-style" style={avatarStyle} />
+                <Image src={match?.homeTeam?.crest} className="result-card__crest" />
               </Container>
-              <Card.Title style={{ fontWeight: getFontWeight(htScore) }}>
+              <span
+                className="result-card__team-name"
+                style={{ fontWeight: getFontWeight(htScore) }}>
                 {match?.homeTeam?.shortName}
-              </Card.Title>
+              </span>
             </Col>
-            <Col xs={2} className="display-score">
+            <Col xs={2} className="result-card__display-score">
               <Container>
                 <Score variant="body2" style={{ fontWeight: getFontWeight(htScore) }}>
                   {match?.score?.fullTime?.home}
@@ -84,11 +70,13 @@ const Results = ({ match }) => {
             </Col>
             <Col xs={4}>
               <Container>
-                <Image src={match?.awayTeam?.crest} className="avatar-style" style={avatarStyle} />
+                <Image src={match?.awayTeam?.crest} className="result-card__crest" />
               </Container>
-              <Card.Title style={{ fontWeight: getFontWeight(atScore) }}>
+              <span
+                className="result-card__team-name"
+                style={{ fontWeight: getFontWeight(atScore) }}>
                 {match?.awayTeam?.shortName}
-              </Card.Title>
+              </span>
             </Col>
           </Row>
         </Container>

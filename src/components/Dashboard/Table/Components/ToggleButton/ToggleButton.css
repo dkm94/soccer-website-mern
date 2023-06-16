@@ -32,7 +32,7 @@
   border-radius: 50%;
   height: var(--size-circle);
   width: var(--size-circle);
-  background: #fff;
+  background: var(--palette-white-main);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

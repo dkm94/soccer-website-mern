@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
+import './Competition.css';
 
 const SelectMatches = ({ competition, temp, setCompetition, postsPerPage, totalPosts }) => {
   const pageNumbers = [];
@@ -12,11 +13,16 @@ const SelectMatches = ({ competition, temp, setCompetition, postsPerPage, totalP
   const selectData = temp.filter(({ id }, index) => !ids.includes(id, index + 1));
 
   return (
-    <FormControl>
-      <InputLabel id="demo-simple-select-label">Select a competition</InputLabel>
+    <FormControl size="small">
+      <InputLabel id="outline-select-label">Select a competition</InputLabel>
       <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
+        labelId="select-label"
+        sx={{
+          '& label': {
+            top: '-6px'
+          }
+        }}
+        input={<OutlinedInput notched label={'Select a competition'} />}
         value={competition || ''}
         label="Age"
         onChange={handleSelectValue}>

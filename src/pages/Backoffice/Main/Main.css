@@ -1,0 +1,10 @@
+.custom__table-row > th {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.dashboard__user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

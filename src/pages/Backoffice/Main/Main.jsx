@@ -1,33 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Row } from 'react-bootstrap';
 import Box from '@mui/material/Box';
 import Card from '../../../components/Dashboard/TopCard/Card';
 import { changeModStatus } from '../../../services/queries/admin_queries';
-import { getUsers } from '../../../services/queries/public_queries';
-// import { getArticles } from '../../../services/queries/public_queries';
+import { getArticles, getUsers } from '../../../services/queries/public_queries';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TablePagination,
-  Checkbox,
-  Paper
-} from '@material-ui/core';
-import EnhancedToolBar from '../../../components/Dashboard/Table/Components/EnhancedToolBar';
-import ToggleButton from '../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
 import './Main.css';
-import { Typography, styled } from '@mui/material';
-
-const TitleHeader = styled(Typography)({
-  fontSize: '1rem',
-  fontFamily: "'Adamina', serif !important",
-  fontWeight: 'normal'
-});
+import { Grid, Typography, styled, useTheme, Paper, Container } from '@mui/material';
+import { CloudinaryImage } from '@cloudinary/url-gen';
+import { fill } from '@cloudinary/url-gen/actions/resize';
+import { AdvancedImage } from '@cloudinary/react';
+import { format } from '@cloudinary/url-gen/actions/delivery';
+import { max } from '@cloudinary/url-gen/actions/roundCorners';
+import { auto } from '@cloudinary/url-gen/qualifiers/format';
+import avatar from '../../../../src/images/avatar.png';
 
 // function descendingComparator(a, b, orderBy) {
 //   if (b[orderBy] < a[orderBy]) {
@@ -56,8 +42,80 @@ const TitleHeader = styled(Typography)({
 //   });
 //   return stabilizedThis?.map((el) => el[0]);
 // }
+const Item = styled(Paper)(({ theme }) => ({
+  padding: '1rem 2rem',
+  position: 'relative',
+  width: '95%',
+  textAlign: 'center'
+}));
+
+const Name = styled(Paper)(({ theme }) => ({
+  fontSize: 'initial',
+  fontFamily: "'Adamina', serif"
+}));
+
+const Handle = styled(Paper)(({ theme }) => ({
+  color: theme.palette.grey.dark
+}));
+
+const UserCard = ({ name, handle, img, userArticles }) => {
+  const imageSrc = img?.public_id;
+  const articlesCount = userArticles?.length;
+
+  const onLineArticlesCount = userArticles?.filter((article) => article.online == true).length;
+
+  const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' })
+    .roundCorners(max())
+    .resize(fill().height(100))
+    .delivery(format(auto()));
+
+  return (
+    <Grid item xs={12} md={3} className="dashboard__user-card">
+      <Item>
+        {!img ? (
+          <Box
+            component="img"
+            sx={{
+              height: 229,
+              width: 220,
+              maxHeight: { xs: 50, md: 75, lg: 100 },
+              maxWidth: { xs: 50, md: 75, lg: 100 },
+              borderRadius: '50%',
+              alignSelf: 'center',
+              mt: '1rem',
+              mb: '2rem'
+            }}
+            alt="default avatar"
+            src={avatar}
+          />
+        ) : (
+          <div style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+            <AdvancedImage cldImg={myImage} />
+          </div>
+        )}
+        <Box>
+          <Grid>
+            <Name variant="body1">{name}</Name>
+          </Grid>
+          <Grid>
+            <Handle variant="body2">{handle || 'Handle'}</Handle>
+          </Grid>
+        </Box>
+        <Box mt={2}>
+          <Grid>
+            <Typography variant="body2">Total posts: {articlesCount}</Typography>
+          </Grid>
+          <Grid>
+            <Typography variant="body2">Online posts: {onLineArticlesCount}</Typography>
+          </Grid>
+        </Box>
+      </Item>
+    </Grid>
+  );
+};
 
 const Main = ({ cards, drawerWidth }) => {
+  const { palette } = useTheme();
   const queryClient = useQueryClient();
 
   // const [order, setOrder] = useState('asc');
@@ -70,14 +128,29 @@ const Main = ({ cards, drawerWidth }) => {
   const [selectedIds, setSelectedIds] = useState([]);
 
   // const profileId = localStorage.getItem('profileId');
+  // const parsedProfileId = JSON.parse(profileId);
 
-  const { data: rows, error, isLoading } = useQuery(['users'], getUsers);
-  // const {
-  //   data: articles,
-  //   error_articles,
-  //   isError_articles,
-  //   isLoading_articles
-  // } = useQuery(['articles'], getArticles);
+  const {
+    isLoading,
+    isError,
+    data: rows
+  } = useQuery({
+    queryKey: ['users'],
+    queryFn: getUsers
+  });
+
+  const {
+    isLoadingArticles,
+    isErrorArticles,
+    data: articles
+  } = useQuery({
+    queryKey: ['articles'],
+    queryFn: getArticles
+  });
+  // console.log('🚀 ~ file: Main.jsx:132 ~ Main ~ articles:', articles);
+  // const userArticles = rows?.map((user) => {
+  //   articles?.filter((userArticle) => userArticle.id_profile == user._id);
+  // });
 
   const mutation = useMutation({
     mutationFn: changeModStatus,
@@ -158,7 +231,7 @@ const Main = ({ cards, drawerWidth }) => {
   const filteredRows = rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   const handleToggle = (user) => {
-    var promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
       if (!user) {
         reject('Error user');
       } else {
@@ -187,7 +260,7 @@ const Main = ({ cards, drawerWidth }) => {
         gap: '2rem',
         mt: '2rem'
       }}>
-      <Row>
+      <Grid spacing={2} container md={12}>
         {cards.map((card, i) => {
           return (
             <Card
@@ -199,111 +272,27 @@ const Main = ({ cards, drawerWidth }) => {
             />
           );
         })}
-      </Row>
-      <Row>
-        <Box sx={{ width: '100%' }}>
-          <Paper
-            sx={{
-              width: '100%',
-              mb: 2,
-              backgroundColor: '#FFF',
-              boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
-              opacity: '95%',
-              '.MuiPaper-root': { boxShadow: 'none' }
-            }}>
-            <EnhancedToolBar numSelected={selectedIds.length} />
-            {isLoading && (
-              <Typography variant="body1" style={{ paddingLeft: '3rem' }}>
-                Loading data...
-              </Typography>
-            )}
-            {error && (
-              <Typography variant="body1" style={{ paddingLeft: '3rem' }}>
-                Error loading data
-              </Typography>
-            )}
-            {rows && (
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          indeterminate={selectedIds.length > 0 && selectedIds.length < rows.length}
-                          checked={selectedIds.length === rows.length}
-                          onChange={handleSelectAll}
-                          inputProps={{ 'aria-label': 'select all desserts' }}
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <TitleHeader variant="h6">Name</TitleHeader>
-                      </TableCell>
-                      <TableCell>
-                        <TitleHeader variant="h6">Email</TitleHeader>
-                      </TableCell>
-                      <TableCell>
-                        <TitleHeader variant="h6">Handle</TitleHeader>
-                      </TableCell>
-                      <TableCell>
-                        <TitleHeader variant="h6">Moderator</TitleHeader>
-                      </TableCell>
-                      <TableCell>
-                        <TitleHeader variant="h6">Validated account</TitleHeader>
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {filteredRows?.map((row) => {
-                      const isItemSelected = isSelected(row._id);
-                      return (
-                        <TableRow tabIndex={-1} key={row._id}>
-                          <TableCell padding="checkbox">
-                            <Checkbox
-                              checked={selectedIds.indexOf(row._id) !== -1}
-                              onChange={(event) => handleSelectOne(event, row._id)}
-                              selected={isItemSelected}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography variant="body1">{row.id_profile?.name}</Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography variant="body1">{row.email}</Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography variant="body1">{row.id_profile?.handle}</Typography>
-                          </TableCell>
-                          <TableCell>
-                            <ToggleButton
-                              value={row.isMod}
-                              selected={row.isMod}
-                              onChange={() => handleToggle(row)}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography variant="body1">
-                              {row.accountValidated ? 'Yes' : 'No'}
-                            </Typography>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            )}
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              component="div"
-              count={rows?.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Paper>
-        </Box>
-      </Row>
+      </Grid>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2} mt={4}>
+          {rows &&
+            rows.map((user) => {
+              const { name, handle, file } = user.id_profile;
+              const userArticles = articles?.filter(
+                (userArticle) => userArticle.id_profile == user.id_profile._id
+              );
+              return (
+                <UserCard
+                  key={user?._id}
+                  name={name}
+                  handle={handle}
+                  img={file}
+                  userArticles={userArticles}
+                />
+              );
+            })}
+        </Grid>
+      </Box>
     </Box>
   );
 };

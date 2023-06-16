@@ -1,15 +1,23 @@
-.scoreboard-header > h2 {
+.scoreboard-header > #name {
+  font-family: 'Adamina', serif !important;
   font-size: 1.75rem;
   font-weight: 800;
 }
-.scoreboard-header > h3 {
-  font-size: 1.5rem;
-}
-.scoreboard-header > h4 {
+.scoreboard-header > #season {
   font-size: 1.25rem;
+}
+.scoreboard-header > #matchday {
+  font-size: 1rem;
+}
+
+.scoreboard-header__img {
+  width: unset !important;
 }
 
 .scoreboard-header {
+  width: unset !important;
+  display: flex;
+  flex-direction: column;
 }
 
 #demo-simple-select {

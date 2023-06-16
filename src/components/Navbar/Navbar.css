@@ -1,6 +1,6 @@
 .nav-style {
   width: 100%;
-  background-color: #2c2f35;
+  background-color: var(--palette-black-main);
   position: 'sticky';
   z-index: 1000;
   top: 0;
@@ -8,12 +8,12 @@
 
 .logo-style {
   font-family: 'Russo One', sans-serif;
-  background-color: #c40808;
+  background-color: var(--palette-primary-light);
   padding: 4px 6px;
   /* border-radius: 3px; */
   font-weight: 800;
-  color: #a00404 !important;
-  -webkit-text-stroke: 1px #930202;
+  color: var(--palette-primary-main) !important;
+  -webkit-text-stroke: 1px var(--palette-primary-dark);
   letter-spacing: 1px;
 }
 
@@ -24,14 +24,32 @@
 }
 
 .nav-items > a {
-  color: #edeaea !important;
+  color: var(--palette-grey-lighter) !important;
 }
 
-@media only screen and (max-device-width: 1024px) {
-  /* .guest__updateForm > form {
-        width: 100%;
-    }
-    .guest__updateForm > form > input {
-        width: 100%;
-    } */
+#logout-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#active {
+  font-weight: 600;
+  background-color: #dcdee2 !important;
+  color: black !important;
+}
+
+@media only screen and (max-device-width: 1199px) {
+  #logout-btn {
+    margin-right: 40px;
+  }
+}
+
+@media only screen and (max-device-width: 991px) {
+  #logout-btn {
+    position: unset;
+    right: unset;
+    margin-right: unset;
+  }
 }

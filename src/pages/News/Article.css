@@ -1,0 +1,26 @@
+.news__article-card > p:last-of-type {
+    margin-top: auto;
+}
+
+.news__article-card {
+    margin-top: 2rem !important;
+    display: flex;
+    flex-direction: column !important;
+}
+
+.article-status {
+    width: fit-content;
+    background-color: #efefef;
+    padding: 0.3rem;
+    border-radius: 5px;
+}
+
+.backoffice__news_article-card {
+    height: 140px;
+}
+
+.backoffice__news_article-card > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

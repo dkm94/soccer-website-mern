@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { styled } from '@mui/system';
+import { styled, useTheme } from '@mui/system';
 import TablePaginationUnstyled, {
   tablePaginationUnstyledClasses as classes
 } from '@mui/base/TablePaginationUnstyled';
 import { Image } from 'react-bootstrap';
+import status from '../../data/status.json';
 
 const Container = styled('div')`
   table {
-    margin-top: 1.5rem;
     border-collapse: collapse;
     width: 100%;
   }
@@ -17,6 +17,7 @@ const Container = styled('div')`
     border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 8px;
+    // fontfamily: "'Adamina', serif";
   }
 
   th {
@@ -64,6 +65,8 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
 `;
 
 export default function CustomTable({ matches, searchInput, selected }) {
+  const { palette } = useTheme();
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -101,6 +104,8 @@ export default function CustomTable({ matches, searchInput, selected }) {
           return match?.status === 'FINISHED';
         case 'SCHEDULED':
           return match?.status === 'SCHEDULED';
+        case 'TIMED':
+          return match?.status === 'TIMED';
         default:
           return match;
       }
@@ -126,18 +131,18 @@ export default function CustomTable({ matches, searchInput, selected }) {
   };
 
   return (
-    <Container sx={{ width: '100%' }}>
+    <Container sx={{ width: '100%', padding: 0, margin: 0 }}>
       <table>
         <thead>
           <tr>{rowsTitles && rowsTitles?.map((row) => <th key={row}>{row}</th>)}</tr>
         </thead>
-        <tbody style={{ textAlignLast: 'center' }}>
+        <tbody>
           {(rowsPerPage > 0
             ? rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           )?.map((row) => (
             <tr key={row?.id}>
-              <td align="center">{formatDate(row?.date)}</td>
+              <td align="left">{formatDate(row?.date)}</td>
               <td style={{ borderRight: '0' }}>
                 <Image style={{ height: '32px', width: '32px' }} src={row?.htCrest} />
               </td>
@@ -146,10 +151,20 @@ export default function CustomTable({ matches, searchInput, selected }) {
                 <Image style={{ height: '32px', width: '32px' }} src={row?.atCrest} />
               </td>
               <td style={{ textAlignLast: 'left' }}>{row?.awayTeam}</td>
-              {row?.score?.winner === null ? (
-                <td>Scheduled</td>
-              ) : (
+              {row?.status === 'FINISHED' ? (
                 <td>{`${row?.score?.fullTime?.home} - ${row?.score?.fullTime?.away}`}</td>
+              ) : row?.status === 'IN_PLAY' ? (
+                <td
+                  style={{
+                    color: palette.green.main
+                  }}>{`${row?.score?.halfTime?.home} - ${row?.score?.halfTime?.away}`}</td>
+              ) : row?.status === 'PAUSED' ? (
+                <td
+                  style={{
+                    color: palette.green.main
+                  }}>{`${row?.score?.fullTime?.home} - ${row?.score?.fullTime?.away}`}</td>
+              ) : (
+                <td>{status[row?.status].title}</td>
               )}
             </tr>
           ))}
@@ -160,34 +175,36 @@ export default function CustomTable({ matches, searchInput, selected }) {
             </tr>
           )}
         </tbody>
-        <tfoot>
-          <tr>
-            <CustomTablePagination
-              sx={{
-                '& .MuiTablePagination-actions button': {
-                  borderStyle: 'unset',
-                  borderRadius: '3px'
-                }
-              }}
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={rows?.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              slotProps={{
-                select: {
-                  'aria-label': 'rows per page'
-                },
-                actions: {
-                  showFirstButton: true,
-                  showLastButton: true
-                }
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </tr>
-        </tfoot>
+        {matches && (
+          <tfoot>
+            <tr>
+              <CustomTablePagination
+                sx={{
+                  '& .MuiTablePagination-actions button': {
+                    borderStyle: 'unset',
+                    borderRadius: '3px'
+                  }
+                }}
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={rows?.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    'aria-label': 'rows per page'
+                  },
+                  actions: {
+                    showFirstButton: true,
+                    showLastButton: true
+                  }
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </tr>
+          </tfoot>
+        )}{' '}
       </table>
     </Container>
   );

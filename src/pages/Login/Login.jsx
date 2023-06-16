@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import {
   Box,
-  Grid,
-  Link,
   Button,
   Avatar,
   CssBaseline,
@@ -11,36 +9,35 @@ import {
   Typography,
   Container,
   IconButton,
-  InputAdornment
+  InputAdornment,
+  Snackbar
 } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useMutation, useQuery } from 'react-query';
-import { login } from '../../services/queries/auth_queries';
 import { useTheme } from '@material-ui/core';
+import { useLogin } from '../../services/mutations/Authentication/useLogin';
 import './Login.css';
 
-export default function SignIn() {
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+export default function SignIn({ auth }) {
   const theme = useTheme();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+
   const [showPassword, setShowPassword] = useState(false);
 
-  const mutation = useMutation({
-    mutationFn: login,
-    onError: (error, variables, context) => {
-      setErrorMessage(error.message);
-    },
-    onSuccess: (data, variables, context) => {
-      const auth = JSON.parse(localStorage.getItem('logged_in_status'));
-      if (auth) {
-        window.location.href = '/backoffice';
-      }
-    }
-  });
+  const [error, setError] = useState(null);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  const mutation = useLogin(setSuccessMessage, setOpenSuccess, setOpenError, setError);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -53,6 +50,29 @@ export default function SignIn() {
     mutation.mutate({ email, password });
   };
 
+  const handleClose = (event) => {
+    setOpenSuccess(false);
+    setOpenError(false);
+  };
+
+  const helperText = (field) => {
+    if (error?.field === field) {
+      console.log(error?.message);
+      return error?.message;
+    }
+    if (error?.type === 'empty') {
+      return error?.message;
+    }
+  };
+  const catchError = (field) => {
+    if (error?.type === 'empty') {
+      return true;
+    }
+    if (error?.type === 'incorrect') {
+      return error?.message?.includes(field);
+    }
+  };
+
   return (
     <Container
       style={{
@@ -62,7 +82,7 @@ export default function SignIn() {
       }}>
       <Box
         sx={{
-          background: '#FFF',
+          backgroundColor: theme.palette.white.main,
           marginTop: '4rem',
           borderRadius: '5px',
           minHeight: '80vh',
@@ -96,6 +116,8 @@ export default function SignIn() {
               autoComplete="email"
               color="secondary"
               onChange={(e) => setEmail(e.target.value)}
+              error={catchError('email')}
+              helperText={helperText('email')}
               autoFocus
             />
             <TextField
@@ -110,6 +132,8 @@ export default function SignIn() {
               autoComplete="current-password"
               variant="outlined"
               color="secondary"
+              error={catchError('password')}
+              helperText={helperText('password')}
               onChange={(e) => setPassword(e.target.value)}
               InputProps={{
                 endAdornment: (
@@ -124,18 +148,16 @@ export default function SignIn() {
                   </InputAdornment>
                 )
               }}
-              // focused
             />
-            <Typography variant="body1">{mutation.error && errorMessage}</Typography>
             <Button
               className="submit-btn"
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}>
-              {mutation.isLoading ? 'Connecting...' : 'SIGN IN'}
+              {mutation.isLoading ? 'Connecting...' : 'Sign in'}
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2" color={theme.palette.secondary.dark}>
                   Forgot password?
@@ -146,8 +168,18 @@ export default function SignIn() {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
+          <Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
+            <Alert severity="success" sx={{ width: '100%', color: '#FFF' }}>
+              {successMessage}
+            </Alert>
+          </Snackbar>
+          <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
+            <Alert severity="error" sx={{ width: '100%', color: '#FFF' }}>
+              Request has failed
+            </Alert>
+          </Snackbar>
         </Box>
       </Box>
     </Container>

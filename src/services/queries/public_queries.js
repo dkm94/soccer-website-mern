@@ -14,18 +14,26 @@ const getProfiles = async () => {
 };
 
 const getProfile = async (id) => {
-  const profileId = id.queryKey[1];
-  const { data } = await axios.get(`${BASE_URL}/public/profiles/${profileId}`);
+  // const profileId = id.queryKey[1];
+  const { data } = await axios.get(`${BASE_URL}/public/profiles/${id}`);
   return data;
 };
 
 const getArticles = async () => {
-  const { data } = await axios.get(`${BASE_URL}/${prefix}/`);
+  try {
+    const { data } = await axios.get(`${BASE_URL}/${prefix}/`);
+    return data;
+  } catch (error) {
+    throw new Error('Oops, something went wrong...');
+  }
+};
+
+const getLastArticles = async () => {
+  const { data } = await axios.get(`${BASE_URL}/${prefix}/last`);
   return data;
 };
 
-const getArticlesByAuthor = async (params) => {
-  const profileId = params?.queryKey[1];
+const getArticlesByAuthor = async (profileId) => {
   const { data } = await axios.get(`${BASE_URL}/${prefix}/author/${profileId}`);
   return data;
 };
@@ -53,5 +61,6 @@ export {
   getArticlesByAuthor,
   getArticle,
   getCommentsByArticle,
-  getComment
+  getComment,
+  getLastArticles
 };

@@ -1,0 +1,28 @@
+.comment-layout {
+  padding: 0 !important;
+}
+
+.comment-layout > .title {
+  background-color: var(--palette-grey-main);
+  text-transform: uppercase;
+  padding: 1rem;
+  font-weight: 700;
+}
+
+.comment-layout > .content {
+  padding: 1.5rem;
+}
+
+.cmt-content {
+  padding: 1rem 0;
+  display: grid;
+  gap: 1rem;
+  /* font-size: 1rem; */
+  margin-top: 1rem;
+}
+
+@media only screen and (max-device-width: 1024px) {
+  .comment-layout {
+    display: none;
+  }
+}

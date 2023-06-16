@@ -1,43 +1,63 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import cards from '../../seeds/dashboard_cards';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
+import CreateArticleForm from './Articles/Forms/CreateArticle/CreateArticleForm';
+import UpdateArticleForm from './Articles/Forms/UpdateArticle/UpdateArticleForm';
+import UserArticles from './Articles/UserArticles/UserArticles';
+import { useParams } from 'react-router-dom';
+import Profile from './Profile/Profile';
+import Moderators from './Moderators/Main/Moderators';
 
 const drawerWidth = 240;
 
-function ResponsiveDrawer(props) {
-  const { window } = props;
+const profileId = JSON.parse(localStorage.getItem('profileId'));
+const path = window.location.pathname;
+
+const backofficeComponent = () => {
+  let { id } = useParams();
+  switch (path) {
+    case '/backoffice':
+      return <Main cards={cards} drawerWidth={drawerWidth} />;
+    case '/backoffice/articles/create':
+      return <CreateArticleForm drawerWidth={drawerWidth} />;
+    case `/backoffice/articles/author/${profileId}`:
+      return <UserArticles drawerWidth={drawerWidth} profileId={profileId} path={path} />;
+    case `/backoffice/articles/edit/${id}`:
+      return <UpdateArticleForm drawerWidth={drawerWidth} />;
+    case `/backoffice/profile/${id}`:
+      return <Profile drawerWidth={drawerWidth} profileId={profileId} />;
+    case `/backoffice/moderators`:
+      return <Moderators drawerWidth={drawerWidth} />;
+    default:
+      break;
+  }
+};
+
+function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  // const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <Sidebar
-        container={container}
+        // container={container}
         drawerWidth={drawerWidth}
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
       />
-      <Main cards={cards} drawerWidth={drawerWidth} />
+      {/* {backofficeComponent[window.location.pathname]} */}
+      {backofficeComponent()}
     </Box>
   );
 }
-
-ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func
-};
 
 export default ResponsiveDrawer;

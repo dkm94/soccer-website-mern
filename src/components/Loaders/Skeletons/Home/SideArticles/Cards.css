@@ -1,0 +1,22 @@
+.wrapper {
+    display: grid;
+    row-gap: 0.7rem;
+}
+
+#article-img {
+    height: 7rem;
+    width: 100%;
+}
+
+#article-title {
+    height: 1rem;
+    width: 100%;
+}
+
+#article-date {
+    height: 1rem;
+    width: 5rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

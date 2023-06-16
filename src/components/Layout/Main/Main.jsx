@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../../Header/Header';
-import CommentsCol from '../CommentsCol/CommentsCol';
-import { Container, Row } from 'react-bootstrap';
+import SideArticles from '../SideArticles/SideArticles';
+import { Row, Container } from 'react-bootstrap';
+import { Box } from '@mui/material';
 import './Main.css';
 
 const Layout = ({ children, path }) => {
@@ -12,11 +13,15 @@ const Layout = ({ children, path }) => {
     return <Header path={path} />;
   };
 
-  const showComments = () => {
-    if (path === '/secret-login' || path.includes('backoffice')) {
+  const showLastArticles = () => {
+    if (path === '/secret-login' || path.includes('news') || path.includes('backoffice')) {
       return null;
     }
-    return <CommentsCol />;
+    return <SideArticles />;
+  };
+
+  const ContentWrapper = ({ children }) => {
+    return path.includes('news') ? <Box>{children}</Box> : <Row>{children}</Row>;
   };
 
   return (
@@ -24,13 +29,14 @@ const Layout = ({ children, path }) => {
       {showHeader()}
       <Container
         fluid
-        className={`layout ${path === '/backoffice' && 'backoffice-bg'}`}
+        // className={`layout ${path === '/backoffice' && 'backoffice-bg'}`}
+        className={`layout ${path.startsWith('/backoffice') && 'backoffice-bg'}`}
         style={{ minHeight: '100vh' }}>
         <Container>
-          <Row>
-            {showComments()}
+          <ContentWrapper>
+            {showLastArticles()}
             {children}
-          </Row>
+          </ContentWrapper>
         </Container>
       </Container>
     </>

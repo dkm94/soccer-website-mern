@@ -1,6 +1,7 @@
 import PauseIcon from '@mui/icons-material/Pause';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const status = {
   IN_PLAY: {
@@ -18,9 +19,14 @@ const status = {
     icon: <PauseIcon />
   },
   TIMED: {
-    title: 'scheduled',
+    title: 'timed',
     style: 'status-scheduled',
     icon: <ScheduleIcon />
+  },
+  SCHEDULED: {
+    title: 'scheduled',
+    style: 'status-scheduled',
+    icon: <CalendarMonthIcon />
   }
 };
 

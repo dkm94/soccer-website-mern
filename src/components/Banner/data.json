@@ -16,10 +16,6 @@
       "img": "/competitions.png",
       "title": "Competitions"
     },
-    "/teams": {
-      "img": "/teams.jpeg",
-      "title": "Teams"
-    },
     "/matchhistory": {
       "img": "/favorites.jpeg",
       "title": "Match history"

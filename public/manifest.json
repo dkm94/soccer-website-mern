@@ -1,9 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "2LEFOOT",
+  "name": "Soccer results",
   "icons": [],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "display": "standalone"
 }

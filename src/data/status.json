@@ -1,0 +1,26 @@
+{
+   "IN_PLAY": {
+      "title": "In play",
+      "style": "status-inplay",
+      "icon": "OndemandVideoIcon"
+    },
+    "FINISHED": {
+        "title": "Finished",
+        "style": "status-finished"
+      },
+    "PAUSED": {
+        "title": "Paused",
+        "style": "status-paused",
+        "icon": "PauseIcon"
+    },
+    "TIMED": {
+        "title": "Timed",
+        "style": "status-scheduled",
+        "icon": "ScheduleIcon"
+    },
+    "SCHEDULED": {
+      "title": "Scheduled",
+      "style": "status-scheduled",
+      "icon": "ScheduleIcon"
+  }
+}
