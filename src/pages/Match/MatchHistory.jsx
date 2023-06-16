@@ -142,7 +142,7 @@ const MatchHistory = () => {
   return (
     <Col lg={8}>
       <div className="layout-cols"></div>
-      <MainContent title={'SEARCH'}>
+      <MainContent title={'Search'}>
         <DatePickerWrapper>
           <SearchBox>
             <Row

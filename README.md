@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+<div align="center">
+    <h1>
+        <img src="documentation/readme-assets/toutlefoot-logo.png" alt="2lefoot logo" height="75px">
+    </h1>
+    <h4><b>Soccer website, providing news and matches results</b></h4>
+    <h4>
+        <a href="#about">About the project</a>
+        •
+        <a href="#links">Links</a>
+        •
+        <a href="#built-with">Built with</a>
+        •
+        <a href="#architecture">Project files description</a>
+        •
+        <a href="#development">Development guide</a>
+        •
+        <a href="#deployment">Deployment</a>
+        •
+        <a href="#contact">Contact</a>
+        •
+        <a href="#copyright">Copyright</a>
+    </h4>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center"> 
+    <img src="documentation/readme-assets/home.png" alt="home page" height="450" width="auto">
+</p>
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Table of contents](#table-of-contents)
+- [About the project](#about-the-project)
+- [Links](#links)
+  - [Figma](#figma)
+  - [Trello](#trello)
+- [Built with](#built-with)
+- [Project files description (src)](#project-files-description-src)
 
-### `npm start`
+## About the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="justify"> 
+  During my last year of training in computer design and development, we had to present a free project. 
+I decided to go for a soccer website, providing news and matches results. Being a soccer fan myself, I wanted to work on a project that animates me and find new visuals. 
+</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Links
 
-### `npm test`
+### Figma
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can see the evolution of the project via Figma. The drafts contain:
+  * Mock-ups of the first version (presented at school)
+  * Mock-ups of the second version (developed in my spare time after getting my degree)
+  * Designs (icons, logos, moodboard...)
+  * Presentation support, containing some diagrams (in its first version)
 
-### `npm run build`
+✐ **Visuals**: https://www.figma.com/file/8WgQuNX3rIicR8ZLqHVYod/Soccer?type=design&node-id=0%3A1&t=3eFeRSvXqnsVCsQD-1
+✐ **Presentation** (🇫🇷) : https://www.figma.com/file/GzDt6mZH8dMBC4nituPpfD/2LEFOOT-Presentation?type=design&t=3eFeRSvXqnsVCsQD-1
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Trello
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I use Trello or Evernote to organize my work. You will find the list of remaining and completed tasks.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+📝 **Trello** (🇫🇷): https://trello.com/b/1adWasWA
 
-### `npm run eject`
+## Built with
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Frontend
+* ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+* ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=material-ui&logoColor=white)
+* ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Backend/Database
+* ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+* ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+* ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Hosting
+* ![Netlify](https://img.shields.io/badge/Deploy%20to%20Netlify-blue?style=for-the-badge&logo=netlify&logoColor=white)
+* ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Project files description (src)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
