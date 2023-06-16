@@ -1,0 +1,12 @@
+.profile__avatar {
+    display: flex;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    width: 100%
+}
+
+.profile__avatar > img {
+    height: auto;
+    width: fit-content;
+    align-self: center;
+}

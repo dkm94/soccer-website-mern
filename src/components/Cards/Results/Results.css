@@ -1,0 +1,60 @@
+#result-card__header {
+  background-color: var(--palette-black-main) !important;
+  color: var(--palette-black-contrastText);
+  font-family: 'Adamina', serif;
+  letter-spacing: 1px;
+}
+
+.status-finished, .status-inplay, .status-scheduled, .status-paused {
+  text-transform: uppercase;
+}
+
+.status-finished {
+  color: var(--palette-black-main) !important;
+  font-weight: 600;
+}
+
+.status-inplay {
+  color: var(--palette-green-main) !important;
+  font-weight: 600;
+}
+
+.status-scheduled {
+  color: var(--palette-black-main) !important;
+  font-weight: 300;
+}
+
+.status-paused {
+  color: var(--palette-primary-light) !important;
+  font-weight: 600;
+}
+
+.result-card__display-score {
+ display: flex;
+ align-items: center;
+}
+
+.result-card__display-score > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+ }
+
+ .card-header:first-child {
+  border-radius: 0px !important;
+ }
+
+ .result-card__crest {
+  height: 3.5rem;
+  width: auto;
+ }
+
+ .result-card__time {
+  font-size: '20px';
+  font-weight: '600';
+ }
+
+ .result-card__team-name {
+  font-size: 1rem;
+ }

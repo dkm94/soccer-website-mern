@@ -1,0 +1,34 @@
+{
+    "ERR_NETWORK":{
+        "img": "error-img.png",
+        "type": "Network issues",
+        "content":"The network connection is lost, please try to reload the page.",
+        "button": {
+            "action": "reload",
+            "content": "Reload now"
+        }
+    },
+    "DATA_NOT_FOUND":{
+        "img": "no-data.png",
+        "type": "No data to display",
+        "content":"There's no content to show here."
+    },
+    "GAMES_NOT_FOUND":{
+        "img": "no-data.png",
+        "type": "Oops...",
+        "content":"There's no games scheduled for today.",
+        "button": {
+            "action": "redirect",
+            "content": "See games' history"
+        }
+    },
+    "DEFAULT_ERROR":{
+        "img": "no-data.png",
+        "type": "Oops...",
+        "content":"Something went wrong.",
+        "button": {
+            "action": "reload",
+            "content": "Reload now"
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.loader {
+    position: relative;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+}
+.loader::before {
+    position: absolute;
+    top: -20px;
+    left: -25px;
+    font-size: 16px;
+}
+
+.loader5 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.loader5 span {
+    animation: pulse 5s linear infinite;
+    opacity: 0.7;
+    transform: scale(0);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--palette-black-dark);
+}
+.loader5 span:nth-child(2) {
+    animation-delay: 1s;
+}
+@keyframes pulse {
+    to {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+   }
+}

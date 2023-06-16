@@ -1,0 +1,28 @@
+.mc-title {
+  position: relative;
+  background: var(--palette-primary-dark);
+  display: inline-block;
+  color: var(--palette-white-main);
+  padding: 0.24em 0.3em 0.25em;
+  padding: 1rem;
+  /* text-transform: uppercase !important; */
+  margin: 0;
+  /* font-size: 1rem !important; */
+  font-family: 'Adamina', serif !important
+  /* z-index: 1000; */
+}
+
+.mc-title:after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  right: -20%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: inherit;
+  -webkit-transform: skewX(20deg);
+  -moz-transform: skewX(20deg);
+  -ms-transform: skewX(20deg);
+  transform: skewX(20deg);
+}

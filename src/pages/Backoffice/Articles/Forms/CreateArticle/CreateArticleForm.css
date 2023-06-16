@@ -1,0 +1,15 @@
+#upload-file-btn {
+    text-transform: unset;
+    color: #fff;
+}
+
+.ql-editor {
+    min-height: 18em;
+  }
+
+  .ql-snow.ql-toolbar{
+    display: block;
+  background: #eaecec;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  }

@@ -1,0 +1,17 @@
+
+.comment-avatar {
+  display: flex;
+  justify-content: center;
+  margin-top: 7px;
+}
+
+.comment-avatar > img {
+  height: 3.5rem;
+  width: auto;
+}
+
+.article-card {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid var(--palette-grey-light)
+}
