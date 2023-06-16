@@ -14,11 +14,7 @@
         •
         <a href="#development">Development guide</a>
         •
-        <a href="#deployment">Deployment</a>
-        •
-        <a href="#contact">Contact</a>
-        •
-        <a href="#copyright">Copyright</a>
+        <a href="#contact">Credits</a>
     </h4>
 </div>
 
@@ -38,6 +34,7 @@
 - [Development guide](#development-guide)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+- [Credits](#credits)
 
 ## About the project
 
@@ -155,3 +152,10 @@ npm --version
    ```sh
    npm start
    ```
+
+
+## Credits
+
+Diane M.
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)(https://github.com/dkm94/)
+![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)(https://www.linkedin.com/in/diane-mpk/)
