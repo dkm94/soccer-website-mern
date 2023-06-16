@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import usePagination from '../../hooks/usePagination';
+import usePagination from '../../utils/hooks/usePagination';
 import { Col } from 'react-bootstrap';
 import { getMatchesOfTheDay } from '../../services/publicAPIs/soccerapi_services';
 import './Home.css';
