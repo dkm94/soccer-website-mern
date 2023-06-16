@@ -123,9 +123,11 @@ brew install node
 Please download Node from the offical website: https://nodejs.org/en/download
 
 <p>Once installed, you can verify Node and NPM versions with the following commands:</p>
+
 ```sh
 Node --version
 ```
+
 ```sh
 npm --version
 ```
@@ -136,7 +138,7 @@ npm --version
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repository
    ```sh
    git clone https://github.com/dkm94/soccer-website-mern.git
    ```
@@ -149,7 +151,7 @@ npm --version
    # You must create a custom environment variable beginning with REACT_APP_
    REACT_APP_FOOTBALL_API_KEY='YOUR_API_KEY';
    ```
-4. To run t the app in development mode, use the command:
+4. To run the app in development mode, use the command:
    ```sh
    npm start
    ```
