@@ -7,14 +7,19 @@ import './Main.css';
 
 const Layout = ({ children, path }) => {
   const showHeader = () => {
-    if (path === '/secret-login' || path.includes('backoffice')) {
+    if (path === '/secret-login' || path === '/account-validation' || path.includes('backoffice')) {
       return null;
     }
     return <Header path={path} />;
   };
 
   const showLastArticles = () => {
-    if (path === '/secret-login' || path.includes('news') || path.includes('backoffice')) {
+    if (
+      path === '/secret-login' ||
+      path.includes('news') ||
+      path.includes('backoffice') ||
+      path === '/account-validation'
+    ) {
       return null;
     }
     return <SideArticles />;

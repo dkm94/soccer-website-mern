@@ -4,7 +4,8 @@ import Carousel from '../Carousel/Carousel';
 import './Header.css';
 
 const Header = ({ path }) => {
-  return <>{path === '/home' ? <Carousel /> : <Banner path={path} />}</>;
+  console.log(path);
+  return <>{path === '/' ? <Carousel /> : <Banner path={path} />}</>;
 };
 
 export default Header;

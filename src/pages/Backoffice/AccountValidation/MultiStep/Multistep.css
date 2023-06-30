@@ -1,0 +1,11 @@
+.step-wrapper {
+    background-color: whitesmoke;
+    height: fit-content;
+    min-height: 300px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.stepper-redirection:hover {
+    color: #fff !important;
+}
