@@ -14,6 +14,8 @@
         •
         <a href="#development">Development guide</a>
         •
+        <a href="#access">Access informations</a>
+        •
         <a href="#contact">Credits</a>
     </h4>
 </div>
@@ -34,6 +36,7 @@
 - [Development guide](#development-guide)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+- [Access informations to backoffice](#access-informations-to-backoffice)
 - [Credits](#credits)
 
 ## About the project
@@ -153,6 +156,11 @@ npm --version
    npm start
    ```
 
+## Access informations to backoffice
+
+<p>You can have access to the backoffice through the following route:</p>
+`https://2lefoot.netlify.app/secret-login`
+<p>Please feel free to contact me to get the credentials and access more features.</p>
 
 ## Credits
 
