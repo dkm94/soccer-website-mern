@@ -4,8 +4,6 @@ import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/m
 import './Competition.css';
 
 const SelectArticles = (props) => {
-  console.log('🚀 ~ file: Articles.jsx:7 ~ SelectArticles ~ props:', props);
-
   // const handleSelectValue = (e) => {
   //   setCompetition(e.target.value);
   // };

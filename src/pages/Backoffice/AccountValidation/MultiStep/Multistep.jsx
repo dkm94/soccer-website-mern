@@ -6,6 +6,9 @@ import ActivateAccount from './Steps/Step3/ActivateAccount';
 import { Confirmation } from './Steps/Step4/Confirmation';
 import './Multistep.css';
 
+// Todo: check mail
+// Todo: redirection if logged in => redirect from /account-validation to /backoffice
+
 const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4'];
 
 const MultiStepForm = () => {
@@ -14,7 +17,6 @@ const MultiStepForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [accountValidated, setAccountValidated] = useState(false);
-  console.log('🚀 ~ file: Multistep.jsx:17 ~ MultiStepForm ~ accountValidated:', accountValidated);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
