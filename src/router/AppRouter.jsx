@@ -2,34 +2,35 @@ import React from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
-import Home from '../pages/Home/Home';
-import Competitions from '../pages/Competitions/Competitions';
-import Teams from '../pages/Teams/Teams';
-import Match from '../pages/Match/MatchHistory';
-import News from '../pages/News/News';
-import Layout from '../components/Layout/Main/Main';
-import IsLogged from './ProtectedRoutes/IsLogged';
-import Matches from '../pages/Competitions/Matches/Matches';
-import Login from '../pages/Login/Login';
+import { theme as MuiTheme } from '../styles/muiTheme';
+import { cssVars } from '../styles/customVars';
+import { lazy, Suspense } from 'react';
+import Navbar from 'components/Navbar/Navbar';
+import Footer from 'components/Footer/Footer';
+import {
+  Home,
+  Competitions,
+  Teams,
+  Match,
+  News,
+  Matches,
+  NewsPage,
+  AccountValidation,
+  Login
+} from 'pages';
+import Layout from 'components/Layout/Main/Main';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme
 } from '@mui/material';
-import { theme as MuiTheme } from '../styles/muiTheme';
-import { cssVars } from '../styles/customVars';
-import { lazy, Suspense } from 'react';
-const Admin = lazy(() => import('../pages/Backoffice/Backoffice'));
-import LazyLoad from '../components/Loaders/Lazy/LazyLoad';
+import LazyLoad from 'components/Loaders/Lazy/LazyLoad';
 import { ErrorBoundary } from 'react-error-boundary';
-import Message from '../components/Screens/Message';
-import IsMod from './ProtectedRoutes/IsMod';
-import IsAdmin from './ProtectedRoutes/IsAdmin';
-import NewsPage from '../pages/NewsPage/NewsPage';
-import ModalComponent from '../components/Modal/ModalComponent';
-import AccountValidation from '../pages/Backoffice/AccountValidation/AccountValidation';
+import Message from 'components/Screens/Message';
+import { IsMod, IsAdmin, IsLogged } from './ProtectedRoutes';
+import ModalComponent from 'components/Modal/ModalComponent';
+
+const Admin = lazy(() => import('pages/Backoffice/Backoffice'));
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 const isMod = JSON.parse(localStorage.getItem('isMod'));

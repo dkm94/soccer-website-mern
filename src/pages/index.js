@@ -1,0 +1,9 @@
+export { default as Home } from './Home/Home.jsx';
+export { default as Competitions } from './Competitions/Competitions.jsx';
+export { default as Teams } from './Teams/Teams.jsx';
+export { default as Match } from './Match/MatchHistory.jsx';
+export { default as News } from './News/News.jsx';
+export { default as Matches } from './Competitions/Matches/Matches.jsx';
+export { default as NewsPage } from './NewsPage/NewsPage.jsx';
+export { default as AccountValidation } from './Backoffice/AccountValidation/AccountValidation.jsx';
+export { default as Login } from './Login/Login.jsx';

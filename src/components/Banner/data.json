@@ -1,9 +1,5 @@
 {
   "bannerElements": {
-    "/home": {
-      "img": "/home.png",
-      "title": "Home"
-    },
     "/players": {
       "img": "/players.jpeg",
       "title": "Players"
