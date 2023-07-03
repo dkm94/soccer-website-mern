@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from 'react-query';
-import { editProfile } from '../../queries/common_queries';
+import { editProfile } from 'services/queries/common_queries';
 
 export const useEditProfile = (
   setSuccessMessage,

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from 'react-query';
-import { createMod } from '../../queries/admin_queries';
+import { createMod } from 'services/queries/admin_queries';
 
 export const useCreateMod = (
   setSuccessMessage,

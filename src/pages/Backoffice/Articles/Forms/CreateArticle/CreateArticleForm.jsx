@@ -17,15 +17,15 @@ import {
 } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useTheme } from '@mui/material';
-import { useCreatePost } from '../../../../../services/mutations/Articles/useCreatePost';
-import competitionSeeds from '../../../../../seeds/competitions';
+import { useCreatePost } from 'services/mutations/Articles/useCreatePost';
+import competitionSeeds from 'seeds/competitions';
 import ReactQuill from 'react-quill';
 import './CreateArticleForm.css';
 import 'react-quill/dist/quill.snow.css';
-import UploadButton from '../../../../../components/Buttons/Upload/UploadButton';
-import formats from '../../../../../utils/quillVars/formats';
-import modules from '../../../../../utils/quillVars/modules';
-import CustomTexField from '../../../../../components/Inputs/TextField/CustomTexField';
+import UploadButton from 'components/Buttons/Upload/UploadButton';
+import formats from 'utils/quillVars/formats';
+import modules from 'utils/quillVars/modules';
+import CustomTexField from 'components/Inputs/TextField/CustomTexField';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;

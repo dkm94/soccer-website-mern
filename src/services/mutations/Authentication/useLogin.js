@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useMutation } from 'react-query';
-import { login } from '../../queries/auth_queries';
+import { login } from 'services/queries/auth_queries';
 
 export const useLogin = (setSuccessMessage, setOpenSuccess, setOpenError, setError) => {
   function setToken(token) {

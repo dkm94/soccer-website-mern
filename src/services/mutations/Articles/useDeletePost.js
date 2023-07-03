@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from 'react-query';
-import { deletePost } from '../../queries/mods_queries';
+import { deletePost } from 'services/queries/mods_queries';
 
 export const useDeletePost = (
   setSuccessMessage,

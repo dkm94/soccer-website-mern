@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useMutation } from 'react-query';
-import { createPost } from '../../queries/mods_queries';
+import { createPost } from 'services/queries/mods_queries';
 
 export const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError, setError) => {
   const profileId = JSON.parse(localStorage.getItem('profileId'));

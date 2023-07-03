@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from 'react-query';
-import { updatePassword } from '../../queries/common_queries';
+import { updatePassword } from 'services/queries/common_queries';
 
 export const useUpdatePassword = (setResultMessage, onClose) => {
   const queryClient = useQueryClient();
