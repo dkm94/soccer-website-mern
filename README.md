@@ -159,7 +159,7 @@ npm --version
 ## Access informations to backoffice
 
 <p>You can have access to the backoffice through the following route:</p>
-`https://2lefoot.netlify.app/secret-login`
+https://2lefoot.netlify.app/secret-login
 <p>Please feel free to contact me to get the credentials and access more features.</p>
 
 ## Credits
