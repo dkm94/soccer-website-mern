@@ -19,7 +19,6 @@ const SideBarList = () => {
   const profileId = JSON.parse(localStorage.getItem('profileId'));
 
   const [selectedIndex, setSelectedIndex] = useState(0);
-  console.log('🚀 ~ file: List.jsx:22 ~ SideBarList ~ selectedIndex:', selectedIndex);
   const [open, setOpen] = useState(false);
 
   const handleListItemClick = (e, idx) => {
@@ -98,8 +97,6 @@ const SideBarList = () => {
       <Divider />
       <List>
         {listData.map(({ id, idx, name, icon, path }) => {
-          console.log(selectedIndex);
-          console.log(idx);
           return name === 'Articles' ? (
             <>
               <ListItem key={id} disablePadding>

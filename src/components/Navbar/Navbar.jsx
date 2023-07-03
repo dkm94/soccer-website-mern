@@ -8,7 +8,7 @@ const navItems = [
   {
     id: 1,
     title: 'home',
-    path: '/home'
+    path: '/'
   },
   {
     id: 2,

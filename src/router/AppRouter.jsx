@@ -29,6 +29,7 @@ import IsMod from './ProtectedRoutes/IsMod';
 import IsAdmin from './ProtectedRoutes/IsAdmin';
 import NewsPage from '../pages/NewsPage/NewsPage';
 import ModalComponent from '../components/Modal/ModalComponent';
+import AccountValidation from '../pages/Backoffice/AccountValidation/AccountValidation';
 
 const auth = JSON.parse(localStorage.getItem('logged_in_status'));
 const isMod = JSON.parse(localStorage.getItem('isMod'));
@@ -59,6 +60,7 @@ const AppRouter = () => {
                 <Route path="/news" element={<News />} />
                 <Route path="/news/:code/:id" element={<NewsPage />} />
                 <Route path="/secret-login" element={<Login auth={auth} />} />
+                <Route path="/account-validation" element={<AccountValidation />} />
                 <Route element={<IsLogged auth={auth} />}>
                   <Route
                     path="/backoffice"

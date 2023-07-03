@@ -57,7 +57,6 @@ export default function SignIn({ auth }) {
 
   const helperText = (field) => {
     if (error?.field === field) {
-      console.log(error?.message);
       return error?.message;
     }
     if (error?.type === 'empty') {

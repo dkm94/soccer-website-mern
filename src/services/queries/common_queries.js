@@ -32,7 +32,6 @@ const editProfile = async (form) => {
 };
 
 const updatePassword = async (form) => {
-  console.log('🚀 ~ file: common_queries.js:35 ~ updatePassword ~ form:', form);
   try {
     const id = form?._id;
     const url = `${BASE_URL}/common/users/edit/${id}`;
