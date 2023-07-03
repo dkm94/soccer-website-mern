@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Card from '../../../components/Dashboard/TopCard/Card';
-import { changeModStatus } from '../../../services/queries/admin_queries';
-import { getArticles, getUsers } from '../../../services/queries/public_queries';
+import Card from 'components/Dashboard/TopCard/Card';
+import { changeModStatus } from 'services/queries/admin_queries';
+import { getArticles, getUsers } from 'services/queries/public_queries';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import './Main.css';
 import { Grid, Typography, styled, useTheme, Paper, Container } from '@mui/material';

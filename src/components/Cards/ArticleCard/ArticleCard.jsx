@@ -2,13 +2,13 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Button, Card, CardMedia, CardActions, CardContent, Grid } from '@mui/material';
-import competitionSeeds from '../../../seeds/competitions';
+import competitionSeeds from 'seeds/competitions';
 import { AdvancedImage } from '@cloudinary/react';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { fill, scale, crop } from '@cloudinary/url-gen/actions/resize';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
 import './ArticleCard.css';
-import getFormattedDate from '../../../utils/getFormattedDate';
+import getFormattedDate from 'utils/getFormattedDate';
 
 const RedirectButton = styled(Button)(({ theme }) => ({
   fontSize: 'inherit',

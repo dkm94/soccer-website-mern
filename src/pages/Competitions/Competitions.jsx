@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import MainContent from '../../components/Wrappers/MainContent/MainContent';
-import CompetitionCard from '../../components/Cards/Competition/Competition';
+import MainContent from 'components/Wrappers/MainContent/MainContent';
+import CompetitionCard from 'components/Cards/Competition/Competition';
 import { useQuery } from 'react-query';
 import './Competition.css';
 
-import { getCompetitions } from '../../services/publicAPIs/soccerapi_services';
-import CompetitionsLoader from '../../components/Loaders/Skeletons/Competitions/Loader';
-import Message from '../../components/Screens/Message';
+import { getCompetitions } from 'services/publicAPIs/soccerapi_services';
+import CompetitionsLoader from 'components/Loaders/Skeletons/Competitions/Loader';
+import Message from 'components/Screens/Message';
 import { styled } from '@mui/material';
 
 const StyledContainer = styled('div')({

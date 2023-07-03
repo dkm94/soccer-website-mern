@@ -9,8 +9,8 @@ import {
   DotGroup
 } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import slideshow from '../../seeds/home.js';
-import HomeSlideContent from '../HomeSlideContent/HomeSlideContent';
+import slideshow from 'seeds/home';
+import HomeSlideContent from 'components/HomeSlideContent/HomeSlideContent';
 import ArrowCircleLeft from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRight from '@mui/icons-material/ArrowCircleRight';
 import './Carousel.css';

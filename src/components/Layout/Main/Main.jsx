@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../Header/Header';
-import SideArticles from '../SideArticles/SideArticles';
+import Header from 'components/Header/Header';
+import SideArticles from 'components/Layout/SideArticles/SideArticles';
 import { Row, Container } from 'react-bootstrap';
 import { Box } from '@mui/material';
 import './Main.css';

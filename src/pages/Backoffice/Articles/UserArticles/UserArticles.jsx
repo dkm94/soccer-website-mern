@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Box, Typography, useTheme, Grid, Container, styled } from '@mui/material';
-import { getArticlesByAuthor } from '../../../../services/queries/public_queries';
+import { getArticlesByAuthor } from 'services/queries/public_queries';
 import { useQuery } from 'react-query';
-import Article from '../../../News/Article';
-import SelectArticles from '../../../../components/Select/Articles';
-import UserArticlesSkeleton from '../../../../components/Loaders/Skeletons/UserArticles/UserArticlesSkeleton';
-import Message from '../../../../components/Screens/Message';
+import Article from 'pages/News/Article';
+import SelectArticles from 'components/Select/Articles';
+import UserArticlesSkeleton from 'components/Loaders/Skeletons/UserArticles/UserArticlesSkeleton';
+import Message from 'components/Screens/Message';
 
 // const Card = () => {
 //   return <div>Card</div>;

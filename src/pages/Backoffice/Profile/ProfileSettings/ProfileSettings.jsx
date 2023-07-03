@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { AdvancedImage } from '@cloudinary/react';
-import UploadButton from '../../../../components/Buttons/Upload/UploadButton';
+import UploadButton from 'components/Buttons/Upload/UploadButton';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   // marginTop: '2rem',

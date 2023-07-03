@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import { Box, Paper, Checkbox, Typography, TablePagination, Chip } from '@mui/material';
 import { useTheme } from '@mui/material';
-import EnhancedToolBar from '../../../../components/Dashboard/Table/Components/EnhancedToolBar';
-import ToggleButton from '../../../../components/Dashboard/Table/Components/ToggleButton/ToggleButton';
-import { getUsers } from '../../../../services/queries/public_queries';
-import { changeModStatus } from '../../../../services/queries/admin_queries';
+import EnhancedToolBar from 'components/Dashboard/Table/Components/EnhancedToolBar';
+import ToggleButton from 'components/Dashboard/Table/Components/ToggleButton/ToggleButton';
+import { getUsers } from 'services/queries/public_queries';
+import { changeModStatus } from 'services/queries/admin_queries';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import LoaderAnimation from '../../../../components/Loaders/Animation/Dashboard/LoaderAnimation';
-import Message from '../../../../components/Screens/Message';
-import { CustomChip } from '../../../../components/Chip/CustomChip';
+import LoaderAnimation from 'components/Loaders/Animation/Dashboard/LoaderAnimation';
+import Message from 'components/Screens/Message';
+import { CustomChip } from 'components/Chip/CustomChip';
 import './ModsTable.css';
 
 const ModsTable = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ConfirmationModal from '../../../Confirmation/Confirmation';
-import { useUpdatePassword } from '../../../../../services/mutations/Users/useUpdatePassword';
+import ConfirmationModal from 'components/Modal/Confirmation/Confirmation';
+import { useUpdatePassword } from 'services/mutations/Users/useUpdatePassword';
 
 const ChangePwd = ({ onClose, password, newPwd, confirmPwd, id }) => {
   const message = 'Are you sure you want to change your password ?';

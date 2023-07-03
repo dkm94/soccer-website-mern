@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import cards from '../../seeds/dashboard_cards';
+import cards from 'seeds/dashboard_cards';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 import CreateArticleForm from './Articles/Forms/CreateArticle/CreateArticleForm';

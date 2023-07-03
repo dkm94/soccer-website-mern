@@ -5,7 +5,7 @@ import { IconButton, Toolbar, Box, Tooltip, Typography, Button } from '@mui/mate
 import DeleteIcon from '@mui/icons-material/Delete';
 import { styled } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
-import ModalComponent from '../../../Modal/ModalComponent';
+import ModalComponent from 'components/Modal/ModalComponent';
 
 const CustomToolbar = styled(Toolbar)(({ theme }) => ({
   justifyContent: 'end',

@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { useTheme } from '@mui/material';
 import { useQuery } from 'react-query';
-import { getProfile } from '../../../services/queries/public_queries';
-import { useEditProfile } from '../../../services/mutations/Profiles/useEditProfile';
+import { getProfile } from 'services/queries/public_queries';
+import { useEditProfile } from 'services/mutations/Profiles/useEditProfile';
 import { useParams } from 'react-router-dom';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { fill, crop, scale } from '@cloudinary/url-gen/actions/resize';
@@ -14,10 +14,10 @@ import { max } from '@cloudinary/url-gen/actions/roundCorners';
 import { auto } from '@cloudinary/url-gen/qualifiers/format';
 import { face } from '@cloudinary/url-gen/qualifiers/focusOn';
 import avatar from '../../../../src/images/avatar.png';
-import { getUser } from '../../../services/queries/common_queries';
+import { getUser } from 'services/queries/common_queries';
 import AccountSettings from './AccountSettings/AccountSettings';
 import ProfileSettings from './ProfileSettings/ProfileSettings';
-import { useUpdatePassword } from '../../../services/mutations/Users/useUpdatePassword';
+import { useUpdatePassword } from 'services/mutations/Users/useUpdatePassword';
 import './Profile.css';
 
 const Profile = ({ drawerWidth, profileId }) => {

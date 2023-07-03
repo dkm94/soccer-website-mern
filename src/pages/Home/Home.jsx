@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import usePagination from '../../utils/hooks/usePagination';
+import usePagination from 'hooks/usePagination';
 import { Col } from 'react-bootstrap';
-import { getMatchesOfTheDay } from '../../services/publicAPIs/soccerapi_services';
+import { getMatchesOfTheDay } from 'services/publicAPIs/soccerapi_services';
 import './Home.css';
 import '../../App.css';
-import MainContent from '../../components/Wrappers/MainContent/MainContent';
-import Select from '../../components/Select/Competition';
-import Results from '../../components/Cards/Results/Results';
+import MainContent from 'components/Wrappers/MainContent/MainContent';
+import Select from 'components/Select/Competition';
+import Results from 'components/Cards/Results/Results';
 import { useQuery } from 'react-query';
 import { Container, Pagination, styled } from '@mui/material';
-import ResultsLoader from '../../components/Loaders/Skeletons/Home/Results/Cards';
-import Message from '../../components/Screens/Message';
+import ResultsLoader from 'components/Loaders/Skeletons/Home/Results/Cards';
+import Message from 'components/Screens/Message';
 
 const StyledContainer = styled('div')({
   padding: '1rem 5rem',

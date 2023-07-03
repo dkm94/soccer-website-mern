@@ -17,21 +17,21 @@ import {
 } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useQuery } from 'react-query';
-import { useEditPost } from '../../../../../services/mutations/Articles/useEditPost';
+import { useEditPost } from 'services/mutations/Articles/useEditPost';
 import { useTheme } from '@mui/material';
 import ReactQuill from 'react-quill';
 import './UpdateArticleForm.css';
 import 'react-quill/dist/quill.snow.css';
 import { useParams } from 'react-router-dom';
-import { getArticle } from '../../../../../services/queries/public_queries';
-import competitionSeeds from '../../../../../seeds/competitions';
-import { useDeletePost } from '../../../../../services/mutations/Articles/useDeletePost';
-import UploadButton from '../../../../../components/Buttons/Upload/UploadButton';
-import modules from '../../../../../utils/quillVars/modules';
-import formats from '../../../../../utils/quillVars/formats';
-import UpdateArticleFormSkeleton from '../../../../../components/Loaders/Skeletons/Forms/UpdateArticleFormSkeleton';
-import Message from '../../../../../components/Screens/Message';
-import CustomTexField from '../../../../../components/Inputs/TextField/CustomTexField';
+import { getArticle } from 'services/queries/public_queries';
+import competitionSeeds from 'seeds/competitions';
+import { useDeletePost } from 'services/mutations/Articles/useDeletePost';
+import UploadButton from 'components/Buttons/Upload/UploadButton';
+import modules from 'utils/quillVars/modules';
+import formats from 'utils/quillVars/formats';
+import UpdateArticleFormSkeleton from 'components/Loaders/Skeletons/Forms/UpdateArticleFormSkeleton';
+import Message from 'components/Screens/Message';
+import CustomTexField from 'components/Inputs/TextField/CustomTexField';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   // marginTop: '2rem',

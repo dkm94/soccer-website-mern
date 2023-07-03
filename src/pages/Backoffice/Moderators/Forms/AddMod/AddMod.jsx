@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Box, Grid, InputLabel, Button, Typography, styled } from '@mui/material';
-import CustomTexField from '../../../../../components/Inputs/TextField/CustomTexField';
-import { useCreateMod } from '../../../../../services/mutations/Moderators/useCreateMod';
+import CustomTexField from 'components/Inputs/TextField/CustomTexField';
+import { useCreateMod } from 'services/mutations/Moderators/useCreateMod';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   textTransform: 'unset',

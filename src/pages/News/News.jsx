@@ -1,11 +1,11 @@
 import React from 'react';
-import MainContent from '../../components/Wrappers/MainContent/MainContent';
-import { getArticles } from '../../services/queries/public_queries';
+import MainContent from 'components/Wrappers/MainContent/MainContent';
+import { getArticles } from 'services/queries/public_queries';
 import { useQuery } from 'react-query';
 import { Grid, Container } from '@mui/material';
 import Article from './Article';
-import Message from '../../components/Screens/Message';
-import NewsSkeleton from '../../components/Loaders/Skeletons/News/NewsSkeleton';
+import Message from 'components/Screens/Message';
+import NewsSkeleton from 'components/Loaders/Skeletons/News/NewsSkeleton';
 import './News.css';
 
 const News = () => {

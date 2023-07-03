@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import MainContent from '../../components/Wrappers/MainContent/MainContent';
+import MainContent from 'components/Wrappers/MainContent/MainContent';
 import './Teams.css';
 
 const Teams = () => {

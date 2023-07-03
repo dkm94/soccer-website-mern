@@ -2,9 +2,9 @@
 import React from 'react';
 import { Grid, Typography, styled, Button, Box, useTheme, Container } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import competitionSeeds from '../../seeds/competitions';
+import competitionSeeds from 'seeds/competitions';
 import './Article.css';
-import getFormattedDate from '../../utils/getFormattedDate';
+import getFormattedDate from 'utils/getFormattedDate';
 import { AdvancedImage } from '@cloudinary/react';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { fill, scale, crop } from '@cloudinary/url-gen/actions/resize';

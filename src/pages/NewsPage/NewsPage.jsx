@@ -2,17 +2,17 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Typography, Box, Grid } from '@mui/material';
 import { useQuery } from 'react-query';
-import { getArticle } from '../../services/queries/public_queries';
-import competitionSeeds from '../../seeds/competitions';
-import MainContent from '../../components/Wrappers/MainContent/MainContent';
+import { getArticle } from 'services/queries/public_queries';
+import competitionSeeds from 'seeds/competitions';
+import MainContent from 'components/Wrappers/MainContent/MainContent';
 import { styled } from '@mui/material/styles';
 import * as DOMPurify from 'dompurify';
 import { AdvancedImage } from '@cloudinary/react';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
 import './NewsPage.css';
-import NewsPageSkeleton from '../../components/Loaders/Skeletons/NewsPage/NewsPageSkeleton';
-import AuthorCard from '../../components/Cards/Author/AuthorCard';
+import NewsPageSkeleton from 'components/Loaders/Skeletons/NewsPage/NewsPageSkeleton';
+import AuthorCard from 'components/Cards/Author/AuthorCard';
 
 const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.black.main,

@@ -4,13 +4,13 @@ import React from 'react';
 import { Col } from 'react-bootstrap';
 import './SideArticles.css';
 
-import { getLastArticles } from '../../../services/queries/public_queries';
-import ArticleCard from '../../Cards/ArticleCard/ArticleCard';
+import { getLastArticles } from 'services/queries/public_queries';
+import ArticleCard from 'components/Cards/ArticleCard/ArticleCard';
 import { Box, useTheme } from '@mui/material';
-import MainContent from '../../Wrappers/MainContent/MainContent';
+import MainContent from 'components/Wrappers/MainContent/MainContent';
 import { useQuery } from 'react-query';
-import ArticlesLoader from '../../Loaders/Skeletons/Home/SideArticles/Cards';
-import Message from '../../Screens/Message';
+import ArticlesLoader from 'components/Loaders/Skeletons/Home/SideArticles/Cards';
+import Message from 'components/Screens/Message';
 
 const SideArticles = () => {
   const {

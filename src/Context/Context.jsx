@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { getRessources } from '../services/dummyapi_services';
+import { getRessources } from 'services/publicAPIs/dummyapi_services';
 
 export const CommentsContext = createContext();
 const CommentsContextProvider = (props) => {

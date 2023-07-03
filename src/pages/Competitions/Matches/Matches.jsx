@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Col, Row, Image } from 'react-bootstrap';
-import MainContent from '../../../components/Wrappers/MainContent/MainContent';
-import { getScoreBoard } from '../../../services/publicAPIs/soccerapi_services';
+import MainContent from 'components/Wrappers/MainContent/MainContent';
+import { getScoreBoard } from 'services/publicAPIs/soccerapi_services';
 import { useQuery } from 'react-query';
 import './Matches.css';
 import {
@@ -16,9 +16,9 @@ import {
   Container
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import CustomTable from '../../../components/Table/Table';
+import CustomTable from 'components/Table/Table';
 import { styled } from '@mui/material/styles';
-import MatchesLoader from '../../../components/Loaders/Animation/Matches/MatchesLoader';
+import MatchesLoader from 'components/Loaders/Animation/Matches/MatchesLoader';
 
 const Wrapper = styled(Container)({
   padding: '1rem 3rem'

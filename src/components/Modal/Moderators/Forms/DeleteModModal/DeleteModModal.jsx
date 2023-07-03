@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ConfirmationModal from '../../../Confirmation/Confirmation';
-import { useDeleteMods } from '../../../../../services/mutations/Moderators/useDeleteMods';
+import ConfirmationModal from 'components/Modal/Confirmation/Confirmation';
+import { useDeleteMods } from 'services/mutations/Moderators/useDeleteMods';
 
 const DeleteModModal = ({ onClose, selectedIds, setSelectedIds }) => {
   const message = 'Delete moderator(s)';

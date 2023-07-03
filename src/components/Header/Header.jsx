@@ -1,6 +1,6 @@
 import React from 'react';
-import Banner from '../Banner/Banner';
-import Carousel from '../Carousel/Carousel';
+import Banner from 'components/Banner/Banner';
+import Carousel from 'components/Carousel/Carousel';
 import './Header.css';
 
 const Header = ({ path }) => {

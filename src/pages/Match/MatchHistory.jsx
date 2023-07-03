@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import MainContent from '../../components/Wrappers/MainContent/MainContent';
-import CustomTable from '../../components/Table/Table';
+import MainContent from 'components/Wrappers/MainContent/MainContent';
+import CustomTable from 'components/Table/Table';
 import { Row, Col } from 'react-bootstrap';
 import { useQuery } from 'react-query';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Match.css';
 
-import { getMatches } from '../../services/publicAPIs/soccerapi_services';
+import { getMatches } from 'services/publicAPIs/soccerapi_services';
 import {
   Typography,
   styled,
@@ -20,8 +20,8 @@ import {
   Button
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import LoaderAnimation from '../../components/Loaders/Animation/Dashboard/LoaderAnimation';
-import Message from '../../components/Screens/Message';
+import LoaderAnimation from 'components/Loaders/Animation/Dashboard/LoaderAnimation';
+import Message from 'components/Screens/Message';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.black.main,

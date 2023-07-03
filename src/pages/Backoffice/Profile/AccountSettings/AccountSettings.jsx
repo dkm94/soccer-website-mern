@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import ModalComponent from '../../../../components/Modal/ModalComponent';
+import ModalComponent from 'components/Modal/ModalComponent';
 
 const SubmitButton = styled(Button)(({ theme }) => ({
   // marginTop: '2rem',

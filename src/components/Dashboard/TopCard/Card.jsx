@@ -3,10 +3,8 @@ import { Paper, Typography, Grid } from '@mui/material';
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { useQuery } from 'react-query';
-import { getUsers } from '../../../services/queries/public_queries';
-import { getArticles } from '../../../services/queries/public_queries';
-// import { getReportedComments } from '../../../services/queries/mods_queries';
-import Suspense from '../../Loaders/Animation/Suspense/Suspense';
+import { getUsers, getArticles } from 'services/queries/public_queries';
+import Suspense from 'components/Loaders/Animation/Suspense/Suspense';
 import './Card.css';
 
 const Item = styled(Paper)(({ theme }) => ({

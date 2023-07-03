@@ -17,7 +17,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useTheme } from '@material-ui/core';
-import { useLogin } from '../../services/mutations/Authentication/useLogin';
+import { useLogin } from 'services/mutations/Authentication/useLogin';
 import './Login.css';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
