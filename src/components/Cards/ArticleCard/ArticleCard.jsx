@@ -52,8 +52,10 @@ const ArticleCard = ({ id, title, topic, file, caption, date }) => {
 	const imageSrc = file?.public_id;
 	const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' }).delivery(quality(100));
 
+	const redirectToArticle = () => (window.location.href = `/news/${ code }/${ id }`);
+
 	return (
-		<Card key={id} className="article-card">
+		<Card key={id} className="article-card" onClick={() => redirectToArticle()} >
 			<Grid className="backoffice__news_article-card">
 				<AdvancedImage cldImg={myImage} />
 			</Grid>
@@ -61,9 +63,9 @@ const ArticleCard = ({ id, title, topic, file, caption, date }) => {
 				<span>{title}</span>
 				<span>Posted on {formattedDate}</span>
 			</Content>
-			<Actions>
+			{/* <Actions>
 				<RedirectButton href={`/news/${ code }/${ id }`}>Read the article</RedirectButton>
-			</Actions>
+			</Actions> */}
 		</Card>
 	);
 };

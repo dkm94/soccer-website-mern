@@ -13,5 +13,6 @@
 .article-card {
   border-radius: 0 !important;
   box-shadow: none !important;
-  border: 1px solid var(--palette-grey-light)
+  border: 1px solid var(--palette-grey-light);
+  cursor: pointer;
 }
