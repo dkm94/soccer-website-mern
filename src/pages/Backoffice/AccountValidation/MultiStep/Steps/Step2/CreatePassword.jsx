@@ -3,7 +3,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Box, Container, TextField, Typography, InputAdornment, IconButton } from '@mui/material';
 
-const CreatePassword = ({ setPassword, password, setConfirmPassword, confirmPassword }) => {
+const CreatePassword = ({ setPassword, password, setConfirmPassword, confirmPassword, error, isError, input }) => {
+	console.log('🚀 ~ file: CreatePassword.jsx:7 ~ CreatePassword ~ input:', input);
 	const [ showPassword, setShowPassword ] = useState(false);
 	const [ showConfirmPassword, setShowConfirmPassword ] = useState(false);
 
@@ -13,6 +14,9 @@ const CreatePassword = ({ setPassword, password, setConfirmPassword, confirmPass
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
+
+	console.log(input === 'password');
+	console.log(input === 'confirmPwd');
 
 	return (
 		<Box>
@@ -31,6 +35,8 @@ const CreatePassword = ({ setPassword, password, setConfirmPassword, confirmPass
 					name="password"
 					onChange={(e) => setPassword(e.target.value)}
 					fullWidth
+					error={input === 'password'}
+					helperText={input === 'password' && error}
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position="end">
@@ -52,6 +58,8 @@ const CreatePassword = ({ setPassword, password, setConfirmPassword, confirmPass
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}
 					fullWidth
+					error={input === 'confirmPwd'}
+					helperText={input === 'confirmPwd' && error}
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position="end">

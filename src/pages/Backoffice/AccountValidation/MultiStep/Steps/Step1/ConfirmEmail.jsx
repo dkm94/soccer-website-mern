@@ -3,7 +3,7 @@ import { Box, Container, TextField, Typography } from '@mui/material';
 
 import './ConfirmEmail.css';
 
-const ConfirmEmail = ({ setEmail, email }) => {
+const ConfirmEmail = ({ setEmail, email, error, isError }) => {
 	return (
 		<Box>
 			<Typography className="step-title" variant="h5" component={'h1'}>
@@ -18,6 +18,8 @@ const ConfirmEmail = ({ setEmail, email }) => {
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					fullWidth
+					error={isError}
+					helperText={error}
 				/>
 			</Container>
 		</Box>
