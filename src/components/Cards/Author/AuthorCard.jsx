@@ -12,7 +12,7 @@ const Handle = styled(Typography)({ fontFamily: '\'Adamina\', serif' });
 const Intro = styled(Typography)({ marginTop: '0.5rem' });
 
 const AuthorCard = ({ infos }) => {
-	const { handle, intro, file } = infos;
+	const { file, handle, intro } = infos;
 
 	const imageSrc = file?.public_id;
 	const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' }).delivery(quality(100));

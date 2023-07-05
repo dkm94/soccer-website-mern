@@ -8,32 +8,39 @@ import { CarouselProvider,
 	ButtonNext,
 	Image,
 	DotGroup } from 'pure-react-carousel';
+import { CloudinaryImage } from '@cloudinary/url-gen';
 
 import { SlideContent } from 'components/slider';
 import slideshow from 'seeds/home';
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './Carousel.css';
+import { AdvancedImage } from '@cloudinary/react';
 
 
 export const BackgroundImage = (props) => {
+	const { img } = props;
+	const imgPath = img?.public_id;
+	const myImage = new CloudinaryImage(imgPath, { cloudName: 'dbj8kfftk' });
+	
 	return (
 		<>
 			{props?.children}
-			<Image className="slide-item" src={props?.img} />
+			{/* <Image className="slide-item" src={myImage} /> */}
+			<AdvancedImage cldImg={myImage} className="carousel-img" />
 		</>
 	);
 };
 
-const Carousel = () => {
+const Carousel = ({ articles }) => {
 	return (
 		<div className="home-banner">
-			<CarouselProvider naturalSlideWidth={100} naturalSlideHeight={35} totalSlides={4}>
+			<CarouselProvider naturalSlideWidth={100} naturalSlideHeight={35} totalSlides={articles?.length}>
 				<Slider>
-					{slideshow?.map((item, i) => (
-						<Slide key={item.id} index={i}>
-							<BackgroundImage img={item?.img}>
-								<SlideContent title={item?.title} content={item?.content} />
+					{articles?.map((item, i) => (
+						<Slide key={item._id} index={i}>
+							<BackgroundImage img={item?.file}>
+								<SlideContent title={item?.title} summary={item?.summary} key={item?._id} id={item?._id} topic={item?.topic} />
 							</BackgroundImage>
 						</Slide>
 					))}
