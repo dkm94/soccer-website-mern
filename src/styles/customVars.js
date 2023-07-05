@@ -1,4 +1,4 @@
-export const cssVars = {
+const cssVars = {
   cssVarPrefix: '',
   colorSchemes: {
     light: {
@@ -35,3 +35,5 @@ export const cssVars = {
     }
   }
 };
+
+export default cssVars;
