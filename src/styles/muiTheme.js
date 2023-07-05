@@ -1,4 +1,4 @@
-export const theme = {
+const muiTheme = {
   components: {
     MuiContainer: {
       styleOverrides: {
@@ -74,3 +74,5 @@ export const theme = {
     }
   }
 };
+
+export default muiTheme;

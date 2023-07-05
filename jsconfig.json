@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "paths": {
-      "@internals/components/*": [
-        "src/components/*"
-      ]
-    },
     "moduleResolution": "node"
   },
   "include": [
