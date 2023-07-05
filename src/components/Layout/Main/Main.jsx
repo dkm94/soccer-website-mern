@@ -7,6 +7,7 @@ import { Header, SideArticles } from 'components/Layout';
 import './Main.css';
 
 const Layout = ({ children, path }) => {
+	console.log('🚀 ~ file: Main.jsx:10 ~ Layout ~ path:', path);
 	const showHeader = () => {
 		if (path === '/secret-login' || path === '/account-validation' || path.includes('backoffice')) {
 			return null;

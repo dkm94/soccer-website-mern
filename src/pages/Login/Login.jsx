@@ -19,6 +19,7 @@ import { useTheme } from '@material-ui/core';
 import { useLogin } from 'services/mutations/Authentication';
 
 import './Login.css';
+import { Navigate } from 'react-router-dom';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -74,6 +75,8 @@ export default function SignIn({ auth }) {
 			return error?.message?.includes(field);
 		}
 	};
+
+	if(auth) return window.location.href = '/';
 
 	return (
 		<Container
