@@ -13,9 +13,9 @@ import { MainContent } from 'components/Layout';
 import { NewsPageSkeleton } from 'components/Loaders';
 
 import competitionSeeds from 'seeds/competitions';
-import { getArticle } from 'services/queries/public_queries';
 
 import './NewsPage.css';
+import { getArticle } from 'services/queries/public_queries';
 
 const Title = styled(Typography)(({ theme }) => ({
 	color: theme.palette.black.main,
@@ -33,10 +33,15 @@ const Summary = styled(Typography)(({ theme }) => ({
 
 const NewsPage = () => {
 	let { id } = useParams();
-
-	const { data: article, isLoading } = useQuery({
+	
+	const {
+		data: article,
+		error,
+		isError,
+		isLoading,
+	} = useQuery({
 		staleTime: Infinity,
-		queryKey: [ 'articles' ],
+		queryKey: [ 'article' ],
 		queryFn: () => getArticle(id),
 	});
 
