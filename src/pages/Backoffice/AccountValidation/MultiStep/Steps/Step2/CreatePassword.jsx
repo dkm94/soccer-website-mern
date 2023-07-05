@@ -3,8 +3,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Box, Container, TextField, Typography, InputAdornment, IconButton } from '@mui/material';
 
-const CreatePassword = ({ setPassword, password, setConfirmPassword, confirmPassword, error, isError, input }) => {
-	console.log('🚀 ~ file: CreatePassword.jsx:7 ~ CreatePassword ~ input:', input);
+const CreatePassword = ({ setPassword, password, setConfirmPassword, confirmPassword, error, input }) => {
 	const [ showPassword, setShowPassword ] = useState(false);
 	const [ showConfirmPassword, setShowConfirmPassword ] = useState(false);
 
@@ -14,9 +13,6 @@ const CreatePassword = ({ setPassword, password, setConfirmPassword, confirmPass
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
-
-	console.log(input === 'password');
-	console.log(input === 'confirmPwd');
 
 	return (
 		<Box>

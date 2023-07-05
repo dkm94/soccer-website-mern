@@ -53,6 +53,23 @@ const getComment = async (id) => {
 	return data;
 };
 
+const activateAccount = async (form) => {
+	try {
+		const id = form?._id;
+		const url = `${ BASE_URL }/public/users/edit/${ id }`;
+		const customHeaders = { 'Content-Type': 'application/x-www-form-urlencoded' };
+
+		const { data } = await axios.put(url, form, {
+			headers: customHeaders,
+			signal: new AbortController().signal, 
+		});
+
+		return data;
+	} catch (err) {
+		if (err) throw err;
+	}
+};
+
 export {
 	getUsers,
 	getProfiles,
@@ -63,4 +80,5 @@ export {
 	getCommentsByArticle,
 	getComment,
 	getLastArticles,
+	activateAccount,
 };

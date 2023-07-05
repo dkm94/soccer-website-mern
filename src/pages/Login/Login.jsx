@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Box,
 	Button,
 	Avatar,
@@ -9,7 +10,7 @@ import { Box,
 	Container,
 	IconButton,
 	InputAdornment,
-	Snackbar } from '@mui/material';
+	Snackbar, Grid } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -19,7 +20,6 @@ import { useTheme } from '@material-ui/core';
 import { useLogin } from 'services/mutations/Authentication';
 
 import './Login.css';
-import { Navigate } from 'react-router-dom';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -168,18 +168,18 @@ export default function SignIn({ auth }) {
 							}}>
 							{mutation.isLoading ? 'Connecting...' : 'Sign in'}
 						</Button>
-						{/* <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2" color={theme.palette.secondary.dark}>
+						<Grid container>
+							{/* <Grid item xs>
+								<Link href="#" variant="body2" color={theme.palette.secondary.dark}>
                   Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2" color={theme.palette.secondary.dark}>
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid> */}
+								</Link>
+							</Grid> */}
+							<Grid item textAlign="end" width={'100%'}>
+								<Link to="/account-validation" variant="body2" color={theme.palette.secondary.dark} style={{ color: 'grey' }}>
+									{'First connection ? Activate your account now'}
+								</Link>
+							</Grid>
+						</Grid>
 					</Box>
 					<Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
 						<Alert severity="success" sx={{

@@ -4,8 +4,9 @@ import { Container, Grid, Button, Stepper, Step, StepLabel } from '@mui/material
 
 import { Step1, Step2, Step3, Step4 } from 'pages/Backoffice/AccountValidation/MultiStep/Steps';
 
+import { activateAccount, getUsers } from 'services/queries/public_queries';
+
 import './Multistep.css';
-import { getUsers } from 'services/queries/public_queries';
 
 const steps = [ 'Step 1', 'Step 2', 'Step 3', 'Step 4' ];
 
@@ -33,19 +34,27 @@ const MultiStepForm = () => {
 		queryFn: () => getUsers(),
 	});
 
+	const registeredUser = (email) => {
+		if(email){
+			return users?.filter((user) => user?.email === email);
+		}
+	};
+
 	const isRegistered = (email) => {
 		if(email){
-			return users?.some((user) => user.email === email);
+			return users?.some((user) => user?.email === email);
 		}
 	};
 
 	const firstStepValidation = (email) => {
+		
 		if(isRegistered(email)){
 			setActiveStep((prevActiveStep) => prevActiveStep + 1);
 		} else {
 			setInputError(true);
 			setErrorMessage('User not found');
 		}
+		// check if account is already activated
 		return;
 	};
 
@@ -74,6 +83,21 @@ const MultiStepForm = () => {
 		return;
 	};
 
+	// eslint-disable-next-line require-await
+	const thirdStepValidation = async (accountValidated) => {
+		const _id = registeredUser(email)[ 0 ]?._id;
+		if(accountValidated){
+			const form = {
+				password,
+				confirmPwd: confirmPassword,
+				accountValidated,
+				_id,
+			};
+			await activateAccount(form).then(() => setActiveStep((prevActiveStep) => prevActiveStep + 1));
+		}
+		return;
+	};
+
 	const handleNext = () => {
 		if(activeStep === 0){
 			firstStepValidation(email);
@@ -82,7 +106,7 @@ const MultiStepForm = () => {
 			secondStepValidation(password);
 		}
 		if(activeStep === 2){
-			setActiveStep((prevActiveStep) => prevActiveStep + 1);
+			thirdStepValidation(accountValidated);
 		}
 	};
 

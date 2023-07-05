@@ -23,6 +23,7 @@ import { Competitions,
 import { IsMod, IsAdmin, IsLogged } from 'router/ProtectedRoutes';
 import cssVars from 'styles/customVars';
 import muiTheme from 'styles/muiTheme';
+import { ScrollToTop } from 'components/utils';
 
 const Admin = lazy(() => import('pages/Backoffice/Backoffice'));
 
@@ -43,6 +44,7 @@ const AppRouter = () => {
 			<CssVarsProvider theme={theme}>
 				<MuiThemeProvider theme={THEME}>
 					<Router>
+						<ScrollToTop />
 						<Navbar auth={auth} />
 						<Layout path={path}>
 							<Routes>
