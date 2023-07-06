@@ -1,7 +1,9 @@
 // import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import ArticleIcon from '@mui/icons-material/Article';
-import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
-import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
+// import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+// import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
+import StarIcon from '@mui/icons-material/Star';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 
 const style = {
 	position: 'absolute',
@@ -11,13 +13,6 @@ const style = {
 };
 
 const cards = [
-	// {
-	//     id: 1,
-	//     title: "Moderators",
-	//     size: "sm",
-	//     collection: "users",
-	//     icon: <SupervisedUserCircleIcon fontSize="large" style={style} />
-	// },
 	{
 		id: 2,
 		title: 'Total articles',
@@ -26,28 +21,28 @@ const cards = [
 		collection: 'articles',
 		icon: <ArticleIcon fontSize="large" style={{
 			...style,
-			color: '#ffe100', 
+			color: '#aee2bd', 
 		}} />,
 	},
 	{
 		id: 3,
-		title: 'Reported comments',
+		title: 'Offline articles',
 		// size: "sm",
 		wip: false,
-		// collection: 'comments',
-		icon: <DisabledByDefaultIcon fontSize="large" style={{
+		collection: 'articles',
+		icon: <RadioButtonCheckedIcon fontSize="large" style={{
 			...style,
 			color: '#ea5b5b', 
 		}} />,
 	},
 	{
-		id: 4,
-		title: 'Chat',
-		// size: "lg",
-		wip: true,
-		icon: <MarkChatUnreadIcon fontSize="large" style={{
+	    id: 1,
+	    title: 'Featured articles',
+	    size: 'sm',
+	    collection: 'articles',
+	    icon: <StarIcon fontSize="large" style={{
 			...style,
-			color: '#88dbef', 
+			color: '#e2d758', 
 		}} />,
 	},
 ];

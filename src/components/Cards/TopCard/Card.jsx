@@ -18,11 +18,10 @@ const Item = styled(Paper)(({ theme }) => ({
 	position: 'relative',
 }));
 
-const Card = ({ title, icon, collection, wip }) => {
+const Card = ({ id, title, icon, collection, wip }) => {
 	const getResource = {
 		users: getUsers,
 		articles: getArticles,
-		// comments: getReportedComments
 	};
 
 	const {
@@ -43,9 +42,14 @@ const Card = ({ title, icon, collection, wip }) => {
 		bottom: '70%',
 	}));
 
+	const nbOfArticles = cardData?.length;
+	const nbOfOfflineArticles = cardData?.filter((article) => article?.online === false).length;
+	const nbOfFeaturedArticles = cardData?.filter((article) => article?.featured === true).length;
+
 	const count = {
-		articles: cardData?.length,
-		comments: cardData?.length,
+		2: nbOfArticles,
+		3: nbOfOfflineArticles,
+		1: nbOfFeaturedArticles,
 	};
 
 	return (
@@ -59,7 +63,7 @@ const Card = ({ title, icon, collection, wip }) => {
 					textAlign: 'center',
 					fontSize: '2rem', 
 				}}>
-					{!collection ? 'Unavailable' : count[ collection ]}
+					{!collection ? 'Unavailable' : count[ id ]}
 				</Typography>
 				<Icon>{icon}</Icon>
 				{isLoading && collection && <SuspenseLoader />}

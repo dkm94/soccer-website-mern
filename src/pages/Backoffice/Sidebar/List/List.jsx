@@ -40,7 +40,7 @@ const SideBarList = () => {
 		{
 			id: 1,
 			idx: 0,
-			name: 'Dashboard',
+			name: 'Overview',
 			icon: <DashboardIcon />,
 			path: '/backoffice',
 		},

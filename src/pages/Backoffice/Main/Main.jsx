@@ -63,29 +63,29 @@ const UserCard = ({ name, handle, img, userArticles }) => {
 	const onLineArticlesCount = userArticles?.filter((article) => article.online == true).length;
 
 	const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' })
-		.roundCorners(max())
+		// .roundCorners(max())
 		.resize(fill().height(100))
 		.delivery(format(auto()));
 
 	return (
-		<Grid item xs={12} md={3} className="dashboard__user-card">
+		<Grid item className="dashboard__user-card">
 			<Item>
 				{!img ? (
 					<Box
 						component="img"
 						sx={{
-							height: 229,
-							width: 220,
-							maxHeight: {
-								xs: 50,
-								md: 75,
-								lg: 100, 
-							},
-							maxWidth: {
-								xs: 50,
-								md: 75,
-								lg: 100, 
-							},
+							height: '8rem',
+							width: '8rem',
+							// maxHeight: {
+							// 	xs: 50,
+							// 	md: 75,
+							// 	lg: 100, 
+							// },
+							// maxWidth: {
+							// 	xs: 50,
+							// 	md: 75,
+							// 	lg: 100, 
+							// },
 							borderRadius: '50%',
 							alignSelf: 'center',
 							mt: '1rem',
@@ -95,12 +95,18 @@ const UserCard = ({ name, handle, img, userArticles }) => {
 						src={avatar}
 					/>
 				) : (
-					<div style={{
-						marginTop: '1rem',
-						marginBottom: '2rem', 
-					}}>
+					<Box sx={{
+						height: '8rem',
+						width: '8rem',
+						borderRadius: '50%',
+						alignSelf: 'center',
+						mt: '1rem',
+						mb: '2rem',
+					}}
+					className="user-card-img"
+					>
 						<AdvancedImage cldImg={myImage} />
-					</div>
+					</Box>
 				)}
 				<Box>
 					<Grid>
@@ -272,7 +278,8 @@ const Main = ({ cards, drawerWidth }) => {
 				{cards.map((card, i) => {
 					return (
 						<DashboardCard
-							key={card.id}
+							key={i}
+							id={card.id}
 							title={card.title}
 							icon={card.icon}
 							collection={card.collection}
