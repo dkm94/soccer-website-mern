@@ -57,7 +57,7 @@ const AppRouter = () => {
 								<Route path="/news" element={<News />} />
 								<Route path="/news/:code/:id" element={<NewsPage />} />
 								<Route path="/secret-login" element={<Login auth={auth} />} />
-								<Route path="/account-validation" element={<AccountValidation />} />
+								<Route path="/account-validation" element={<AccountValidation auth={auth} />} />
 								<Route element={<IsLogged auth={auth} />}>
 									<Route
 										path="/backoffice"
@@ -113,7 +113,7 @@ const AppRouter = () => {
 											element={
 												<ErrorBoundary
 													FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-													onReset={() => (window.location.href = '/backoffice')}>
+													onReset={() => (window.location.pathname = '/backoffice')}>
 													<Suspense fallback={<LazyLoader />}>
 														<Admin />
 													</Suspense>

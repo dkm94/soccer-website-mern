@@ -19,6 +19,7 @@ const SideBarList = () => {
 	};
 
 	const modStatus = JSON.parse(localStorage.getItem('isMod'));
+	const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
 
 	useEffect(() => {
 		const idx = JSON.parse(localStorage.getItem('list-item-idx'));
@@ -116,9 +117,10 @@ const SideBarList = () => {
 							</Collapse>
 						</>
 					) : (
-						<ListItem key={id} disablePadding>
+						<ListItem key={id} disablePadding style={{ display: !isAdmin && idx === 1 ? 'none' : 'flex' }} >
 							<ListItemButton
 								href={path}
+								disabled={idx === 5}
 								selected={selectedIndex === idx}
 								onClick={(e) => handleClickItem(e, idx)}>
 								<ListItemIcon>{icon}</ListItemIcon>

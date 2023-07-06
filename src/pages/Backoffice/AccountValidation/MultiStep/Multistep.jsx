@@ -22,6 +22,7 @@ const MultiStepForm = () => {
 	const [ errorMessage, setErrorMessage ] = useState('');
 	const [ inputError, setInputError ] = useState(false);
 	const [ input, setInput ] = useState('');
+	const [ user, setUser ] = useState(null);
 
 	const {
 		data: users,
@@ -34,27 +35,41 @@ const MultiStepForm = () => {
 		queryFn: () => getUsers(),
 	});
 
-	const registeredUser = (email) => {
-		if(email){
-			return users?.filter((user) => user?.email === email);
+	const isEmpty = (email) => {
+		if(email === ''){
+			setInputError(true);
+			setErrorMessage('Please enter a valid email');
+			return;
 		}
+		return false;
 	};
 
 	const isRegistered = (email) => {
-		if(email){
-			return users?.some((user) => user?.email === email);
+		const registeredUser = users?.find((user) => user?.email === email);
+		if(!registeredUser){
+			setInputError(true);
+			setErrorMessage('User not found');
+			return;
 		}
+		setUser({ ...registeredUser });
+		return true;
+	};
+
+	const isNotValidated = () => {
+		const registeredUser = users?.find((user) => user?.email === email);
+		if(registeredUser.accountValidated === true){
+			setInputError(true);
+			setErrorMessage('This account has already been activated');
+			return;
+		}
+		return true;
 	};
 
 	const firstStepValidation = (email) => {
-		
-		if(isRegistered(email)){
-			setActiveStep((prevActiveStep) => prevActiveStep + 1);
-		} else {
-			setInputError(true);
-			setErrorMessage('User not found');
-		}
-		// check if account is already activated
+		if(isEmpty(email)) return;
+		if(!isRegistered(email)) return;
+		if(!isNotValidated()) return;
+		setActiveStep((prevActiveStep) => prevActiveStep + 1);
 		return;
 	};
 
@@ -85,13 +100,12 @@ const MultiStepForm = () => {
 
 	// eslint-disable-next-line require-await
 	const thirdStepValidation = async (accountValidated) => {
-		const _id = registeredUser(email)[ 0 ]?._id;
 		if(accountValidated){
 			const form = {
 				password,
 				confirmPwd: confirmPassword,
 				accountValidated,
-				_id,
+				_id: user?._id,
 			};
 			await activateAccount(form).then(() => setActiveStep((prevActiveStep) => prevActiveStep + 1));
 		}
