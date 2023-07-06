@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { Col } from 'react-bootstrap';
 import { Box, useTheme } from '@mui/material';
@@ -15,8 +15,10 @@ import { getLastArticles } from 'services/queries/public_queries';
 import './SideArticles.css';
 
 const SideArticles = () => {
+	const [ articles, setArticles ] = useState([]);
+
 	const {
-		data: articles,
+		data,
 		error,
 		isError,
 		isLoading,
@@ -24,6 +26,13 @@ const SideArticles = () => {
 		queryKey: [ 'articles' ],
 		queryFn: getLastArticles,
 	});
+	
+	useEffect(() => {
+		if(data){
+			const copy = [ ...data ].slice(-5).reverse();
+			setArticles(copy);
+		}
+	}, [ data ]);
 
 	const { palette } = useTheme();
 
@@ -33,7 +42,7 @@ const SideArticles = () => {
 				<Box sx={{ background: palette?.white?.main }}>
 					{isError && <Message error={error?.code} img={false} />}
 					<div className="cmt-content">
-						{articles?.length === 0 && <span>{'There\'s no content to load yet.'}</span>}
+						{data?.length === 0 && <span>{'There\'s no content to load yet.'}</span>}
 						{isLoading && <SideArticlesSkeleton />}
 						{articles &&
               articles.map(({ _id, title, topic, caption, file, updatedAt }, i) => (

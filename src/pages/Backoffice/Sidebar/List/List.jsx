@@ -10,9 +10,10 @@ import React, { useState, useEffect } from 'react';
 
 const SideBarList = () => {
 	const profileId = JSON.parse(localStorage.getItem('profileId'));
+	const path = window.location.pathname;
 
 	const [ selectedIndex, setSelectedIndex ] = useState(0);
-	const [ open, setOpen ] = useState(false);
+	const [ open, setOpen ] = useState(undefined);
 
 	const handleListItemClick = (e, idx) => {
 		localStorage.setItem('list-item-idx', idx);
@@ -24,6 +25,7 @@ const SideBarList = () => {
 	useEffect(() => {
 		const idx = JSON.parse(localStorage.getItem('list-item-idx'));
 		setSelectedIndex(idx);
+		path.startsWith('/backoffice/articles') && setOpen(true);
 	}, []);
 
 	const handleClick = () => {
@@ -108,7 +110,7 @@ const SideBarList = () => {
 											selected={selectedIndex === item?.idx}
 											sx={{ pl: 10 }}
 											disabled={item?.id === 1 && !modStatus}
-											onClick={(e) => handleClickItem(e, idx)}
+											onClick={(e) => handleClickItem(e, item?.idx)}
 											href={item?.path}>
 											<ListItemText primary={item?.name} />
 										</ListItemButton>

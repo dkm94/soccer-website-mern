@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Grid, Container } from '@mui/material';
 
@@ -14,15 +14,23 @@ import './News.css';
 
 const News = () => {
 	const containerStyle = { padding: '1rem 3rem' };
+	const [ articles, setArticles ] = useState([]);
 
 	const {
-		data: articles,
+		data,
 		isError,
 		isLoading,
 	} = useQuery({
 		queryKey: [ 'articles' ],
 		queryFn: getArticles,
 	});
+	
+	useEffect(() => {
+		if(data){
+			const copy = [ ...data ].reverse();
+			setArticles(copy);
+		}
+	}, [ data ]);
 
 	const onlineArticles = articles?.filter((filteredArticles) => filteredArticles.online == true);
 
