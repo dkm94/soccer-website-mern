@@ -14,7 +14,9 @@ const getMatchesOfTheDay = async () => {
 		const { data } = await axios.get(`${ BASE_URL }/api/soccer/matches`);
 		return data;
 	} catch (error) {
-		throw new Error('Failed to fetch data from API Football data server', error);
+		if(error){
+			throw new Error(error);
+		}
 	}
 };
 
@@ -23,24 +25,30 @@ const getCompetitions = async () => {
 		const { data } = await axios.get(`${ BASE_URL }/api/soccer/competitions`);
 		return data;
 	} catch (error) {
-		throw new Error('Failed to fetch data from API Football data server', error);
+		if(error){
+			throw new Error(error);
+		}
 	}
 };
 
 const getMatches = async (from, to) => {
-	const config = {
-		method: 'get',
-		url: `${ BASE_URL }/api/soccer/matches/history/${ from }/${ to }`,
-	};
-	const { data } = await axios(config);
-	return data;
+	try {
+		const { data } = await axios.get(`${ BASE_URL }/api/soccer/matches/history/${ from }/${ to }`);
+		return data;
+	} catch (error) {
+		if(error){
+			throw new Error(error);
+		}
+	}
 };
 
 const getScoreBoard = async (code) => {
-	const config = {
-		method: 'get',
-		url: `${ BASE_URL }/api/soccer/scoreboard/${ code }`,
-	};
-	const { data } = await axios(config);
-	return data;
+	try {
+		const { data } = await axios.get(`${ BASE_URL }/api/soccer/scoreboard/${ code }`);
+		return data;
+	} catch (error) {
+		if(error){
+			throw new Error(error);
+		}
+	}
 };
