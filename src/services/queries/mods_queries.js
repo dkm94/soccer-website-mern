@@ -5,32 +5,6 @@ const token = localStorage.getItem('token');
 
 // const authorization = { Authorization: `Bearer ${token}` };
 
-// const getReportedComments = () => {
-//   const url = `${BASE_URL}/mod/comments/reported/`;
-//   const config = {
-//     method: 'get',
-//     url,
-//     headers: authorization
-//   };
-//   return axios(config)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((error) => {
-//       if (error.response) {
-//         console.log('Error', error);
-//         // Request made and server responded
-//         console.log(error.response.data);
-//       } else if (error.request) {
-//         // The request was made but no response was received
-//         console.log(error.request);
-//       } else {
-//         // Something happened in setting up the request that triggered an Error
-//         console.log('Error', error.message);
-//       }
-//     });
-// };
-
 const createPost = async (form) => {
 	try {
 		const url = `${ BASE_URL }/mod/articles/create`;

@@ -63,7 +63,6 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
 `;
 
 export default function CustomTable({ matches, searchInput, selected }) {
-	console.log('🚀 ~ file: Table.jsx:66 ~ CustomTable ~ matches:', matches);
 	const { palette } = useTheme();
 
 	const [ page, setPage ] = React.useState(0);

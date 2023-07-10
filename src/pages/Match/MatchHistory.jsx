@@ -89,7 +89,6 @@ const MatchHistory = () => {
 		isError,
 		isLoading,
 		refetch,
-		data,
 	} = useQuery({
 		queryKey: [ 'matches' ],
 		queryFn: () => getMatches(handleStartDate(startDate), handleEndDate(endDate)),
@@ -155,8 +154,6 @@ const MatchHistory = () => {
 		setSerchInput(e.target.value);
 		searchFilter();
 	};
-
-	console.log(matches < 1);
 
 	return (
 		<Col lg={8}>
