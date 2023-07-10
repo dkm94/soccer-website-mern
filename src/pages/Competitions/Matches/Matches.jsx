@@ -31,14 +31,14 @@ const Matches = () => {
 		data: competition,
 	} = useQuery({
 		queryKey: [ 'competitions' ],
-		queryFn: () => getScoreBoard('competitions', code),
+		queryFn: () => getScoreBoard(code),
 	});
 
 	const [ selected, setSelected ] = useState('ALL');
 	const [ searchInput, setSerchInput ] = useState('');
 
 	const searchFilter = () => {
-		const filteredData = competition?.matches.filter((match) => console.log(match));
+		const filteredData = competition?.matches.filter((match) => match);
 		return filteredData;
 	};
 
