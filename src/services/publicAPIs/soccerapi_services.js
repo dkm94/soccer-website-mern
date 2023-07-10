@@ -1,6 +1,5 @@
 import axios from 'axios';
 const BASE_URL = 'https://soccer-api-2zzl.onrender.com';
-// eslint-disable-next-line no-undef
 
 export {
 	BASE_URL,
