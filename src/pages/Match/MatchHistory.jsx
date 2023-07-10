@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import { useQuery } from 'react-query';
@@ -73,6 +73,9 @@ const TableSubtitle = styled(Typography)({});
 const TableWrapper = styled(Container)({});
 
 const MatchHistory = () => {
+	const [ matches, setMatches ] = useState([]);
+	const [ count, setCount ] = useState(0);
+	const [ filter, setFilter ] = useState({});
 	const [ startDate, setStartDate ] = useState(null);
 	const [ endDate, setEndDate ] = useState(null);
 	const [ error, setError ] = useState({
@@ -86,11 +89,17 @@ const MatchHistory = () => {
 		isError,
 		isLoading,
 		refetch,
-		data: matches,
+		data,
 	} = useQuery({
 		queryKey: [ 'matches' ],
-		queryFn: () => getMatches('matches', handleStartDate(startDate), handleEndDate(endDate)),
+		queryFn: () => getMatches(handleStartDate(startDate), handleEndDate(endDate)),
 		enabled: false,
+		onSuccess: (data) => {
+			const { filters, resultSet, matches } = data;
+			setMatches(matches);
+			setCount(resultSet?.count);
+			setFilter(filters);
+		},
 	});
 
 	const handleStartDate = (value) => {
@@ -137,7 +146,7 @@ const MatchHistory = () => {
 	};
 
 	const searchFilter = () => {
-		const filteredData = matches?.filter((match) => console.log(match));
+		const filteredData = matches?.filter((match) => match);
 		return filteredData;
 	};
 
@@ -146,6 +155,8 @@ const MatchHistory = () => {
 		setSerchInput(e.target.value);
 		searchFilter();
 	};
+
+	console.log(matches < 1);
 
 	return (
 		<Col lg={8}>
@@ -216,6 +227,7 @@ const MatchHistory = () => {
 									inputProps={{ 'aria-label': 'Search team' }}
 									value={searchInput}
 									onChange={setInputValue}
+									disabled={matches < 1}
 								/>
 								<IconButton type="button" sx={{ p: '10px' }} aria-label="search" disabled>
 									<SearchIcon />
@@ -228,11 +240,9 @@ const MatchHistory = () => {
 					{isError && <Message code={'DEFAULT_ERROR'} img={true} />}
 					<Row xs={12} className="g-4">
 						<TableHeader>
-							<TableTitle variant="body1">Results</TableTitle>
-							{matches && (
-								<TableSubtitle variant="body2">{`From ${ startDate?.toLocaleDateString(
-									'en-CA'
-								) } to ${ endDate?.toLocaleDateString('en-CA') }`}</TableSubtitle>
+							<TableTitle variant="body1">Results ({count})</TableTitle>
+							{matches?.length > 0 && (
+								<TableSubtitle variant="body2">{`From ${ filter?.dateFrom } to ${ filter?.dateTo }`}</TableSubtitle>
 							)}
 						</TableHeader>
 
