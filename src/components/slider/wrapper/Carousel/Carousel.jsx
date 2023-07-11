@@ -35,7 +35,7 @@ export const BackgroundImage = (props) => {
 const Carousel = ({ articles }) => {
 	return (
 		<div className="home-banner">
-			<CarouselProvider naturalSlideWidth={100} naturalSlideHeight={35} totalSlides={articles?.length}>
+			<CarouselProvider naturalSlideWidth={100} naturalSlideHeight={35} totalSlides={articles?.length} className="home-carousel">
 				<Slider>
 					{articles?.map((item, i) => (
 						<Slide key={item._id} index={i}>

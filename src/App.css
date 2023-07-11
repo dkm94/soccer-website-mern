@@ -61,6 +61,6 @@
 
   @media only screen and (max-width: 1400px){
     .layout > div {
-      max-width: unset;
+      /* max-width: unset; */
     }
   }
