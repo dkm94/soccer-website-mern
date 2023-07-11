@@ -29,13 +29,14 @@ const CardBody = styled(Card.Body)({
 const CardItem = styled(Card)({
 	borderRadius: '5px',
 	border: '1px solid #f2efef',
+	width: "100%",
 	// boxShadow: '5px 5px 0px -2px rgba(166,162,161,0.17)'
 	boxShadow: '5px -7px 5px -2px rgba(166,162,161,0.17)',
 });
 
 const Competition = ({ competition }) => {
 	return (
-		<Col className="cpt-card-style">
+		<div className="cpt-card-style">
 			<CardItem>
 				<Link
 					to={`/competitions/${ competition?.code }/matches`}
@@ -59,7 +60,7 @@ const Competition = ({ competition }) => {
 					</Container>
 				</Link>
 			</CardItem>
-		</Col>
+		</div>
 	);
 };
 
