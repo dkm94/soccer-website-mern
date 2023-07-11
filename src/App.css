@@ -3,6 +3,10 @@
   padding-bottom: 4rem;
 }
 
+.layout > div {
+  /* max-width: unset; */
+}
+
 .layout-cols {
   display: flex;
   flex-direction: column;
@@ -54,4 +58,9 @@
   .modal-custom > button{
     align-self: end;
   }
-  
+
+  @media only screen and (max-width: 1400px){
+    .layout > div {
+      max-width: unset;
+    }
+  }
