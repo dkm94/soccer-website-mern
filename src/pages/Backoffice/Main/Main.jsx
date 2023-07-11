@@ -43,7 +43,7 @@ import avatar from '../../../../src/images/avatar.png';
 //   return stabilizedThis?.map((el) => el[0]);
 // }
 const Item = styled(Paper)(({ theme }) => ({
-	padding: '1rem 2rem',
+	// padding: '1rem 2rem',
 	textAlign: 'center',
 	width: '100%',
 	height: '100%',
@@ -251,7 +251,7 @@ const Main = ({ cards, drawerWidth }) => {
 				gap: '2rem',
 				mt: '2rem',
 			}}>
-			<Grid spacing={2} container md={12}>
+			<div className="backoffice-top-cards">
 				{cards.map((card, i) => {
 					return (
 						<DashboardCard
@@ -264,7 +264,7 @@ const Main = ({ cards, drawerWidth }) => {
 						/>
 					);
 				})}
-			</Grid>
+			</div>
 			<Box sx={{ flexGrow: 1 }}>
 				<div className="users-wrapper">
 					{rows &&
