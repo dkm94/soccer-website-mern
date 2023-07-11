@@ -1,21 +1,20 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { getRessources } from '../services/dummyapi_services';
+
+import { getRessources } from 'services/publicAPIs/dummyapi_services';
 
 export const CommentsContext = createContext();
 const CommentsContextProvider = (props) => {
-  const [comments, setComments] = useState([]);
+	const [ comments, setComments ] = useState([]);
 
-  useEffect(() => {
-    getRessources('comment').then((res) => setComments(res.data));
-  }, [comments]);
+	useEffect(() => {
+		getRessources('comment').then((res) => setComments(res.data));
+	}, [ comments ]);
 
-  return (
-    <CommentsContext.Provider
-      value={{
-        comments: comments
-      }}>
-      {props.children}
-    </CommentsContext.Provider>
-  );
+	return (
+		<CommentsContext.Provider
+			value={{ comments: comments }}>
+			{props.children}
+		</CommentsContext.Provider>
+	);
 };
 export default CommentsContextProvider;

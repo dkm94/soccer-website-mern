@@ -1,0 +1,24 @@
+{
+  "bannerElements": {
+    "/players": {
+      "img": "/players.jpeg",
+      "title": "Players"
+    },
+    "/area": {
+      "img": "/areas.jpeg",
+      "title": "Areas"
+    },
+    "/competitions": {
+      "img": "/competitions.png",
+      "title": "Competitions"
+    },
+    "/matchhistory": {
+      "img": "/favorites.jpeg",
+      "title": "Match history"
+    },
+    "/news": {
+      "img": "/Miguel_Timm.webp",
+      "title": "News"
+    }
+  }
+}
