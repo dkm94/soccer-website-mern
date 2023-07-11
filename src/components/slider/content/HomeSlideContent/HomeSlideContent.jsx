@@ -4,6 +4,8 @@ import { Typography, Button, Box } from '@mui/material';
 
 import competitionSeeds from 'seeds/competitions';
 
+import './HomeSlideContent.css';
+
 const HomeSlideContent = ({ title, summary, id, topic }) => {
 	const Title = styled(Typography)({
 		fontSize: '2rem',
@@ -31,23 +33,15 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 	const code = competition[ 0 ]?.code;
 
 	return (
-		<Box
-			sx={{
-				position: 'absolute',
-				left: '50%',
-				top: '50%',
-				transform: 'translate(-50%, -50%)',
-				height: '100%',
-				width: '100%',
-				background: 'rgba(255, 255, 255, 0.50)',
-				padding: '150px 200px',
-			}}>
+		<div
+			className="home-slide-content"
+		>
 			<Title>{title}</Title>
 			<Description>{summary}</Description>
 			<Box sx={{ marginTop: '1rem' }}>
 				<RedirectionButton href={`/news/${ code }/${ id }`}>Read the article</RedirectionButton>
 			</Box>
-		</Box>
+		</div>
 	);
 };
 

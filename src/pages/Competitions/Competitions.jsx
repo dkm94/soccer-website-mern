@@ -31,16 +31,23 @@ const Competition = () => {
 						{isError && <Message error={error} img={true} />}
 						{isLoading && <CompetitionsSkeleton />}
 						{competitions && (
-							<Row
-								xs={1}
-								md={2}
-								lg={4}
-								className="g-4"
-								style={{ padding: '1rem 0' }}>
+							<div
+								// xs={1}
+								// md={2}
+								// lg={4}
+								// className="g-4"
+								// style={{ padding: '1rem 0' }}
+								style={{
+									display: 'flex',
+									flexWrap: 'wrap',
+									gap: '10px',
+									justifyContent: 'center',
+								}}
+							>
 								{competitions?.map((competition) => (
 									<CompetitionCard key={competitions?.id} competition={competition} />
 								))}
-							</Row>
+							</div>
 						)}
 					</StyledContainer>
 				</MainContent>

@@ -62,9 +62,9 @@ const AccountSettings = ({
 	return (
 		<Box component="form" onSubmit={submitPassword}>
 			<Grid container mt={8} spacing={3}>
-				<Grid lg={12} item>
+				<Grid sm={12} item>
 					<Typography mb={8} variant="h1" className="title-section">
-            Account settings
+            			Account settings
 					</Typography>
 				</Grid>
 				<Grid item xs={12} sm={2}>

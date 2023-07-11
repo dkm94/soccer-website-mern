@@ -53,10 +53,7 @@ const Card = ({ id, title, icon, collection, wip }) => {
 	};
 
 	return (
-		<Grid item md={4} style={{
-			opacity: '90%',
-			boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)', 
-		}}>
+		<div className="top-card">
 			<Item className={!collection && 'unavailable'}>
 				<Typography style={{ textAlign: 'end' }}>{title}</Typography>
 				<Typography style={{
@@ -68,7 +65,7 @@ const Card = ({ id, title, icon, collection, wip }) => {
 				<Icon>{icon}</Icon>
 				{isLoading && collection && <SuspenseLoader />}
 			</Item>
-		</Grid>
+		</div>
 	);
 };
 

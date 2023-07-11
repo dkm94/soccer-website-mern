@@ -27,7 +27,10 @@ const Layout = ({ children, path }) => {
 	};
 
 	const ContentWrapper = ({ children }) => {
-		return path.includes('news') ? <Box>{children}</Box> : <Row>{children}</Row>;
+		return path.includes('news') ? <Box>{children}</Box> : <Row style={{
+			display: 'flex',
+			justifyContent: 'center', 
+		}}>{children}</Row>;
 	};
 
 	return (

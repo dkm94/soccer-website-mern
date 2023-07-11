@@ -43,10 +43,12 @@ import avatar from '../../../../src/images/avatar.png';
 //   return stabilizedThis?.map((el) => el[0]);
 // }
 const Item = styled(Paper)(({ theme }) => ({
-	padding: '1rem 2rem',
-	position: 'relative',
-	width: '95%',
+	// padding: '1rem 2rem',
 	textAlign: 'center',
+	width: '100%',
+	height: '100%',
+	display: 'flex',
+	flexDirection: 'row',
 }));
 
 const Name = styled(Paper)(({ theme }) => ({
@@ -62,68 +64,43 @@ const UserCard = ({ name, handle, img, userArticles }) => {
 
 	const onLineArticlesCount = userArticles?.filter((article) => article.online == true).length;
 
-	const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' })
-		// .roundCorners(max())
-		.resize(fill().height(100))
-		.delivery(format(auto()));
+	const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' });
 
 	return (
-		<Grid item className="dashboard__user-card">
+		<Grid item className="user-card">
 			<Item>
 				{!img ? (
 					<Box
-						component="img"
-						sx={{
-							height: '8rem',
-							width: '8rem',
-							// maxHeight: {
-							// 	xs: 50,
-							// 	md: 75,
-							// 	lg: 100, 
-							// },
-							// maxWidth: {
-							// 	xs: 50,
-							// 	md: 75,
-							// 	lg: 100, 
-							// },
-							borderRadius: '50%',
-							alignSelf: 'center',
-							mt: '1rem',
-							mb: '2rem',
-						}}
-						alt="default avatar"
-						src={avatar}
-					/>
+						component="div"
+						className="user-card-img"
+					>
+						<img alt="default avatar" src={avatar} />
+					</Box>
 				) : (
-					<Box sx={{
-						height: '8rem',
-						width: '8rem',
-						borderRadius: '50%',
-						alignSelf: 'center',
-						mt: '1rem',
-						mb: '2rem',
-					}}
-					className="user-card-img"
+					<Box sx={{}}
+						className="user-card-img"
 					>
 						<AdvancedImage cldImg={myImage} />
 					</Box>
 				)}
-				<Box>
-					<Grid>
-						<Name variant="body1">{name}</Name>
-					</Grid>
-					<Grid>
-						<Handle variant="body2">{handle || 'Handle'}</Handle>
-					</Grid>
-				</Box>
-				<Box mt={2}>
-					<Grid>
-						<Typography variant="body2">Total posts: {articlesCount}</Typography>
-					</Grid>
-					<Grid>
-						<Typography variant="body2">Online posts: {onLineArticlesCount}</Typography>
-					</Grid>
-				</Box>
+				<div className="user-card-infos">
+					<Box className="user-card-name">
+						<Grid>
+							<Name variant="body1">{name}</Name>
+						</Grid>
+						<Grid>
+							<Handle variant="body2">{handle || 'Handle'}</Handle>
+						</Grid>
+					</Box>
+					<Box mt={2} className="user-card-posts">
+						<Grid>
+							<Typography variant="body2">Total posts: {articlesCount}</Typography>
+						</Grid>
+						<Grid>
+							<Typography variant="body2">Online posts: {onLineArticlesCount}</Typography>
+						</Grid>
+					</Box>
+				</div>
 			</Item>
 		</Grid>
 	);
@@ -268,13 +245,13 @@ const Main = ({ cards, drawerWidth }) => {
 			component="main"
 			sx={{
 				flexGrow: 1,
-				p: 3,
+				pt: 3,
 				width: { sm: `calc(100% - ${ drawerWidth }px)` },
 				display: 'grid',
 				gap: '2rem',
 				mt: '2rem',
 			}}>
-			<Grid spacing={2} container md={12}>
+			<div className="backoffice-top-cards">
 				{cards.map((card, i) => {
 					return (
 						<DashboardCard
@@ -287,9 +264,9 @@ const Main = ({ cards, drawerWidth }) => {
 						/>
 					);
 				})}
-			</Grid>
+			</div>
 			<Box sx={{ flexGrow: 1 }}>
-				<Grid container spacing={2} mt={4}>
+				<div className="users-wrapper">
 					{rows &&
             rows.map((user) => {
             	const { name, handle, file } = user.id_profile;
@@ -306,7 +283,7 @@ const Main = ({ cards, drawerWidth }) => {
             		/>
             	);
             })}
-				</Grid>
+				</div>
 			</Box>
 		</Box>
 	);

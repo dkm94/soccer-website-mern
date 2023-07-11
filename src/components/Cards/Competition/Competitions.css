@@ -2,4 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
+  width: calc(50% - 10px);
 }
+
+@media (min-width: 576px) { 
+  .cpt-card-style {
+    width: calc(33% - 10px);
+  }
+ }

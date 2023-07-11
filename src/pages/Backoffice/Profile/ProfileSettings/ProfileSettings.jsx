@@ -49,9 +49,9 @@ const ProfileSettings = ({
 	return (
 		<Box component="form" onSubmit={submitProfile}>
 			<Grid container spacing={3}>
-				<Grid lg={12} item className="profile__avatar">
-					<Typography variant="h1" className="title-section">
-            My profile
+				<Grid sm={12} item className="profile__avatar">
+					<Typography mb={4} variant="h1" className="title-section">
+            			My profile
 					</Typography>
 
 					{profile?.file === '' ? (

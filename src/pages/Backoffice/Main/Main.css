@@ -3,19 +3,91 @@
     padding-bottom: 0;
 }
 
-.dashboard__user-card {
+.backoffice-top-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.user-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 200px;
-    max-width: 400px;
+    width: calc(100% - 10px);
+}
+
+.user-card > div {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.user-card-infos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+
+.user-card-img {
+    height: 6rem;
+    width: 8rem;
+    border-radius: 50%;
+    align-self: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .user-card-img > img {
-    max-width: 100%;
-    min-width: 100px;
-    min-height: 100px;
     object-fit: cover;
     height: 100%;
-    border-radius: 50%;
+    width: 100%;
+}
+
+.users-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media (min-width: 576px) { 
+    .user-card {
+      width: calc(50% - 10px);
+    }
+
+    .user-card > div {
+        flex-direction: column;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .user-card-img {
+        height: 8rem;
+        width: 100%;
+      }
+
+      .user-card-infos {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 768px) { 
+    .user-card {
+      width: calc(50% - 10px);
+    }
+}
+
+@media (min-width: 992px) { 
+    .user-card {
+      width: calc(33% - 10px);
+    }
+}
+
+@media (min-width: 1200px) { 
+    .user-card {
+      width: calc(25% - 10px) !important;
+    }
 }

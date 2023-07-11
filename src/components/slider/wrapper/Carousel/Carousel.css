@@ -31,6 +31,7 @@
   transform: translate(-50%, -50%);
   display: flex;
   column-gap: 8px;
+  height: unset !important;
 }
 
 .dot-group-btns > * {
@@ -48,4 +49,32 @@
 .carousel-img {
   width: 100%;
   height: auto;
+  object-fit: cover;
+}
+
+.home-carousel {
+  height: 420px !important;
+}
+
+.home-carousel > div, .home-carousel > div > div, .home-carousel > div > div > div, .home-carousel > div > div > div > div {
+  height: 100%;
+}
+
+@media (max-width: 768px){
+  .carousel-img {
+    height: 100%;
+  }
+
+  .next-btn {
+    left: 80%;
+  }
+
+  .back-btn {
+    right: 80%;
+    left: unset;
+  }
+
+  .dot-group-btns {
+    display: none;
+  }
 }

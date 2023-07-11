@@ -27,7 +27,31 @@ const navItems = [
 	},
 ];
 
+const navItemsBO = [
+	{
+		id: 1,
+		title: 'home',
+		path: '/',
+	},
+	{
+		id: 2,
+		title: 'competitions',
+		path: '/competitions',
+	},
+	{
+		id: 3,
+		title: 'match history',
+		path: '/matchhistory',
+	},
+	{
+		id: 4,
+		title: 'news',
+		path: '/news',
+	},
+];
+
 const Navigation = ({ auth }) => {
+	const profileId = JSON.parse(localStorage.getItem('profileId'));
 	// const navigate = useNavigate();
 
 	const logOut = () => {
@@ -73,9 +97,45 @@ const Navigation = ({ auth }) => {
 									<Nav.Link
 										key={5}
 										href={'/backoffice'}
-										id={window.location.pathname.startsWith('/backoffice') ? 'active' : ''}
+										id={window.location.pathname === '/backoffice' ? 'active' : ''}
 										onClick={() => localStorage.setItem('list-item-idx', 0)}>
                     Backoffice
+									</Nav.Link>
+									<Nav.Link
+										key={6}
+										href={'/backoffice/moderators'}
+										id={window.location.pathname === '/backoffice/moderators' ? 'active' : ''}
+										className="additional-links"
+										onClick={() => localStorage.setItem('list-item-idx', 1)}
+									>
+										Moderators
+									</Nav.Link>
+									<Nav.Link
+										key={7}
+										className="additional-links"
+										href={`/backoffice/profile/${ profileId }`}
+										id={window.location.pathname === `/backoffice/profile/${ profileId }` ? 'active' : ''}
+										onClick={() => localStorage.setItem('list-item-idx', 2)}
+									>
+										My profile
+									</Nav.Link>
+									<Nav.Link
+										key={8}
+										className="additional-links"
+										href={'/backoffice/articles/create'}
+										id={window.location.pathname === '/backoffice/articles/create' ? 'active' : ''}
+										onClick={() => localStorage.setItem('list-item-idx', 3)}
+									>
+										Create article
+									</Nav.Link>
+									<Nav.Link
+										key={9}
+										className="additional-links"
+										href={`/backoffice/articles/author/${ profileId }`}
+										id={window.location.pathname === `/backoffice/articles/author/${ profileId }` ? 'active' : ''}
+										onClick={() => localStorage.setItem('list-item-idx', 4)}
+									>
+										My articles
 									</Nav.Link>
 									<Button size="small" onClick={logOut} id="logout-btn" key={6} variant="text">
                     Log out

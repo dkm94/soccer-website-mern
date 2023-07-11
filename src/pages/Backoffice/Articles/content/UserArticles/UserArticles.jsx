@@ -7,6 +7,8 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { getArticlesByAuthor } from 'services/queries/public_queries';
 
+import './UserArticles.css';
+
 const UserArticles = ({ drawerWidth, profileId, path }) => {
 	const { palette } = useTheme();
 
@@ -35,12 +37,12 @@ const UserArticles = ({ drawerWidth, profileId, path }) => {
 				boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
 			}}>
 			<Grid>
-				<Grid item>
+				<Grid item mb={4}>
 					<Typography variant="h1" className="title-section">
-            My articles
+            			My articles
 					</Typography>
 				</Grid>
-				<Grid container spacing={2} ml={0}>
+				<div className="my-articles">
 					{isError && <Message error={'DEFAULT_ERROR'} img={true} />}
 					{isLoading && <UserArticlesSkeleton />}
 					{thisUserArticles?.map((article) => (
@@ -53,7 +55,7 @@ const UserArticles = ({ drawerWidth, profileId, path }) => {
 							</span>
 						)}
 					</Grid>
-				</Grid>
+				</div>
 			</Grid>
 		</Box>
 	);
