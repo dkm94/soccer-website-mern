@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 import { styled } from '@mui/material/styles';
 import { Container } from '@mui/material';
@@ -29,7 +29,7 @@ const CardBody = styled(Card.Body)({
 const CardItem = styled(Card)({
 	borderRadius: '5px',
 	border: '1px solid #f2efef',
-	width: "100%",
+	width: '100%',
 	// boxShadow: '5px 5px 0px -2px rgba(166,162,161,0.17)'
 	boxShadow: '5px -7px 5px -2px rgba(166,162,161,0.17)',
 });
