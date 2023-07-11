@@ -42,14 +42,17 @@
 
 @media only screen and (max-device-width: 1199px) {
   #logout-btn {
-    margin-right: 40px;
+    position: unset;
+    transform: unset;
+    align-self: flex-start;
+    padding-left: 0;
   }
 }
 
 @media only screen and (max-device-width: 991px) {
-  #logout-btn {
+  /* #logout-btn {
     position: unset;
     right: unset;
     margin-right: unset;
-  }
+  } */
 }
