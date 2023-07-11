@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  font-size: 3.5em !important;
+  font-size: 2.5rem !important;
   font-weight: 700 !important;
   font-family: 'Adamina', serif !important
 }
@@ -29,7 +29,7 @@
   position: absolute;
   z-index: -1;
   content: '';
-  left: 13%;
+  left: 27%;
   top: 0;
   height: 100%;
   width: 100%;
@@ -45,4 +45,28 @@
   font-weight: 700;
   text-transform: uppercase;
   margin: 0 !important;
+}
+
+@media (max-width: 1200px){
+  .banner-title {
+    font-size: 1.5rem !important;
+  }
+
+  .banner-title > h1 {
+    margin-left: 100px !important;
+  }
+}
+
+@media (max-width: 767px){
+  .banner {
+    height: 250px;
+  }
+
+  .banner-title:after {
+    display: none;
+  }
+
+  .banner-title {
+    width: 100%;
+  }
 }
