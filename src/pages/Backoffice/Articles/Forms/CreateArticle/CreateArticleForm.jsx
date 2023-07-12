@@ -10,8 +10,7 @@ import { Box,
 	FormControlLabel,
 	Switch,
 	Snackbar,
-	styled,
-	useTheme } from '@mui/material';
+	styled } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import ReactQuill from 'react-quill';
 
@@ -35,8 +34,7 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 	backgroundColor: theme.palette.black.dark,
 }));
 
-const CreateArticleForm = ({ drawerWidth }) => {
-	const { palette } = useTheme();
+const CreateArticleForm = () => {
 
 	const [ online, setOnline ] = useState(false);
 	const [ title, setTitle ] = useState('');
