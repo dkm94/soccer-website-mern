@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: column !important;
     width: calc(100% - 10px);
+    border-bottom: 1px solid lightgrey;
+    padding-left: 0 !important;
 }
 
 .article-status {
