@@ -137,6 +137,8 @@ export default function CustomTable({ matches, searchInput, selected }) {
 		setPage(0);
 	};
 
+	console.log(matches.length < 1);
+
 	return (
 		<Container sx={{
 			width: '100%',
@@ -188,7 +190,7 @@ export default function CustomTable({ matches, searchInput, selected }) {
 						</tr>
 					)}
 				</tbody>
-				{matches && (
+				{matches.length > 1 && (
 					<tfoot>
 						<tr>
 							<CustomTablePagination
