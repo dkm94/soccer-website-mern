@@ -1,0 +1,16 @@
+@media (max-width: 576px){
+    .moderators-header {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .moderators-header-title, .moderators-header-button {
+        width: 100%;
+    }
+
+    .moderators-header-button {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

@@ -5,6 +5,8 @@ import MuiAlert from '@mui/material/Alert';
 
 import ModsTable from '../Table/ModsTable';
 
+import './Moderators.css';
+
 const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -23,17 +25,9 @@ const Moderators = ({ drawerWidth }) => {
 	};
 
 	return (
-		<Box
-			sx={{
-				flexGrow: 1,
-				width: { sm: `calc(100% - ${ drawerWidth }px)` },
-				display: 'grid',
-				minHeight: '40rem',
-				gap: '2rem',
-				mt: '2rem',
-				backgroundColor: palette?.white.main,
-				boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
-			}}>
+		<div
+			className="moderators-wrapper"
+		>
 			<ModsTable />
 
 			<Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
@@ -52,7 +46,7 @@ const Moderators = ({ drawerWidth }) => {
 					{error?.error.message}
 				</Alert>
 			</Snackbar>
-		</Box>
+		</div>
 	);
 };
 
