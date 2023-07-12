@@ -4,3 +4,9 @@
   /* background-repeat: round; */
   background-attachment: fixed;
 }
+
+@media (max-width: 576px){
+  .backoffice-bg {
+    background-image: unset;
+  }
+}
