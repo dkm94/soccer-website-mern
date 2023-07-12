@@ -70,3 +70,10 @@
 .react-datepicker__input-container > input:focus-visible {
     outline: none;
 }
+
+@media (max-width: 576px){
+    .searchbox-wrapper {
+        flex-direction: column !important;
+        gap: 10px;
+    }
+}

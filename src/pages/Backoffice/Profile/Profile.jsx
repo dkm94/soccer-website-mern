@@ -179,17 +179,9 @@ const Profile = ({ drawerWidth, profileId }) => {
 		.delivery(format(auto()));
 
 	return (
-		<Box
-			sx={{
-				flexGrow: 1,
-				padding: '2rem 4rem',
-				width: { sm: `calc(100% - ${ drawerWidth }px)` },
-				display: 'grid',
-				gap: '2rem',
-				mt: '2rem',
-				backgroundColor: palette?.white.main,
-				boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
-			}}>
+		<div
+			className="profile-settings"
+		>
 			<ProfileSettings
 				submitProfile={submitProfile}
 				profile={profile}
@@ -237,7 +229,7 @@ const Profile = ({ drawerWidth, profileId }) => {
 				handleClickShowPassword={handleClickShowPassword}
 				handleMouseDownPassword={handleMouseDownPassword}
 			/>
-		</Box>
+		</div>
 	);
 };
 

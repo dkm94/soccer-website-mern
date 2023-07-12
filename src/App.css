@@ -64,3 +64,9 @@
       /* max-width: unset; */
     }
   }
+
+  @media (max-width: 576px){
+    .layout {
+      padding-top: 2rem;
+    }
+  }

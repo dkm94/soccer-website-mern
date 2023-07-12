@@ -162,6 +162,7 @@ const MatchHistory = () => {
 				<DatePickerWrapper>
 					<SearchBox>
 						<Row
+							className="searchbox-wrapper"
 							style={{
 								marginTop: '1rem',
 								display: 'flex',

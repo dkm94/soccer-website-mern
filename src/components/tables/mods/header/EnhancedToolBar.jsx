@@ -8,6 +8,8 @@ import AddIcon from '@mui/icons-material/Add';
 
 import ModalComponent from 'components/Modal/ModalComponent';
 
+import './EnhancedToolbar.css';
+
 const CustomToolbar = styled(Toolbar)(({ theme }) => ({
 	justifyContent: 'end',
 	width: '100%',
@@ -48,6 +50,7 @@ const EnhancedToolBar = ({ numSelected, selectedIds, setSelectedIds }) => {
 
 	return (
 		<CustomToolbar
+			className="moderators-header"
 			sx={{
 				padding: '1rem 2rem',
 				display: 'flex',
@@ -55,7 +58,7 @@ const EnhancedToolBar = ({ numSelected, selectedIds, setSelectedIds }) => {
 				justifyContent: 'space-between',
 				marginBottom: 2,
 			}}>
-			<Box sx={{ width: 'fit-content' }}>
+			<Box sx={{ width: 'fit-content' }} className="moderators-header-title">
 				{numSelected > 0 ? (
 					<Selected variant="body1" component="div">
 						{numSelected} selected
@@ -72,7 +75,7 @@ const EnhancedToolBar = ({ numSelected, selectedIds, setSelectedIds }) => {
 				)}
 			</Box>
 
-			<Box sx={{ width: 'fit-content' }}>
+			<Box sx={{ width: 'fit-content' }} className="moderators-header-button">
 				{numSelected > 0 ? (
 					<>
 						<Tooltip title="Delete">

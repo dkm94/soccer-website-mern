@@ -1,3 +1,16 @@
+.create-article {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 2rem 4rem;
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+  background-color: #FDFFFC;
+  box-shadow: 0px 8px 24px -3px rgba(0,0,0,0.1);
+}
+
 #upload-file-btn {
     text-transform: unset;
     color: #fff;
@@ -13,3 +26,10 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   }
+
+  @media (max-width: 576px){
+    .create-article {
+        margin-top: 4rem;
+        padding: 2rem;
+    }
+}
