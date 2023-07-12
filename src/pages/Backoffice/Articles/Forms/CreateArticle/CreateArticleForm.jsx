@@ -55,7 +55,7 @@ const CreateArticleForm = () => {
 		setOpenSuccess,
 		setOpenError,
 		setError,
-		setFilename,
+		setFilename
 	);
 
 	const handleClose = () => {

@@ -145,7 +145,8 @@ const ModsTable = () => {
 							width: '100%',
 							padding: 'inherit',
 							margin: 0,
-							marginBottom: '100px', 
+							marginBottom: '100px',
+							overflowX: 'auto',
 						}}>
 							<table>
 								<thead>
