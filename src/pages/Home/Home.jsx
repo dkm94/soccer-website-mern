@@ -15,12 +15,6 @@ import { getMatchesOfTheDay } from 'services/publicAPIs/soccerapi_services';
 import './Home.css';
 import '../../App.css';
 
-const StyledContainer = styled('div')({
-	padding: '1rem 5rem',
-	display: 'grid',
-	rowGap: '1rem',
-});
-
 const SelectWrapper = styled(Container)({
 	padding: '0 !important',
 	display: 'flex',
@@ -70,7 +64,7 @@ const Home = () => {
 		<Col lg={8}>
 			<div className="layout-cols">
 				<MainContent title={'Today\'s games'}>
-					<StyledContainer>
+					<div className="styled-container">
 						{result?.matches?.length === 0 && <Message code={'GAMES_NOT_FOUND'} img={true} />}
 						{isError && <Message code={'DEFAULT_ERROR'} img={true} error={error} />}
 						{result?.matches && result?.matches?.length > 0 && (
@@ -91,7 +85,7 @@ const Home = () => {
 								page={currentPage}
 								onChange={handleChange}></Pagination>
 						)}
-					</StyledContainer>
+					</div>
 				</MainContent>
 			</div>
 		</Col>

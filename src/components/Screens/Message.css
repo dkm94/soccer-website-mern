@@ -1,0 +1,5 @@
+@media (max-width: 576px){
+    .message-img {
+        height: 9rem !important;
+    }
+}
