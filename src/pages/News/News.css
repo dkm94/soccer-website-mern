@@ -1,3 +1,13 @@
 .news {
     max-width: 960px !important;
 }
+
+.news-component {
+    padding: '1rem 3rem'
+}
+
+@media (max-width: 576px){
+    .news-component{
+        padding: 0;
+    }
+}

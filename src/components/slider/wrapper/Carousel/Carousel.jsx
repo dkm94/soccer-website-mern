@@ -37,13 +37,17 @@ const Carousel = ({ articles }) => {
 		<div className="home-banner">
 			<CarouselProvider naturalSlideWidth={100} naturalSlideHeight={35} totalSlides={articles?.length} className="home-carousel">
 				<Slider>
-					{articles?.map((item, i) => (
+					{articles ? articles?.map((item, i) => (
 						<Slide key={item._id} index={i}>
 							<BackgroundImage img={item?.file}>
 								<SlideContent title={item?.title} summary={item?.summary} key={item?._id} id={item?._id} topic={item?.topic} />
 							</BackgroundImage>
 						</Slide>
-					))}
+					)) : <div style={{
+						height: '100%',
+						width: '100%',
+						backgroundColor: 'lightgray', 
+					}} />}
 				</Slider>
 				<ButtonBack className="back-btn">
 					<ArrowCircleLeft sx={{ fontSize: 60 }} />

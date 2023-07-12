@@ -26,26 +26,29 @@ const Container = styled('div')`
 const CustomTablePagination = styled(TablePaginationUnstyled)`
   & .${ classes.toolbar } {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: 10px;
+	width: max-content;
 
-    @media (min-width: 768px) {
-      flex-direction: row;
-      align-items: center;
-    }
+    // @media (min-width: 768px) {
+    //   flex-direction: row;
+    //   align-items: center;
+    // }
   }
 
   & .${ classes.selectLabel } {
     margin: 0;
+	width: 100%;
   }
 
   & .${ classes.displayedRows } {
     margin: 0;
+	width: 100%;
 
-    @media (min-width: 768px) {
-      margin-left: auto;
-    }
+    // @media (min-width: 768px) {
+    //   margin-left: auto;
+    // }
   }
 
   & .${ classes.spacer } {
@@ -55,10 +58,15 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
   & .${ classes.actions } {
     display: flex;
     gap: 0.25rem;
+	width: 100%;
 
     button {
-      background-color: 'blue' !important;
+	  display: flex;
     }
+
+	button > span {
+		width: 20px;
+	  }
   }
 `;
 
@@ -137,11 +145,14 @@ export default function CustomTable({ matches, searchInput, selected }) {
 		setPage(0);
 	};
 
+	console.log(matches.length < 1);
+
 	return (
 		<Container sx={{
 			width: '100%',
 			padding: 0,
-			margin: 0, 
+			margin: 0,
+			overflowX: 'auto',
 		}}>
 			<table>
 				<thead>
@@ -188,15 +199,17 @@ export default function CustomTable({ matches, searchInput, selected }) {
 						</tr>
 					)}
 				</tbody>
-				{matches && (
+				{matches.length > 1 && (
 					<tfoot>
 						<tr>
 							<CustomTablePagination
 								sx={{
+									width: '100%',
 									'& .MuiTablePagination-actions button': {
 										borderStyle: 'unset',
 										borderRadius: '3px',
 									},
+									'& .MuiTablePagination-actions button span': { width: '20px' },
 								}}
 								rowsPerPageOptions={[ 5, 10, 25, {
 									label: 'All',
