@@ -10,8 +10,7 @@ import { Box,
 	FormControlLabel,
 	Switch,
 	Snackbar,
-	styled,
-	useTheme } from '@mui/material';
+	styled } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import ReactQuill from 'react-quill';
 
@@ -35,8 +34,7 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 	backgroundColor: theme.palette.black.dark,
 }));
 
-const CreateArticleForm = ({ drawerWidth }) => {
-	const { palette } = useTheme();
+const CreateArticleForm = () => {
 
 	const [ online, setOnline ] = useState(false);
 	const [ title, setTitle ] = useState('');
@@ -112,16 +110,8 @@ const CreateArticleForm = ({ drawerWidth }) => {
 		<Box
 			component="form"
 			onSubmit={submitPost}
-			sx={{
-				flexGrow: 1,
-				padding: '2rem 4rem',
-				width: { sm: `calc(100% - ${ drawerWidth }px)` },
-				display: 'grid',
-				gap: '2rem',
-				mt: '2rem',
-				backgroundColor: palette?.white.main,
-				boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
-			}}>
+			className="create-article"
+		>
 			<Grid container spacing={3}>
 				<Grid item>
 					<Typography variant="h1" className="title-section">

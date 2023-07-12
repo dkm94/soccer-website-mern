@@ -3,6 +3,8 @@ import { Box, Button, Typography, Container, styled } from '@mui/material';
 import { Image } from 'react-bootstrap';
 import messages from './messages.json';
 
+import './Message.css';
+
 const ImageWrapper = styled(Container)({
 	display: 'flex',
 	justifyContent: 'center',
@@ -55,6 +57,7 @@ const Message = ({ code, img, error }) => {
 			{img && (
 				<ImageWrapper>
 					<Image
+						className="message-img"
 						src={`/images/icons/${ message?.img }`}
 						style={{
 							width: 'auto',

@@ -25,17 +25,8 @@ const UserArticles = ({ drawerWidth, profileId, path }) => {
 	return (
 		<Box
 			component="form"
-			sx={{
-				flexGrow: 1,
-				padding: '2rem 4rem',
-				width: { sm: `calc(100% - ${ drawerWidth }px)` },
-				display: 'grid',
-				gap: '2rem',
-				mt: '2rem',
-				backgroundColor: palette?.white.main,
-				minHeight: '20rem',
-				boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
-			}}>
+			className="user-articles"
+		>
 			<Grid>
 				<Grid item mb={4}>
 					<Typography variant="h1" className="title-section">
