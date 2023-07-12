@@ -45,8 +45,6 @@ const CreateArticleForm = () => {
 	const [ content, setContent ] = useState('');
 	const [ fileName, setFilename ] = useState('');
 
-	const [ tempForm, setTempForm ] = useState(null);
-
 	const [ error, setError ] = useState(null);
 	const [ openSuccess, setOpenSuccess ] = useState(false);
 	const [ openError, setOpenError ] = useState(false);
@@ -58,7 +56,6 @@ const CreateArticleForm = () => {
 		setOpenError,
 		setError,
 		setFilename,
-		setTempForm
 	);
 
 	const handleClose = () => {
