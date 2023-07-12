@@ -13,7 +13,6 @@ import NewsArticle from 'pages/News/Article';
 import './News.css';
 
 const News = () => {
-	const containerStyle = { padding: '1rem 3rem' };
 	const [ articles, setArticles ] = useState([]);
 
 	const {
@@ -38,7 +37,7 @@ const News = () => {
 		<article>
 			<Container className="news">
 				<MainContent title={'Latest articles'}>
-					<div style={containerStyle}>
+					<div className="news-component">
 						{isError && <Message code={'DEFAULT_ERROR'} img={true} />}
 						{isLoading && <NewsSkeleton />}
 						{onlineArticles?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={true} />}
