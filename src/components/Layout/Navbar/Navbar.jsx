@@ -100,9 +100,11 @@ const Navigation = ({ auth }) => {
 						<div className="logo-style">2LEFOOT</div>
 					</Navbar.Brand>
 					<Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
-						<Nav className="nav-items">
+						<Nav className="nav-items" role="menu" >
 							{navItems?.map((item) => (
 								<Nav.Link
+									title={item?.title}
+									role="menuitem"
 									key={item.id}
 									href={item?.path}
 									style={{ display: !auth && item?.id == 5 && 'none' }}

@@ -62,7 +62,7 @@ const Home = () => {
 
 	return (
 		<Col lg={8}>
-			<div className="layout-cols">
+			<div className="layout-cols" data-testid="home-component" >
 				<MainContent title={'Today\'s games'}>
 					<div className="styled-container">
 						{result?.matches?.length === 0 && <Message code={'GAMES_NOT_FOUND'} img={true} />}

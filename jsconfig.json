@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "jsx": "react",
+    "allowJs": true,
+    "types": ["jest", "node", "@types/jest"]
   },
   "include": [
     "./src"

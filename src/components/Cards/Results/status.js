@@ -1,3 +1,5 @@
+import React from 'react';
+
 import PauseIcon from '@mui/icons-material/Pause';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';

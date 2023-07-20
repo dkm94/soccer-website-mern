@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { styled } from '@mui/material/styles';
-import { Button, Card, CardActions, CardContent, Grid } from '@mui/material';
+import { Card, CardContent, Grid } from '@mui/material';
 import { AdvancedImage } from '@cloudinary/react';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
@@ -11,17 +11,6 @@ import competitionSeeds from 'seeds/competitions';
 import getFormattedDate from 'utils/getFormattedDate';
 
 import './ArticleCard.css';
-
-const RedirectButton = styled(Button)(({ theme }) => ({
-	fontSize: 'inherit',
-	width: 'fit-content',
-	alignSelf: 'self-end',
-	textTransform: 'unset',
-	'&:hover': {
-		backgroundColor: theme.palette.white.main,
-		color: theme.palette.black.light,
-	},
-}));
 
 const Content = styled(CardContent)(({ theme }) => ({
 	display: 'flex',
@@ -41,9 +30,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 	},
 }));
 
-const Actions = styled(CardActions)(({ theme }) => ({ justifyContent: 'end' }));
-
-const ArticleCard = ({ id, title, topic, file, caption, date }) => {
+const ArticleCard = ({ id, title, topic, file, date }) => {
 	const formattedDate = getFormattedDate('short', date);
 
 	const competition = competitionSeeds.filter((competition) => competition.idx == topic);
@@ -63,9 +50,6 @@ const ArticleCard = ({ id, title, topic, file, caption, date }) => {
 				<span>{title}</span>
 				<span>Posted on {formattedDate}</span>
 			</Content>
-			{/* <Actions>
-				<RedirectButton href={`/news/${ code }/${ id }`}>Read the article</RedirectButton>
-			</Actions> */}
 		</Card>
 	);
 };
