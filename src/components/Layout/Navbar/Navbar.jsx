@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Typography , Button } from '@mui/material';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { Button } from '@mui/material';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import PersonIcon from '@mui/icons-material/Person';
 
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const navItems = [
 	{
@@ -34,7 +37,9 @@ const navItems = [
 
 const Navigation = ({ auth }) => {
 	const profileId = JSON.parse(localStorage.getItem('profileId'));
-	// const navigate = useNavigate();
+	
+	const [ logoutText, setLogoutText ] = useState('');
+	const [ toggle, setToggle ] = useState(false);
 
 	const logOut = () => {
 		console.log('déconnexion...');
@@ -49,6 +54,18 @@ const Navigation = ({ auth }) => {
 		window.location.href = '/';
 	};
 
+	useEffect(() => {
+		if(toggle){
+			setLogoutText('Log out');
+		} else {
+			setLogoutText('');
+		}
+	}, [ toggle ]);
+
+	const toggleNav = () => {
+		setToggle(!toggle);
+	};
+
 	return (
 		<>
 			<Navbar
@@ -60,7 +77,7 @@ const Navigation = ({ auth }) => {
 					zIndex: 1000, 
 				}}>
 				<Container>
-					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					<Navbar.Toggle className="nav-toggle" aria-controls="responsive-navbar-nav" onClick={toggleNav}/>
 					<Navbar.Brand href="/">
 						<div className="logo-style">2LEFOOT</div>
 					</Navbar.Brand>
@@ -70,7 +87,7 @@ const Navigation = ({ auth }) => {
 								<Nav.Link
 									key={item.id}
 									href={item?.path}
-									style={{ display: !auth && 'none' }}
+									style={{ display: !auth && item?.id == 5 && 'none' }}
 									id={window.location.pathname === item.path ? 'active' : ''}>
 									{item?.title}
 								</Nav.Link>
@@ -113,13 +130,15 @@ const Navigation = ({ auth }) => {
 									>
 										My articles
 									</Nav.Link>
-									<Button size="small" onClick={logOut} id="logout-btn" key={10} variant="text">
-                    					Log out
-									</Button>
 								</>
 							)}
 						</Nav>
 					</Navbar.Collapse>
+					{!auth ? <Link to="/secret-login" reloadDocument>
+						<PersonIcon />
+					</Link> : <Button size="small" onClick={logOut} id="logout-btn" variant="text">
+                    					<ExitToAppIcon /> <Typography>{logoutText}</Typography>
+					</Button>}
 				</Container>
 			</Navbar>
 		</>
