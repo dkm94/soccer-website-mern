@@ -30,8 +30,7 @@ const CardItem = styled(Card)({
 	borderRadius: '5px',
 	border: '1px solid #f2efef',
 	width: '100%',
-	// boxShadow: '5px 5px 0px -2px rgba(166,162,161,0.17)'
-	boxShadow: '5px -7px 5px -2px rgba(166,162,161,0.17)',
+	// boxShadow: '5px -7px 5px -2px rgba(166,162,161,0.17)',
 });
 
 const Competition = ({ competition }) => {
@@ -52,7 +51,11 @@ const Competition = ({ competition }) => {
 							flexDirection: 'column',
 							padding: '0', 
 						}}>
-						<Card.Img variant="top" style={{ padding: '1.3rem' }} src={competition?.emblem} />
+						<Card.Img variant="top" style={{
+							padding: '1.3rem',
+							alignSelf: 'center',
+							width: '100px', 
+						}} src={competition?.emblem} />
 						<CardBody>
 							<Title>{competition?.name}</Title>
 							<Subtitle>{competition?.area.name}</Subtitle>

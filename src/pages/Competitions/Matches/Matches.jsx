@@ -54,7 +54,7 @@ const Matches = () => {
 				<MainContent title={'Scoreboard'}>
 					{isLoading && <MatchesLoader />}
 					{competition && (
-						<Wrapper>
+						<Wrapper className="matches-wrapper">
 							<Row
 								xs={12}
 								style={{

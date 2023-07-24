@@ -43,6 +43,8 @@
   .main-content > div {
     margin-top: 0;
     margin-bottom: 2rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
 
