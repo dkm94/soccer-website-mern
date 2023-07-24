@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Image } from 'react-bootstrap';
-import TablePagination, { tablePaginationClasses as classes } from '@mui/base/TablePagination';
+import { TablePagination } from '@mui/material';
+import { tablePaginationClasses as classes } from '@mui/base/TablePagination';
 import { styled, useTheme } from '@mui/system';
 
 import status from '../../../../data/status.json';
@@ -200,7 +201,7 @@ export default function CustomTable({ matches, searchInput, selected }) {
 				{matches.length > 1 && (
 					<tfoot>
 						<tr>
-							<CustomTablePagination
+							{/* <CustomTablePagination
 								sx={{
 									width: '100%',
 									'& .MuiTablePagination-actions button': {
@@ -224,6 +225,21 @@ export default function CustomTable({ matches, searchInput, selected }) {
 										showLastButton: true,
 									},
 								}}
+								onPageChange={handleChangePage}
+								onRowsPerPageChange={handleChangeRowsPerPage}
+							/> */}
+							<TablePagination 
+								sx={{
+									fontSize: '0.75rem',
+									'& p': { marginBottom: '0 !important' }, 
+								}}
+								rowsPerPageOptions={[ 5, 10, 25, {
+									label: 'All',
+									value: -1, 
+								} ]}
+								count={rows?.length}
+								rowsPerPage={rowsPerPage}
+								page={page}
 								onPageChange={handleChangePage}
 								onRowsPerPageChange={handleChangeRowsPerPage}
 							/>
