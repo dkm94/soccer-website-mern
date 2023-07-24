@@ -35,7 +35,7 @@ const useLogin = (setSuccessMessage, setOpenSuccess, setOpenError, setError) => 
 			setSuccessMessage(message);
 
 			if (auth) {
-				window.location.href = '/backoffice';
+				window.location.href = '/backoffice/moderators';
 			}
 		},
 	});
