@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Image } from 'react-bootstrap';
 import { TablePagination } from '@mui/material';
-import { tablePaginationClasses as classes } from '@mui/base/TablePagination';
 import { styled, useTheme } from '@mui/system';
 
 import status from '../../../../data/status.json';
@@ -24,52 +23,6 @@ const Container = styled('div')`
   }
 `;
 
-const CustomTablePagination = styled(TablePagination)`
-  & .${ classes.toolbar } {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 10px;
-	width: max-content;
-
-    // @media (min-width: 768px) {
-    //   flex-direction: row;
-    //   align-items: center;
-    // }
-  }
-
-  & .${ classes.selectLabel } {
-    margin: 0;
-	width: 100%;
-  }
-
-  & .${ classes.displayedRows } {
-    margin: 0;
-	width: 100%;
-
-    // @media (min-width: 768px) {
-    //   margin-left: auto;
-    // }
-  }
-
-  & .${ classes.spacer } {
-    display: none;
-  }
-
-  & .${ classes.actions } {
-    display: flex;
-    gap: 0.25rem;
-	width: 100%;
-
-    button {
-	  display: flex;
-    }
-
-	button > span {
-		width: 20px;
-	  }
-  }
-`;
 
 export default function CustomTable({ matches, searchInput, selected }) {
 	const { palette } = useTheme();
