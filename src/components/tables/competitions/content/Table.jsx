@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image } from 'react-bootstrap';
-import TablePaginationUnstyled, { tablePaginationUnstyledClasses as classes } from '@mui/base/TablePaginationUnstyled';
+import TablePagination, { tablePaginationClasses as classes } from '@mui/base/TablePagination';
 import { styled, useTheme } from '@mui/system';
 
 import status from '../../../../data/status.json';
@@ -23,7 +23,7 @@ const Container = styled('div')`
   }
 `;
 
-const CustomTablePagination = styled(TablePaginationUnstyled)`
+const CustomTablePagination = styled(TablePagination)`
   & .${ classes.toolbar } {
     display: flex;
     flex-direction: row;
