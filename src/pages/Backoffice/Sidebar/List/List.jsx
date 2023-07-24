@@ -37,13 +37,13 @@ const SideBarList = () => {
 	};
 
 	const listData = [
-		{
-			id: 1,
-			idx: 0,
-			name: 'Overview',
-			icon: <DashboardIcon />,
-			path: '/backoffice',
-		},
+		// {
+		// 	id: 1,
+		// 	idx: 0,
+		// 	name: 'Overview',
+		// 	icon: <DashboardIcon />,
+		// 	path: '/backoffice',
+		// },
 		{
 			id: 2,
 			idx: 1,

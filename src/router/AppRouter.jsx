@@ -76,7 +76,7 @@ const AppRouter = () => {
 										element={
 											<ErrorBoundary
 												FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-												onReset={() => (window.location.href = '/backoffice')}>
+												onReset={() => (window.location.href = '/backoffice/moderators')}>
 												<Suspense fallback={<LazyLoader />}>
 													<Admin path={path} />
 												</Suspense>
@@ -88,7 +88,7 @@ const AppRouter = () => {
 										element={
 											<ErrorBoundary
 												FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-												onReset={() => (window.location.href = '/backoffice')}>
+												onReset={() => (window.location.href = '/backoffice/moderators')}>
 												<Suspense fallback={<LazyLoader />}>
 													<Admin />
 												</Suspense>
@@ -100,7 +100,7 @@ const AppRouter = () => {
 										element={
 											<ErrorBoundary
 												FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-												onReset={() => (window.location.href = '/backoffice')}>
+												onReset={() => (window.location.href = '/backoffice/moderators')}>
 												<Suspense fallback={<LazyLoader />}>
 													<Admin />
 												</Suspense>
@@ -113,7 +113,7 @@ const AppRouter = () => {
 											element={
 												<ErrorBoundary
 													FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-													onReset={() => (window.location.pathname = '/backoffice')}>
+													onReset={() => (window.location.pathname = '/backoffice/moderators')}>
 													<Suspense fallback={<LazyLoader />}>
 														<Admin />
 													</Suspense>
@@ -127,7 +127,7 @@ const AppRouter = () => {
 											element={
 												<ErrorBoundary
 													FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-													onReset={() => (window.location.href = '/backoffice')}>
+													onReset={() => (window.location.href = '/backoffice/moderators')}>
 													<Suspense fallback={<LazyLoader />}>
 														<Admin />
 													</Suspense>
@@ -139,7 +139,7 @@ const AppRouter = () => {
 											element={
 												<ErrorBoundary
 													FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-													onReset={() => (window.location.href = '/backoffice')}>
+													onReset={() => (window.location.href = '/backoffice/moderators')}>
 													<Suspense fallback={<LazyLoader />}>
 														<Admin />
 													</Suspense>
