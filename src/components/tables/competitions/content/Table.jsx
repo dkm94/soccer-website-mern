@@ -145,8 +145,6 @@ export default function CustomTable({ matches, searchInput, selected }) {
 		setPage(0);
 	};
 
-	console.log(matches.length < 1);
-
 	return (
 		<Container sx={{
 			width: '100%',
