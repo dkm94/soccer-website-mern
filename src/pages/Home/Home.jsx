@@ -81,7 +81,7 @@ const Home = () => {
               _DATA?.currentData().map((match) => <ResultsCard key={match?.id} match={match} />)}
 						{!isError && (
 							<Pagination
-								count={getCount()}
+								count={Number(getCount() || 0)}
 								page={currentPage}
 								onChange={handleChange}></Pagination>
 						)}

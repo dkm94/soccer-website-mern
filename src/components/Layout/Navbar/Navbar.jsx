@@ -4,6 +4,8 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
 
+import logo from '../../../images/toutlefoot-logo.png';
+
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 
@@ -104,7 +106,7 @@ const Navigation = ({ auth }) => {
 							{navItems?.map((item) => (
 								<Nav.Link
 									title={item?.title}
-									role="menuitem"
+									role="link"
 									key={item.id}
 									href={item?.path}
 									style={{ display: !auth && item?.id == 5 && 'none' }}
