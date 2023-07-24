@@ -231,11 +231,9 @@ const ModsTable = () => {
 							</table>
 						</div>
 						<TablePagination
-							style={{
-								position: 'absolute',
-								bottom: 0,
-								right: 0,
-								marginTop: '20px', 
+							sx={{
+								fontSize: '0.75rem',
+								'& p': { marginBottom: '0 !important' }, 
 							}}
 							rowsPerPageOptions={[ 5, 10, 25 ]}
 							component="div"
