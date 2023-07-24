@@ -6,9 +6,12 @@ import { Header, SideArticles } from 'components/Layout';
 
 import './Main.css';
 
-const Layout = ({ children, path }) => {
+const Layout = ({ children, path, invalidPath }) => {
+	console.log('🚀 ~ file: Main.jsx:10 ~ Layout ~ invalidPath:', invalidPath);
 	const showHeader = () => {
 		if (path === '/secret-login' || path === '/account-validation' || path.includes('backoffice')) {
+			return null;
+		} else if(invalidPath){
 			return null;
 		}
 		return <Header path={path} />;
@@ -19,7 +22,8 @@ const Layout = ({ children, path }) => {
 			path === '/secret-login' ||
       path.includes('news') ||
       path.includes('backoffice') ||
-      path === '/account-validation'
+      path === '/account-validation' ||
+	  invalidPath
 		) {
 			return null;
 		}

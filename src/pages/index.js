@@ -7,3 +7,4 @@ export { default as Matches } from './Competitions/Matches/Matches.jsx';
 export { default as NewsPage } from './NewsPage/NewsPage.jsx';
 export { default as AccountValidation } from './Backoffice/AccountValidation/AccountValidation.jsx';
 export { default as Login } from './Login/Login.jsx';
+export { default as NotFound } from './NotFound/NotFound.jsx';
