@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Typography , Button } from '@mui/material';
+import { Typography , Button, styled } from '@mui/material';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
 
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+
+const ButtonWrapper = styled(Link)(({ theme }) => ({
+	display: 'flex',
+	flexDirection: 'row', 
+	textDecoration: 'none',
+	color: theme.palette.white.main,
+	textTransform: 'uppercase',
+	gap: '5px',
+}));
+const LoginText = styled(Typography)(({ theme }) => ({
+	textDecoration: 'none',
+	placeSelf: 'center', 
+	fontSize: 'unset',
+}));
 
 const navItems = [
 	{
@@ -39,6 +53,7 @@ const Navigation = ({ auth }) => {
 	const profileId = JSON.parse(localStorage.getItem('profileId'));
 	
 	const [ logoutText, setLogoutText ] = useState('');
+	const [ loginText, setLoginText ] = useState('');
 	const [ toggle, setToggle ] = useState(false);
 
 	const logOut = () => {
@@ -55,10 +70,13 @@ const Navigation = ({ auth }) => {
 	};
 
 	useEffect(() => {
-		if(toggle){
+		if(toggle && auth){
 			setLogoutText('Log out');
+		} else if(toggle && !auth){
+			setLoginText('Log in');
 		} else {
 			setLogoutText('');
+			setLoginText('');
 		}
 	}, [ toggle ]);
 
@@ -134,11 +152,13 @@ const Navigation = ({ auth }) => {
 							)}
 						</Nav>
 					</Navbar.Collapse>
-					{!auth ? <Link to="/secret-login" reloadDocument>
-						<PersonIcon />
-					</Link> : <Button size="small" onClick={logOut} id="logout-btn" variant="text">
+					{!auth ? 
+						<ButtonWrapper to="/secret-login" reloadDocument>
+							<PersonIcon style={{ color: '#eae8e8' }} /> <LoginText className="nav-link">{loginText}</LoginText>
+						</ButtonWrapper>
+					 : <Button size="small" onClick={logOut} id="logout-btn" variant="text">
                     					<ExitToAppIcon /> <Typography>{logoutText}</Typography>
-					</Button>}
+						</Button>}
 				</Container>
 			</Navbar>
 		</>
