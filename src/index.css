@@ -5,3 +5,9 @@ body {
   background-color: var(--palette-grey-lighter) !important;
   font-size: 12px !important;
 }
+
+@media (max-width: 576px){
+  body {
+    background-color: #fcf9f9 !important;
+  }
+}

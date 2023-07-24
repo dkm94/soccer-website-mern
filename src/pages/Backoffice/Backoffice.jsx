@@ -16,8 +16,8 @@ const path = window.location.pathname;
 const backofficeComponent = () => {
 	let { id } = useParams();
 	switch (path) {
-		case '/backoffice':
-			return <MainPage cards={cards} drawerWidth={drawerWidth} />;
+		// case '/backoffice':
+		// 	return <MainPage cards={cards} drawerWidth={drawerWidth} />;
 		case '/backoffice/articles/create':
 			return <CreateArticleForm drawerWidth={drawerWidth} />;
 		case `/backoffice/articles/author/${ profileId }`:

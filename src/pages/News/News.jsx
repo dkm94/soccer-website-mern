@@ -41,12 +41,9 @@ const News = () => {
 						{isError && <Message code={'DEFAULT_ERROR'} img={true} />}
 						{isLoading && <NewsSkeleton />}
 						{onlineArticles?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={true} />}
-						<Grid></Grid>
-						<Grid container spacing={2}>
-							{onlineArticles?.map((article) => (
-								<NewsArticle key={article.id} article={article} />
-							))}
-						</Grid>
+						{onlineArticles?.map((article) => (
+							<NewsArticle key={article.id} article={article} />
+						))}
 					</div>
 				</MainContent>
 			</Container>

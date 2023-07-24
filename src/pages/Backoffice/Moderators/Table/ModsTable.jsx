@@ -2,15 +2,18 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { Box, Paper, Checkbox, Typography, TablePagination, Chip, useTheme } from '@mui/material';
+import { AdvancedImage } from '@cloudinary/react';
+import { CloudinaryImage } from '@cloudinary/url-gen';
 
 import EnhancedToolBar from 'components/tables/mods/header/EnhancedToolBar';
 import { ToggleButton , CustomChip } from 'components/ui';
 import { BackofficeLoader } from 'components/Loaders';
 import Message from 'components/Screens/Message';
 
-import { getUsers } from 'services/queries/public_queries';
+import { getArticles, getUsers } from 'services/queries/public_queries';
 import { changeModStatus } from 'services/queries/admin_queries';
 
+import avatar from '../../../../images/avatar.png';
 import './ModsTable.css';
 
 const ModsTable = () => {
@@ -22,6 +25,15 @@ const ModsTable = () => {
 
 	const [ page, setPage ] = useState(0);
 	const [ rowsPerPage, setRowsPerPage ] = useState(5);
+
+	const {
+		isLoadingArticles,
+		isErrorArticles,
+		data: articles,
+	} = useQuery({
+		queryKey: [ 'articles' ],
+		queryFn: getArticles,
+	});
 
 	const {
 		isLoading,
@@ -162,6 +174,7 @@ const ModsTable = () => {
 										<th>Name</th>
 										<th>Email</th>
 										<th>Handle</th>
+										<th>Total Posts</th>
 										<th>Moderator</th>
 										<th>Account status</th>
 									</tr>
@@ -169,6 +182,10 @@ const ModsTable = () => {
 								<tbody>
 									{filteredRows?.map((row) => {
 										const isItemSelected = isSelected(row._id);
+										const userArticles = articles?.filter(
+											(userArticle) => userArticle.id_profile == row.id_profile._id
+										);
+									
 										return (
 											<tr tabIndex={-1} key={row._id}>
 												<td>
@@ -178,7 +195,8 @@ const ModsTable = () => {
 														selected={isItemSelected}
 													/>
 												</td>
-												<td>
+												<td className="mod-id">
+													{!row.id_profile?.file?.public_id ? <img src={avatar} alt="moderator avatar" /> : <AdvancedImage cldImg={new CloudinaryImage(row.id_profile?.file?.public_id, { cloudName: 'dbj8kfftk' })} />}
 													<Typography variant="body1">{row.id_profile?.name}</Typography>
 												</td>
 												<td>
@@ -186,6 +204,9 @@ const ModsTable = () => {
 												</td>
 												<td>
 													<Typography variant="body1">{row.id_profile?.handle}</Typography>
+												</td>
+												<td>
+													{userArticles?.length || 0}
 												</td>
 												<td>
 													<ToggleButton

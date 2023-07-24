@@ -23,3 +23,10 @@
 #demo-simple-select {
   padding: 10px;
 }
+
+@media (max-width: 576px){
+  .matches-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

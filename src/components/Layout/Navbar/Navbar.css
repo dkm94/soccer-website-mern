@@ -27,13 +27,6 @@
   color: var(--palette-grey-lighter) !important;
 }
 
-#logout-btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
 #active {
   font-weight: 600;
   background-color: #dcdee2 !important;
@@ -44,23 +37,17 @@
   display: none !important;
 }
 
-@media only screen and (max-device-width: 1199px) {
-  #logout-btn {
-    position: unset;
-    transform: unset;
-    align-self: flex-start;
-    padding-left: 0;
-  }
-}
-
 @media only screen and (max-device-width: 991px) {
-  /* #logout-btn {
-    position: unset;
-    right: unset;
-    margin-right: unset;
-  } */
   .additional-links {
     color: var(--palette-grey-lighter) !important;
     display: block !important;
+  }
+
+  #logout-btn {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0px;
+    position: relative;
+    left: -4px;
   }
 }

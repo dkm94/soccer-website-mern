@@ -1,0 +1,49 @@
+.not-found {
+    width: 100%;
+    margin-top: 100px !important;
+}
+
+.not-found > div {
+    text-align: center;
+}
+
+.not-found > div > h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15rem;
+}
+
+.not-found > div > h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem !important;
+}
+
+.not-found > div > div {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+}
+
+.not-found > div > div > a {
+    margin-top: 1rem;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border-radius: 7px;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid grey;
+}
+
+@media (max-width: 600px) {
+    .not-found > div > h1 {
+        font-size: 5rem;
+    }
+    
+    .not-found > div > h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem !important;
+    }
+
+    .not-found > div > div > a {
+        padding: 0.5rem 1rem;
+    }
+}

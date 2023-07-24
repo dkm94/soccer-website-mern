@@ -3,7 +3,10 @@
 }
 
 .news-component {
-    padding: '1rem 3rem'
+    padding: 1rem 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 @media (max-width: 576px){

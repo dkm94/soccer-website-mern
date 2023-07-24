@@ -18,14 +18,21 @@
 }
 
 .backoffice__news_article-card {
-    height: 140px;
+    height: 200px;
 }
 
 .backoffice__news_article-card > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* max-height: 200px; */
 }
+
+@media (min-width: 425px) { 
+    /* .backoffice__news_article-card {
+        height: 240px;
+    } */
+ }
 
 @media (min-width: 992px) { 
     .news__article-card {
@@ -37,4 +44,9 @@
     .news__article-card {
         width: calc(32% - 10px);
     }
+
+    .backoffice__news_article-card {
+        height: 140px;
+    }
 }
+

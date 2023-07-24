@@ -16,3 +16,14 @@
   border: 1px solid var(--palette-grey-light);
   cursor: pointer;
 }
+
+.backoffice__news_article-card {
+  height: 140px;
+}
+
+.backoffice__news_article-card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* max-height: 200px; */
+}
