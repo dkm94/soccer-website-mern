@@ -9,7 +9,7 @@ describe('usePagination() function tests', () => {
 		expect(() => usePagination([], 0, 123)).toThrow('itemsPerPage should be a valid number');
 	});
 
-	it('should throw an error if the third argument is not a string or an empty string', () => {
-		expect(() => usePagination([], 5, '')).toThrow('competition\'s value is invalid');
+	it('should throw an error if the third argument is not a string', () => {
+		expect(() => usePagination([], 5, undefined)).toThrow('competition\'s value is invalid');
 	});
 });

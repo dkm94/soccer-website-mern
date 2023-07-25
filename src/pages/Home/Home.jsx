@@ -23,22 +23,24 @@ const SelectWrapper = styled(Container)({
 });
 
 const Home = () => {
+	const [ matches, setMatches ] = useState([]);
+
 	const {
 		isLoading,
 		isError,
 		error,
-		data: result,
 	} = useQuery({
 		// staleTime: Infinity,
 		queryKey: [ 'result?.matches' ],
 		queryFn: () => getMatchesOfTheDay(),
+		onSuccess: ({ matches }) => setMatches(matches),
 	});
 
 	const [ competition, setCompetition ] = useState('');
 	const [ currentPage, setCurrentPage ] = useState(1);
 
 	let formattedCompetitions = [];
-	result?.matches?.forEach((match) => {
+	matches?.forEach((match) => {
 		return formattedCompetitions.push({
 			id: match?.competition?.code,
 			name: match?.competition?.name,
@@ -46,12 +48,12 @@ const Home = () => {
 	});
 
 	const perPage = 5;
-	const _DATA = usePagination(result?.matches, perPage, competition);
+	const _DATA = usePagination(matches, perPage, competition);
 	const getCount = () => {
 		if (competition) {
 			return Math.ceil(_DATA.dataByCompetition().length / perPage);
 		} else {
-			return Math.ceil(result?.matches?.length / perPage);
+			return Math.ceil(matches?.length / perPage);
 		}
 	};
 
@@ -65,9 +67,9 @@ const Home = () => {
 			<div className="layout-cols" data-testid="home-component" >
 				<MainContent title={'Today\'s games'}>
 					<div className="styled-container">
-						{result?.matches?.length === 0 && <Message code={'GAMES_NOT_FOUND'} img={true} />}
+						{matches?.length === 0 && <Message code={'GAMES_NOT_FOUND'} img={true} />}
 						{isError && <Message code={'DEFAULT_ERROR'} img={true} error={error} />}
-						{result?.matches && result?.matches?.length > 0 && (
+						{matches && matches?.length > 0 && (
 							<SelectWrapper>
 								<CompetitionsSelect
 									competition={competition}

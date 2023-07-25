@@ -10,7 +10,7 @@ function usePagination(data, itemsPerPage, competition) {
 		throw new Error('itemsPerPage should be a valid number');
 	}
 
-	if(typeof competition != 'string' || competition === ''){
+	if(typeof competition != 'string'){
 		throw new Error('competition\'s value is invalid');
 	}
 
