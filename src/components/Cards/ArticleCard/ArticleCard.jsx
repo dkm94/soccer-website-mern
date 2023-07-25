@@ -8,7 +8,7 @@ import { CloudinaryImage } from '@cloudinary/url-gen';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
 
 import competitionSeeds from 'seeds/competitions';
-import getFormattedDate from 'utils/getFormattedDate';
+import getFormattedDate from 'utils/getFormattedDate/getFormattedDate';
 
 import './ArticleCard.css';
 
@@ -37,6 +37,8 @@ const ArticleCard = ({ id, title, topic, file, date }) => {
 	const code = competition[ 0 ]?.code;
 
 	const imageSrc = file?.public_id;
+
+	// .env 
 	const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' }).delivery(quality(100));
 
 	const redirectToArticle = () => (window.location.href = `/news/${ code }/${ id }`);

@@ -1,12 +1,10 @@
-import { Home, News } from 'pages';
 import '../../../../__mocks__/matchMedia';
 const { render, screen } = require('@testing-library/react');
-const { Navbar } = require('..');
+import Navbar from './Navbar.jsx';
 const React = require('react');
 import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import App from 'router/App';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('Navbar component tests', () => {
 	let originalWindowLocation = window.location;
