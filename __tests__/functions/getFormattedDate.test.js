@@ -1,4 +1,4 @@
-import getFormattedDate from 'utils/getFormattedDate/getFormattedDate';
+import getFormattedDate from 'utils/getFormattedDate';
 
 describe('getFormattedDate() function tests', () => {
 	it('should throw error if first argument is not \'long\' or \'short\' ', () => {

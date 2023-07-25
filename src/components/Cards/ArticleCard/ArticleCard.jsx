@@ -8,7 +8,7 @@ import { CloudinaryImage } from '@cloudinary/url-gen';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
 
 import competitionSeeds from 'seeds/competitions';
-import getFormattedDate from 'utils/getFormattedDate/getFormattedDate';
+import getFormattedDate from 'utils/getFormattedDate';
 
 import './ArticleCard.css';
 

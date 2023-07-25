@@ -8,5 +8,5 @@
   },
   "include": [
     "./src"
-  ]
+, "__tests__/functions/getFormattedDate.test.js", "__tests__/hooks/usePagination.test.js", "__tests__/components/Navbar.test.js"  ]
 }

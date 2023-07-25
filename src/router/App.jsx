@@ -57,18 +57,6 @@ const App = () => {
 							}
 						/>
 						<Route
-							path="/backoffice/articles"
-							element={
-								<ErrorBoundary
-									FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-									onReset={() => (window.location.href = '/backoffice')}>
-									<Suspense fallback={<LazyLoader />}>
-										<Admin path={path} />
-									</Suspense>
-								</ErrorBoundary>
-							}
-						/>
-						<Route
 							path="/backoffice/articles/author/:id"
 							element={
 								<ErrorBoundary

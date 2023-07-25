@@ -1,4 +1,4 @@
-import usePagination from 'utils/hooks/usePagination/usePagination';
+import usePagination from 'utils/hooks/usePagination';
 
 describe('usePagination() function tests', () => {
 	it('should throw an error if the first argument is not an array', () => {

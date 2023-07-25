@@ -1,6 +1,6 @@
-import '../../../../__mocks__/matchMedia';
+import '../../__mocks__/matchMedia';
 const { render, screen } = require('@testing-library/react');
-import Navbar from './Navbar.jsx';
+import Navbar from '../../src/components/Layout/Navbar/Navbar.jsx';
 const React = require('react');
 import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from 'react-query';
