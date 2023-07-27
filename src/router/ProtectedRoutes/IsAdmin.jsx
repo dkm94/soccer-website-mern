@@ -5,7 +5,7 @@ const IsAdmin = ({ isAdmin }) => {
 
 	useEffect(() => {
 		if(!isAdmin){
-			window.location.replace('/backoffice');
+			window.location.replace('/backoffice/moderators');
 		}
 	}, []);
 	return <Outlet />;

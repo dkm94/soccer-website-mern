@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -13,7 +13,7 @@ import { Competitions,
 	Login,
 	News,
 	NewsPage
-	, Home } from 'pages';
+	, Home, NotFound } from 'pages';
 import { IsMod, IsAdmin, IsLogged } from 'router/ProtectedRoutes';
 import { ScrollToTop } from 'components/utils';
 
@@ -31,6 +31,7 @@ if(user){
 const path = window.location.pathname;
 
 const App = () => {
+	const [ invalidPath, setInvalidPath ] = useState(false);
 
 	return (
 		<>
@@ -48,19 +49,8 @@ const App = () => {
 					<Route path="/news/:code/:id" element={<NewsPage />} />
 					<Route path="/secret-login" element={<Login auth={user} />} />
 					<Route path="/account-validation" element={<AccountValidation auth={user} />} />
+					<Route path="*" element={<NotFound invalidPath={invalidPath} setInvalidPath={setInvalidPath} />} />
 					<Route element={<IsLogged token={token} />}>
-						<Route
-							path="/backoffice"
-							element={
-								<ErrorBoundary
-									FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
-									onReset={() => (window.location.href = '/')}>
-									<Suspense fallback={<LazyLoader />}>
-										<Admin path={path} user={user} />
-									</Suspense>
-								</ErrorBoundary>
-							}
-						/>
 						<Route
 							path="/backoffice/articles/author/:id"
 							element={
