@@ -1,8 +1,14 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 
-const IsAdmin = ({ isAdmin }) => {
-	return isAdmin ? <Outlet /> : <Navigate to="backoffice" />;
+const IsAdmin = ({ isAdmin, profileId }) => {
+
+	useEffect(() => {
+		if(!isAdmin){
+			window.location.replace(`/backoffice/articles/author/${ profileId }`);
+		}
+	}, []);
+	return <Outlet />;
 };
 
 export default IsAdmin;

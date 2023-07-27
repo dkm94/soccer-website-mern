@@ -1,8 +1,16 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { decodeToken } from 'utils';
 
-const IsLogged = ({ auth }) => {
-	return auth ? <Outlet /> : <Navigate to="secret-login" />;
+const IsLogged = ({ token }) => {
+
+	useEffect(() => {
+		if(token){
+			decodeToken(token);
+		}
+	}, []);
+
+	return (<Outlet />);
 };
 
 export default IsLogged;

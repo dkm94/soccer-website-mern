@@ -9,7 +9,7 @@ import { getArticlesByAuthor } from 'services/queries/public_queries';
 
 import './UserArticles.css';
 
-const UserArticles = ({ drawerWidth, profileId, path }) => {
+const UserArticles = ({ profileId, path }) => {
 	const { palette } = useTheme();
 
 	const {

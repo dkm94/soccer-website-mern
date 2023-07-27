@@ -2,6 +2,18 @@
 import { useState, useEffect } from 'react';
 
 function usePagination(data, itemsPerPage, competition) {
+	if(!Array.isArray(data)){
+		throw new Error('data should be an array');
+	}
+
+	if(typeof itemsPerPage != 'number' || itemsPerPage === 0){
+		throw new Error('itemsPerPage should be a valid number');
+	}
+
+	if(typeof competition != 'string'){
+		throw new Error('competition\'s value is invalid');
+	}
+
 	const [ currentPage, setCurrentPage ] = useState(1);
 
 	useEffect(() => {

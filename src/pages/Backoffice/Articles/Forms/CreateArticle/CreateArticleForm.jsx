@@ -34,7 +34,7 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 	backgroundColor: theme.palette.black.dark,
 }));
 
-const CreateArticleForm = () => {
+const CreateArticleForm = ({ profileId }) => {
 
 	const [ online, setOnline ] = useState(false);
 	const [ title, setTitle ] = useState('');
@@ -55,7 +55,8 @@ const CreateArticleForm = () => {
 		setOpenSuccess,
 		setOpenError,
 		setError,
-		setFilename
+		setFilename,
+		profileId
 	);
 
 	const handleClose = () => {

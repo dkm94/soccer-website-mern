@@ -1,6 +1,7 @@
 .not-found {
     width: 100%;
     margin-top: 100px !important;
+    background-color: rgb(252, 249, 249, 0.5);
 }
 
 .not-found > div {

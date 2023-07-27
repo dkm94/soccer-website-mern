@@ -4,8 +4,11 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
 
+import logo from '../../../images/toutlefoot-logo.png';
+
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import { decodeToken } from 'utils';
 
 const ButtonWrapper = styled(Link)(({ theme }) => ({
 	display: 'flex',
@@ -49,30 +52,38 @@ const navItems = [
 	},
 ];
 
-const Navigation = ({ auth }) => {
-	const profileId = JSON.parse(localStorage.getItem('profileId'));
-	
+const Navigation = ({ token, user }) => {
 	const [ logoutText, setLogoutText ] = useState('');
 	const [ loginText, setLoginText ] = useState('');
 	const [ toggle, setToggle ] = useState(false);
+	const [ profileId, setProfileId ] = useState(null);
+	
+	useEffect(() => {
+		if(token){
+			decodeToken(token);
+		}
+
+	}, []);
+
+	useEffect(() => {
+		if(user){
+			setProfileId(user.profileId);
+		}
+	}, []);
 
 	const logOut = () => {
 		console.log('déconnexion...');
-		localStorage.removeItem('logged_in_status');
-		localStorage.removeItem('profileId');
-		localStorage.removeItem('isAdmin');
-		localStorage.removeItem('isMod');
-		localStorage.removeItem('userId');
-		localStorage.removeItem('accountValidated');
+		localStorage.removeItem('soccer-user');
 		localStorage.removeItem('token');
+		localStorage.removeItem('list-item-idx');
 		console.log('Vous avez été déconnecté.');
 		window.location.href = '/';
 	};
 
 	useEffect(() => {
-		if(toggle && auth){
+		if(toggle && user){
 			setLogoutText('Log out');
-		} else if(toggle && !auth){
+		} else if(toggle && !user){
 			setLoginText('Log in');
 		} else {
 			setLogoutText('');
@@ -100,17 +111,19 @@ const Navigation = ({ auth }) => {
 						<div className="logo-style">2LEFOOT</div>
 					</Navbar.Brand>
 					<Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
-						<Nav className="nav-items">
+						<Nav className="nav-items" role="menu" >
 							{navItems?.map((item) => (
 								<Nav.Link
+									title={item?.title}
+									role="link"
 									key={item.id}
 									href={item?.path}
-									style={{ display: !auth && item?.id == 5 && 'none' }}
+									style={{ display: !user && item?.id == 5 && 'none' }}
 									id={window.location.pathname === item.path ? 'active' : ''}>
 									{item?.title}
 								</Nav.Link>
 							))}
-							{auth && (
+							{profileId && (
 								<>
 									<Nav.Link
 										key={6}
@@ -152,7 +165,7 @@ const Navigation = ({ auth }) => {
 							)}
 						</Nav>
 					</Navbar.Collapse>
-					{!auth ? 
+					{!user ? 
 						<ButtonWrapper to="/secret-login" reloadDocument>
 							<PersonIcon style={{ color: '#eae8e8' }} /> <LoginText className="nav-link">{loginText}</LoginText>
 						</ButtonWrapper>

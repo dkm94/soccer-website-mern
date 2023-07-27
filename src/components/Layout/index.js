@@ -1,4 +1,4 @@
-export { default as Layout } from './Main/Main';
+export { default as Layout } from './Main/Main.jsx';
 export { default as SideArticles } from './SideArticles/SideArticles';
 export { default as MainContent } from './MainContent/MainContent';
 export { default as Header } from './Header/Header';
