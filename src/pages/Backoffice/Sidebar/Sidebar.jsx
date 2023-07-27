@@ -5,7 +5,7 @@ import List from './List/List';
 
 import './Sidebar.css';
 
-const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth }) => {
+const Sidebar = ({ mobileOpen, handleDrawerToggle, drawerWidth, path, user }) => {
 	return (
 		<Box
 			component="nav"
@@ -18,7 +18,6 @@ const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth }) => 
 		>
 			{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
 			<Drawer
-				container={container}
 				variant="temporary"
 				open={mobileOpen}
 				onClose={handleDrawerToggle}
@@ -49,7 +48,7 @@ const Sidebar = ({ container, mobileOpen, handleDrawerToggle, drawerWidth }) => 
 					},
 				}}
 				open>
-				<List />
+				<List path={path} user={user} />
 			</Drawer>
 		</Box>
 	);

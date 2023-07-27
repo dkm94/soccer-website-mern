@@ -1,17 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useMutation } from 'react-query';
 import { login } from 'services/queries/auth_queries';
+import { decodeToken, setToken } from 'utils';
 
 const useLogin = (setSuccessMessage, setOpenSuccess, setOpenError, setError) => {
-	function setToken(token) {
-		localStorage.setItem('token', token);
-
-		const storedToken = localStorage.getItem('token');
-		if (!storedToken) {
-			throw new Error('Token not stored');
-		}
-	}
-
 	return useMutation({
 		mutationFn: login,
 		onError: (error, newObject, context) => {
@@ -21,22 +13,17 @@ const useLogin = (setSuccessMessage, setOpenSuccess, setOpenError, setError) => 
 			setError(errorObject);
 		},
 		onSuccess: (data, variables, context) => {
-			const { token, auth, profileId, isAdmin, isMod, userId, message } = data;
+			const { token, auth, message } = data;
 
-			setToken(token);
-
-			localStorage.setItem('logged_in_status', JSON.stringify(auth));
-			localStorage.setItem('profileId', JSON.stringify(profileId));
-			localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
-			localStorage.setItem('isMod', JSON.stringify(isMod));
-			localStorage.setItem('userId', JSON.stringify(userId));
+			if(auth && token){
+				setToken(token);
+				decodeToken(token);
+			}
 
 			setOpenSuccess(true);
 			setSuccessMessage(message);
 
-			if (auth) {
-				window.location.href = '/backoffice/moderators';
-			}
+			window.location.href = '/backoffice/moderators';
 		},
 	});
 };

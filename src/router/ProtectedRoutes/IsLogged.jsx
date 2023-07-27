@@ -1,8 +1,12 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 const IsLogged = ({ auth }) => {
-	return auth ? <Outlet /> : <Navigate to="secret-login" />;
+
+	if(!auth){
+		window.location.href='/';
+	}
+	return (<Outlet />);
 };
 
 export default IsLogged;

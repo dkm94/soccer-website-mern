@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -10,11 +9,17 @@ import cards from 'seeds/dashboard_cards';
 
 const drawerWidth = 240;
 
-const profileId = JSON.parse(localStorage.getItem('profileId'));
-const path = window.location.pathname;
+const BackofficeComponent = ({ path, user }) => {
+	const [ profileId, setProfileId ] = useState(null);
+	const [ userId, setUserId ] = useState(null);
 
-const backofficeComponent = () => {
-	let { id } = useParams();
+	useEffect(() => {
+		if(user){
+			setProfileId(user.profileId);
+			setUserId(user.userId);
+		}
+	}, [ user ]);
+	
 	switch (path) {
 		// case '/backoffice':
 		// 	return <MainPage cards={cards} drawerWidth={drawerWidth} />;
@@ -22,10 +27,10 @@ const backofficeComponent = () => {
 			return <CreateArticleForm drawerWidth={drawerWidth} />;
 		case `/backoffice/articles/author/${ profileId }`:
 			return <UserArticlesPage drawerWidth={drawerWidth} profileId={profileId} path={path} />;
-		case `/backoffice/articles/edit/${ id }`:
+		case `/backoffice/articles/edit/${ profileId }`:
 			return <UpdateArticleForm drawerWidth={drawerWidth} />;
-		case `/backoffice/profile/${ id }`:
-			return <ProfilePage drawerWidth={drawerWidth} profileId={profileId} />;
+		case `/backoffice/profile/${ profileId }`:
+			return <ProfilePage drawerWidth={drawerWidth} profileId={profileId} userId={userId} />;
 		case '/backoffice/moderators':
 			return <ModeratorsPage drawerWidth={drawerWidth} />;
 		default:
@@ -33,26 +38,24 @@ const backofficeComponent = () => {
 	}
 };
 
-function ResponsiveDrawer() {
+function ResponsiveDrawer({ path, user }) {
 	const [ mobileOpen, setMobileOpen ] = React.useState(false);
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
 
-	// const container = window !== undefined ? () => window().document.body : undefined;
-
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
 			<Sidebar
-				// container={container}
 				drawerWidth={drawerWidth}
 				mobileOpen={mobileOpen}
 				handleDrawerToggle={handleDrawerToggle}
+				path={path} 
+				user={user}
 			/>
-			{/* {backofficeComponent[window.location.pathname]} */}
-			{backofficeComponent()}
+			<BackofficeComponent path={path} user={user} />
 		</Box>
 	);
 }

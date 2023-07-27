@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import { Box , useTheme } from '@mui/material';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { crop, scale } from '@cloudinary/url-gen/actions/resize';
 import { focusOn } from '@cloudinary/url-gen/qualifiers/gravity';
@@ -22,10 +21,7 @@ import { useUpdatePassword } from 'services/mutations/Users';
 import avatar from '../../../../src/images/avatar.png';
 import './Profile.css';
 
-const Profile = ({ drawerWidth, profileId }) => {
-	const userId = JSON.parse(localStorage.getItem('userId'));
-	let { id } = useParams();
-	const { palette } = useTheme();
+const Profile = ({ profileId, userId }) => {
 
 	const [ name, setName ] = useState('');
 	const [ handle, setHandle ] = useState('');
@@ -125,22 +121,22 @@ const Profile = ({ drawerWidth, profileId }) => {
 	const submitProfile = (e) => {
 		e.preventDefault();
 		editProfileMutation.mutate({
-			_id: id,
+			_id: profileId,
 			name,
 			handle,
 			intro,
 			file: files, 
-		}, id);
+		}, profileId);
 	};
 
 	const submitPassword = (e) => {
 		e.preventDefault();
 		updatePasswordMutation.mutate({
-			_id: id,
+			_id: profileId,
 			password: currentPwd,
 			newPwd,
 			confirmPwd, 
-		}, id);
+		}, profileId);
 	};
 
 	const handleImage = async (e) => {

@@ -19,9 +19,13 @@ import { ScrollToTop } from 'components/utils';
 
 const Admin = lazy(() => import('pages/Backoffice/Backoffice'));
 
-const auth = JSON.parse(localStorage.getItem('logged_in_status'));
-const isMod = JSON.parse(localStorage.getItem('isMod'));
-const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
+const user = JSON.parse(localStorage.getItem('soccer-user'));
+let isAdmin; 
+let isMod;
+if(user){
+	isAdmin = user.isAdmin;
+	isMod = user.isMod;
+}
 
 const path = window.location.pathname;
 
@@ -30,7 +34,7 @@ const App = () => {
 	return (
 		<>
 			<ScrollToTop />
-			<Navbar auth={auth} />
+			<Navbar auth={user} />
 			<Layout path={path}>
 				<Routes>
 					<Route path="/" element={<Navigate to="/home" />} />
@@ -41,9 +45,9 @@ const App = () => {
 					<Route path="/matchhistory" element={<Match />} />
 					<Route path="/news" element={<News />} />
 					<Route path="/news/:code/:id" element={<NewsPage />} />
-					<Route path="/secret-login" element={<Login auth={auth} />} />
-					<Route path="/account-validation" element={<AccountValidation auth={auth} />} />
-					<Route element={<IsLogged auth={auth} />}>
+					<Route path="/secret-login" element={<Login auth={user} />} />
+					<Route path="/account-validation" element={<AccountValidation auth={user} />} />
+					<Route element={<IsLogged auth={user} />}>
 						<Route
 							path="/backoffice"
 							element={
@@ -51,7 +55,7 @@ const App = () => {
 									FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
 									onReset={() => (window.location.href = '/')}>
 									<Suspense fallback={<LazyLoader />}>
-										<Admin path={path} />
+										<Admin path={path} user={user} />
 									</Suspense>
 								</ErrorBoundary>
 							}
@@ -63,7 +67,7 @@ const App = () => {
 									FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
 									onReset={() => (window.location.href = '/backoffice')}>
 									<Suspense fallback={<LazyLoader />}>
-										<Admin />
+										<Admin path={path} user={user} />
 									</Suspense>
 								</ErrorBoundary>
 							}
@@ -75,7 +79,7 @@ const App = () => {
 									FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
 									onReset={() => (window.location.href = '/backoffice')}>
 									<Suspense fallback={<LazyLoader />}>
-										<Admin />
+										<Admin path={path} user={user} />
 									</Suspense>
 								</ErrorBoundary>
 							}
@@ -88,7 +92,7 @@ const App = () => {
 										FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
 										onReset={() => (window.location.pathname = '/backoffice')}>
 										<Suspense fallback={<LazyLoader />}>
-											<Admin />
+											<Admin path={path} user={user} />
 										</Suspense>
 									</ErrorBoundary>
 								}
@@ -102,7 +106,7 @@ const App = () => {
 										FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
 										onReset={() => (window.location.href = '/backoffice')}>
 										<Suspense fallback={<LazyLoader />}>
-											<Admin />
+											<Admin path={path} user={user} />
 										</Suspense>
 									</ErrorBoundary>
 								}
@@ -114,7 +118,7 @@ const App = () => {
 										FallbackComponent={<Message code={'DEFAULT_ERROR'} img={true} />}
 										onReset={() => (window.location.href = '/backoffice')}>
 										<Suspense fallback={<LazyLoader />}>
-											<Admin />
+											<Admin path={path} user={user} />
 										</Suspense>
 									</ErrorBoundary>
 								}

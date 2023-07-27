@@ -52,20 +52,20 @@ const navItems = [
 ];
 
 const Navigation = ({ auth }) => {
-	const profileId = JSON.parse(localStorage.getItem('profileId'));
-	
 	const [ logoutText, setLogoutText ] = useState('');
 	const [ loginText, setLoginText ] = useState('');
 	const [ toggle, setToggle ] = useState(false);
+	const [ profileId, setProfileId ] = useState(null);
+	
+	useEffect(() => {
+		if(auth){
+			setProfileId(auth.profileId);
+		}
+	}, [ auth ]);
 
 	const logOut = () => {
 		console.log('déconnexion...');
-		localStorage.removeItem('logged_in_status');
-		localStorage.removeItem('profileId');
-		localStorage.removeItem('isAdmin');
-		localStorage.removeItem('isMod');
-		localStorage.removeItem('userId');
-		localStorage.removeItem('accountValidated');
+		localStorage.removeItem('soccer-user');
 		localStorage.removeItem('token');
 		console.log('Vous avez été déconnecté.');
 		window.location.href = '/';

@@ -8,9 +8,19 @@ import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import { Collapse, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
-const SideBarList = () => {
-	const profileId = JSON.parse(localStorage.getItem('profileId'));
-	const path = window.location.pathname;
+const SideBarList = ({ path, user }) => {
+
+	const [ profileId, setProfileId ] = useState(null);
+	const [ modStatus, setModStatus ] = useState(null);
+	const [ isAdmin, setIsAdmin ] = useState(null);
+
+	useEffect(() => {
+		if(user){
+			setProfileId(user.profileId);
+			setModStatus(user.isMod);
+			setIsAdmin(user.isAdmin);
+		}
+	}, [ user ]);
 
 	const [ selectedIndex, setSelectedIndex ] = useState(0);
 	const [ open, setOpen ] = useState(undefined);
@@ -19,13 +29,10 @@ const SideBarList = () => {
 		localStorage.setItem('list-item-idx', idx);
 	};
 
-	const modStatus = JSON.parse(localStorage.getItem('isMod'));
-	const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
-
 	useEffect(() => {
 		const idx = JSON.parse(localStorage.getItem('list-item-idx'));
 		setSelectedIndex(idx);
-		path.startsWith('/backoffice/articles') && setOpen(true);
+		path?.startsWith('/backoffice/articles') && setOpen(true);
 	}, []);
 
 	const handleClick = () => {
