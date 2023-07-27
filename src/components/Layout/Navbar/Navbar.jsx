@@ -75,6 +75,7 @@ const Navigation = ({ token, user }) => {
 		console.log('déconnexion...');
 		localStorage.removeItem('soccer-user');
 		localStorage.removeItem('token');
+		localStorage.removeItem('list-item-idx');
 		console.log('Vous avez été déconnecté.');
 		window.location.href = '/';
 	};

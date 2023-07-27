@@ -23,9 +23,11 @@ const token = localStorage.getItem('token');
 const user = JSON.parse(localStorage.getItem('soccer-user'));
 let isAdmin; 
 let isMod;
+let profileId;
 if(user){
 	isAdmin = user.isAdmin;
 	isMod = user.isMod;
+	profileId = user.profileId;
 }
 
 const path = window.location.pathname;
@@ -75,7 +77,7 @@ const App = () => {
 								</ErrorBoundary>
 							}
 						/>
-						<Route element={<IsAdmin isAdmin={isAdmin} />}>
+						<Route element={<IsAdmin isAdmin={isAdmin} profileId={profileId} />}>
 							<Route
 								path="/backoffice/moderators"
 								element={
