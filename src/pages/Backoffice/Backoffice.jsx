@@ -24,11 +24,11 @@ const BackofficeComponent = ({ path, user }) => {
 		// case '/backoffice':
 		// 	return <MainPage cards={cards} drawerWidth={drawerWidth} />;
 		case '/backoffice/articles/create':
-			return <CreateArticleForm drawerWidth={drawerWidth} />;
+			return <CreateArticleForm drawerWidth={drawerWidth} profileId={profileId} />;
 		case `/backoffice/articles/author/${ profileId }`:
 			return <UserArticlesPage drawerWidth={drawerWidth} profileId={profileId} path={path} />;
 		case `/backoffice/articles/edit/${ profileId }`:
-			return <UpdateArticleForm drawerWidth={drawerWidth} />;
+			return <UpdateArticleForm drawerWidth={drawerWidth} profileId={profileId} />;
 		case `/backoffice/profile/${ profileId }`:
 			return <ProfilePage drawerWidth={drawerWidth} profileId={profileId} userId={userId} />;
 		case '/backoffice/moderators':

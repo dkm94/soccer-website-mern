@@ -2,8 +2,7 @@
 import { useMutation } from 'react-query';
 import { createPost } from 'services/queries/mods_queries';
 
-const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError, setError) => {
-	const profileId = JSON.parse(localStorage.getItem('profileId'));
+const useCreatePost = (setSuccessMessage, setOpenSuccess, setOpenError, setError, profileId) => {
 
 	return useMutation({
 		mutationFn: createPost,

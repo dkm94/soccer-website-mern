@@ -49,7 +49,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const UpdateArticleForm = ({ drawerWidth }) => {
+const UpdateArticleForm = ({ drawerWidth, profileId }) => {
 	let { id } = useParams();
 
 	const [ title, setTitle ] = useState('');
@@ -77,7 +77,8 @@ const UpdateArticleForm = ({ drawerWidth }) => {
 		setErrorMessage,
 		setTempForm,
 		setErrorObj,
-		setFilename
+		setFilename,
+		profileId
 	);
 
 	const deleteMutation = useDeletePost(
@@ -85,7 +86,8 @@ const UpdateArticleForm = ({ drawerWidth }) => {
 		setOpenSuccess,
 		setOpenError,
 		setErrorMessage,
-		setErrorObj
+		setErrorObj,
+		profileId
 	);
 
 	const { palette } = useTheme();

@@ -7,10 +7,10 @@ const useDeletePost = (
 	setOpenSuccess,
 	setOpenError,
 	setErrorMessage,
-	setErrorObj
+	setErrorObj,
+	profileId
 ) => {
 	const queryClient = useQueryClient();
-	const profileId = JSON.parse(localStorage.getItem('profileId'));
 
 	return useMutation({
 		mutationFn: deletePost,
