@@ -1,4 +1,4 @@
-import jwt_decode from 'jwt-decode';
+import jwt_decode, { InvalidTokenError } from 'jwt-decode';
 
 function decodeToken(token){
 	try {
@@ -19,7 +19,13 @@ function decodeToken(token){
 		}
 
 	} catch (error) {
-		if(error) throw error;
+		const invalidTokenError = {
+			message: 'Access denied',
+			reason: 'Invalid token specified',
+		};
+		alert(JSON.stringify(invalidTokenError));
+		localStorage.removeItem('token');
+		window.location.href = '/';
 	}
 }
 

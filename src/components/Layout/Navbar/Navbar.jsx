@@ -8,6 +8,7 @@ import logo from '../../../images/toutlefoot-logo.png';
 
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import { decodeToken } from 'utils';
 
 const ButtonWrapper = styled(Link)(({ theme }) => ({
 	display: 'flex',
@@ -51,17 +52,24 @@ const navItems = [
 	},
 ];
 
-const Navigation = ({ auth }) => {
+const Navigation = ({ token, user }) => {
 	const [ logoutText, setLogoutText ] = useState('');
 	const [ loginText, setLoginText ] = useState('');
 	const [ toggle, setToggle ] = useState(false);
 	const [ profileId, setProfileId ] = useState(null);
 	
 	useEffect(() => {
-		if(auth){
-			setProfileId(auth.profileId);
+		if(token){
+			decodeToken(token);
 		}
-	}, [ auth ]);
+
+	}, []);
+
+	useEffect(() => {
+		if(user){
+			setProfileId(user.profileId);
+		}
+	}, []);
 
 	const logOut = () => {
 		console.log('déconnexion...');
@@ -72,9 +80,9 @@ const Navigation = ({ auth }) => {
 	};
 
 	useEffect(() => {
-		if(toggle && auth){
+		if(toggle && user){
 			setLogoutText('Log out');
-		} else if(toggle && !auth){
+		} else if(toggle && !user){
 			setLoginText('Log in');
 		} else {
 			setLogoutText('');
@@ -109,12 +117,12 @@ const Navigation = ({ auth }) => {
 									role="link"
 									key={item.id}
 									href={item?.path}
-									style={{ display: !auth && item?.id == 5 && 'none' }}
+									style={{ display: !user && item?.id == 5 && 'none' }}
 									id={window.location.pathname === item.path ? 'active' : ''}>
 									{item?.title}
 								</Nav.Link>
 							))}
-							{auth && (
+							{profileId && (
 								<>
 									<Nav.Link
 										key={6}
@@ -156,7 +164,7 @@ const Navigation = ({ auth }) => {
 							)}
 						</Nav>
 					</Navbar.Collapse>
-					{!auth ? 
+					{!user ? 
 						<ButtonWrapper to="/secret-login" reloadDocument>
 							<PersonIcon style={{ color: '#eae8e8' }} /> <LoginText className="nav-link">{loginText}</LoginText>
 						</ButtonWrapper>

@@ -19,6 +19,7 @@ import { ScrollToTop } from 'components/utils';
 
 const Admin = lazy(() => import('pages/Backoffice/Backoffice'));
 
+const token = localStorage.getItem('token');
 const user = JSON.parse(localStorage.getItem('soccer-user'));
 let isAdmin; 
 let isMod;
@@ -34,7 +35,7 @@ const App = () => {
 	return (
 		<>
 			<ScrollToTop />
-			<Navbar auth={user} />
+			<Navbar token={token} user={user} />
 			<Layout path={path}>
 				<Routes>
 					<Route path="/" element={<Navigate to="/home" />} />
@@ -47,7 +48,7 @@ const App = () => {
 					<Route path="/news/:code/:id" element={<NewsPage />} />
 					<Route path="/secret-login" element={<Login auth={user} />} />
 					<Route path="/account-validation" element={<AccountValidation auth={user} />} />
-					<Route element={<IsLogged auth={user} />}>
+					<Route element={<IsLogged token={token} />}>
 						<Route
 							path="/backoffice"
 							element={
