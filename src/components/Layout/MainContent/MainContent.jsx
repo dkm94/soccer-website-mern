@@ -18,7 +18,7 @@ const MainContent = ({ title, children, width }) => {
 			<Box
 				className="main-content"
 				sx={{
-					backgroundColor: palette.white.main,
+					backgroundColor: palette?.white?.main,
 					boxShadow: '0px 8px 24px -3px rgba(0,0,0,0.1)',
 					padding: '0 1rem 5rem 1rem',
 				}}>

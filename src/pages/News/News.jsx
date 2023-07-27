@@ -35,7 +35,7 @@ const News = () => {
 
 	return (
 		<article>
-			<Container className="news">
+			<Container className="news" data-testid={'news-component'}>
 				<MainContent title={'Latest articles'}>
 					<div className="news-component">
 						{isError && <Message code={'DEFAULT_ERROR'} img={true} />}

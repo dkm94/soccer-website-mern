@@ -25,7 +25,7 @@ const Competition = () => {
 
 	return (
 		<Col lg={8}>
-			<div className="layout-cols">
+			<div className="layout-cols" data-testid="competitions-component">
 				<MainContent title={'All competitions'}>
 					<StyledContainer>
 						{isError && <Message error={error} img={true} />}

@@ -139,7 +139,7 @@ const ModsTable = () => {
 			<Paper
 				sx={{
 					width: '100%',
-					backgroundColor: palette.white.main,
+					backgroundColor: palette?.white?.main,
 					boxShadow: 'none',
 					position: 'relative',
 					height: '100%',

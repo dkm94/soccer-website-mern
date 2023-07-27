@@ -8,11 +8,10 @@ const useEditPost = (
 	setOpenError,
 	setErrorMessage,
 	setTempForm,
-	setErrorObj
+	setErrorObj,
+	profileId
 ) => {
 	const queryClient = useQueryClient();
-
-	const profileId = JSON.parse(localStorage.getItem('profileId'));
 
 	return useMutation({
 		mutationFn: editPost,

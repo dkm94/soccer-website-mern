@@ -1,14 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import AppRouter from './router/AppRouter';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { Experimental_CssVarsProvider as CssVarsProvider,
+	experimental_extendTheme as extendTheme } from '@mui/material';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+
+import App from 'router/App';
+import ModalComponent from 'components/Modal/ModalComponent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient();
+import cssVars from 'styles/customVars';
+import muiTheme from 'styles/muiTheme';
+const THEME = createMuiTheme(muiTheme);
+const theme = extendTheme(cssVars);
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
+
 root.render(
-  <React.StrictMode>
-    <AppRouter />
-  </React.StrictMode>
+	<React.StrictMode>
+		<QueryClientProvider client={queryClient}>
+			<CssVarsProvider theme={theme}>
+				<MuiThemeProvider theme={THEME}>
+					<Router>
+						<App />
+					</Router>
+					<div className="clipping-container">
+						<ModalComponent />
+					</div>
+				</MuiThemeProvider>
+			</CssVarsProvider>
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
