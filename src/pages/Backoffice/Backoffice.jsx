@@ -39,7 +39,7 @@ const BackofficeComponent = ({ path, user }) => {
 };
 
 function ResponsiveDrawer({ path, user }) {
-	const [ mobileOpen, setMobileOpen ] = React.useState(false);
+	const [ mobileOpen, setMobileOpen ] = useState(false);
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
