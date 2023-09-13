@@ -13,4 +13,5 @@ module.exports = {
 	extensionsToTreatAsEsm: [ '.jsx' ],
 	setupFiles: [ '<rootDir>/test-setup.js' ],
 	setupFilesAfterEnv: [ '<rootDir>/setupTests.js' ],
+	testPathIgnorePatterns: [ '__utils__' ],
 };

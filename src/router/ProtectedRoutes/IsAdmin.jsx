@@ -5,7 +5,7 @@ const IsAdmin = ({ isAdmin, profileId }) => {
 
 	useEffect(() => {
 		if(!isAdmin){
-			window.location.replace(`/backoffice/articles/author/${ profileId }`);
+			window.location.href = `/backoffice/articles/author/${ profileId }`;
 		}
 	}, []);
 	return <Outlet />;
