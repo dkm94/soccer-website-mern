@@ -21,3 +21,21 @@
     background-color:  var(--palette-grey-lighter);
     padding: 0.5rem;
 }
+
+@media (max-width: 768px){
+    .author-intro {
+        gap: 15px;
+    }
+    .author-intro > div {
+        width: 100%;
+    }
+  }
+
+@media (max-width: 576px){
+    .news, .news-page {
+        padding: 0 !important;
+    }
+    .author-intro {
+       margin-top: 50px;
+    }
+  }
