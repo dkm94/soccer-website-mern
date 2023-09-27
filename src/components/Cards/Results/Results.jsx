@@ -45,9 +45,12 @@ const Results = ({ match }) => {
 			<Card.Body style={{ padding: '1rem' }}>
 				<Card.Title className="result-card__time">{handleTime(match?.utcDate)}</Card.Title>
 				<Container>
-					<Row className="justify-content-md-center">
+					<Row className="justify-content-md-center match">
 						<Col xs={4}>
-							<Container>
+							<Container style={{
+								margin: '0 !important', 
+								width: '100% !important', 
+							}}>
 								<Image src={match?.homeTeam?.crest} className="result-card__crest" />
 							</Container>
 							<span

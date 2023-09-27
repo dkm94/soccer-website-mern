@@ -4,6 +4,12 @@
     row-gap: 1rem;
 }
 
+@media (max-width: 768px){
+    .styled-container {
+        padding: 1rem;	
+    }
+}
+
 @media (max-width: 576px){
     .styled-container {
         padding: 0;
