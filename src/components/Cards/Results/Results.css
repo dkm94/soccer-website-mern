@@ -58,3 +58,17 @@
  .result-card__team-name {
   font-size: 1rem;
  }
+
+ .match {
+  justify-content: center;
+ }
+
+ 
+@media (max-width: 576px){
+  .match div:nth-child(odd){
+    /* width: 40%; */
+  }
+  .match div:nth-child(even){
+    width: 20%;
+  }
+}

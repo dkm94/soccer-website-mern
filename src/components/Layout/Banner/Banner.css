@@ -13,9 +13,9 @@
   color: var(--palette-white-main);
   padding: 0.24em 0.3em 0.25em;
   padding: 1rem;
-  /* z-index: 1000; */
+  top: 65px;
   width: 35%;
-  height: inherit;
+  height: 285.5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,5 +68,6 @@
 
   .banner-title {
     width: 100%;
+    height: 185.5px;
   }
 }

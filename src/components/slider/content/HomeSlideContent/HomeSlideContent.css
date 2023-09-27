@@ -22,8 +22,9 @@
     .home-slide-content{
         padding-top: 70px;
         padding-bottom: 50px;
-        /* padding-left: 150px;
-        padding-right: 100px; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .home-slide-content > p:first-child{
@@ -40,9 +41,9 @@
     }
 }
 
-@media (max-width: 400px){
+@media (max-width: 500px){
     .home-slide-content{
-        padding-left: 85px;
-        padding-right: 85px;
+        padding-left: 20%;
+        padding-right: 20%;
     }
 }
