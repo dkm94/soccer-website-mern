@@ -76,7 +76,7 @@ const NewsPage = () => {
 						<Container>
 							<Title variant="h1">{article?.title}</Title>
 							<Summary variant="h2">{article?.summary}</Summary>
-							<Grid container mb={2}>
+							<Grid container mb={2} className="author-intro">
 								<Grid item alignItems="flex-end" sm={12} md={6}>
 									<AuthorCard infos={author} />
 								</Grid>
