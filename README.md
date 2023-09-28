@@ -12,8 +12,6 @@
         •
         <a href="#architecture">Project folder description</a>
         •
-        <a href="#development">Development guide</a>
-        •
         <a href="#access">Access informations</a>
         •
         <a href="#contact">Credits</a>
@@ -21,7 +19,7 @@
 </div>
 
 <p align="center"> 
-    <img src="documentation/readme-assets/soccer-home.png" alt="home page" height="450" width="auto">
+    <img src="documentation/readme-assets/2lf-screen.png" alt="home page" height="450" width="auto">
 </p>
 
 ## Table of contents
@@ -33,9 +31,6 @@
   - [Trello](#trello)
 - [Built with](#built-with)
 - [Project folder description (src)](#project-folder-description-src)
-- [Development guide](#development-guide)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
 - [Access informations to backoffice](#access-informations-to-backoffice)
 - [Credits](#credits)
 
@@ -98,69 +93,12 @@ Hosting
 * Utils: custom hooks and other reusable functions
 
 
-## Development guide
-
-### Prerequisites
-
-<p>Make sure you have Node and NPM installed. Open your terminal, and type either of the following commands:</p>
-
-* Installation for Linux (Debian, Ubuntu):
-```sh
-# Here, we're installing Node.js v18
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-```
-```sh
-sudo apt-get install -y nodejs
-```
-
-
-* Installation for MacOS
-```sh
-brew install node
-```
-
-* Installation for Windows
-Please download Node from the offical website: https://nodejs.org/en/download
-
-<p>Once installed, you can verify Node and NPM versions with the following commands:</p>
-
-```sh
-Node --version
-```
-
-```sh
-npm --version
-```
-
-<p>Then, as this app uses a public soccer API, you need a API key to display soccer informations. </p>
-<p>Get a free API Key at https://www.football-data.org/client/register</p>
-
-
-### Installation
-
-1. Clone the repository
-   ```sh
-   git clone https://github.com/dkm94/soccer-website-mern.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Create a `.env` file and create a variable with your api-football.org API key
-   ```env
-   # You must create a custom environment variable beginning with REACT_APP_
-   REACT_APP_FOOTBALL_API_KEY='YOUR_API_KEY';
-   ```
-4. To run the app in development mode, use the command:
-   ```sh
-   npm start
-   ```
-
 ## Access informations to backoffice
 
 <p>You can have access to the backoffice through the following route:</p>
 https://2lefoot.netlify.app/secret-login
 <p>Please feel free to contact me to get the credentials and access more features.</p>
+
 
 ## Credits
 
