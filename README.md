@@ -19,7 +19,7 @@
 </div>
 
 <p align="center"> 
-    <img src="documentation/readme-assets/soccer-home.png" alt="home page" height="450" width="auto">
+    <img src="documentation/readme-assets/2lf-screen.png" alt="home page" height="450" width="auto">
 </p>
 
 ## Table of contents
