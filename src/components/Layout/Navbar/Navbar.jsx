@@ -21,7 +21,7 @@ const ButtonWrapper = styled(Link)(({ theme }) => ({
 	textTransform: 'uppercase',
 	gap: '5px',
 }));
-const LoginText = styled(Typography)(({ theme }) => ({
+const LoginText = styled(Typography)(() => ({
 	textDecoration: 'none',
 	placeSelf: 'center', 
 	fontSize: 'unset',
@@ -133,7 +133,6 @@ const Navigation = ({ token, user }) => {
 	};
 
 	const isBackoffice = window.location.pathname.includes('backoffice');
-	console.log('🚀 ~ file: Navbar.jsx:136 ~ Navigation ~ isBackoffice:', isBackoffice);
 
 	return (
 		<>
@@ -146,7 +145,7 @@ const Navigation = ({ token, user }) => {
 				// 	zIndex: 1000, 
 				// }}
 			>
-				<Container style={{ flexDirection: 'column' }}>
+				<Container className="nav-container">
 					<Navbar.Toggle className="nav-toggle" aria-controls="responsive-navbar-nav" onClick={toggleNav}/>
 					<Navbar.Brand href="/">
 						<img src={logo} alt="logo" className="logo" />
@@ -164,8 +163,48 @@ const Navigation = ({ token, user }) => {
 									{item?.title}
 								</Nav.Link>
 							))}
+							{profileId && (
+								<>
+									<Nav.Link
+										key={6}
+										href={'/backoffice/moderators'}
+										id={window.location.pathname === '/backoffice/moderators' ? 'active' : ''}
+										className="additional-links"
+										onClick={() => localStorage.setItem('list-item-idx', 0)}
+									>
+										Moderators
+									</Nav.Link>
+									<Nav.Link
+										key={7}
+										className="additional-links"
+										href={`/backoffice/profile/${ profileId }`}
+										id={window.location.pathname === `/backoffice/profile/${ profileId }` ? 'active' : ''}
+										onClick={() => localStorage.setItem('list-item-idx', 1)}
+									>
+										My profile
+									</Nav.Link>
+									<Nav.Link
+										key={8}
+										className="additional-links"
+										href={'/backoffice/articles/create'}
+										id={window.location.pathname === '/backoffice/articles/create' ? 'active' : ''}
+										onClick={() => localStorage.setItem('list-item-idx', 2)}
+									>
+										Create article
+									</Nav.Link>
+									<Nav.Link
+										key={9}
+										className="additional-links"
+										href={`/backoffice/articles/author/${ profileId }`}
+										id={window.location.pathname === `/backoffice/articles/author/${ profileId }` ? 'active' : ''}
+										onClick={() => localStorage.setItem('list-item-idx', 3)}
+									>
+										My articles
+									</Nav.Link>
+								</>
+							)}
 							<Button 
-								className="nav-link" 
+								className="nav-link bo-btn" 
 								style={{
 									fontSize: '1rem',
 									cursor: 'pointer',
@@ -207,48 +246,8 @@ const Navigation = ({ token, user }) => {
 									}} /> <LoginText className="nav-link">{loginText}</LoginText>
 								</ButtonWrapper>
 					 : <Button size="small" onClick={logOut} id="logout-btn" variant="text">
-                    					<ExitToAppIcon /> <Typography>{logoutText}</Typography>
+                    					<ExitToAppIcon /> <Typography marginLeft={2} fontSize="1rem" >{logoutText}</Typography>
 								</Button>}
-							{profileId && (
-								<>
-									<Nav.Link
-										key={6}
-										href={'/backoffice/moderators'}
-										id={window.location.pathname === '/backoffice/moderators' ? 'active' : ''}
-										className="additional-links"
-										onClick={() => localStorage.setItem('list-item-idx', 0)}
-									>
-										Moderators
-									</Nav.Link>
-									<Nav.Link
-										key={7}
-										className="additional-links"
-										href={`/backoffice/profile/${ profileId }`}
-										id={window.location.pathname === `/backoffice/profile/${ profileId }` ? 'active' : ''}
-										onClick={() => localStorage.setItem('list-item-idx', 1)}
-									>
-										My profile
-									</Nav.Link>
-									<Nav.Link
-										key={8}
-										className="additional-links"
-										href={'/backoffice/articles/create'}
-										id={window.location.pathname === '/backoffice/articles/create' ? 'active' : ''}
-										onClick={() => localStorage.setItem('list-item-idx', 2)}
-									>
-										Create article
-									</Nav.Link>
-									<Nav.Link
-										key={9}
-										className="additional-links"
-										href={`/backoffice/articles/author/${ profileId }`}
-										id={window.location.pathname === `/backoffice/articles/author/${ profileId }` ? 'active' : ''}
-										onClick={() => localStorage.setItem('list-item-idx', 3)}
-									>
-										My articles
-									</Nav.Link>
-								</>
-							)}
 						</Nav>
 					</Navbar.Collapse>
 					

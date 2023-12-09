@@ -1,3 +1,7 @@
+.nav-container {
+  flex-direction: column;
+}
+
 .nav-style {
   width: 100%;
   background-color: #fcfcfc;
@@ -45,8 +49,23 @@
 }
 
 @media only screen and (max-device-width: 991px) {
+  .nav-container {
+    flex-direction: row;
+    max-width: unset !important;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+  }
+  .navbar-brand {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .logo {
+    height: 78px;
+  }
+  .bo-btn {
+    display: none !important;
+  }
   .additional-links {
-    color: var(--palette-grey-lighter) !important;
     display: block !important;
   }
 
