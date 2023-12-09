@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { CreateArticleForm, UpdateArticleForm } from 'pages/Backoffice/Articles/Forms';
-import { MainPage, ModeratorsPage, ProfilePage, UserArticlesPage } from 'pages/Backoffice';
-import Sidebar from 'pages/Backoffice/Sidebar/Sidebar';
-import cards from 'seeds/dashboard_cards';
+import { ModeratorsPage, ProfilePage, UserArticlesPage } from 'pages/Backoffice';
+// import Sidebar from 'pages/Backoffice/Sidebar/Sidebar';
+// import cards from 'seeds/dashboard_cards';
 
 const drawerWidth = 240;
 
@@ -39,22 +39,22 @@ const BackofficeComponent = ({ path, user }) => {
 };
 
 function ResponsiveDrawer({ path, user }) {
-	const [ mobileOpen, setMobileOpen ] = useState(false);
+	// const [ mobileOpen, setMobileOpen ] = useState(false);
 
-	const handleDrawerToggle = () => {
-		setMobileOpen(!mobileOpen);
-	};
+	// const handleDrawerToggle = () => {
+	// 	setMobileOpen(!mobileOpen);
+	// };
 
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
-			<Sidebar
+			{/* <Sidebar
 				drawerWidth={drawerWidth}
 				mobileOpen={mobileOpen}
 				handleDrawerToggle={handleDrawerToggle}
 				path={path} 
 				user={user}
-			/>
+			/> */}
 			<BackofficeComponent path={path} user={user} />
 		</Box>
 	);
