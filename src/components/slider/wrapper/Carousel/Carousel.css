@@ -3,7 +3,7 @@
 }
 
 .home-banner {
-  margin-top: 64px;
+  /* margin-top: 64px; */
 }
 
 .back-btn {
@@ -53,7 +53,7 @@
 }
 
 .home-carousel {
-  height: 420px !important;
+  height: 550px !important;
 }
 
 .home-carousel > div, .home-carousel > div > div, .home-carousel > div > div > div, .home-carousel > div > div > div > div {

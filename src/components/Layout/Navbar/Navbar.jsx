@@ -4,7 +4,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
 
-import logo from '../../../images/toutlefoot-logo.png';
+import logo from '../../../images/Logo-PZ.png';
 
 import './Navbar.css';
 import { Link } from 'react-router-dom';
@@ -101,14 +101,15 @@ const Navigation = ({ token, user }) => {
 				collapseOnSelect
 				expand="lg"
 				className="nav-style"
-				style={{
-					position: 'fixed',
-					zIndex: 1000, 
-				}}>
-				<Container>
+				// style={{
+				// 	position: 'fixed',
+				// 	zIndex: 1000, 
+				// }}
+			>
+				<Container style={{ flexDirection: 'column' }}>
 					<Navbar.Toggle className="nav-toggle" aria-controls="responsive-navbar-nav" onClick={toggleNav}/>
 					<Navbar.Brand href="/">
-						<div className="logo-style">2LEFOOT</div>
+						<img src={logo} alt="logo" className="logo" />
 					</Navbar.Brand>
 					<Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
 						<Nav className="nav-items" role="menu" >
@@ -123,6 +124,16 @@ const Navigation = ({ token, user }) => {
 									{item?.title}
 								</Nav.Link>
 							))}
+							{!user ? 
+								<ButtonWrapper to="/secret-login" reloadDocument>
+									<PersonIcon style={{
+										color: '#eae8e8',
+										alignSelf: 'center', 
+									}} /> <LoginText className="nav-link">{loginText}</LoginText>
+								</ButtonWrapper>
+					 : <Button size="small" onClick={logOut} id="logout-btn" variant="text">
+                    					<ExitToAppIcon /> <Typography>{logoutText}</Typography>
+								</Button>}
 							{profileId && (
 								<>
 									<Nav.Link
@@ -165,13 +176,7 @@ const Navigation = ({ token, user }) => {
 							)}
 						</Nav>
 					</Navbar.Collapse>
-					{!user ? 
-						<ButtonWrapper to="/secret-login" reloadDocument>
-							<PersonIcon style={{ color: '#eae8e8' }} /> <LoginText className="nav-link">{loginText}</LoginText>
-						</ButtonWrapper>
-					 : <Button size="small" onClick={logOut} id="logout-btn" variant="text">
-                    					<ExitToAppIcon /> <Typography>{logoutText}</Typography>
-						</Button>}
+					
 				</Container>
 			</Navbar>
 		</>
