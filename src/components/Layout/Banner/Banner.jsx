@@ -1,5 +1,4 @@
 import React from 'react';
-import { Typography } from '@mui/material';
 
 import data from './data.json';
 
@@ -15,27 +14,27 @@ const Banner = ({ path }) => {
 	const newsImg = `url("/images/banner${ data.bannerElements[ '/news' ].img }")`;
 
 	return (
-		<div
-			className="banner"
-			style={
-				competitionPage
-					? {
-						backgroundImage: competitionsImg,
-						backgroundPosition: 'top',
-					}
-					: newsPage
+		<div>
+			<div
+				className="banner"
+				style={
+					competitionPage
 						? {
-							backgroundImage: newsImg,
-							backgroundPosition: 'top',
+							backgroundImage: competitionsImg,
+							backgroundPosition: 'center',
 						}
-						: {
-							backgroundImage: `url("/images/banner${ element?.img }")`,
-							backgroundPosition: 'top',
-						}
-			}>
-			<Typography variant="h1" className="banner-title">
-				{competitionPage ? 'Competitions' : newsPage ? 'News' : element?.title}
-			</Typography>
+						: newsPage
+							? {
+								backgroundImage: newsImg,
+								backgroundPosition: 'center',
+							}
+							: {
+								backgroundImage: `url("/images/banner${ element?.img }")`,
+								backgroundPosition: 'center',
+							}
+				}>
+				
+			</div>
 		</div>
 	);
 };

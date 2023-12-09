@@ -9,7 +9,7 @@
 .back-btn {
   position: absolute;
   left: 0;
-  bottom: 50%;
+  bottom: 40%;
   border: none;
   background: none;
   margin-left: 3.5rem;
@@ -18,7 +18,7 @@
 .next-btn {
   position: absolute;
   right: 0;
-  bottom: 50%;
+  bottom: 40%;
   border: none;
   background: none;
   margin-right: 3.5rem;

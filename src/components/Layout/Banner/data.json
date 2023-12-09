@@ -13,11 +13,11 @@
       "title": "Competitions"
     },
     "/matchhistory": {
-      "img": "/favorites.jpeg",
+      "img": "/favorites.jpg",
       "title": "Match history"
     },
     "/news": {
-      "img": "/Miguel_Timm.webp",
+      "img": "/news.jpg",
       "title": "News"
     }
   }
