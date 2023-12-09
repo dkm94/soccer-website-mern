@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Typography , Button, styled } from '@mui/material';
@@ -10,7 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 import logo from '../../../images/Logo-PZ.png';
 
 import './Navbar.css';
-import { Link } from 'react-router-dom';
 import { decodeToken } from 'utils';
 
 const ButtonWrapper = styled(Link)(({ theme }) => ({

@@ -48,7 +48,8 @@
 
 .carousel-img {
   width: 100%;
-  height: auto;
+  /* height: auto; */
+  height: inherit;
   object-fit: cover;
 }
 
@@ -76,5 +77,8 @@
 
   .dot-group-btns {
     display: none;
+  }
+  .home-carousel {
+    height: 350px !important;
   }
 }
