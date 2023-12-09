@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Typography , Button, styled } from '@mui/material';
+
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Typography , Button, styled } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 import logo from '../../../images/Logo-PZ.png';
 
@@ -45,11 +48,11 @@ const navItems = [
 		title: 'news',
 		path: '/news',
 	},
-	{
-		id: 5,
-		title: 'backoffice',
-		path: '/backoffice/moderators',
-	},
+	// {
+	// 	id: 5,
+	// 	title: 'backoffice',
+	// 	path: '/backoffice/moderators',
+	// },
 ];
 
 const Navigation = ({ token, user }) => {
@@ -57,6 +60,32 @@ const Navigation = ({ token, user }) => {
 	const [ loginText, setLoginText ] = useState('');
 	const [ toggle, setToggle ] = useState(false);
 	const [ profileId, setProfileId ] = useState(null);
+
+	const backofficeLinks = [
+		{
+			id: 5,
+			title: 'moderators',
+			path: '/backoffice/moderators',
+		},
+		{
+			id: 6,
+			title: 'my profile',
+			path: `/backoffice/profile/${ profileId }`,
+		},
+		{
+			id: 7,
+			title: 'create article',
+			path: '/backoffice/articles/create',
+		},
+		{
+			id: 8,
+			title: 'my articles',
+			path: `/backoffice/articles/author/${ profileId }`,
+		},
+	];
+
+	const [ anchorEl, setAnchorEl ] = useState(null);
+	const open = Boolean(anchorEl);
 	
 	useEffect(() => {
 		if(token){
@@ -70,6 +99,14 @@ const Navigation = ({ token, user }) => {
 			setProfileId(user.profileId);
 		}
 	}, []);
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	  };
+
+	const handleClick = (e) => {
+		setAnchorEl(e.currentTarget);
+	};
 
 	const logOut = () => {
 		console.log('déconnexion...');
@@ -95,6 +132,9 @@ const Navigation = ({ token, user }) => {
 		setToggle(!toggle);
 	};
 
+	const isBackoffice = window.location.pathname.includes('backoffice');
+	console.log('🚀 ~ file: Navbar.jsx:136 ~ Navigation ~ isBackoffice:', isBackoffice);
+
 	return (
 		<>
 			<Navbar
@@ -119,11 +159,46 @@ const Navigation = ({ token, user }) => {
 									role="link"
 									key={item.id}
 									href={item?.path}
-									style={{ display: !user && item?.id == 5 && 'none' }}
+									// style={{ display: !user && item?.id == 5 && 'none' }}
 									id={window.location.pathname === item.path ? 'active' : ''}>
 									{item?.title}
 								</Nav.Link>
 							))}
+							<Button 
+								className="nav-link" 
+								style={{
+									fontSize: '1rem',
+									cursor: 'pointer',
+									backgroundColor: isBackoffice && '#dcdee2 ',
+								}}
+								id={`basic-button ${ isBackoffice ? 'active' : '' }`}
+								aria-controls={open ? 'basic-menu' : undefined}
+								aria-haspopup="true"
+								aria-expanded={open ? 'true' : undefined}
+								onClick={handleClick}
+							>BACKOFFICE</Button>
+							<Menu
+								id="basic-menu"
+								anchorEl={anchorEl}
+								open={open}
+								onClose={handleClose}
+								MenuListProps={{ 'aria-labelledby': 'basic-button' }}
+							>
+								{backofficeLinks?.map((item) => (
+									<MenuItem 
+										key={item.id} 
+										onClick={handleClose} 
+										style={{ textTransform: 'capitalize' }}
+									>
+										<Nav.Link
+											title={item?.title}
+											role="link"
+											key={item.id}
+											href={item?.path}
+										>{item?.title}</Nav.Link>
+									</MenuItem>
+								))}
+							</Menu>
 							{!user ? 
 								<ButtonWrapper to="/secret-login" reloadDocument>
 									<PersonIcon style={{

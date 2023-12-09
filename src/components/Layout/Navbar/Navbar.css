@@ -35,9 +35,9 @@
 }
 
 #active {
-  font-weight: 600;
   background-color: #dcdee2 !important;
   color: black !important;
+  border-radius: 4px;
 }
 
 .additional-links {
