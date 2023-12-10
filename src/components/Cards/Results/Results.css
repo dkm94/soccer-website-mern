@@ -64,9 +64,6 @@
 
  
 @media (max-width: 576px){
-  .match div:nth-child(odd){
-    /* width: 40%; */
-  }
   .match div:nth-child(even){
     width: fit-content;
   }

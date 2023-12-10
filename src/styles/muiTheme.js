@@ -8,20 +8,18 @@ const muiTheme = {
 				},
 			},
 		},
-		MuiInputLabel: {
-			styleOverrides: {
-				root: {
-					// fontSize: '0.9rem'
-				},
-			},
-		},
-		MuiOutlinedInput: {
-			styleOverrides: {
-				root: {
-					// fontSize: '0.9rem'
-				},
-			},
-		},
+		// MuiInputLabel: {
+		// 	styleOverrides: {
+
+		// 	},
+		// },
+		// MuiOutlinedInput: {
+		// 	styleOverrides: {
+		// 		root: {
+		// 			// fontSize: '0.9rem'
+		// 		},
+		// 	},
+		// },
 	},
 	palette: {
 		primary: {
