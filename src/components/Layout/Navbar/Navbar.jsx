@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Typography , Button, styled } from '@mui/material';
@@ -12,6 +13,7 @@ import logo from '../../../images/Logo-PZ.png';
 
 import './Navbar.css';
 import { decodeToken } from 'utils';
+import useSticky from 'utils/hooks/useSticky';
 
 const ButtonWrapper = styled(Link)(({ theme }) => ({
 	display: 'flex',
@@ -48,14 +50,11 @@ const navItems = [
 		title: 'news',
 		path: '/news',
 	},
-	// {
-	// 	id: 5,
-	// 	title: 'backoffice',
-	// 	path: '/backoffice/moderators',
-	// },
 ];
 
 const Navigation = ({ token, user }) => {
+	const { sticky, stickyRef } = useSticky();
+
 	const [ logoutText, setLogoutText ] = useState('');
 	const [ loginText, setLoginText ] = useState('');
 	const [ toggle, setToggle ] = useState(false);
@@ -140,17 +139,15 @@ const Navigation = ({ token, user }) => {
 				collapseOnSelect
 				expand="lg"
 				className="nav-style"
-				// style={{
-				// 	position: 'fixed',
-				// 	zIndex: 1000, 
-				// }}
 			>
 				<Container className="nav-container">
-					<Navbar.Toggle className="nav-toggle" aria-controls="responsive-navbar-nav" onClick={toggleNav}/>
-					<Navbar.Brand href="/">
-						<img src={logo} alt="logo" className="logo" />
-					</Navbar.Brand>
-					<Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
+					<div className="header flex">
+						<Navbar.Toggle className="nav-toggle" aria-controls="responsive-navbar-nav" onClick={toggleNav}/>
+						<Navbar.Brand href="/">
+							<img src={logo} alt="logo" className="logo" />
+						</Navbar.Brand>
+					</div>
+					<Navbar.Collapse ref={stickyRef} className={classNames('nav flex justify-content-center', { sticky })} id="responsive-navbar-nav">
 						<Nav className="nav-items" role="menu" >
 							{navItems?.map((item) => (
 								<Nav.Link
@@ -158,7 +155,6 @@ const Navigation = ({ token, user }) => {
 									role="link"
 									key={item.id}
 									href={item?.path}
-									// style={{ display: !user && item?.id == 5 && 'none' }}
 									id={window.location.pathname === item.path ? 'active' : ''}>
 									{item?.title}
 								</Nav.Link>
@@ -204,7 +200,13 @@ const Navigation = ({ token, user }) => {
 								</>
 							)}
 							<Button 
-								className="nav-link bo-btn" 
+								className="nav-link bo-btn"
+								sx={{
+									'&.MuiButton-root:hover': {
+										backgroundColor: 'transparent',
+										color: '#ad0606', 
+									}, 
+								}}
 								style={{
 									fontSize: '1rem',
 									cursor: 'pointer',
@@ -245,12 +247,16 @@ const Navigation = ({ token, user }) => {
 										alignSelf: 'center', 
 									}} /> <LoginText className="nav-link">{loginText}</LoginText>
 								</ButtonWrapper>
-					 : <Button size="small" onClick={logOut} id="logout-btn" variant="text">
+					 : <Button size="small" sx={{ '&.MuiButton-root:hover': { backgroundColor: 'transparent' } }} onClick={logOut} id="logout-btn" variant="text">
                     					<ExitToAppIcon /> <Typography marginLeft={2} fontSize="1rem" >{logoutText}</Typography>
 								</Button>}
 						</Nav>
 					</Navbar.Collapse>
-					
+					{sticky && (
+						<div
+							style={{ height: `${ stickyRef.current?.clientHeight }px` }}
+						/>
+					)}
 				</Container>
 			</Navbar>
 		</>
