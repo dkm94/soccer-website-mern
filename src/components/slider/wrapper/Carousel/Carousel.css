@@ -61,6 +61,12 @@
   height: 100%;
 }
 
+@media (max-width: 991px){
+  .home-banner {
+    margin-top: 108px;
+  }
+}
+
 @media (max-width: 768px){
   .carousel-img {
     height: 100%;
@@ -80,5 +86,24 @@
   }
   .home-carousel {
     height: 350px !important;
+  }
+}
+
+@media (max-width: 500px){
+  .next-btn > svg, .back-btn > svg {
+    font-size: 40px;
+  }
+  .next-btn {
+    margin-right: 0;
+  }
+  .back-btn {
+    left: 0;
+    margin-left: 0;
+  }
+  .home-carousel {
+    height: 260px !important;
+  }
+  .home-banner {
+    margin-top: 67px;
   }
 }

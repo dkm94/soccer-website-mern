@@ -50,17 +50,6 @@
 .desktop-nav {
   display: flex;
 }
-
-.logo-style {
-  font-family: 'Russo One', sans-serif;
-  background-color: var(--palette-primary-light);
-  padding: 4px 6px;
-  /* border-radius: 3px; */
-  font-weight: 800;
-  color: var(--palette-primary-main) !important;
-  -webkit-text-stroke: 1px var(--palette-primary-dark);
-  letter-spacing: 1px;
-}
 .logo {
   height: 100px;
 }
@@ -160,5 +149,17 @@
     width: unset !important;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@media only screen and (max-device-width: 500px) {
+  .header {
+    height: 60px;
+  }
+  .logo {
+    height: 60px;
+  }
+  .nav-items > a {
+    font-size: 0.8rem;
   }
 }

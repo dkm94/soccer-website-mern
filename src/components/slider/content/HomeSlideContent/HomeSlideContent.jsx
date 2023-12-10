@@ -19,7 +19,8 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 		'-webkit-line-clamp': '3',
 		'-webkit-box-orient': 'vertical',
 		textOverflow: 'ellipsis',
-		overflow: 'hidden', 
+		overflow: 'hidden',
+		lineHeight: '2', 
 	});
 
 	const RedirectionButton = styled(Button)(({ theme }) => ({
@@ -36,10 +37,10 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 		<div
 			className="home-slide-content"
 		>
-			<Title>{title}</Title>
-			<Description>{summary}</Description>
+			<Title className="slider-title">{title}</Title>
+			<Description className="slider-description">{summary}</Description>
 			<Box sx={{ marginTop: '1rem' }}>
-				<RedirectionButton href={`/news/${ code }/${ id }`}>Read the article</RedirectionButton>
+				<RedirectionButton className="redirection-btn" href={`/news/${ code }/${ id }`}>Read the article</RedirectionButton>
 			</Box>
 		</div>
 	);
