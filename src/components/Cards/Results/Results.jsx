@@ -39,7 +39,7 @@ const Results = ({ match }) => {
 
 	return (
 		<CardContainer key={match?.id} className="text-center">
-			<Card.Header id="result-card__header">
+			<Card.Header id="result-card__header" className="family-bellota-bold">
 				{match?.competition?.name} - Matchday {match?.matchday}
 			</Card.Header>
 			<Card.Body style={{ padding: '1rem' }}>
@@ -54,7 +54,7 @@ const Results = ({ match }) => {
 								<Image src={match?.homeTeam?.crest} className="result-card__crest" />
 							</Container>
 							<span
-								className="result-card__team-name"
+								className="result-card__team-name family-inter-bold"
 								style={{ fontWeight: getFontWeight(htScore) }}>
 								{match?.homeTeam?.shortName}
 							</span>
@@ -75,7 +75,7 @@ const Results = ({ match }) => {
 								<Image src={match?.awayTeam?.crest} className="result-card__crest" />
 							</Container>
 							<span
-								className="result-card__team-name"
+								className="result-card__team-name family-inter-bold"
 								style={{ fontWeight: getFontWeight(atScore) }}>
 								{match?.awayTeam?.shortName}
 							</span>
@@ -84,7 +84,7 @@ const Results = ({ match }) => {
 				</Container>
 				<Card.Text>{!match?.group && null}</Card.Text>
 			</Card.Body>
-			<Card.Footer className={status[ match?.status ]?.style}>
+			<Card.Footer className={`${status[ match?.status ]?.style} family-inter-bold`}>
 				{status[ match?.status ]?.icon} {status[ match?.status ]?.title}
 			</Card.Footer>
 		</CardContainer>

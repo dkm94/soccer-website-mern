@@ -38,6 +38,9 @@
   text-transform: uppercase;
   margin: 0 !important;
 }
+.banner-wrapper {
+  height: 400px;
+}
 
 @media (max-width: 1200px){
   .banner-title {
@@ -46,6 +49,12 @@
 
   .banner-title > h1 {
     margin-left: 100px !important;
+  }
+}
+
+@media (max-width: 991px){
+  .banner-wrapper {
+    margin-top: 108px;
   }
 }
 

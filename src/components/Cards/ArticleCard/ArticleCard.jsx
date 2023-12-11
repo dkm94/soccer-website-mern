@@ -17,7 +17,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 	flexDirection: 'column',
 	paddingBottom: 0,
 	' span:nth-child(1)': {
-		fontFamily: '\'Adamina\', serif',
+		fontFamily: '\'Inter\', sans-serif',
 		display: '-webkit-box',
 		'-webkit-line-clamp': '2',
 		'-webkit-box-orient': 'vertical',
@@ -50,7 +50,7 @@ const ArticleCard = ({ id, title, topic, file, date }) => {
 			</Grid>
 			<Content>
 				<span>{title}</span>
-				<span>Posted on {formattedDate}</span>
+				<span className="family-inter-reg">Posted on {formattedDate}</span>
 			</Content>
 		</Card>
 	);

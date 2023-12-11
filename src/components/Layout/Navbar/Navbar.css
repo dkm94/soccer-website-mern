@@ -1,7 +1,9 @@
 .nav-container {
   flex-direction: column;
 }
-
+.navbar-expand-lg .navbar-nav .nav-link {
+  font-family: 'Bellota Text', sans-serif;
+}
 .header {
   height: 144px;
 }
@@ -78,7 +80,7 @@
   font-size: 5rem !important;
 }
 
-@media only screen and (max-device-width: 991px) {
+@media only screen and (max-width: 991px) {
   .sticky {
     position: unset;
     box-shadow: none;
@@ -140,7 +142,7 @@
     height: 100px;
   }
 }
-@media only screen and (max-device-width: 991px) {
+@media only screen and (max-width: 991px) {
   .nav-container {
     margin-left: 20px !important;
     margin-right: 20px !important;
@@ -152,7 +154,7 @@
   }
 }
 
-@media only screen and (max-device-width: 500px) {
+@media only screen and (max-width: 500px) {
   .header {
     height: 60px;
   }

@@ -10,7 +10,7 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 	const Title = styled(Typography)({
 		fontSize: '2rem',
 		fontWeight: '700',
-		fontFamily: '\'Adamina\', serif',
+		fontFamily: '\'Bellota Text\', serif',
 	});
 
 	const Description = styled(Typography)({
@@ -21,6 +21,8 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 		textOverflow: 'ellipsis',
 		overflow: 'hidden',
 		lineHeight: '2', 
+		fontFamily: '\'Inter\', sans-serif',
+		fontWeight: '300',
 	});
 
 	const RedirectionButton = styled(Button)(({ theme }) => ({
@@ -28,6 +30,7 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 		color: theme.palette.primary.contrastText,
 		border: 'none',
 		textTransform: 'unset',
+		fontFamily: '\'Bellota Text\', serif',
 	}));
 
 	const competition = competitionSeeds.filter((competition) => competition.idx == topic);

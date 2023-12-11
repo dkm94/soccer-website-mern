@@ -8,6 +8,14 @@ const muiTheme = {
 				},
 			},
 		},
+		MuiButton: {
+			styleOverrides: {
+				root: {
+					// fontFamily: '\'Adamina\', serif',
+					// fontSize: '3rem',
+				},
+			},
+		},
 		// MuiInputLabel: {
 		// 	styleOverrides: {
 
@@ -53,7 +61,7 @@ const muiTheme = {
 		},
 	},
 	typography: {
-		fontFamily: '\'Adamina\', serif',
+		// fontFamily: '\'Adamina\', serif',
 		h2: { fontSize: '1rem' },
 		h6: { fontWeight: 600 },
 		body1: { fontSize: '0.8rem' },

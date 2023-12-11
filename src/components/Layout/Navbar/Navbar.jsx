@@ -155,7 +155,8 @@ const Navigation = ({ token, user }) => {
 									role="link"
 									key={item.id}
 									href={item?.path}
-									id={window.location.pathname === item.path ? 'active' : ''}>
+									// id={window.location.pathname === item.path ? 'active' : ''}
+								>
 									{item?.title}
 								</Nav.Link>
 							))}
@@ -164,7 +165,7 @@ const Navigation = ({ token, user }) => {
 									<Nav.Link
 										key={6}
 										href={'/backoffice/moderators'}
-										id={window.location.pathname === '/backoffice/moderators' ? 'active' : ''}
+										// id={window.location.pathname === '/backoffice/moderators' ? 'active' : ''}
 										className="additional-links"
 										onClick={() => localStorage.setItem('list-item-idx', 0)}
 									>
@@ -174,7 +175,7 @@ const Navigation = ({ token, user }) => {
 										key={7}
 										className="additional-links"
 										href={`/backoffice/profile/${ profileId }`}
-										id={window.location.pathname === `/backoffice/profile/${ profileId }` ? 'active' : ''}
+										// id={window.location.pathname === `/backoffice/profile/${ profileId }` ? 'active' : ''}
 										onClick={() => localStorage.setItem('list-item-idx', 1)}
 									>
 										My profile
@@ -183,7 +184,7 @@ const Navigation = ({ token, user }) => {
 										key={8}
 										className="additional-links"
 										href={'/backoffice/articles/create'}
-										id={window.location.pathname === '/backoffice/articles/create' ? 'active' : ''}
+										// id={window.location.pathname === '/backoffice/articles/create' ? 'active' : ''}
 										onClick={() => localStorage.setItem('list-item-idx', 2)}
 									>
 										Create article
@@ -192,14 +193,14 @@ const Navigation = ({ token, user }) => {
 										key={9}
 										className="additional-links"
 										href={`/backoffice/articles/author/${ profileId }`}
-										id={window.location.pathname === `/backoffice/articles/author/${ profileId }` ? 'active' : ''}
+										// id={window.location.pathname === `/backoffice/articles/author/${ profileId }` ? 'active' : ''}
 										onClick={() => localStorage.setItem('list-item-idx', 3)}
 									>
 										My articles
 									</Nav.Link>
 								</>
 							)}
-							<Button 
+							{token && <Button 
 								className="nav-link bo-btn"
 								sx={{
 									'&.MuiButton-root:hover': {
@@ -210,14 +211,15 @@ const Navigation = ({ token, user }) => {
 								style={{
 									fontSize: '1rem',
 									cursor: 'pointer',
-									backgroundColor: isBackoffice && '#dcdee2 ',
+									fontWeight: isBackoffice && 'bold ',
 								}}
-								id={`basic-button ${ isBackoffice ? 'active' : '' }`}
+								// id={`basic-button ${ isBackoffice ? 'active' : '' }`}
+								id={'basic-button'}
 								aria-controls={open ? 'basic-menu' : undefined}
 								aria-haspopup="true"
 								aria-expanded={open ? 'true' : undefined}
 								onClick={handleClick}
-							>BACKOFFICE</Button>
+							>BACKOFFICE</Button>}
 							<Menu
 								id="basic-menu"
 								anchorEl={anchorEl}
