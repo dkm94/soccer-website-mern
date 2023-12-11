@@ -122,8 +122,8 @@ const Navigation = ({ token, user }) => {
 		} else if(toggle && !user){
 			setLoginText('Log in');
 		} else {
-			setLogoutText('');
-			setLoginText('');
+			// setLogoutText('');
+			// setLoginText('');
 		}
 	}, [ toggle ]);
 
@@ -250,7 +250,7 @@ const Navigation = ({ token, user }) => {
 									}} /> <LoginText className="nav-link">{loginText}</LoginText>
 								</ButtonWrapper>
 					 : <Button size="small" sx={{ '&.MuiButton-root:hover': { backgroundColor: 'transparent' } }} onClick={logOut} id="logout-btn" variant="text">
-                    					<ExitToAppIcon /> <Typography marginLeft={2} fontSize="1rem" >{logoutText}</Typography>
+                    					<ExitToAppIcon /> <Typography marginLeft={2} fontSize="1rem" fontFamily="'Bellota Text', serif" >{logoutText}</Typography>
 								</Button>}
 						</Nav>
 					</Navbar.Collapse>
