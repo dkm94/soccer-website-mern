@@ -12,11 +12,27 @@
   flex-direction: column;
 }
 
+.family-bellota-reg {
+  font-family: 'Bellota Text', serif;
+  font-weight: 300;
+}
+.family-bellota-bold {
+  font-family: 'Bellota Text', serif;
+  font-weight: 400;
+}
+.family-inter-reg {
+  font-family: 'Inter', serif;
+  font-weight: 300;
+}
+.family-inter-bold {
+  font-family: 'Inter', serif;
+  font-weight: 400;
+}
+
 .title-section {
   /* font-size: 2rem !important; */
   font-size: 1.1rem !important;
   font-weight: 600 !important;
-  font-family: 'Adamina', serif !important;
   margin-top: 1rem !important;
   color: var(--palette-black-light)
 }
@@ -68,5 +84,13 @@
   @media (max-width: 576px){
     .layout {
       padding-top: 2rem;
+      margin-top: 108px;
     }
+  }
+
+  @media (max-width: 500px){
+    .layout {
+      margin-top: 64px;
+    }
+
   }

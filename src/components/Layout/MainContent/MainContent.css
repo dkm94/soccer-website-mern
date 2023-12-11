@@ -7,8 +7,8 @@
   padding: 1rem;
   /* text-transform: uppercase !important; */
   margin: 0;
-  /* font-size: 1rem !important; */
-  font-family: 'Adamina', serif !important
+  font-size: 1rem;
+  font-family: 'Bellota Text', serif !important;
   /* z-index: 1000; */
 }
 
@@ -32,7 +32,7 @@
     background-color: unset;
     color: #000;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   .main-content {

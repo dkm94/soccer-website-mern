@@ -1,13 +1,15 @@
 .scoreboard-header > #name {
-  font-family: 'Adamina', serif !important;
-  font-size: 1.75rem;
+  font-family: 'Bellota Text', serif;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 .scoreboard-header > #season {
-  font-size: 1.25rem;
+  font-size: 0.8rem;
+  font-family: 'Inter', serif;
 }
 .scoreboard-header > #matchday {
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-family: 'Inter', serif;
 }
 
 .scoreboard-header__img {

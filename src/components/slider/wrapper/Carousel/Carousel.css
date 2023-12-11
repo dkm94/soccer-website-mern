@@ -3,13 +3,13 @@
 }
 
 .home-banner {
-  margin-top: 64px;
+  /* margin-top: 64px; */
 }
 
 .back-btn {
   position: absolute;
   left: 0;
-  bottom: 50%;
+  bottom: 40%;
   border: none;
   background: none;
   margin-left: 3.5rem;
@@ -18,7 +18,7 @@
 .next-btn {
   position: absolute;
   right: 0;
-  bottom: 50%;
+  bottom: 40%;
   border: none;
   background: none;
   margin-right: 3.5rem;
@@ -48,16 +48,23 @@
 
 .carousel-img {
   width: 100%;
-  height: auto;
+  /* height: auto; */
+  height: inherit;
   object-fit: cover;
 }
 
 .home-carousel {
-  height: 420px !important;
+  height: 550px !important;
 }
 
 .home-carousel > div, .home-carousel > div > div, .home-carousel > div > div > div, .home-carousel > div > div > div > div {
   height: 100%;
+}
+
+@media (max-width: 991px){
+  .home-banner {
+    margin-top: 108px;
+  }
 }
 
 @media (max-width: 768px){
@@ -76,5 +83,27 @@
 
   .dot-group-btns {
     display: none;
+  }
+  .home-carousel {
+    height: 350px !important;
+  }
+}
+
+@media (max-width: 500px){
+  .next-btn > svg, .back-btn > svg {
+    font-size: 40px;
+  }
+  .next-btn {
+    margin-right: 0;
+  }
+  .back-btn {
+    left: 0;
+    margin-left: 0;
+  }
+  .home-carousel {
+    height: 260px !important;
+  }
+  .home-banner {
+    margin-top: 67px;
   }
 }

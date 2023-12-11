@@ -64,13 +64,14 @@ const TableHeader = styled(Container)(({ theme }) => ({
 }));
 
 const TableTitle = styled(Typography)({
-	fontSize: '2rem',
-	fontFamily: '\'Adamina\', serif',
+	fontSize: '1.3rem',
+	fontFamily: '\'Bellota Text\', serif',
+	width: '100%',
 });
 
 const TableSubtitle = styled(Typography)({});
 
-const TableWrapper = styled(Container)({});
+const TableWrapper = styled(Container)({ });
 
 const MatchHistory = () => {
 	const [ matches, setMatches ] = useState([]);
@@ -169,8 +170,17 @@ const MatchHistory = () => {
 								flexDirection: 'row',
 								alignItems: 'center',
 							}}>
-							<Col>
+							<Col style={{
+								display: 'flex',
+								flexDirection: 'column', 
+								marginBottom: '10px',
+							}}>
+								<label htmlFor="start-date" style={{
+									marginBottom: '10px',
+									fontFamily: '\'Bellota Text\', serif', 
+								}}>Start date:</label>
 								<DatePicker
+									id="start-date"
 									showIcon
 									dateFormat="yyyy/MM/dd"
 									selected={startDate}
@@ -180,8 +190,17 @@ const MatchHistory = () => {
 									scrollableYearDropdown
 								/>
 							</Col>
-							<Col>
+							<Col style={{
+								display: 'flex',
+								flexDirection: 'column', 
+								marginBottom: '10px',
+							}}>
+								<label htmlFor="end-date" style={{
+									marginBottom: '10px',
+									fontFamily: '\'Bellota Text\', serif', 
+								}}>End date:</label>
 								<DatePicker
+									id="end-date"
 									showIcon
 									dateFormat="yyyy/MM/dd"
 									selected={endDate}
@@ -192,7 +211,7 @@ const MatchHistory = () => {
 								/>
 							</Col>
 							<Col>
-								<SubmitButton onClick={searchMatches} variant="contained">
+								<SubmitButton onClick={searchMatches} variant="contained" style={{ marginTop: '22px' }}>
                   Search
 								</SubmitButton>
 							</Col>
@@ -236,7 +255,7 @@ const MatchHistory = () => {
 				</SearchWrapper>
 				<TableWrapper>
 					{isError && <Message code={'DEFAULT_ERROR'} img={true} />}
-					<Row xs={12} className="g-4">
+					<Row xs={12} className="g-4 no-gutter">
 						<TableHeader>
 							<TableTitle variant="body1">Results ({count})</TableTitle>
 							{matches?.length > 0 && (
@@ -248,7 +267,7 @@ const MatchHistory = () => {
 					</Row>
 				</TableWrapper>
 				{isLoading && <BackofficeLoader />}
-				{matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={true} />}
+				{matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={false} />}
 			</MainContent>
 		</Col>
 	);

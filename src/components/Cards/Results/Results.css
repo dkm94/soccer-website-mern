@@ -2,7 +2,6 @@
   background-color: var(--palette-black-main) !important;
   color: var(--palette-black-contrastText);
   font-family: 'Adamina', serif;
-  letter-spacing: 1px;
 }
 
 .status-finished, .status-inplay, .status-scheduled, .status-paused {
@@ -65,10 +64,20 @@
 
  
 @media (max-width: 576px){
-  .match div:nth-child(odd){
-    /* width: 40%; */
-  }
   .match div:nth-child(even){
-    width: 20%;
+    width: fit-content;
+  }
+}
+
+ 
+@media (max-width: 450px){
+  .card-body > div:nth-child(2){
+    padding: 0 !important;
+  }
+  .match div:nth-child(odd) {
+    padding: 0;
+  }
+  .result-card__display-score > div > p {
+    font-size: 1.5rem;
   }
 }

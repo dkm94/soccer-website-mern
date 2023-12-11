@@ -12,11 +12,12 @@ const ImageWrapper = styled(Container)({
 });
 
 const MessageType = styled(Typography)({
-	fontSize: '2rem',
+	fontSize: '1.3rem',
 	marginTop: '2rem',
+	fontFamily: '\'Bellota Text\', serif',
 });
 
-const MessageContent = styled(Typography)({ fontSize: '1.2rem' });
+const MessageContent = styled(Typography)({ fontSize: '0.8rem' });
 
 const Btn = styled(Button)(({ theme }) => ({
 	textTransform: 'unset',

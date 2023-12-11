@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Typography , Button, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Typography , Button, styled } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-import logo from '../../../images/toutlefoot-logo.png';
+import logo from '../../../images/Logo-PZ.png';
 
 import './Navbar.css';
-import { Link } from 'react-router-dom';
 import { decodeToken } from 'utils';
+import useSticky from 'utils/hooks/useSticky';
 
 const ButtonWrapper = styled(Link)(({ theme }) => ({
 	display: 'flex',
@@ -18,7 +23,7 @@ const ButtonWrapper = styled(Link)(({ theme }) => ({
 	textTransform: 'uppercase',
 	gap: '5px',
 }));
-const LoginText = styled(Typography)(({ theme }) => ({
+const LoginText = styled(Typography)(() => ({
 	textDecoration: 'none',
 	placeSelf: 'center', 
 	fontSize: 'unset',
@@ -45,18 +50,41 @@ const navItems = [
 		title: 'news',
 		path: '/news',
 	},
-	{
-		id: 5,
-		title: 'backoffice',
-		path: '/backoffice/moderators',
-	},
 ];
 
 const Navigation = ({ token, user }) => {
+	const { sticky, stickyRef } = useSticky();
+
 	const [ logoutText, setLogoutText ] = useState('');
 	const [ loginText, setLoginText ] = useState('');
 	const [ toggle, setToggle ] = useState(false);
 	const [ profileId, setProfileId ] = useState(null);
+
+	const backofficeLinks = [
+		{
+			id: 5,
+			title: 'moderators',
+			path: '/backoffice/moderators',
+		},
+		{
+			id: 6,
+			title: 'my profile',
+			path: `/backoffice/profile/${ profileId }`,
+		},
+		{
+			id: 7,
+			title: 'create article',
+			path: '/backoffice/articles/create',
+		},
+		{
+			id: 8,
+			title: 'my articles',
+			path: `/backoffice/articles/author/${ profileId }`,
+		},
+	];
+
+	const [ anchorEl, setAnchorEl ] = useState(null);
+	const open = Boolean(anchorEl);
 	
 	useEffect(() => {
 		if(token){
@@ -70,6 +98,14 @@ const Navigation = ({ token, user }) => {
 			setProfileId(user.profileId);
 		}
 	}, []);
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	  };
+
+	const handleClick = (e) => {
+		setAnchorEl(e.currentTarget);
+	};
 
 	const logOut = () => {
 		console.log('déconnexion...');
@@ -86,8 +122,8 @@ const Navigation = ({ token, user }) => {
 		} else if(toggle && !user){
 			setLoginText('Log in');
 		} else {
-			setLogoutText('');
-			setLoginText('');
+			// setLogoutText('');
+			// setLoginText('');
 		}
 	}, [ toggle ]);
 
@@ -95,22 +131,23 @@ const Navigation = ({ token, user }) => {
 		setToggle(!toggle);
 	};
 
+	const isBackoffice = window.location.pathname.includes('backoffice');
+
 	return (
 		<>
 			<Navbar
 				collapseOnSelect
 				expand="lg"
 				className="nav-style"
-				style={{
-					position: 'fixed',
-					zIndex: 1000, 
-				}}>
-				<Container>
-					<Navbar.Toggle className="nav-toggle" aria-controls="responsive-navbar-nav" onClick={toggleNav}/>
-					<Navbar.Brand href="/">
-						<div className="logo-style">2LEFOOT</div>
-					</Navbar.Brand>
-					<Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
+			>
+				<Container className="nav-container">
+					<div className="header flex">
+						<Navbar.Toggle className="nav-toggle" aria-controls="responsive-navbar-nav" onClick={toggleNav}/>
+						<Navbar.Brand href="/">
+							<img src={logo} alt="logo" className="logo" />
+						</Navbar.Brand>
+					</div>
+					<Navbar.Collapse ref={stickyRef} className={classNames('nav flex justify-content-center', { sticky })} id="responsive-navbar-nav">
 						<Nav className="nav-items" role="menu" >
 							{navItems?.map((item) => (
 								<Nav.Link
@@ -118,8 +155,8 @@ const Navigation = ({ token, user }) => {
 									role="link"
 									key={item.id}
 									href={item?.path}
-									style={{ display: !user && item?.id == 5 && 'none' }}
-									id={window.location.pathname === item.path ? 'active' : ''}>
+									// id={window.location.pathname === item.path ? 'active' : ''}
+								>
 									{item?.title}
 								</Nav.Link>
 							))}
@@ -128,7 +165,7 @@ const Navigation = ({ token, user }) => {
 									<Nav.Link
 										key={6}
 										href={'/backoffice/moderators'}
-										id={window.location.pathname === '/backoffice/moderators' ? 'active' : ''}
+										// id={window.location.pathname === '/backoffice/moderators' ? 'active' : ''}
 										className="additional-links"
 										onClick={() => localStorage.setItem('list-item-idx', 0)}
 									>
@@ -138,7 +175,7 @@ const Navigation = ({ token, user }) => {
 										key={7}
 										className="additional-links"
 										href={`/backoffice/profile/${ profileId }`}
-										id={window.location.pathname === `/backoffice/profile/${ profileId }` ? 'active' : ''}
+										// id={window.location.pathname === `/backoffice/profile/${ profileId }` ? 'active' : ''}
 										onClick={() => localStorage.setItem('list-item-idx', 1)}
 									>
 										My profile
@@ -147,7 +184,7 @@ const Navigation = ({ token, user }) => {
 										key={8}
 										className="additional-links"
 										href={'/backoffice/articles/create'}
-										id={window.location.pathname === '/backoffice/articles/create' ? 'active' : ''}
+										// id={window.location.pathname === '/backoffice/articles/create' ? 'active' : ''}
 										onClick={() => localStorage.setItem('list-item-idx', 2)}
 									>
 										Create article
@@ -156,22 +193,72 @@ const Navigation = ({ token, user }) => {
 										key={9}
 										className="additional-links"
 										href={`/backoffice/articles/author/${ profileId }`}
-										id={window.location.pathname === `/backoffice/articles/author/${ profileId }` ? 'active' : ''}
+										// id={window.location.pathname === `/backoffice/articles/author/${ profileId }` ? 'active' : ''}
 										onClick={() => localStorage.setItem('list-item-idx', 3)}
 									>
 										My articles
 									</Nav.Link>
 								</>
 							)}
+							{token && <Button 
+								className="nav-link bo-btn"
+								sx={{
+									'&.MuiButton-root:hover': {
+										backgroundColor: 'transparent',
+										color: '#ad0606', 
+									}, 
+								}}
+								style={{
+									fontSize: '1rem',
+									cursor: 'pointer',
+									fontWeight: isBackoffice && 'bold ',
+								}}
+								// id={`basic-button ${ isBackoffice ? 'active' : '' }`}
+								id={'basic-button'}
+								aria-controls={open ? 'basic-menu' : undefined}
+								aria-haspopup="true"
+								aria-expanded={open ? 'true' : undefined}
+								onClick={handleClick}
+							>BACKOFFICE</Button>}
+							<Menu
+								id="basic-menu"
+								anchorEl={anchorEl}
+								open={open}
+								onClose={handleClose}
+								MenuListProps={{ 'aria-labelledby': 'basic-button' }}
+							>
+								{backofficeLinks?.map((item) => (
+									<MenuItem 
+										key={item.id} 
+										onClick={handleClose} 
+										style={{ textTransform: 'capitalize' }}
+									>
+										<Nav.Link
+											title={item?.title}
+											role="link"
+											key={item.id}
+											href={item?.path}
+										>{item?.title}</Nav.Link>
+									</MenuItem>
+								))}
+							</Menu>
+							{!user ? 
+								<ButtonWrapper to="/secret-login" reloadDocument>
+									<PersonIcon style={{
+										color: '#eae8e8',
+										alignSelf: 'center', 
+									}} /> <LoginText className="nav-link">{loginText}</LoginText>
+								</ButtonWrapper>
+					 : <Button size="small" sx={{ '&.MuiButton-root:hover': { backgroundColor: 'transparent' } }} onClick={logOut} id="logout-btn" variant="text">
+                    					<ExitToAppIcon /> <Typography marginLeft={2} fontSize="1rem" fontFamily="'Bellota Text', serif" >{logoutText}</Typography>
+								</Button>}
 						</Nav>
 					</Navbar.Collapse>
-					{!user ? 
-						<ButtonWrapper to="/secret-login" reloadDocument>
-							<PersonIcon style={{ color: '#eae8e8' }} /> <LoginText className="nav-link">{loginText}</LoginText>
-						</ButtonWrapper>
-					 : <Button size="small" onClick={logOut} id="logout-btn" variant="text">
-                    					<ExitToAppIcon /> <Typography>{logoutText}</Typography>
-						</Button>}
+					{sticky && (
+						<div
+							style={{ height: `${ stickyRef.current?.clientHeight }px` }}
+						/>
+					)}
 				</Container>
 			</Navbar>
 		</>

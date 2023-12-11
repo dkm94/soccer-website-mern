@@ -7,6 +7,10 @@
     width: 100%;
     background: rgba(255, 255, 255, 0.50);
     padding: 150px 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
 }
 
 @media (max-width: 1200px){
@@ -15,6 +19,12 @@
         padding-bottom: 100px;
         padding-left: 150px;
         padding-right: 150px;
+    }
+}
+
+@media (max-width: 991px){
+    .slider-description {
+        line-height: 1.7 !important;
     }
 }
 
@@ -43,7 +53,18 @@
 
 @media (max-width: 500px){
     .home-slide-content{
-        padding-left: 20%;
-        padding-right: 20%;
+        padding-left: 17%;
+        padding-right: 17%;    
+        padding-top: 45px;
+        padding-bottom: 10px;
+    }
+    .slider-title {
+        font-size: 1rem !important;
+    }
+    .slider-description {
+        font-size: 0.7rem !important;
+    }
+    .redirection-btn {
+        font-size: 0.7rem !important;
     }
 }

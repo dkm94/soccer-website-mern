@@ -1,41 +1,48 @@
 import React from 'react';
-import { Typography } from '@mui/material';
 
 import data from './data.json';
 
 import './Banner.css';
+import { ImageWithText } from 'components/ui';
 
 const Banner = ({ path }) => {
 	const element = path && data.bannerElements[ path ];
 
+	// const competitionPage = path && path.startsWith('/competitions');
+	// const newsPage = path && path.startsWith('/news');
+
 	const competitionPage = path && path.startsWith('/competitions');
 	const newsPage = path && path.startsWith('/news');
 
-	const competitionsImg = `url("/images/banner${ data.bannerElements[ '/competitions' ].img }")`;
-	const newsImg = `url("/images/banner${ data.bannerElements[ '/news' ].img }")`;
+	// const competitionsImg = `url("/images/banner${ data.bannerElements[ '/competitions' ].img }")`;
+	// const newsImg = `url("/images/banner${ data.bannerElements[ '/news' ].img }")`;
+
+	const competitionsImg = `/images/banner${ data.bannerElements[ '/competitions' ].img }`;
+	const newsImg = `/images/banner${ data.bannerElements[ '/news' ].img }`;
+
+	const returnPicture = () => {
+		if (competitionPage) {
+			return competitionsImg;
+		} else if (newsPage) {
+			return newsImg;
+		} else {
+			return `/images/banner${ element?.img }`;
+		}
+	};
+
+	const returnTitle = () => {
+		if (competitionPage) {
+			return data.bannerElements[ '/competitions' ].title;
+		} else if (newsPage) {
+			return data.bannerElements[ '/news' ].title;
+		} else {
+			return element?.title;
+		}
+	}
 
 	return (
-		<div
-			className="banner"
-			style={
-				competitionPage
-					? {
-						backgroundImage: competitionsImg,
-						backgroundPosition: 'top',
-					}
-					: newsPage
-						? {
-							backgroundImage: newsImg,
-							backgroundPosition: 'top',
-						}
-						: {
-							backgroundImage: `url("/images/banner${ element?.img }")`,
-							backgroundPosition: 'top',
-						}
-			}>
-			<Typography variant="h1" className="banner-title">
-				{competitionPage ? 'Competitions' : newsPage ? 'News' : element?.title}
-			</Typography>
+		<div className="banner-wrapper">
+			<ImageWithText imageUrl={returnPicture()} text={returnTitle()}/>
 		</div>
 	);
 };

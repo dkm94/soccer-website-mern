@@ -20,13 +20,14 @@ import { getArticle } from 'services/queries/public_queries';
 const Title = styled(Typography)(({ theme }) => ({
 	color: theme.palette.black.main,
 	fontSize: '2rem',
-	fontFamily: '\'Adamina\', serif',
+	fontFamily: '\'Bellota Text\', serif',
+	fontWeight: '400',
 	marginTop: '2rem',
 }));
 
 const Summary = styled(Typography)(({ theme }) => ({
 	color: theme.palette.black.main,
-	fontSize: '1.2rem',
+	fontSize: '1rem',
 	marginTop: '2rem',
 	marginBottom: '2rem',
 }));
