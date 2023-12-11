@@ -23,13 +23,11 @@ const TableTitle = styled(Typography)({
 });
 
 const TableSubtitle = styled(Typography)({
-	// fontFamily: "'Adamina', serif",
 	flex: '1 1 100%',
 });
 
 const Selected = styled(Typography)(({ theme }) => ({
 	fontSize: '1.1      rem',
-	// fontFamily: "'Adamina', serif",
 	flex: '1 1 100%',
 }));
 

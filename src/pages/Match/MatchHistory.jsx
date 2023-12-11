@@ -64,8 +64,8 @@ const TableHeader = styled(Container)(({ theme }) => ({
 }));
 
 const TableTitle = styled(Typography)({
-	fontSize: '2rem',
-	fontFamily: '\'Adamina\', serif',
+	fontSize: '1.3rem',
+	fontFamily: '\'Bellota Text\', serif',
 });
 
 const TableSubtitle = styled(Typography)({});

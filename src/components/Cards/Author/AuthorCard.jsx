@@ -7,7 +7,11 @@ import { quality } from '@cloudinary/url-gen/actions/delivery';
 
 import './AuthorCard.css';
 
-const Handle = styled(Typography)({ fontFamily: '\'Adamina\', serif' });
+const Handle = styled(Typography)({
+	fontFamily: '\'Bellota Text\', serif',
+	fontWeight: 'bold', 
+	fontSize: '1rem',
+});
 
 const Intro = styled(Typography)({ marginTop: '0.5rem' });
 

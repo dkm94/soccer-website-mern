@@ -1,17 +1,9 @@
 const muiTheme = {
 	components: {
-		MuiContainer: {
-			styleOverrides: {
-				root: {
-					fontFamily: '\'Adamina\', serif',
-					fontSize: '0.8rem',
-				},
-			},
-		},
+		MuiContainer: { styleOverrides: { root: { fontSize: '0.8rem' } } },
 		MuiButton: {
 			styleOverrides: {
 				root: {
-					// fontFamily: '\'Adamina\', serif',
 					// fontSize: '3rem',
 				},
 			},
@@ -61,7 +53,7 @@ const muiTheme = {
 		},
 	},
 	typography: {
-		// fontFamily: '\'Adamina\', serif',
+		fontFamily: '\'Inter\', serif',
 		h2: { fontSize: '1rem' },
 		h6: { fontWeight: 600 },
 		body1: { fontSize: '0.8rem' },

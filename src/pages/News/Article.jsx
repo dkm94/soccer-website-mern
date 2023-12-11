@@ -21,15 +21,17 @@ const EditButton = styled(Button)(({ theme }) => ({
 
 const Topic = styled(Typography)(({ theme }) => ({
 	marginTop: '1rem',
-	fontSize: '0.6rem',
+	fontSize: '0.8rem',
 	color: theme.palette.grey.main,
 	textTransform: 'uppercase',
+	fontFamily: '\'Bellota Text\', serif',
 }));
 
 const Title = styled('a')(({ theme }) => ({
 	paddingTop: '0.5rem',
 	fontWeight: 600,
 	cursor: 'pointer',
+	fontFamily: '\'Bellota Text\', serif',
 	color: theme.palette.black.main,
 	'&:hover': { color: theme.palette.black.main },
 }));
@@ -98,6 +100,7 @@ const NewsArticle = ({ article, profileId, path }) => {
 			<Title href={`/news/${ code }/${ _id }`} target="_blank" gutterBottom>
 				{title}
 			</Title>
+			<br />
 			<SummaryText variant="body2" gutterBottom>
 				{summary}
 			</SummaryText>

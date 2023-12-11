@@ -64,13 +64,13 @@ const Matches = () => {
 									alignItems: 'center',
 									padding: '3rem 0',
 									flexWrap: 'unset',
-									width: 'max-content',
+									// width: 'max-content',
 								}}>
 								<div className="scoreboard-header__img">
 									<Image
 										src={competition?.competition?.emblem}
 										style={{
-											height: '10rem',
+											height: '100px',
 											width: 'fit-content', 
 										}}
 									/>
