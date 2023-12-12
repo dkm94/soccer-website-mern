@@ -55,6 +55,9 @@
 .logo {
   height: 100px;
 }
+.logo-md, .logo-sm{
+  display: none;
+}
 .nav-items {
   text-transform: uppercase;
   column-gap: 45px;
@@ -81,6 +84,13 @@
 }
 
 @media only screen and (max-width: 991px) {
+  .logo {
+    display: none;
+  }
+  .logo-md {
+    display: block;
+    height: 78px;
+  }
   .sticky {
     position: unset;
     box-shadow: none;
@@ -163,5 +173,12 @@
   }
   .nav-items > a {
     font-size: 0.8rem;
+  }
+  .logo-md {
+    display: none;
+  }
+  .logo-sm {
+    display: block;
+    height: 40px;
   }
 }
