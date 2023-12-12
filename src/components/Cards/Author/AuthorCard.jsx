@@ -8,12 +8,14 @@ import { quality } from '@cloudinary/url-gen/actions/delivery';
 import './AuthorCard.css';
 
 const Handle = styled(Typography)({
-	fontFamily: '\'Bellota Text\', serif',
-	fontWeight: 'bold', 
-	fontSize: '1rem',
+	fontWeight: 'normal', 
+	fontSize: '0.9rem',
 });
 
-const Intro = styled(Typography)({ marginTop: '0.5rem' });
+const Intro = styled(Typography)({
+	marginTop: '0.5rem',
+	fontSize: '0.8rem',
+});
 
 const AuthorCard = ({ infos }) => {
 	const { file, handle, intro } = infos;

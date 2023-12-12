@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { styled } from '@mui/material/styles';
-import { Card, CardContent, Grid } from '@mui/material';
+import { Card, CardContent, Grid, Typography } from '@mui/material';
 import { AdvancedImage } from '@cloudinary/react';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
@@ -17,7 +17,6 @@ const Content = styled(CardContent)(({ theme }) => ({
 	flexDirection: 'column',
 	paddingBottom: 0,
 	' span:nth-child(1)': {
-		fontFamily: '\'Inter\', sans-serif',
 		display: '-webkit-box',
 		'-webkit-line-clamp': '2',
 		'-webkit-box-orient': 'vertical',
@@ -49,8 +48,8 @@ const ArticleCard = ({ id, title, topic, file, date }) => {
 				<AdvancedImage cldImg={myImage} />
 			</Grid>
 			<Content>
-				<span>{title}</span>
-				<span className="family-inter-reg">Posted on {formattedDate}</span>
+				<Typography variant="body1" >{title}</Typography><br />
+				<Typography variant="body1" textAlign="end" color="#a9a9a9">Posted on {formattedDate}</Typography>
 			</Content>
 		</Card>
 	);

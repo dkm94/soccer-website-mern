@@ -16,18 +16,16 @@ const CustomToolbar = styled(Toolbar)(({ theme }) => ({
 }));
 
 const TableTitle = styled(Typography)({
-	fontSize: '1.1rem',
+	fontSize: '1.75rem',
 	fontWeight: 600,
-	fontFamily: '\'Adamina\', serif',
+	fontFamily: 'Avenir, Montserrat, Corbel, \'URW Gothic\', source-sans-pro, sans-serif',
 	flex: '1 1 100%',
 });
 
-const TableSubtitle = styled(Typography)({
-	flex: '1 1 100%',
-});
+const TableSubtitle = styled(Typography)({ flex: '1 1 100%' });
 
 const Selected = styled(Typography)(({ theme }) => ({
-	fontSize: '1.1      rem',
+	fontSize: '1.1rem',
 	flex: '1 1 100%',
 }));
 
@@ -63,10 +61,10 @@ const EnhancedToolBar = ({ numSelected, selectedIds, setSelectedIds }) => {
 					</Selected>
 				) : (
 					<>
-						<TableTitle variant="body1" id="tableTitle" component="div">
+						<TableTitle variant="h1" id="tableTitle">
               Users
 						</TableTitle>
-						<TableSubtitle variant="body2">
+						<TableSubtitle variant="body1">
               Manage moderators status, add or delete moderators.
 						</TableSubtitle>
 					</>

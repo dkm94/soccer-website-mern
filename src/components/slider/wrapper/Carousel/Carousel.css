@@ -73,11 +73,11 @@
   }
 
   .next-btn {
-    left: 80%;
+    left: 86%;
   }
 
   .back-btn {
-    right: 80%;
+    right: 86%;
     left: unset;
   }
 
@@ -105,5 +105,13 @@
   }
   .home-banner {
     margin-top: 67px;
+  }
+  .dot-group-btns {
+    display: flex;
+    bottom: 15px;
+    left: 86%;
+  }
+  .next-btn, .back-btn {
+    display: none;
   }
 }

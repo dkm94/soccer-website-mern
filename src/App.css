@@ -12,23 +12,6 @@
   flex-direction: column;
 }
 
-.family-bellota-reg {
-  font-family: 'Bellota Text', serif;
-  font-weight: 300;
-}
-.family-bellota-bold {
-  font-family: 'Bellota Text', serif;
-  font-weight: 400;
-}
-.family-inter-reg {
-  font-family: 'Inter', serif;
-  font-weight: 300;
-}
-.family-inter-bold {
-  font-family: 'Inter', serif;
-  font-weight: 400;
-}
-
 .title-section {
   /* font-size: 2rem !important; */
   font-size: 1.1rem !important;

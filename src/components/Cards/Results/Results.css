@@ -1,8 +1,6 @@
 #result-card__header {
   background-color: var(--palette-black-main) !important;
   color: var(--palette-black-contrastText);
-  font-family: 'Bellato Text', serif;
-  font-size: 1rem;
 }
 
 .status-finished, .status-inplay, .status-scheduled, .status-paused {
@@ -21,7 +19,7 @@
 
 .status-scheduled {
   color: var(--palette-black-main) !important;
-  font-weight: 300;
+  /* font-weight: 300; */
 }
 
 .status-paused {

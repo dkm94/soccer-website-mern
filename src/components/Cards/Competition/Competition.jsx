@@ -9,17 +9,15 @@ import './Competitions.css';
 
 const Title = styled(Card.Title)(({ theme }) => ({
 	textAlign: 'center',
-	fontSize: '1rem',
+	fontSize: '1.05rem',
 	color: theme.palette.black.dark,
-	fontFamily: '\'Bellota Text\', serif',
-	fontWeight: 'bold',
+	fontWeight: '600',
 }));
 
 const Subtitle = styled(Card.Title)(({ theme }) => ({
 	textAlign: 'center',
-	fontSize: 'unset',
+	fontSize: '0.9rem',
 	color: theme.palette.grey.dark,
-	fontFamily: '\'Inter\', serif',
 	fontWeight: '300',
 }));
 

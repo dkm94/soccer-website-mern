@@ -30,11 +30,11 @@ const ImageWithTextOverlay = ({ imageUrl, text }) => {
 	const textStyle = {
 		color: '#fff',
 		fontSize: '8vw',
-		fontWeight: 'bold',
-		fontFamily: '"Paytone One", sans-serif',
+		fontWeight: '900',
+		fontFamily: 'system-ui, sans-serif',
 		textTransform: 'uppercase',
 		textShadow: 'rgba(0, 0, 0, 1) 9px 10px 20px',
-		letterSpacing: '10px',
+		letterSpacing: '7px',
 		opacity: '0.5',
 	};
 

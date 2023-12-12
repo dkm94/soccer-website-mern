@@ -2,7 +2,8 @@
   flex-direction: column;
 }
 .navbar-expand-lg .navbar-nav .nav-link {
-  font-family: 'Bellota Text', sans-serif;
+  font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  font-weight: 400;
 }
 .header {
   height: 144px;

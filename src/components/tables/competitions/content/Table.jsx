@@ -15,7 +15,6 @@ const Container = styled('div')`
     border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 8px;
-    font-family: 'Bellota Text', serif;
   }
 
   th {

@@ -109,7 +109,7 @@ export default function SignIn({ auth }) {
 					}}>
 						<LockOutlinedIcon />
 					</Avatar>
-					<Typography component="h1" variant="h5" textTransform="uppercase" fontFamily="'Bellota Text', serif">
+					<Typography component="h1" variant="h5" textTransform="uppercase" fontFamily={'Avenir, Montserrat, Corbel, \'URW Gothic\', source-sans-pro, sans-serif'}>
             Sign in
 					</Typography>
 					<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

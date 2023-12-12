@@ -24,16 +24,21 @@ const Topic = styled(Typography)(({ theme }) => ({
 	fontSize: '0.8rem',
 	color: theme.palette.grey.main,
 	textTransform: 'uppercase',
-	fontFamily: '\'Bellota Text\', serif',
+	fontFamily: 'Inter, Roboto, \'Helvetica Neue\', \'Arial Nova\', \'Nimbus Sans\', Arial, sans-serif',
+	fontWeight: '600',
 }));
 
 const Title = styled('a')(({ theme }) => ({
 	paddingTop: '0.5rem',
 	fontWeight: 600,
 	cursor: 'pointer',
-	fontFamily: '\'Bellota Text\', serif',
+	fontFamily: 'Inter, Roboto, \'Helvetica Neue\', \'Arial Nova\', \'Nimbus Sans\', Arial, sans-serif',
+	textDecoration: 'none',
 	color: theme.palette.black.main,
-	'&:hover': { color: theme.palette.black.main },
+	'&:hover': {
+		color: theme.palette.black.main,
+		textDecoration: 'underline', 
+	},
 }));
 
 const SummaryText = styled(Typography)({
@@ -48,7 +53,6 @@ const SummaryText = styled(Typography)({
 
 const ArticleDate = styled(Typography)(({ theme }) => ({
 	marginTop: '1rem',
-	fontSize: '0.7rem',
 	color: theme.palette.grey.main,
 }));
 
