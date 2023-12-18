@@ -35,7 +35,7 @@ const ImageWithTextOverlay = ({ imageUrl, text }) => {
 		textTransform: 'uppercase',
 		textShadow: 'rgba(0, 0, 0, 1) 9px 10px 20px',
 		letterSpacing: '7px',
-		opacity: '0.5',
+		opacity: '0.6',
 	};
 
 	return (

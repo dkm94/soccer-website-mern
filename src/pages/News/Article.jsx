@@ -59,6 +59,7 @@ const ArticleDate = styled(Typography)(({ theme }) => ({
 const NewsArticle = ({ article, profileId, path }) => {
 	const { palette } = useTheme();
 	const { _id, title, createdAt, file, topic, summary, id_profile, online } = article;
+	console.log('🚀 ~ file: Article.jsx:62 ~ NewsArticle ~ _id:', _id);
 
 	const imageSrc = file?.public_id;
 	const myImage = new CloudinaryImage(imageSrc, { cloudName: 'dbj8kfftk' }).delivery(quality(100));

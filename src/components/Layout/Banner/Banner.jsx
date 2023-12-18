@@ -8,9 +8,6 @@ import { ImageWithText } from 'components/ui';
 const Banner = ({ path }) => {
 	const element = path && data.bannerElements[ path ];
 
-	// const competitionPage = path && path.startsWith('/competitions');
-	// const newsPage = path && path.startsWith('/news');
-
 	const competitionPage = path && path.startsWith('/competitions');
 	const newsPage = path && path.startsWith('/news');
 
@@ -38,10 +35,10 @@ const Banner = ({ path }) => {
 		} else {
 			return element?.title;
 		}
-	}
+	};
 
 	return (
-		<div className="banner-wrapper">
+		<div className="banner-wrapper" style={{ display: !returnTitle() && 'none' }}>
 			<ImageWithText imageUrl={returnPicture()} text={returnTitle()}/>
 		</div>
 	);

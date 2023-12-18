@@ -1,15 +1,7 @@
 {
   "bannerElements": {
-    "/players": {
-      "img": "/players.jpeg",
-      "title": "Players"
-    },
-    "/area": {
-      "img": "/areas.jpeg",
-      "title": "Areas"
-    },
     "/competitions": {
-      "img": "/competitions.png",
+      "img": "/competitions.jpg",
       "title": "Competitions"
     },
     "/matchhistory": {
