@@ -30,7 +30,7 @@ const Message = ({ code, img, error }) => {
 	const message = messages[ code ];
 
 	const refreshPage = () => window.location.reload();
-	const redirectToMatchHistory = () => (window.location.href = '/matchhistory');
+	const redirectToMatchHistory = () => (window.location.href = '/match-history');
 	const redirectToNews = () => (window.location.href = '/news');
 
 	const action = () => {
