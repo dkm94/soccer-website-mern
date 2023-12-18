@@ -45,7 +45,7 @@ const navItems = [
 	{
 		id: 3,
 		title: 'match history',
-		path: '/matchhistory',
+		path: '/match-history',
 	},
 	{
 		id: 4,

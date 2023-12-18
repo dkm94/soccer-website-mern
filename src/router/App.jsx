@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -33,6 +33,16 @@ if(user){
 const path = window.location.pathname;
 
 const App = () => {
+	useEffect(() => {
+		const pathSegments = location.pathname.split('/');
+		const pageTitle = pathSegments[ 1 ];
+		if(pageTitle === 'match-history'){
+			document.title = 'Match history | Premier Zone';
+		} else {
+			document.title = `${ pageTitle.charAt(0).toUpperCase() + pageTitle.slice(1) } | Premier Zone`;
+		}
+	
+	  }, [ location.pathname ]);
 	const [ invalidPath, setInvalidPath ] = useState(false);
 
 	return (
@@ -46,7 +56,7 @@ const App = () => {
 					<Route path="/teams" element={<Teams />} />
 					<Route path="/competitions" element={<Competitions />} />
 					<Route path="/competitions/:code/matches" element={<Matches />} />
-					<Route path="/matchhistory" element={<Match />} />
+					<Route path="/match-history" element={<Match />} />
 					<Route path="/news" element={<News />} />
 					<Route path="/news/:code/:id" element={<NewsPage />} />
 					<Route path="/secret-login" element={<Login auth={user} />} />

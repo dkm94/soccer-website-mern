@@ -1,6 +1,6 @@
 <div align="center">
     <h1>
-        <img src="documentation/readme-assets/logo.png" alt="2lefoot logo" height="75px">
+        <img src="documentation/readme-assets/logo.png" alt="premier zone logo" height="75px">
     </h1>
     <h4><b>Soccer website, providing news and matches results</b></h4>
     <h4>
@@ -96,7 +96,7 @@ Hosting
 ## Access informations to backoffice
 
 <p>You can have access to the backoffice through the following route:</p>
-https://2lefoot.netlify.app/secret-login
+https://premier-zone.netlify.app/secret-login
 <p>Please feel free to contact me to get the credentials and access more features.</p>
 
 
