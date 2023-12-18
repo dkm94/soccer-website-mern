@@ -90,6 +90,7 @@ const MatchHistory = () => {
 		isError,
 		isLoading,
 		refetch,
+		data,
 	} = useQuery({
 		queryKey: [ 'matches' ],
 		queryFn: () => getMatches(handleStartDate(startDate), handleEndDate(endDate)),
@@ -267,11 +268,11 @@ const MatchHistory = () => {
 							)}
 						</TableHeader>
 
-						<MatchTable matches={matches} searchInput={searchInput} selected={selected} />
+						{!isLoading && data && <MatchTable matches={matches} searchInput={searchInput} selected={selected} />}
 					</Row>
 				</TableWrapper>
 				{isLoading && <BackofficeLoader />}
-				{matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={false} />}
+				{!isLoading && matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={false} />}
 			</MainContent>
 		</Col>
 	);

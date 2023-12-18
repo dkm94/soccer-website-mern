@@ -16,7 +16,6 @@ import { Competitions,
 	, Home, NotFound } from 'pages';
 import { IsMod, IsAdmin, IsLogged } from 'router/ProtectedRoutes';
 import { ScrollToTop } from 'components/utils';
-import ImageBlur from 'components/ui/ImageBlur/ImageBlur';
 
 const Admin = lazy(() => import('pages/Backoffice/Backoffice'));
 
@@ -32,9 +31,6 @@ if(user){
 }
 
 const path = window.location.pathname;
-
-const staticImage = 'src/images/301 Moved Permanently.jpeg';
-const dynamicImage = 'https://res.cloudinary.com/dbj8kfftk/image/upload/q_100/v1/soccer-articles/aqj24cyx8gdxtiob6cpg?_a=BAJFJtWI0';
 
 const App = () => {
 	const [ invalidPath, setInvalidPath ] = useState(false);
