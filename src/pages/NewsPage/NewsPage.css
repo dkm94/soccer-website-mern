@@ -1,5 +1,6 @@
 .news-page {
     max-width: 960px !important;
+    width: auto;
 }
 
 .news-page__img-article {
