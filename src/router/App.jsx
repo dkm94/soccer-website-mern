@@ -39,7 +39,7 @@ const App = () => {
 		<>
 			<ScrollToTop />
 			<Navbar token={token} user={user} />
-			<Layout path={path}>
+			<Layout path={path} invalidPath={invalidPath}>
 				<Routes>
 					<Route path="/" element={<Navigate to="/home" />} />
 					<Route path="/home" element={<Home />} />

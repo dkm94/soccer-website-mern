@@ -8,7 +8,8 @@
   /* text-transform: uppercase !important; */
   margin: 0;
   font-size: 1rem;
-  font-family: 'Bellota Text', serif !important;
+  font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  font-weight: normal;
   /* z-index: 1000; */
 }
 

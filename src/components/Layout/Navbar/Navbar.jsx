@@ -10,6 +10,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 import logo from '../../../images/Logo-PZ.png';
+import logoMD from '../../../images/Logo-PZ-md.png';
+import logoSM from '../../../images/Logo-PZ-sm.png';
 
 import './Navbar.css';
 import { decodeToken } from 'utils';
@@ -145,6 +147,8 @@ const Navigation = ({ token, user }) => {
 						<Navbar.Toggle className="nav-toggle" aria-controls="responsive-navbar-nav" onClick={toggleNav}/>
 						<Navbar.Brand href="/">
 							<img src={logo} alt="logo" className="logo" />
+							<img src={logoMD} alt="logo" className="logo-md" />
+							<img src={logoSM} alt="logo" className="logo-sm" />
 						</Navbar.Brand>
 					</div>
 					<Navbar.Collapse ref={stickyRef} className={classNames('nav flex justify-content-center', { sticky })} id="responsive-navbar-nav">
@@ -250,7 +254,7 @@ const Navigation = ({ token, user }) => {
 									}} /> <LoginText className="nav-link">{loginText}</LoginText>
 								</ButtonWrapper>
 					 : <Button size="small" sx={{ '&.MuiButton-root:hover': { backgroundColor: 'transparent' } }} onClick={logOut} id="logout-btn" variant="text">
-                    					<ExitToAppIcon /> <Typography marginLeft={2} fontSize="1rem" fontFamily="'Bellota Text', serif" >{logoutText}</Typography>
+                    					<ExitToAppIcon /> <Typography marginLeft={2} fontSize="1rem" >{logoutText}</Typography>
 								</Button>}
 						</Nav>
 					</Navbar.Collapse>

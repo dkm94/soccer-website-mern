@@ -30,5 +30,14 @@
             "action": "reload",
             "content": "Reload now"
         }
+    },
+    "ARTICLE_NOT_FOUND":{
+        "img": "no-data.png",
+        "type": "Oops...",
+        "content":"The article you're looking for is unavailable.",
+        "button": {
+            "action": "redirect_articles",
+            "content": "Back to articles"
+        }
     }
 }

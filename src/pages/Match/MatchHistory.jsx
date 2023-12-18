@@ -28,11 +28,11 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 	border: 'none',
 	textTransform: 'unset',
 	transition: 'background-color 0.3s',
-	':hover': {
-		backgroundColor: theme.palette.white.main,
-		color: theme.palette.black.light,
-		border: `1px solid ${ theme.palette.black.main }`,
-	},
+	// ':hover': {
+	// 	backgroundColor: theme.palette.white.main,
+	// 	color: theme.palette.black.light,
+	// 	border: `1px solid ${ theme.palette.black.main }`,
+	// },
 }));
 
 const DatePickerWrapper = styled(Container)({ marginTop: '3rem' });
@@ -64,8 +64,8 @@ const TableHeader = styled(Container)(({ theme }) => ({
 }));
 
 const TableTitle = styled(Typography)({
+	fontWeight: '600',
 	fontSize: '1.3rem',
-	fontFamily: '\'Bellota Text\', serif',
 	width: '100%',
 });
 
@@ -90,6 +90,7 @@ const MatchHistory = () => {
 		isError,
 		isLoading,
 		refetch,
+		data,
 	} = useQuery({
 		queryKey: [ 'matches' ],
 		queryFn: () => getMatches(handleStartDate(startDate), handleEndDate(endDate)),
@@ -175,10 +176,11 @@ const MatchHistory = () => {
 								flexDirection: 'column', 
 								marginBottom: '10px',
 							}}>
+									
 								<label htmlFor="start-date" style={{
 									marginBottom: '10px',
-									fontFamily: '\'Bellota Text\', serif', 
-								}}>Start date:</label>
+									fontSize: '1.125rem', 
+								}}>Start date</label>
 								<DatePicker
 									id="start-date"
 									showIcon
@@ -196,9 +198,9 @@ const MatchHistory = () => {
 								marginBottom: '10px',
 							}}>
 								<label htmlFor="end-date" style={{
+									fontSize: '1.125rem',
 									marginBottom: '10px',
-									fontFamily: '\'Bellota Text\', serif', 
-								}}>End date:</label>
+								}}>End date</label>
 								<DatePicker
 									id="end-date"
 									showIcon
@@ -211,7 +213,10 @@ const MatchHistory = () => {
 								/>
 							</Col>
 							<Col>
-								<SubmitButton onClick={searchMatches} variant="contained" style={{ marginTop: '22px' }}>
+								<SubmitButton onClick={searchMatches} variant="contained" style={{
+									marginTop: '26px',
+									fontWeight: '300', 
+								}}>
                   Search
 								</SubmitButton>
 							</Col>
@@ -263,11 +268,11 @@ const MatchHistory = () => {
 							)}
 						</TableHeader>
 
-						<MatchTable matches={matches} searchInput={searchInput} selected={selected} />
+						{!isLoading && data && <MatchTable matches={matches} searchInput={searchInput} selected={selected} />}
 					</Row>
 				</TableWrapper>
 				{isLoading && <BackofficeLoader />}
-				{matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={false} />}
+				{!isLoading && matches?.length === 0 && <Message code={'DATA_NOT_FOUND'} img={false} />}
 			</MainContent>
 		</Col>
 	);

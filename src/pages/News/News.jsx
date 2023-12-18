@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { Grid, Container } from '@mui/material';
+import { Container } from '@mui/material';
 
 import { MainContent } from 'components/Layout';
 import { NewsSkeleton } from 'components/Loaders';

@@ -14,7 +14,6 @@ const ImageWrapper = styled(Container)({
 const MessageType = styled(Typography)({
 	fontSize: '1.3rem',
 	marginTop: '2rem',
-	fontFamily: '\'Bellota Text\', serif',
 });
 
 const MessageContent = styled(Typography)({ fontSize: '0.8rem' });
@@ -32,12 +31,16 @@ const Message = ({ code, img, error }) => {
 
 	const refreshPage = () => window.location.reload();
 	const redirectToMatchHistory = () => (window.location.href = '/matchhistory');
+	const redirectToNews = () => (window.location.href = '/news');
 
 	const action = () => {
 		const { button } = message;
 		switch (button.action) {
 			case 'redirect':
 				redirectToMatchHistory();
+				break;
+			case 'redirect_articles':
+				redirectToNews();
 				break;
 			case 'reload':
 				refreshPage();

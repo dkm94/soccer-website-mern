@@ -14,6 +14,8 @@ import { getLastArticles } from 'services/queries/public_queries';
 
 import './SideArticles.css';
 
+const path = window.location.pathname;
+
 const SideArticles = () => {
 	const [ articles, setArticles ] = useState([]);
 

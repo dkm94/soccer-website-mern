@@ -48,7 +48,6 @@ table {
   th {
     /* background-color: #ddd; */
     font-weight: normal;
-    /* font-family: 'Adamina', serif; */
     color: var(--palette-grey-dark);
     font-weight: 600;
   }

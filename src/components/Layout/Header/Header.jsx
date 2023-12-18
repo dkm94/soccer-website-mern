@@ -20,7 +20,7 @@ const Header = ({ path }) => {
 	
 	const featuredContent = articles?.filter((article) => article.featured);
 
-	return <>{path === '/' || path === '/home' ? <CarouselWrapper articles={featuredContent} /> : <Banner path={path} />}</>;
+	return <>{path === '/' || path === '/home' ? <CarouselWrapper articles={featuredContent} isLoading={isLoading} /> : <Banner path={path} />}</>;
 };
 
 export default Header;

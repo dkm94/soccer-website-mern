@@ -52,8 +52,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Name = styled(Paper)(({ theme }) => ({
-	fontSize: 'initial',
-	fontFamily: '\'Adamina\', serif',
+	// fontSize: 'initial',
 }));
 
 const Handle = styled(Paper)(({ theme }) => ({ color: theme.palette.grey.dark }));

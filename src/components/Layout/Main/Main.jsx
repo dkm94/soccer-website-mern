@@ -8,29 +8,22 @@ import './Main.css';
 
 const Layout = ({ children, path, invalidPath }) => {
 	const showHeader = () => {
-		if (path === '/secret-login' || path === '/account-validation' || path.includes('backoffice')) {
+		if (invalidPath == true || path === '/secret-login' || path === '/account-validation' || path.includes('backoffice')) {
 			return null;
-		} else if(invalidPath){
-			return null;
-		}
-		return <Header path={path} />;
+		} else return <Header path={path} />;
 	};
 
-	const showLastArticles = () => {
-		if (
-			path === '/secret-login' ||
-      path.includes('news') ||
-      path.includes('backoffice') ||
-      path === '/account-validation' ||
-	  invalidPath
-		) {
+	// TODO: créer un contexte resultQuery. 
+	// Si path includes "/news/" && path.length > 6 ('/news/ ça fait 6 caractères) && result query === 404 // Ce qui voudrait dire que l'article est inconnu
+	const showLastArticles = () => { // unknown route 
+		if (invalidPath == true || path === '/secret-login' || path === '/account-validation' || path.includes('backoffice') || path.includes('/news')) {
 			return null;
-		}
-		return <SideArticles />;
+		} else return <SideArticles />;
+		
 	};
 
 	const ContentWrapper = ({ children }) => {
-		return path.includes('news') ? <Box>{children}</Box> : <Row style={{
+		return path.includes('news') ? <Box display="flex" flexDirection="row" justifyContent="center">{children}</Box> : <Row style={{
 			display: 'flex',
 			justifyContent: 'center', 
 		}}>{children}</Row>;

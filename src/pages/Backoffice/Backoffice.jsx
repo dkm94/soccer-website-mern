@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import { CreateArticleForm, UpdateArticleForm } from 'pages/Backoffice/Articles/Forms';
 import { ModeratorsPage, ProfilePage, UserArticlesPage } from 'pages/Backoffice';
+import { useParams } from 'react-router-dom';
 // import Sidebar from 'pages/Backoffice/Sidebar/Sidebar';
 // import cards from 'seeds/dashboard_cards';
 
@@ -12,6 +13,8 @@ const drawerWidth = 240;
 const BackofficeComponent = ({ path, user }) => {
 	const [ profileId, setProfileId ] = useState(null);
 	const [ userId, setUserId ] = useState(null);
+
+	let { id } = useParams();
 
 	useEffect(() => {
 		if(user){
@@ -27,7 +30,7 @@ const BackofficeComponent = ({ path, user }) => {
 			return <CreateArticleForm drawerWidth={drawerWidth} profileId={profileId} />;
 		case `/backoffice/articles/author/${ profileId }`:
 			return <UserArticlesPage drawerWidth={drawerWidth} profileId={profileId} path={path} />;
-		case `/backoffice/articles/edit/${ profileId }`:
+		case `/backoffice/articles/edit/${ id }`:
 			return <UpdateArticleForm drawerWidth={drawerWidth} profileId={profileId} />;
 		case `/backoffice/profile/${ profileId }`:
 			return <ProfilePage drawerWidth={drawerWidth} profileId={profileId} userId={userId} />;

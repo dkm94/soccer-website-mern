@@ -1,15 +1,7 @@
 .scoreboard-header > #name {
-  font-family: 'Bellota Text', serif;
+  font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
-}
-.scoreboard-header > #season {
-  font-size: 0.8rem;
-  font-family: 'Inter', serif;
-}
-.scoreboard-header > #matchday {
-  font-size: 0.8rem;
-  font-family: 'Inter', serif;
 }
 
 .scoreboard-header__img {

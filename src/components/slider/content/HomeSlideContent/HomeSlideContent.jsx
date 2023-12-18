@@ -8,9 +8,9 @@ import './HomeSlideContent.css';
 
 const HomeSlideContent = ({ title, summary, id, topic }) => {
 	const Title = styled(Typography)({
-		fontSize: '2rem',
+		fontSize: '3rem',
 		fontWeight: '700',
-		fontFamily: '\'Bellota Text\', serif',
+		fontFamily: 'Avenir, Montserrat, Corbel, \'URW Gothic\', source-sans-pro, sans-serif',
 	});
 
 	const Description = styled(Typography)({
@@ -21,8 +21,6 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 		textOverflow: 'ellipsis',
 		overflow: 'hidden',
 		lineHeight: '2', 
-		fontFamily: '\'Inter\', sans-serif',
-		fontWeight: '300',
 	});
 
 	const RedirectionButton = styled(Button)(({ theme }) => ({
@@ -30,7 +28,7 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 		color: theme.palette.primary.contrastText,
 		border: 'none',
 		textTransform: 'unset',
-		fontFamily: '\'Bellota Text\', serif',
+		fontWeight: '300',
 	}));
 
 	const competition = competitionSeeds.filter((competition) => competition.idx == topic);
@@ -40,7 +38,7 @@ const HomeSlideContent = ({ title, summary, id, topic }) => {
 		<div
 			className="home-slide-content"
 		>
-			<Title className="slider-title">{title}</Title>
+			<Title className="slider-title" variant="h1">{title}</Title>
 			<Description className="slider-description">{summary}</Description>
 			<Box sx={{ marginTop: '1rem' }}>
 				<RedirectionButton className="redirection-btn" href={`/news/${ code }/${ id }`}>Read the article</RedirectionButton>

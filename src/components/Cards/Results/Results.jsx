@@ -29,17 +29,17 @@ const Results = ({ match }) => {
 		if (score === Math.max(htScore, atScore)) {
 			return '600';
 		} else if (htScore === 0 && atScore === 0 && match?.status === 'IN_PLAY') {
-			return '300';
+			return '400';
 		} else if (htScore === 0 && atScore === 0 && match?.status === 'FINISHED') {
 			return '600';
 		} else {
-			return '300';
+			return '400';
 		}
 	};
 
 	return (
 		<CardContainer key={match?.id} className="text-center">
-			<Card.Header id="result-card__header" className="family-bellota-bold">
+			<Card.Header id="result-card__header" >
 				{match?.competition?.name} - Matchday {match?.matchday}
 			</Card.Header>
 			<Card.Body style={{ padding: '1rem' }}>
@@ -54,7 +54,7 @@ const Results = ({ match }) => {
 								<Image src={match?.homeTeam?.crest} className="result-card__crest" />
 							</Container>
 							<span
-								className="result-card__team-name family-inter-bold"
+								className="result-card__team-name"
 								style={{ fontWeight: getFontWeight(htScore) }}>
 								{match?.homeTeam?.shortName}
 							</span>
@@ -75,7 +75,7 @@ const Results = ({ match }) => {
 								<Image src={match?.awayTeam?.crest} className="result-card__crest" />
 							</Container>
 							<span
-								className="result-card__team-name family-inter-bold"
+								className="result-card__team-name"
 								style={{ fontWeight: getFontWeight(atScore) }}>
 								{match?.awayTeam?.shortName}
 							</span>
@@ -84,7 +84,7 @@ const Results = ({ match }) => {
 				</Container>
 				<Card.Text>{!match?.group && null}</Card.Text>
 			</Card.Body>
-			<Card.Footer className={`${status[ match?.status ]?.style} family-inter-bold`}>
+			<Card.Footer className={`${status[ match?.status ]?.style}`}>
 				{status[ match?.status ]?.icon} {status[ match?.status ]?.title}
 			</Card.Footer>
 		</CardContainer>
