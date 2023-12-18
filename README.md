@@ -1,6 +1,6 @@
 <div align="center">
     <h1>
-        <img src="documentation/readme-assets/toutlefoot-logo.png" alt="2lefoot logo" height="75px">
+        <img src="documentation/readme-assets/logo.png" alt="2lefoot logo" height="75px">
     </h1>
     <h4><b>Soccer website, providing news and matches results</b></h4>
     <h4>
@@ -19,7 +19,7 @@
 </div>
 
 <p align="center"> 
-    <img src="documentation/readme-assets/2lf-screen.png" alt="home page" height="450" width="auto">
+    <img src="documentation/readme-assets/home-capture.png" alt="home page" height="450" width="auto">
 </p>
 
 ## Table of contents
